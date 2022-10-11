@@ -1,0 +1,17 @@
+{
+    "name": "2DFPhysics.Editor",
+    "references": [
+        "GUID:92f932128a64d514482a8929cd590fc1",
+        "GUID:c27f87698b16c3e4b8d77638f0bb89f5"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

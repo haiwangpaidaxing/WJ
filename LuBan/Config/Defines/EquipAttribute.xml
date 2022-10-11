@@ -1,0 +1,10 @@
+<module name="Data">
+  <bean name="EquipAttribute">
+    <var name="Attribute_Harm" type="float"/>
+    <var name="Attribute_HP" type="float"/>
+    <var name="Attribute_CritHarm" type="float"/>
+    <var name="Attribute_CriticalChance" type="float"/>
+  </bean>
+</module>
+
+

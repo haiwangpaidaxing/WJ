@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc22b79d5cb4265488dc6286270eb81b, type: 3}
+  m_Name: BaseSkillData
+  m_EditorClassIdentifier: 
+  skillDatas:
+  - id: 1001
+    nexSkillID: 0
+    skillName: 
+    skillDescribe: 
+    animName: 
+    soundEffectsPath: 
+    baseEffectsSkills: []
+    cd: 0.1
+    skillTime: 0
+    currentCD: 0
+    attackBackswing: 0.1
+    comboValidTime: 0
+    comboCurrentValidTime: 0
+    skillEffectsNuumber: 0
+  - id: 10011
+    nexSkillID: 0
+    skillName: "\u666E\u901A\u653B\u51FB\u7B2C\u4E00\u6BB5"
+    skillDescribe: Qwq
+    animName: GroundA1
+    soundEffectsPath: 
+    baseEffectsSkills:
+    - skillData:
+        className: 
+        value: 0
+        name: 
+        describe: 
+        skillEffectsIndex: 0
+        skillID: 0
+    cd: 0.1
+    skillTime: 0
+    currentCD: 0
+    attackBackswing: 0.2
+    comboValidTime: 0.2
+    comboCurrentValidTime: 0
+    skillEffectsNuumber: 1
+  - id: 10012
+    nexSkillID: 0
+    skillName: "\u666E\u901A\u653B\u51FB\u7B2C\u4E8C\u6BB5"
+    skillDescribe: 1.1
+    animName: GroundA2
+    soundEffectsPath: 
+    baseEffectsSkills:
+    - skillData:
+        className: 
+        value: 0
+        name: 
+        describe: 
+        skillEffectsIndex: 0
+        skillID: 0
+    cd: 0.1
+    skillTime: 0
+    currentCD: 0
+    attackBackswing: 0.2
+    comboValidTime: 0.2
+    comboCurrentValidTime: 0
+    skillEffectsNuumber: 1
+  - id: 10013
+    nexSkillID: 0
+    skillName: "\u666E\u901A\u653B\u51FB\u7B2C\u4E09\u6BB5"
+    skillDescribe: 1.1
+    animName: GroundA3
+    soundEffectsPath: 
+    baseEffectsSkills:
+    - skillData:
+        className: 
+        value: 0
+        name: 
+        describe: 
+        skillEffectsIndex: 0
+        skillID: 0
+    cd: 0.1
+    skillTime: 0
+    currentCD: 0
+    attackBackswing: 0.2
+    comboValidTime: 0.2
+    comboCurrentValidTime: 0
+    skillEffectsNuumber: 1
+  - id: 1002
+    nexSkillID: 0
+    skillName: "\u95EA\u907F"
+    skillDescribe: 0a0
+    animName: Roll
+    soundEffectsPath: 
+    baseEffectsSkills: []
+    cd: 5
+    skillTime: 0
+    currentCD: 0
+    attackBackswing: 0
+    comboValidTime: 0
+    comboCurrentValidTime: 0
+    skillEffectsNuumber: 0
+  - id: 12001
+    nexSkillID: 0
+    skillName: "\u7A7A\u4E2D\u653B\u51FB\u7B2C\u4E00\u6BB5"
+    skillDescribe: 0a0
+    animName: AirA1
+    soundEffectsPath: 
+    baseEffectsSkills:
+    - skillData:
+        className: 
+        value: 0
+        name: 
+        describe: 
+        skillEffectsIndex: 0
+        skillID: 0
+    cd: 0.1
+    skillTime: 0
+    currentCD: 0
+    attackBackswing: 0.2
+    comboValidTime: 0.2
+    comboCurrentValidTime: 0
+    skillEffectsNuumber: 1
+  - id: 12002
+    nexSkillID: 0
+    skillName: "\u7A7A\u4E2D\u653B\u51FB\u7B2C\u4E8C\u6BB5"
+    skillDescribe: 0a0
+    animName: AirA2
+    soundEffectsPath: 
+    baseEffectsSkills:
+    - skillData:
+        className: 
+        value: 0
+        name: 
+        describe: 
+        skillEffectsIndex: 0
+        skillID: 0
+    cd: 0.1
+    skillTime: 0
+    currentCD: 0
+    attackBackswing: 0.2
+    comboValidTime: 0.2
+    comboCurrentValidTime: 0
+    skillEffectsNuumber: 1
+  - id: 12003
+    nexSkillID: 0
+    skillName: "\u7A7A\u4E2D\u653B\u51FB\u7B2C\u4E09\u6BB5"
+    skillDescribe: 0a0
+    animName: AirA3
+    soundEffectsPath: 
+    baseEffectsSkills:
+    - skillData:
+        className: 
+        value: 0
+        name: 
+        describe: 
+        skillEffectsIndex: 0
+        skillID: 0
+    cd: 0.1
+    skillTime: 0
+    currentCD: 0
+    attackBackswing: 0
+    comboValidTime: 0.2
+    comboCurrentValidTime: 0
+    skillEffectsNuumber: 1
+  - id: 1003
+    nexSkillID: 0
+    skillName: "\u6CD5\u672F\u653B\u51FB"
+    skillDescribe: "\u6CD5\u672F\u653B\u51FB"
+    animName: MagicArts
+    soundEffectsPath: 
+    baseEffectsSkills:
+    - skillData:
+        className: 
+        value: 0
+        name: 
+        describe: 
+        skillEffectsIndex: 0
+        skillID: 0
+    cd: 0.1
+    skillTime: 0
+    currentCD: 0
+    attackBackswing: 0.1
+    comboValidTime: 0.2
+    comboCurrentValidTime: 0
+    skillEffectsNuumber: 1

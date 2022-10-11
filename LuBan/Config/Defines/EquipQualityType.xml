@@ -1,0 +1,8 @@
+<module name="Data">
+  <enum name="EquipQualityType">
+    <var name="Rare"  value="1"/>
+    <var name="Superio" value="2"/>
+    <var name="Ordinary" value="3"/>
+    <var name="Rough" value="4"/>
+  </enum>
+</module>

@@ -1,0 +1,12 @@
+<module name="Data">
+	<bean name="Attribute">
+		<var name="Attribute_HP" type="int"/>
+		<var name="Attribute_MP" type="int"/>
+    <var name="Attribute_Harm" type="float"/>
+		<var name="Attribute_CritHarm" type="float"/>
+		<var name="Attribute_CriticalChance" type="float"/>
+		<var name="Attribute_MoveSpeed" type="float"  />
+		<var name="Attribute_JumpHeight" type="float"/>
+  </bean>
+</module>
+

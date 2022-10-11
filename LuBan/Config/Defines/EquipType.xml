@@ -1,0 +1,9 @@
+<module name="Data">
+  <enum name="EquipType">
+    <var name="Head" alias="头" value="1"/>
+    <var name="Body" alias="身体" value="2"/>
+    <var name="Leg" alias="腿" value="3"/>
+    <var name="Shoes" alias="鞋子" value="4"/>
+    <var name="Weapon" alias="武器" value="5"/>
+  </enum>
+</module>

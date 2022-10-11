@@ -1,0 +1,14 @@
+{
+    "name": "2DFPhysics",
+    "references": [
+        "GUID:c27f87698b16c3e4b8d77638f0bb89f5"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
