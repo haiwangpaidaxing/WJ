@@ -10,7 +10,6 @@ public class GameLevelManager : MonoBehaviour
     [SerializeField]
     int currentIndex;
     Room currentRoom;
-
     RoleController roleController;
   
 
