@@ -2,7 +2,7 @@
     "dataList": [
         {
             "archiveID": 1,
-            "saveDataTime": "2022/10/14 14:15:48",
+            "saveDataTime": "2022/10/14 18:02:54",
             "playerData": {
                 "selectRoleId": 1001,
                 "gold": 1000000,
@@ -517,6 +517,25 @@
                     "Attribute_CriticalChance": 0.0,
                     "entryKey": [
                         1
+                    ],
+                    "bagIndex": 10
+                },
+                {
+                    "Id": 1008,
+                    "ISOpen": true,
+                    "EquipName": "牛皮长裤",
+                    "ResName": "LeatherPants",
+                    "Describe": "粗糙的牛皮长裤",
+                    "EntryNumber": 1,
+                    "PriceWeapons": 500,
+                    "EquipType": 3,
+                    "EquipQualityType": 4,
+                    "Attribute_Harm": 0.0,
+                    "Attribute_HP": 0.0,
+                    "Attribute_CritHarm": 18.0,
+                    "Attribute_CriticalChance": 0.0,
+                    "entryKey": [
+                        2
                     ],
                     "bagIndex": 10
                 }
