@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Room
 {
+
     //Fixed Camera Position
     public Transform fixedCamerPos;
     public Action quitCB;
@@ -28,6 +29,10 @@ public struct RoomConfig
 {
     [Header("循环次数")]
     public int cycles;
+    [Header("房间大小")]
+    public Vector2 RoomSize;
+    [Header("房间边界位置")]
+    public Transform[] broundaryPos;//边界位置
     [Header("创建怪物配置")]
     public CreateEnemyConfigData[] createConfig;
 }

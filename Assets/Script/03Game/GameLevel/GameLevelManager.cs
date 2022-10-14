@@ -6,36 +6,18 @@ using UnityEngine;
 public class GameLevelManager : MonoBehaviour
 {
     [SerializeField]
-    Room[] room;
-    [SerializeField]
-    int currentIndex;
+    Room[] rooms;
+
     Room currentRoom;
     RoleController roleController;
-  
 
-    public void Start()
+    private void OnDrawGizmos()
     {
-        currentIndex = 0;
-        currentRoom = room[0];
-        currentRoom.quitCB = NextRoom;
-    }
-    void NextRoom()
-    {
-        currentIndex++;
-        if (currentIndex == room.Length)
+        if (rooms!=null&&rooms.Length>0)
         {
-            //GO
-        }
-        currentRoom = room[currentIndex];
-        CameraControl.Single.SetTarget(roleController.transform);
-    }
-    private void Update()
-    {
-        if (CameraControl.Single.TrackingTarget != currentRoom.fixedCamerPos)
-        {
-            if (Vector2.Distance(roleController.transform.position, currentRoom.fixedCamerPos.position) < 1f)
+            foreach (var item in rooms)
             {
-                CameraControl.Single.SetTarget(currentRoom.fixedCamerPos);
+               // Gizmos.DrawWireCube();
             }
         }
     }
