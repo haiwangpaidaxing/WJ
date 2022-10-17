@@ -1,0 +1,7 @@
+<module name="Data">
+  <bean name="ItemDropData" >
+    <var name="Max" type="int"/>
+    <var name="Min" type="int"/>
+    <var name="ID" type="int"/>
+  </bean>
+</module>

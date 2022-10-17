@@ -15,6 +15,7 @@ public sealed partial class Tables
 {
     public Data.TBRoleData TBRoleData {get; }
     public Data.TBEquipConfig TBEquipConfig {get; }
+    public Data.TBLevelConfig TBLevelConfig {get; }
 
     public Tables(System.Func<string, JSONNode> loader)
     {
@@ -23,10 +24,13 @@ public sealed partial class Tables
         tables.Add("Data.TBRoleData", TBRoleData);
         TBEquipConfig = new Data.TBEquipConfig(loader("data_tbequipconfig")); 
         tables.Add("Data.TBEquipConfig", TBEquipConfig);
+        TBLevelConfig = new Data.TBLevelConfig(loader("data_tblevelconfig")); 
+        tables.Add("Data.TBLevelConfig", TBLevelConfig);
         PostInit();
 
         TBRoleData.Resolve(tables); 
         TBEquipConfig.Resolve(tables); 
+        TBLevelConfig.Resolve(tables); 
         PostResolve();
     }
 
@@ -34,6 +38,7 @@ public sealed partial class Tables
     {
         TBRoleData.TranslateText(translator); 
         TBEquipConfig.TranslateText(translator); 
+        TBLevelConfig.TranslateText(translator); 
     }
     
     partial void PostInit();

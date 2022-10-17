@@ -1,0 +1,7 @@
+<module name="Data" >
+  <bean name="LevelData" >
+    <var name="Describe" type="string"/>
+    <var name="Gold" type="int"/>
+    <var name="EquipmentDrops" type="(list#sep=%),Data.ItemDropData#sep=,"/>
+  </bean>
+</module> 

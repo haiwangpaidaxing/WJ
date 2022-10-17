@@ -1,0 +1,16 @@
+[
+  {
+    "untID": "Level1",
+    "LevelDatas": {
+      "Describe": "暂无",
+      "Gold": 1000,
+      "EquipmentDrops": [
+        {
+          "Max": 2,
+          "Min": 1,
+          "ID": 1001
+        }
+      ]
+    }
+  }
+]
