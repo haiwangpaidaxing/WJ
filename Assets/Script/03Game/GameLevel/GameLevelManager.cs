@@ -6,14 +6,29 @@ using UnityEngine;
 public class GameLevelManager : MonoBehaviour
 {
     [SerializeField]
-    Room[] rooms;
+    List<Room> rooms;
 
     Room currentRoom;
     RoleController roleController;
-
+    private void Awake()
+    {
+        Init();
+    }
+    public void Init()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject roomObject = transform.GetChild(i).gameObject;
+            for (int a = 0; a < roomObject.transform.childCount; a++)
+            {
+                GameObject wall = roomObject.transform.GetChild(a).gameObject;
+                rooms[i].roomConfig.broundary.Add(wall);
+            }
+        }
+    }
     private void OnDrawGizmos()
     {
-        if (rooms != null && rooms.Length > 0)
+        if (rooms != null && rooms.Count > 0)
         {
             foreach (var item in rooms)
             {
@@ -24,14 +39,14 @@ public class GameLevelManager : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (rooms != null && rooms.Length > 0)
+        if (rooms != null && rooms.Count > 0)
         {
-
-            foreach (var item in rooms)
+            for (int i = rooms.Count - 1; i >= 0; i--)
             {
-                if (Physics2D.OverlapBox(item.roomConfig.RoomPos.position, item.roomConfig.RoomSize, 0, LayerMask.GetMask("Hero")))
+                if (Physics2D.OverlapBox(rooms[i].roomConfig.RoomPos.position, rooms[i].roomConfig.RoomSize, 0, LayerMask.GetMask("Hero")))
                 {
-                    Debug.Log("玩家进入房间" + item.roomConfig.RoomPos.name);
+                    rooms[i].Enter();
+                    rooms.RemoveAt(i);
                 }
             }
         }

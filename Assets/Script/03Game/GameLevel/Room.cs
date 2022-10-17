@@ -10,6 +10,23 @@ public class Room
     public Action quitCB;
     [Header("房间配置")]
     public RoomConfig roomConfig;
+    public void Enter()
+    {
+        //Open Null Wall
+        for (int i = 0; i < roomConfig.broundary.Count; i++)
+        {
+            roomConfig.broundary[i].SetActive(true);
+        }
+
+    }
+    public void Close()
+    {
+        //Close Null Wall
+        for (int i = 0; i < roomConfig.broundary.Count; i++)
+        {
+            roomConfig.broundary[i].SetActive(false);
+        }
+    }
     public void Execute()
     {
 
@@ -30,10 +47,10 @@ public struct RoomConfig
     public int cycles;
     [Header("房间大小")]
     public Vector2 RoomSize;
-    [Header("房间位置")]
+    [Header("触发房间的范围")]
     public Transform RoomPos;
     [Header("房间边界位置")]
-    public Transform[] broundaryPos;//边界位置
+    public List<GameObject> broundary;//边界位置
     [Header("创建怪物配置")]
     public CreateEnemyConfigData[] createConfig;
 }
