@@ -11,6 +11,7 @@ public class MainSceneSys : BaseSys<MainSceneSys>
     public BagPanel bagPanel;
     public MainScenePanel mainScenePanel;
     public ShopPanel shopPanel;
+    public SelectLevelPanel selectLevelPanel;
     public EquipSoltItem[] equipSoltItem;
     #endregion
     public override void Init()
@@ -48,6 +49,7 @@ public class MainSceneSys : BaseSys<MainSceneSys>
         skillPanel = UISvc.Single.GetPanel<SkillPanel>(UIPath.SkillPanel);
         shopPanel = UISvc.Single.GetPanel<ShopPanel>(UIPath.ShopPanel);
         bagPanel = UISvc.Single.GetPanel<BagPanel>(UIPath.BagPanel);
+        selectLevelPanel = UISvc.Single.GetPanel<SelectLevelPanel>(UIPath.SelectLevelPanel);
     }
     #endregion
 
@@ -90,15 +92,29 @@ public class MainSceneSys : BaseSys<MainSceneSys>
         }
 
     }
+    /// <summary>
+    /// 进入背包
+    /// </summary>
     public void EnterBagPanel()
     {
         UISvc.Single.SetPanelState(bagPanel, UISvc.StateType.Show);
         UpdateBag();
     }
+    /// <summary>
+    /// 进入商店
+    /// </summary>
     public void EnterShopPanel()
     {
         UISvc.Single.SetPanelState(shopPanel, UISvc.StateType.Show);
         UpdateEquipSales();
+    }
+    /// <summary>
+    /// 进入选择关卡
+    /// </summary>
+    public void EnterLevelPanel()
+    {
+        UISvc.Single.SetPanelState(selectLevelPanel, UISvc.StateType.Show);
+        UpdateLevel();
     }
     #endregion
     ///// <summary>
@@ -127,7 +143,23 @@ public class MainSceneSys : BaseSys<MainSceneSys>
     //    skillData.baseEffectsSkills[effectsSkillData.skillEffectsIndex] = (BaseEffectsSkill)obj;
     //    resourceSvc.Save();
     //}
+    #region SelectLevelFunction
+    private void UpdateLevel()
+    {
+        selectLevelPanel.TransformChildReset(selectLevelPanel.ScrollViewContent);
+        LevelConfigData[] levelConfigData = resourceSvc.LevelConfigDatas;
+        for (int i = 0; i < levelConfigData.Length; i++)
+        {
+            GameObject gameObjectItem = resourceSvc.LoadOrCreate<GameObject>(UIItemPath.SelectLevelItem);
 
+            SelectLevelItem selectLevelItem = gameObjectItem.GetComponent<SelectLevelItem>();
+
+            selectLevelItem.Init(levelConfigData[i].LevelName, levelConfigData[i].LevelJumpSceneName);
+
+            selectLevelPanel.TransformChildAdd(selectLevelPanel.ScrollViewContent, gameObjectItem.transform);
+        }
+    }
+    #endregion
     #region BagFunction
     private void UpdateBag()
     {

@@ -28,6 +28,8 @@ public class InputController : MonoSingle<InputController>
     private Vector2 oldInput;
     public System.Action<Vector2> inputCB;
     public System.Action<int> operaterCB;
+
+    public bool LockDir { get; set; }
     private void Update()
     {
         //if (Input.GetMouseButtonDown(0))
@@ -51,8 +53,12 @@ public class InputController : MonoSingle<InputController>
         if (inputDir != oldInput)
         {
             oldInput = inputDir;
+            if (LockDir)
+            {
+                return;
+            }
             inputCB?.Invoke(oldInput);
         }
-       
+
     }
 }

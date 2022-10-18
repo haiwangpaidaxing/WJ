@@ -10,6 +10,7 @@ public class RoleIdleState : BaseRoleState
 
     protected override void Enter()
     {
+        database.roleController.SetGroundPhysicsMaterial2D();
         database.roleController.MoveX(0,0);
         base.Enter();
     }

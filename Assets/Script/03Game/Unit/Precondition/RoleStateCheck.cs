@@ -29,13 +29,7 @@ public class RoleStateCheck : BTPrecondition
                 return database.roleController.RigVelocity.y > 0;
 
             case CheckType.WallSlider:
-                if (RayCheck.Check(database.wallSliderCheckPos, database.wallCheckDir, database.wallSlierSize, database.wallMask)
-                    && database.InputDir.x != 0 && database.InputDir.x == database.roleController.roleDir)
-                {
-                    return true;
-                }
-                return false;
-
+                return Wall();
             case CheckType.Air:
                 return !BoxCheck.Check(database.GroundCheckPos, database.GroundSize, database.GroundMask);
 
@@ -45,6 +39,18 @@ public class RoleStateCheck : BTPrecondition
             default:
                 return false;
         }
+    }
+
+    public bool Wall()
+    {
+        //需要与墙壁到达一定高度才能激活 否则会来回不断切换别的状态
+        Debug.Log("需要与墙壁到达一定高度才能激活 否则会来回不断切换别的状态");
+        if (RayCheck.Check(database.wallSliderCheckPos, database.wallCheckDir, database.wallSlierSize, database.wallMask)
+            /* && database.InputDir.x != 0 && database.InputDir.x == database.roleController.roleDir*/)
+        {
+            return true;
+        }
+        return false;
     }
     public enum CheckType
     {

@@ -1,5 +1,5 @@
 <module name="Data">
 	  <table name="TBRoleData" value="RoleData" define_from_file="True" input="RoleData.xlsx"/>
   <table name="TBEquipConfig" value="EquipData" define_from_file="True" input="EquipConfig.xlsx"/>
-  <table name="TBLevelConfig" value="LevelConfig" define_from_file="True" input="LevelConfig.xlsx"/>
+  <table name="TBLevelConfig" value="LevelConfigData" define_from_file="True" input="LevelConfig.xlsx"/>
 </module>

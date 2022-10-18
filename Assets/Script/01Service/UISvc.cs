@@ -23,14 +23,8 @@ public class UISvc : MonoSingle<UISvc>
         showPanel = new List<BasePanel>();
         closePanel = new List<BasePanel>();
         uiRoot = GameObject.Find("UIRoot").transform;
-        //uiShow = new GameObject("Show").transform;
-        //uiClose = new GameObject("Close").transform;
         uiPopup = new GameObject("Popup").transform;
-
-        //uiShow.SetParent(uiRoot, false);
-        //uiClose.SetParent(uiRoot, false);
         uiPopup.SetParent(uiRoot, false);
-        //  uiClose.gameObject.SetActive(false);
         Debug.Log("UI服务");
     }
     void UIShow(BasePanel pl)
@@ -80,7 +74,11 @@ public class UISvc : MonoSingle<UISvc>
                 break;
         }
     }
-
+    /// <summary>
+    /// 面板为唯一
+    /// </summary>
+    /// <param name="pl"></param>
+    /// <param name="stateType"></param>
     public void SetSinglePanel(BasePanel pl, StateType stateType = StateType.Show)
     {
         if (stateType == StateType.Close) return;

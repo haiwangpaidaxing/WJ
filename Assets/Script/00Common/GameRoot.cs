@@ -28,7 +28,7 @@ public class GameRoot : MonoSingle<GameRoot>
 
     private void Awake()
     {
-     
+
         Debug.Log("GameRootInit...");
         DontDestroyOnLoad(gameObject);
         //初始化服务
@@ -52,7 +52,7 @@ public class GameRoot : MonoSingle<GameRoot>
     }
     public void GetSvc<T>(ref T t) where T : MonoSingle<T>
     {
-      
+
         try
         {
             t = GetComponent<T>();
@@ -62,10 +62,10 @@ public class GameRoot : MonoSingle<GameRoot>
             }
             t.Init();
         }
-        catch 
+        catch
         {
 
-        }  
+        }
     }
     private void Update()
     {

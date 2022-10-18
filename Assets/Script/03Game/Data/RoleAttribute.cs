@@ -7,7 +7,8 @@ using cfg.Data;
 public class RoleAttribute : MonoBehaviour
 {
     Attribute baseAttribute;
-    WMData.EquipData[] equipDatas;
+    [SerializeField]
+    WMData.EquipData[] equipDatas;//×°±¸ÊôÐÔ
     public void Init(Attribute roleAttribut, WMData.EquipData[] equipDatas)
     {
         this.equipDatas = equipDatas;

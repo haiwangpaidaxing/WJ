@@ -26,8 +26,14 @@ public class RoleController : MonoBehaviour, IInjured
     public RoleAttribute roleAttribute;
     [Header("受伤位置")]
     public Transform injuredPos;
+    [SerializeField]
+    PhysicsMaterial2D AirMaterial;
+    [SerializeField]
+    public PhysicsMaterial2D GroundMaterial;
     public virtual void Init()
     {
+        AirMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("AirMaterial");
+        GroundMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("GroundMaterial");
         injuredPos = transform.Find("InjuredPos");
         skillDataList = ResourceSvc.Single.CurrentArchiveData.playerData.skillDatas;
         this.roleAttribute = GetComponent<RoleAttribute>();
@@ -81,27 +87,28 @@ public class RoleController : MonoBehaviour, IInjured
 
     public virtual void MoveX(float dir, float speed)
     {
+      
         SyncImage(dir);
+
         if (dir != 0)
         {
             roleDir = dir;
         }
-        //rig.velocity = new Vector2(dir * speed, rig.velocity.y);
-        //Vector2 f = Vector2.right * dir * speed;
-        //rig.MovePosition(rig.position + f * Time.fixedDeltaTime);
         rig.velocity = new Vector2(dir * speed, rig.velocity.y);
-        //rig.position += Vector2.right * dir * speed * Time.deltaTime;
-        // rig.velocity += Vector2.right * dir * speed * Time.deltaTime;
     }
     public virtual void MoveX(float dir, float speed, ForceMode2D forceMode2D)
     {
         Vector2 f = Vector2.right * dir * speed;
         rig.AddForce(f, forceMode2D);
     }
-
+    
     public virtual void MoveY(float dir, float speed)
     {
         rig.velocity = new Vector2(rig.velocity.x, dir * speed);
+    }
+    public virtual void Move(Vector2 dir, float speed)
+    {
+        rig.velocity = dir*speed;
     }
     public virtual void Fall()
     {
@@ -131,6 +138,21 @@ public class RoleController : MonoBehaviour, IInjured
     public virtual void Injured(InjuredData injuredData)
     {
         ResourceSvc.Single.LoadOrCreate<GameObject>(UIItemPath.DamageTextitem).GetComponent<DamageText>().Init(injuredData.harm, injuredPos);
+    }
+
+    public void SetAirPhysicsMaterial2D()
+    {
+        if (rig.sharedMaterial!=AirMaterial)
+        {
+            rig.sharedMaterial = AirMaterial;
+        }
+    }
+    public void SetGroundPhysicsMaterial2D()
+    {
+        if (rig.sharedMaterial != GroundMaterial)
+        {
+            rig.sharedMaterial = GroundMaterial;
+        }
     }
 }
 

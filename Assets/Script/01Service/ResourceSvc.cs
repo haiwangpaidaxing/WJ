@@ -5,6 +5,7 @@ using Bright.Serialization;
 using UnityEngine;
 using SimpleJSON;
 using cfg;
+using cfg.Data;
 using UnityEngine.SceneManagement;
 using WMEffectsSkill;
 
@@ -14,9 +15,17 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     public AssetBundle ab;
     LoadPanel loadPanel;
     Tables tables;
+    EffectsSkillDataConfig effectsSkillDataConfig;
     public ArchiveData CurrentArchiveData { get; set; }
     public cfg.Data.EquipData[] EquipConfig { get { return tables.TBEquipConfig.DataList.ToArray(); } }
     public cfg.Data.RoleData[] RoleDataConfig { get { return tables.TBRoleData.DataList.ToArray(); } }
+    public LevelConfigData[] LevelConfigDatas
+    {
+        get
+        {
+            return tables.TBLevelConfig.DataList.ToArray();
+        }
+    }
     public override void Init()
     {
         cacheList = new Dictionary<string, Object>();
@@ -32,12 +41,14 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     {
         return tables.TBRoleData.Get(id);
     }
-
+    public LevelConfigData GetLevelDataByID(int id)
+    {
+        return tables.TBLevelConfig.Get(id);
+    }
     public cfg.Data.EquipData GetEquipDataByID(int id)
     {
         return tables.TBEquipConfig.Get(id);
     }
-
     public EffectsSkillDataConfig EffectsSkillDataConfig
     {
         get
@@ -50,13 +61,11 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             return effectsSkillDataConfig;
         }
     }
-    EffectsSkillDataConfig effectsSkillDataConfig;
     private JSONNode LoadByteBuf(string fileName)
     {
         //"D:\GetHubProject\Dream\GenerateDatas\json\item_tbitem.json"
         return JSON.Parse(File.ReadAllText(Application.dataPath + "/../GenerateDatas/json/" + fileName + ".json", System.Text.Encoding.UTF8));
     }
-
     public WMData.EquipData CfgDataEquidToWMDataEquip(cfg.Data.EquipData cfgDataEquip)
     {
         WMData.EquipData wmDataEquip;

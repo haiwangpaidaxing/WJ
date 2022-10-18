@@ -16,29 +16,29 @@ namespace cfg.Data
 
 public sealed partial class TBLevelConfig
 {
-    private readonly Dictionary<string, Data.LevelConfig> _dataMap;
-    private readonly List<Data.LevelConfig> _dataList;
+    private readonly Dictionary<int, Data.LevelConfigData> _dataMap;
+    private readonly List<Data.LevelConfigData> _dataList;
     
     public TBLevelConfig(JSONNode _json)
     {
-        _dataMap = new Dictionary<string, Data.LevelConfig>();
-        _dataList = new List<Data.LevelConfig>();
+        _dataMap = new Dictionary<int, Data.LevelConfigData>();
+        _dataList = new List<Data.LevelConfigData>();
         
         foreach(JSONNode _row in _json.Children)
         {
-            var _v = Data.LevelConfig.DeserializeLevelConfig(_row);
+            var _v = Data.LevelConfigData.DeserializeLevelConfigData(_row);
             _dataList.Add(_v);
             _dataMap.Add(_v.UntID, _v);
         }
         PostInit();
     }
 
-    public Dictionary<string, Data.LevelConfig> DataMap => _dataMap;
-    public List<Data.LevelConfig> DataList => _dataList;
+    public Dictionary<int, Data.LevelConfigData> DataMap => _dataMap;
+    public List<Data.LevelConfigData> DataList => _dataList;
 
-    public Data.LevelConfig GetOrDefault(string key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public Data.LevelConfig Get(string key) => _dataMap[key];
-    public Data.LevelConfig this[string key] => _dataMap[key];
+    public Data.LevelConfigData GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+    public Data.LevelConfigData Get(int key) => _dataMap[key];
+    public Data.LevelConfigData this[int key] => _dataMap[key];
 
     public void Resolve(Dictionary<string, object> _tables)
     {

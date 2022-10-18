@@ -15,6 +15,7 @@ public class RoleAirJumpState : RoleIdleState
 
     protected override BTResult Execute()
     {
+        database.roleController.SetAirPhysicsMaterial2D();
         database.roleController.MoveX(database.InputDir.x, database.roleAttribute.GetMoveSpeed());
         return base.Execute();
     }

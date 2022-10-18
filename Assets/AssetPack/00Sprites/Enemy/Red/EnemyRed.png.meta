@@ -20,7 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -2857,16 +2857,16 @@ TextureImporter:
       Jinured126: 1801537241
       Attack110: -1227005302
       Attack118: 2046473040
-      Attack67: -749272444
+      Attack66: 378223870
       Attack68: 278225417
       Attack70: 1714157703
       Attack95: 1635645784
       Attack82: -31500947
+      Attack67: -749272444
       EnemyRed_28: -1739099909
-      EnemyRed_25: 1804546133
       EnemyRed_32: -326426863
       Attack96: 1738342475
-      Attack66: 378223870
+      EnemyRed_25: 1804546133
       Jinured122: 406968402
       Run14: -1385640338
       Attack61: 509549131

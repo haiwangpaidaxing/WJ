@@ -1,6 +1,8 @@
 [
   {
-    "untID": "Level1",
+    "untID": 1001,
+    "LevelName": "关卡一",
+    "LevelJumpSceneName": "Level1",
     "LevelDatas": {
       "Describe": "暂无",
       "Gold": 1000,
