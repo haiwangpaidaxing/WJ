@@ -5,25 +5,34 @@ using WUBT;
 
 public class RoleWallSlider : BaseRoleState
 {
+
     public RoleWallSlider(string animName, string audioName = "") : base(animName, audioName)
     {
     }
 
-
+    public int enterDir;
     protected override void Enter()
     {
-        InputController.Single.LockDir = true;
+        enterDir = (int)roleController.roleDir;
         base.Enter();
     }
 
     protected override BTResult Execute()
     {
-        roleController.MoveY(1, -1);
+        if (database.InputDir.x != 0 && enterDir != database.InputDir.x)
+        {
+            roleController.MoveX(database.InputDir.x, 4);
+            roleController.MoveY(1, 7);
+            Debug.Log("TODO.....");
+        }
+        else
+        {
+            roleController.MoveY(1, (-1 + -Time.deltaTime));
+        }
         return base.Execute();
     }
     protected override void Exit()
     {
-        InputController.Single.LockDir = false;
         base.Exit();
     }
 }

@@ -20,7 +20,7 @@ public class StateCheck : BTPrecondition
             case CheckType.Ground:
                 return BoxCheck.Check(database.GroundCheckPos, database.GroundSize, database.GroundMask);
             case CheckType.WallSlider:
-                return RayCheck.Check(database.wallSliderCheckPos, database.wallCheckDir, database.wallSlierSize, database.wallMask);
+                return RayCheck.Check(database.wallSliderCheckPos, Vector2.right , database.wallSlierSize, database.wallMask);
         }
         return false;
     }

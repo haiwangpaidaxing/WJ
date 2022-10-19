@@ -71,7 +71,7 @@ public class TimerSvc : MonoSingle<TimerSvc>
         {
             task.cancelCB?.Invoke();
             task.cancelCB = null;
-            Debug.Log("TimerSvc..移除任务" + task.taskDescribe + id);
+           // Debug.Log("TimerSvc..移除任务" + task.taskDescribe + id);
             return true;
         }
         else

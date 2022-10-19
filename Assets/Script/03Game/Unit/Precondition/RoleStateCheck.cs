@@ -45,8 +45,8 @@ public class RoleStateCheck : BTPrecondition
     {
         //需要与墙壁到达一定高度才能激活 否则会来回不断切换别的状态
         Debug.Log("需要与墙壁到达一定高度才能激活 否则会来回不断切换别的状态");
-        if (RayCheck.Check(database.wallSliderCheckPos, database.wallCheckDir, database.wallSlierSize, database.wallMask)
-            /* && database.InputDir.x != 0 && database.InputDir.x == database.roleController.roleDir*/)
+        if (RayCheck.Check(database.wallSliderCheckPos, Vector2.right, database.wallSlierSize, database.wallMask) && !Physics2D.Raycast(database.transform.position, Vector2.down, database.detectionHighly, LayerMask.GetMask("Ground"))
+             /*&& database.InputDir.x != 0 && database.InputDir.x == database.roleController.roleDir*/)
         {
             return true;
         }

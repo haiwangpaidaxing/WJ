@@ -55,6 +55,7 @@ public class InputController : MonoSingle<InputController>
             oldInput = inputDir;
             if (LockDir)
             {
+                inputCB(Vector2.zero);
                 return;
             }
             inputCB?.Invoke(oldInput);

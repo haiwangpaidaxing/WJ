@@ -18,6 +18,8 @@ namespace WUBT
         public float wallSlierSize;
         [SerializeField]
         private Vector2 wallOffset;
+        [Header("检测高度")]
+        public float detectionHighly;
         [HideInInspector]
         public Vector2 wallCheckDir = Vector2.right;
         [HideInInspector]
@@ -44,8 +46,9 @@ namespace WUBT
         {
             Vector2 GroundCheckPos = transform.position;
             GroundCheckPos += GroundOffset;
+            Gizmos.DrawRay(transform.position, Vector2.down * detectionHighly);
             Gizmos.DrawWireCube(GroundCheckPos, GroundSize);
-            Gizmos.DrawRay(wallSliderCheckPos, wallCheckDir * wallSlierSize);
+            Gizmos.DrawRay(wallSliderCheckPos, Vector2.right * wallSlierSize);
         }
         private void FixedUpdate()
         {
