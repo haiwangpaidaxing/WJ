@@ -17,7 +17,7 @@ public class Room
         {
             roomConfig.broundary[i].SetActive(true);
         }
-
+        Debug.Log("Enter" + roomConfig.RoomInfo);
     }
     public void Close()
     {
@@ -53,6 +53,8 @@ public struct RoomConfig
     public List<GameObject> broundary;//边界位置
     [Header("创建怪物配置")]
     public CreateEnemyConfigData[] createConfig;
+    [Header("房间信息")]
+    public string RoomInfo;
 }
 
 [System.Serializable]

@@ -156,10 +156,3 @@ public class RoleController : MonoBehaviour, IInjured
     }
 }
 
-public interface MoveController
-{
-    public void MoveX(float dir, float speed);
-    public void MoveY(float dir, float speed);
-
-}
-
