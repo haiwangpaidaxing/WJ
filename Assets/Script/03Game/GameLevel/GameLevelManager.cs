@@ -7,16 +7,11 @@ public class GameLevelManager : MonoBehaviour
 {
     [SerializeField]
     List<Room> rooms;
-
-    Room currentRoom;
-    RoleController roleController;
-
     public Transform roleStartPos;
     private void Awake()
     {
         GameObject role = GameRoot.Single.CreateRole(MainSceneSys.Single.playerData.roleData);
         role.transform.position = roleStartPos.position;
-        roleController = role.GetComponent<RoleController>();
         CameraControl.Single.SetTarget(role.transform);
         Init();
     }

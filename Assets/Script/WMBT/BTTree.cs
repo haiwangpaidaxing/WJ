@@ -10,7 +10,7 @@ namespace WUBT
         public Database database;
         public BTNode root;
         public bool isRuning = true;
-        public void Init()
+        public virtual void Init()
         {
             database = GetComponent<Database>();
         }

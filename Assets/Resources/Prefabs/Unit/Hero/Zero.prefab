@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 4441259093511674310}
   - component: {fileID: 4441259093511674311}
   - component: {fileID: 4441259093511674307}
-  - component: {fileID: 482592808647097713}
+  - component: {fileID: 1177728057341408119}
   - component: {fileID: -5838456174768155246}
   - component: {fileID: 5212051152566610019}
   - component: {fileID: -4064871432311494859}
@@ -212,7 +212,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &482592808647097713
+--- !u!114 &1177728057341408119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4441259093511674308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c6a8d2cd82001a409e4507aa0fe049a, type: 3}
+  m_Script: {fileID: 11500000, guid: 05fd8703704457c4a88170c0aea695c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roleController: {fileID: 5212051152566610019}
@@ -230,17 +230,18 @@ MonoBehaviour:
   GroundMask:
     serializedVersion: 2
     m_Bits: 512
-  wallSlierSize: 1.3
-  wallOffset: {x: -0.7, y: 0.1}
+  InputDir: {x: 0, y: 0}
+  roleAttribute: {fileID: 0}
+  GroundCheckPos: {x: 0, y: 0}
+  wallSlierSize: 1
+  wallOffset: {x: -0.25, y: 0}
+  wallRay: {r: 0.10849059, g: 1, b: 0.18027931, a: 1}
   detectionHighly: 1.5
   wallCheckDir: {x: 1, y: 0}
   wallSliderCheckPos: {x: 0, y: 0}
   wallMask:
     serializedVersion: 2
     m_Bits: 1024
-  InputDir: {x: 0, y: 0}
-  roleAttribute: {fileID: 0}
-  GroundCheckPos: {x: 0, y: 0}
 --- !u!114 &-5838456174768155246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   database: {fileID: 0}
   isRuning: 1
+  heroDatabase: {fileID: 0}
 --- !u!114 &5212051152566610019
 MonoBehaviour:
   m_ObjectHideFlags: 0

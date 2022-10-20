@@ -2,11 +2,12 @@
 using WUBT;
 public class RoleTree : BTTree
 {
-    public new void Init()
+    public override void Init()
     {
         base.Init();
         InitBasedBehavior();
     }
+    public HeroDatabase heroDatabase;
     protected virtual void InitBasedBehavior()
     {
         root = new BTPrioritySelector(null, "root");
@@ -14,8 +15,8 @@ public class RoleTree : BTTree
         BTPrioritySelector groundSelector = new BTPrioritySelector(new RoleStateCheck(RoleStateCheck.CheckType.Ground), "Ground");
         //技能
 
-      //  BTPrioritySelector skillPS = new BTPrioritySelector(new SkillCheck(), "SelectSkill");
-      //  BTPrioritySelector thump = new BTPrioritySelector(, "普通攻击");//轻击节点
+        //  BTPrioritySelector skillPS = new BTPrioritySelector(new SkillCheck(), "SelectSkill");
+        //  BTPrioritySelector thump = new BTPrioritySelector(, "普通攻击");//轻击节点
 
         //站立
         BTParallel grIdleParallel = new BTParallel(new RoleStateCheck(RoleStateCheck.CheckType.Idle), BTParallel.ParallelFunction.Or, "Idle");
@@ -57,7 +58,8 @@ public class RoleTree : BTTree
         //根节点的添加
         root.AddChild(groundSelector);
         root.AddChild(airSelect);
-        root.Init(database);
+        heroDatabase =(HeroDatabase) database ;
+        root.Init(heroDatabase);
     }
 
 

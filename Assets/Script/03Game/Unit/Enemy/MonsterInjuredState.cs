@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NinjaInjuredState
+public class MonsterInjuredState
 {
     Action injuredOver;
     RoleController roleController;
     int injuredID;
-    public NinjaInjuredState(RoleController roleController)
+    public MonsterInjuredState(RoleController roleController)
     {
         this.roleController = roleController;
     }

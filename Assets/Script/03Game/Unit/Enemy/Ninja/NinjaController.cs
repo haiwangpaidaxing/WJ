@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NinjaController : RoleController
 {
-    NinjaInjuredState injuredState;
+    MonsterInjuredState injuredState;
     private void Start()
     {
         Init();
@@ -12,7 +12,7 @@ public class NinjaController : RoleController
     public override void Init()
     {
         base.Init();
-        injuredState = new NinjaInjuredState(this);
+        injuredState = new MonsterInjuredState(this);
     }
     public override void InputEvene()
     {
@@ -22,8 +22,7 @@ public class NinjaController : RoleController
     {
         base.Injured(injuredData);
         GameObject injuredEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("Prefabs/Effects/InjuredEffects");
-        injuredEffects.transform.position = injuredPos.position;
-       // Destroy(injuredEffects, 0.2f);
+        injuredEffects.transform.position = injuredPos.position;   
         injuredState.Enter(injuredData, () =>
         {
             animator.Play("Idle");

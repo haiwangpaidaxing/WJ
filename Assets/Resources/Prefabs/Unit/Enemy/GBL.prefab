@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 2423497458839106505}
   - component: {fileID: 2423497458839106510}
   - component: {fileID: 1971217188270526820}
+  - component: {fileID: 7985657225820608114}
+  - component: {fileID: 5031309033245878951}
+  - component: {fileID: 6483164529046158465}
   m_Layer: 12
   m_Name: GBL
   m_TagString: Enemy
@@ -144,3 +147,74 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7985657225820608114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2423497458839106511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3e078ce76ba9445b172e32ecac1d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillDataList: []
+  syncImge: 1
+  fallMultiplier: 2.5
+  isFall: 1
+  roleDir: 0
+  animator: {fileID: 0}
+  roleAttribute: {fileID: 0}
+  injuredPos: {fileID: 0}
+  AirMaterial: {fileID: 0}
+  GroundMaterial: {fileID: 0}
+--- !u!114 &5031309033245878951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2423497458839106511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0809dc8f1133314683713b3a30aa305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  database: {fileID: 0}
+  isRuning: 1
+--- !u!114 &6483164529046158465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2423497458839106511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8bbf82dac337a4786b24b829b47259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roleController: {fileID: 0}
+  GroundOffset: {x: 0, y: 0}
+  GroundSize: {x: 0, y: 0}
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  InputDir: {x: 0, y: 0}
+  roleAttribute: {fileID: 0}
+  GroundCheckPos: {x: 0, y: 0}
+  tackingRangeSize: {x: 10.66, y: 3.45}
+  tackingRangeOffset: {x: 0, y: 0.47}
+  tackingMask:
+    serializedVersion: 2
+    m_Bits: 0
+  tackingDrawColor: {r: 1, g: 1, b: 1, a: 1}
+  attackRangeSize: {x: 0, y: 0}
+  attackRangeOffset: {x: 0, y: 0}
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 0
+  attackDrawColor: {r: 0, g: 0, b: 0, a: 1}
+  veTr: {x: 0, y: 0}
+  tackingRangeTarget: {fileID: 0}

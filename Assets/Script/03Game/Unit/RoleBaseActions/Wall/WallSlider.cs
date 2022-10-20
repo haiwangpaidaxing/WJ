@@ -23,7 +23,7 @@ public class RoleWallSlider : BaseRoleState
         {
             roleController.MoveX(database.InputDir.x, 4);
             roleController.MoveY(1, 7);
-            Debug.Log("TODO.....");
+
         }
         else
         {

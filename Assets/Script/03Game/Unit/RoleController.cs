@@ -129,17 +129,15 @@ public class RoleController : MonoBehaviour, IInjured
             transform.localScale = trLocalScale;
         }
     }
-
     public void AnimatorEvent()
     {
+        ///因为状态不是挂载在人物身上所以，需要用到动画帧事件是，需要挂载脚本中转
         animatorClipCb?.Invoke();
     }
-
     public virtual void Injured(InjuredData injuredData)
     {
         ResourceSvc.Single.LoadOrCreate<GameObject>(UIItemPath.DamageTextitem).GetComponent<DamageText>().Init(injuredData.harm, injuredPos);
     }
-
     public void SetAirPhysicsMaterial2D()
     {
         if (rig.sharedMaterial!=AirMaterial)
@@ -151,7 +149,7 @@ public class RoleController : MonoBehaviour, IInjured
     {
         if (rig.sharedMaterial != GroundMaterial)
         {
-            rig.sharedMaterial = GroundMaterial;
+            rig.sharedMaterial = AirMaterial;
         }
     }
 }
