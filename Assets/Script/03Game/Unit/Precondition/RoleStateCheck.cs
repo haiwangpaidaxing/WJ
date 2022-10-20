@@ -81,7 +81,7 @@ public class MonsterStateCheck : BTPrecondition
     {
         switch (currentCheckType)
         {
-            case CheckType.Patopl:
+            case CheckType.Patrol:
                 mData.tackingRangeTarget = null;
                 return true;
             case CheckType.Tracking:
@@ -99,6 +99,6 @@ public class MonsterStateCheck : BTPrecondition
     }
     public enum CheckType
     {
-        Patopl, Tracking, Attack,
+       Patrol, Tracking, Attack,
     }
 }
