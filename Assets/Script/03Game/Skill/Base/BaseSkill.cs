@@ -44,7 +44,7 @@ public class BaseSkill
     }
     protected virtual void PlayAnimator()
     {
-        animator.Play(skillData.animName);
+        animator.Play(skillData.animName)   ;
     }
     /// <summary>
     /// 技能动画结束时调用

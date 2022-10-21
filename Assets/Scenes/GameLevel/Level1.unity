@@ -10134,6 +10134,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &587150207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 587150208}
+  m_Layer: 0
+  m_Name: P1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &587150208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587150207}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.0000005, y: -1.9871396, z: -1.3826183}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &620077087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 620077088}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &620077088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620077087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15, y: -2, z: -1.396455}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &689266573
 GameObject:
   m_ObjectHideFlags: 0
@@ -12131,6 +12193,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 7.9799085}
   m_EdgeRadius: 0
+--- !u!1 &1990557327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1990557328}
+  m_Layer: 0
+  m_Name: P1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1990557328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990557327}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14, y: -1.9871396, z: -1.3826183}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2000167107
 GameObject:
   m_ObjectHideFlags: 0
@@ -12393,8 +12486,15 @@ MonoBehaviour:
       RoomSize: {x: 26.76, y: 10}
       RoomPos: {fileID: 717831823}
       broundary: []
-      createConfig: []
+      createConfig:
+      - ID: 1001
+        Count: 2
+        startPos: {fileID: 620077088}
+        patrolPoint:
+        - {fileID: 587150208}
+        - {fileID: 1990557328}
       RoomInfo: 1-1
+    index: 0
   - fixedCamerPos: {fileID: 0}
     roomConfig:
       cycles: 0
@@ -12403,6 +12503,7 @@ MonoBehaviour:
       broundary: []
       createConfig: []
       RoomInfo: 1-2
+    index: 0
   roleStartPos: {fileID: 1918406688}
 --- !u!4 &2122628414
 Transform:
@@ -12432,6 +12533,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189233506879180777, guid: a63a56deefc8a544791322e30dc99b22,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2189233506879180780, guid: a63a56deefc8a544791322e30dc99b22,
         type: 3}
@@ -12560,7 +12666,7 @@ PrefabInstance:
     - target: {fileID: 2423497458839106511, guid: 0da1fe732c1120140a9d9854b2ef2530,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0da1fe732c1120140a9d9854b2ef2530, type: 3}

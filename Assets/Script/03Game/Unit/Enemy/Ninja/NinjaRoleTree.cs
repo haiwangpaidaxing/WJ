@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace WUBT
 {
-    public class NinjaRoleTree : BTTree
+    public class NinjaRoleTree : BTTree<MonsterDatabase>
     {
 
     }

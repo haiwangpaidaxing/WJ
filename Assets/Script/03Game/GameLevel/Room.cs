@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WUBT;
+
 [System.Serializable]
 public class Room
 {
@@ -10,6 +12,7 @@ public class Room
     public Action quitCB;
     [Header("房间配置")]
     public RoomConfig roomConfig;
+    public int index;
     public void Enter()
     {
         //Open Null Wall
@@ -18,6 +21,9 @@ public class Room
             roomConfig.broundary[i].SetActive(true);
         }
         Debug.Log("Enter" + roomConfig.RoomInfo);
+        GameObject gameObject = ResourceSvc.Single.CreateMonster(1001);
+        gameObject.transform.position = roomConfig.createConfig[0].startPos.position;
+        gameObject.GetComponent<MonsterDatabase>().patrolPoint = roomConfig.createConfig[0].patrolPoint;
     }
     public void Close()
     {
@@ -33,10 +39,10 @@ public class Room
     }
     public void Create()
     {
-        for (int i = 0; i < roomConfig.createConfig.Length; i++)
-        {
-            //
-        }
+        //for (int i = 0; i < roomConfig.createConfig.Length; i++)
+        //{
+
+        //}
     }
 }
 
@@ -55,6 +61,7 @@ public struct RoomConfig
     public CreateEnemyConfigData[] createConfig;
     [Header("房间信息")]
     public string RoomInfo;
+
 }
 
 [System.Serializable]
@@ -66,4 +73,6 @@ public struct CreateEnemyConfigData
     public string Count;
     [Header("初始位置")]
     public Transform startPos;
+    [Header("巡逻点")]
+    public Transform[] patrolPoint;
 }

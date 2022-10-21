@@ -13,6 +13,7 @@ namespace cfg
    
 public sealed partial class Tables
 {
+    public Data.TBMonsterData TBMonsterData {get; }
     public Data.TBRoleData TBRoleData {get; }
     public Data.TBEquipConfig TBEquipConfig {get; }
     public Data.TBLevelConfig TBLevelConfig {get; }
@@ -20,6 +21,8 @@ public sealed partial class Tables
     public Tables(System.Func<string, JSONNode> loader)
     {
         var tables = new System.Collections.Generic.Dictionary<string, object>();
+        TBMonsterData = new Data.TBMonsterData(loader("data_tbmonsterdata")); 
+        tables.Add("Data.TBMonsterData", TBMonsterData);
         TBRoleData = new Data.TBRoleData(loader("data_tbroledata")); 
         tables.Add("Data.TBRoleData", TBRoleData);
         TBEquipConfig = new Data.TBEquipConfig(loader("data_tbequipconfig")); 
@@ -28,6 +31,7 @@ public sealed partial class Tables
         tables.Add("Data.TBLevelConfig", TBLevelConfig);
         PostInit();
 
+        TBMonsterData.Resolve(tables); 
         TBRoleData.Resolve(tables); 
         TBEquipConfig.Resolve(tables); 
         TBLevelConfig.Resolve(tables); 
@@ -36,6 +40,7 @@ public sealed partial class Tables
 
     public void TranslateText(System.Func<string, string, string> translator)
     {
+        TBMonsterData.TranslateText(translator); 
         TBRoleData.TranslateText(translator); 
         TBEquipConfig.TranslateText(translator); 
         TBLevelConfig.TranslateText(translator); 

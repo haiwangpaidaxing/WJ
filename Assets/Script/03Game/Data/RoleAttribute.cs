@@ -4,6 +4,7 @@ using UnityEngine;
 using cfg;
 using cfg.Data;
 
+
 public class RoleAttribute : MonoBehaviour
 {
     Attribute baseAttribute;
@@ -15,6 +16,12 @@ public class RoleAttribute : MonoBehaviour
         this.baseAttribute = roleAttribut;
         SaveArchive.bagEquipUpdateCB = (data) => { equipDatas = data; };
     }
+
+    public void Init(Attribute roleAttribut)
+    {
+        this.baseAttribute = roleAttribut;  
+    }
+
     public float GetEquipHarm()
     {
         float harm = 0;

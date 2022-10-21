@@ -75,11 +75,13 @@ public class GameRoot : MonoSingle<GameRoot>
     {
         GameObject role = resourceSvc.LoadOrCreate<GameObject>(HeroPath.Hero + "/" + roleData.ResName);
         role.AddComponent<RoleAttribute>().Init(roleData.RoleAttribute, resourceSvc.CurrentArchiveData.equipSoltDatas);
+
         role.GetComponent<RoleController>().Init();
         role.GetComponent<WUBT.HeroDatabase>().Init();
         role.GetComponent<RoleTree>().Init();
         return role;
     }
+
 
     /// <summary>
     /// 设置技能效果

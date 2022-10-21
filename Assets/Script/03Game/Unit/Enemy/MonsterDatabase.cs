@@ -13,7 +13,7 @@ namespace WUBT
         public LayerMask tackingMask;
         public Color tackingDrawColor;
         #endregion
-
+        public Transform[] patrolPoint;
         #region Attack Config
         public Vector2 attackRangeSize;
         public Vector2 attackRangeOffset;

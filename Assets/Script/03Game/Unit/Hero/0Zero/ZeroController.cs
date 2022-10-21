@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class ZeroController : RoleController
 {
+      private RoleTree roleTree;
     public ZeroMagicArtsWeapon zeroMagicArtsWeapon;
     //  public List<SkillData> skillData;
     public Transform weapPos;
+
     public override void Init()
     {
         base.Init();
+        skillDataList = ResourceSvc.Single.CurrentArchiveData.playerData.skillDatas;
+        roleTree = GetComponent<RoleTree>();
         SkillData data = skillDataList[0];
         SkillData data1 = skillDataList[1];     
 
@@ -47,5 +51,26 @@ public class ZeroController : RoleController
         zeroMagicArtsWeapon = ResourceSvc.Single.LoadOrCreate<GameObject>(WeaponPath.ZeroCastWeapon).GetComponent<ZeroMagicArtsWeapon>();
         zeroMagicArtsWeapon.Init(weapPos);
     }
-
+    public override void USESkill(int skillID)
+    {
+        if (currentSkill != null)
+        {
+            return;
+        }
+        BaseSkill baseSkill = skillManager.USESkill(skillID);
+        if (baseSkill != null)
+        {
+            roleTree.isRuning = false;
+            if (currentSkill != null)
+            {
+                currentSkill.Quit();
+            }
+            currentSkill = baseSkill;
+            currentSkill.USE(() =>
+            {
+                roleTree.isRuning = true;
+                currentSkill = null;
+            });
+        }
+    }
 }

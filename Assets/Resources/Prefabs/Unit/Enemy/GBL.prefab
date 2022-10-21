@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7985657225820608114}
   - component: {fileID: 5031309033245878951}
   - component: {fileID: 6483164529046158465}
+  - component: {fileID: 4351706551936847246}
   m_Layer: 12
   m_Name: GBL
   m_TagString: Enemy
@@ -110,7 +111,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &2423497458839106510
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -210,6 +211,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   tackingDrawColor: {r: 1, g: 1, b: 1, a: 1}
+  patrolPoint: []
   attackRangeSize: {x: 0, y: 0}
   attackRangeOffset: {x: 0, y: 0}
   attackMask:
@@ -218,3 +220,20 @@ MonoBehaviour:
   attackDrawColor: {r: 0, g: 0, b: 0, a: 1}
   veTr: {x: 0, y: 0}
   tackingRangeTarget: {fileID: 0}
+--- !u!114 &4351706551936847246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2423497458839106511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d94e11c6bb7a1864ca04ec3b23d8c5fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxPos: {fileID: 2423497458839106506}
+  boxSize: {x: 0, y: 0}
+  enemyTag:
+  - Hero
+  debugColor: {r: 1, g: 0, b: 0, a: 1}

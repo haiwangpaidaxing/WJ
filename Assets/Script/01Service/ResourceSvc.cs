@@ -8,6 +8,7 @@ using cfg;
 using cfg.Data;
 using UnityEngine.SceneManagement;
 using WMEffectsSkill;
+using WUBT;
 
 public class ResourceSvc : MonoSingle<ResourceSvc>
 {
@@ -26,10 +27,14 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             return tables.TBLevelConfig.DataList.ToArray();
         }
     }
+
+    public MonsterData[] MonsterDatas { get { return tables.TBMonsterData.DataList.ToArray(); } }
+
     public override void Init()
     {
         cacheList = new Dictionary<string, Object>();
         tables = new Tables(LoadByteBuf);//初始化表
+
         Debug.Log("资源服务初始化...");
     }
     public void Save()
@@ -149,6 +154,11 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         }
         return null;
     }
+
+    //public GameObject CreateMonster(inr id)
+    //{
+
+    //}
     #endregion
     #region 跳转场景
     bool isLoadScene;
@@ -264,6 +274,16 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         }//再次反射 
     }
     #endregion
+
+    public GameObject CreateMonster(int id)
+    {
+        MonsterData monsterData = tables.TBMonsterData.Get(id);
+        GameObject monster = LoadOrCreate<GameObject>(EnemyPath.Enemy + "/" + monsterData.ResName);
+        monster.AddComponent<RoleAttribute>().Init(monsterData.RoleAttribute);
+        monster.GetComponent<RoleController>().Init(); monster.GetComponent<Database>().Init();
+        monster.GetComponent<BTTree<MonsterDatabase>>().Init();
+        return monster;
+    }
     public void Clear()
     {
         cacheList.Clear();

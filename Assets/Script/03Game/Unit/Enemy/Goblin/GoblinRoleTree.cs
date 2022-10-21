@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace WUBT
 {
-    public class GoblinRoleTree : BTTree
+    public class GoblinRoleTree : BTTree<MonsterDatabase>
     {
         public override void Init()
         {
@@ -20,10 +20,18 @@ namespace WUBT
             //选择节点地面与空中
             BTPrioritySelector patoplNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateCheck.CheckType.Patrol), "MonsterPatopl");
 
-            BTPrioritySelector trckingNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateCheck.CheckType.Tracking), "Monster Trcking");
+            PatrolState patrolState = new PatrolState("Run");
 
-            BTPrioritySelector attackNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateCheck.CheckType.Attack), "MonsterAttack");
+            patoplNode.AddChild(patrolState);
 
+            //BTPrioritySelector trckingNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateCheck.CheckType.Tracking), "Monster Trcking");
+
+            //BTPrioritySelector attackNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateCheck.CheckType.Attack), "MonsterAttack");
+            //  ResourceSvc
+
+            root.AddChild(patoplNode);
+            root.Init(database);
         }
     }
+
 }

@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace WUBT
 {
-    public class BTTree : MonoBehaviour
+    public class BTTree<T> : MonoBehaviour where T : Database
     {
-        public Database database;
+        public T database;
         public BTNode root;
         public bool isRuning = true;
         public virtual void Init()
         {
-            database = GetComponent<Database>();
+            database = GetComponent<T>();
         }
         private void FixedUpdate()
         {

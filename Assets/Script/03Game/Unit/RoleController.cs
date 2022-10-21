@@ -21,7 +21,6 @@ public class RoleController : MonoBehaviour, IInjured
     public float roleDir;
     public Action animatorClipCb;
     public Animator animator;
-    private RoleTree roleTree;
     public BaseSkill currentSkill;
     public RoleAttribute roleAttribute;
     [Header("受伤位置")]
@@ -35,9 +34,7 @@ public class RoleController : MonoBehaviour, IInjured
         AirMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("AirMaterial");
         GroundMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("GroundMaterial");
         injuredPos = transform.Find("InjuredPos");
-        skillDataList = ResourceSvc.Single.CurrentArchiveData.playerData.skillDatas;
         this.roleAttribute = GetComponent<RoleAttribute>();
-        roleTree = GetComponent<RoleTree>();
         rig = GetComponent<Rigidbody2D>();
         skillManager = gameObject.AddComponent<SkillManager>();
         animator = GetComponent<Animator>();
@@ -47,27 +44,9 @@ public class RoleController : MonoBehaviour, IInjured
     {
         InputController.Single.operaterCB = USESkill;
     }
-    public void USESkill(int skillID)
+    public virtual void USESkill(int skillID)
     {
-        if (currentSkill != null)
-        {
-            return;
-        }
-        BaseSkill baseSkill = skillManager.USESkill(skillID);
-        if (baseSkill != null)
-        {
-            roleTree.isRuning = false;
-            if (currentSkill != null)
-            {
-                currentSkill.Quit();
-            }
-            currentSkill = baseSkill;
-            currentSkill.USE(() =>
-            {
-                roleTree.isRuning = true;
-                currentSkill = null;
-            });
-        }
+      
     }
     private void FixedUpdate()
     {
@@ -87,7 +66,7 @@ public class RoleController : MonoBehaviour, IInjured
 
     public virtual void MoveX(float dir, float speed)
     {
-      
+
         SyncImage(dir);
 
         if (dir != 0)
@@ -101,14 +80,14 @@ public class RoleController : MonoBehaviour, IInjured
         Vector2 f = Vector2.right * dir * speed;
         rig.AddForce(f, forceMode2D);
     }
-    
+
     public virtual void MoveY(float dir, float speed)
     {
         rig.velocity = new Vector2(rig.velocity.x, dir * speed);
     }
     public virtual void Move(Vector2 dir, float speed)
     {
-        rig.velocity = dir*speed;
+        rig.velocity = dir * speed;
     }
     public virtual void Fall()
     {
@@ -140,7 +119,7 @@ public class RoleController : MonoBehaviour, IInjured
     }
     public void SetAirPhysicsMaterial2D()
     {
-        if (rig.sharedMaterial!=AirMaterial)
+        if (rig.sharedMaterial != AirMaterial)
         {
             rig.sharedMaterial = AirMaterial;
         }

@@ -1,0 +1,30 @@
+[
+  {
+    "untID": 1001,
+    "unitName": "GBL",
+    "ResName": "GBL",
+    "RoleAttribute": {
+      "Attribute_HP": 100,
+      "Attribute_MP": 100,
+      "Attribute_Harm": 100,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0,
+      "Attribute_MoveSpeed": 6,
+      "Attribute_JumpHeight": 6
+    }
+  },
+  {
+    "untID": 1002,
+    "unitName": "KLT",
+    "ResName": "KLT",
+    "RoleAttribute": {
+      "Attribute_HP": 100,
+      "Attribute_MP": 100,
+      "Attribute_Harm": 100,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0,
+      "Attribute_MoveSpeed": 6,
+      "Attribute_JumpHeight": 6
+    }
+  }
+]

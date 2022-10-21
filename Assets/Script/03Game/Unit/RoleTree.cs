@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using WUBT;
-public class RoleTree : BTTree
+public class RoleTree : BTTree<HeroDatabase>
 {
     public override void Init()
     {
         base.Init();
         InitBasedBehavior();
     }
-    public HeroDatabase heroDatabase;
     protected virtual void InitBasedBehavior()
     {
         root = new BTPrioritySelector(null, "root");
@@ -58,8 +57,7 @@ public class RoleTree : BTTree
         //根节点的添加
         root.AddChild(groundSelector);
         root.AddChild(airSelect);
-        heroDatabase =(HeroDatabase) database ;
-        root.Init(heroDatabase);
+        root.Init(database);
     }
 
 

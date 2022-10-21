@@ -1,4 +1,5 @@
 <module name="Data">
+  <table name="TBMonsterData" value="MonsterData" define_from_file="True" input="MonsterData.xlsx"/>
 	  <table name="TBRoleData" value="RoleData" define_from_file="True" input="RoleData.xlsx"/>
   <table name="TBEquipConfig" value="EquipData" define_from_file="True" input="EquipConfig.xlsx"/>
   <table name="TBLevelConfig" value="LevelConfigData" define_from_file="True" input="LevelConfig.xlsx"/>
