@@ -29,6 +29,8 @@ public class RoleController : MonoBehaviour, IInjured
     PhysicsMaterial2D AirMaterial;
     [SerializeField]
     public PhysicsMaterial2D GroundMaterial;
+
+    public MonsterInjuredState injuredState;
     public virtual void Init()
     {
         AirMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("AirMaterial");
@@ -38,15 +40,8 @@ public class RoleController : MonoBehaviour, IInjured
         rig = GetComponent<Rigidbody2D>();
         skillManager = gameObject.AddComponent<SkillManager>();
         animator = GetComponent<Animator>();
-        InputEvene();
-    }
-    public virtual void InputEvene()
-    {
-        InputController.Single.operaterCB = USESkill;
-    }
-    public virtual void USESkill(int skillID)
-    {
-      
+        injuredState = new MonsterInjuredState(this);
+
     }
     private void FixedUpdate()
     {

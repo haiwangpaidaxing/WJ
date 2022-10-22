@@ -1,23 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WMMonsterState;
 using WUBT;
 
-public class PatrolState : BaseRoleState
+public class PatrolState : BaseMonsterState
 {
 
-    MonsterDatabase mData;
     int index;
-    Vector2 oldPos;
     protected Transform currentPatrol;
-    public PatrolState(string animName, string audioName = "") : base(animName, audioName)
+    public PatrolState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
     {
     }
-    public override void Init(Database database)
-    {
-        base.Init(database);
-        mData = (MonsterDatabase)database;
-    }
+
     protected override void Enter()
     {
         index = 0;

@@ -1,59 +1,64 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using WUBT;
 
-public class BaseRoleState : BTAction
+namespace WMMonsterState
 {
-    Animator animator;
-    AnimatorStateInfo stateinfo;
-    AudioSource audioSource;
-    protected string animName;
-    protected string audioName;
-    protected RoleController roleController;
-    public BaseRoleState(string animName, string audioName = "")
+    public class BaseRoleState : BTAction
     {
-        this.animName = animName;
-        this.audioName = audioName;
-    }
-    public override void Init(WUBT.Database database)
-    {
-        base.Init(database);
-        roleController = database.roleController;
-        animator = database.GetComponent<Animator>();
-    }
+        Animator animator;
+        AnimatorStateInfo stateinfo;
+        AudioSource audioSource;
+        protected string animName;
+        protected string audioName;
+        protected RoleController roleController;
+    
+        public BaseRoleState(string animName, string audioName = "")
+        {
+            this.animName = animName;
+            this.audioName = audioName;
+        }
+        public override void Init(WUBT.Database database)
+        {
+            base.Init(database);
+            roleController = database.roleController;
+            animator = database.GetComponent<Animator>();
+        }
 
-    protected override BTResult Execute()
-    {
-        //     Debug.Log(animName+"....");
-        stateinfo = animator.GetCurrentAnimatorStateInfo(0);
-        if (!stateinfo.IsName(animName))
+        protected override BTResult Execute()
         {
-            animator.Play(animName);
+            //Debug.Log(database.gameObject.name + "-" + animName + "....");
+            stateinfo = animator.GetCurrentAnimatorStateInfo(0);
+            if (!stateinfo.IsName(animName))
+            {
+                animator.Play(animName);
+            }
+            return base.Execute();
         }
-        return base.Execute();
-    }
 
-    protected override void Enter()
-    {
-        base.Enter();
-        if (animName != "")
+        protected override void Enter()
         {
-            if (animator == null)
+            base.Enter();
+            if (animName != "")
             {
-                Debug.Log("未添加动画组件");
+                if (animator == null)
+                {
+                    Debug.Log("未添加动画组件");
+                }
+                animator.Play(animName);
             }
-            animator.Play(animName);
+            if (audioName != "")
+            {
+                if (audioSource == null)
+                {
+                    Debug.Log("未添音频组件");
+                }
+                Debug.Log("音效.....");
+            }
         }
-        if (audioName != "")
+        protected override void Exit()
         {
-            if (audioSource == null)
-            {
-                Debug.Log("未添音频组件");
-            }
-            Debug.Log("音效.....");
+            base.Exit();
         }
-    }
-    protected override void Exit()
-    {
-        base.Exit();
     }
 }

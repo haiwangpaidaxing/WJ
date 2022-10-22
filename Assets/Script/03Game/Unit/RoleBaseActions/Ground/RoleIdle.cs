@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WMMonsterState;
 using WUBT;
 public class RoleIdleState : BaseRoleState
 {

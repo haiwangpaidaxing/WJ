@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WMMonsterState;
 using WUBT;
 
 
@@ -67,8 +68,8 @@ public class RoleStateCheck : BTPrecondition
 public class MonsterStateCheck : BTPrecondition
 {
     MonsterDatabase mData;
-    CheckType currentCheckType;
-    public MonsterStateCheck(CheckType checkType)
+    MonsterStateEnum currentCheckType;
+    public MonsterStateCheck(MonsterStateEnum checkType)
     {
         this.currentCheckType = checkType;
     }
@@ -81,24 +82,41 @@ public class MonsterStateCheck : BTPrecondition
     {
         switch (currentCheckType)
         {
-            case CheckType.Patrol:
-                mData.tackingRangeTarget = null;
+            case MonsterStateEnum.Patrol:
                 return true;
-            case CheckType.Tracking:
+            case MonsterStateEnum.Tracking:
                 Collider2D collider2D = Physics2D.OverlapBox(mData.veTr + mData.tackingRangeOffset, mData.tackingRangeSize, 0, mData.tackingMask);
                 if (collider2D == null)
                 {
+                    mData.tackingRangeTarget = null;
                     return false;
                 }
                 mData.tackingRangeTarget = collider2D.transform;
                 return true;
-            case CheckType.Attack:
-                break;
+            case MonsterStateEnum.Attack:
+                return Attack();
+            case MonsterStateEnum.Idle:
+                if (mData.monsterStateEnum == MonsterStateEnum.Idle)
+                {
+                    return true;
+                }
+                return false;
+            case MonsterStateEnum.Injured:
+                if (mData.monsterStateEnum == MonsterStateEnum.Injured)
+                {
+                    return true;
+                }
+                return false; 
         }
         return false;
     }
-    public enum CheckType
+    public bool Attack()
     {
-       Patrol, Tracking, Attack,
+        if (Physics2D.OverlapBox(mData.veTr + mData.attackRangeOffset, mData.attackRangeSize, 0, mData.attackMask) || mData.monsterStateEnum == MonsterStateEnum.Attack)
+        {
+            return true;
+        }
+        return false;
     }
+
 }

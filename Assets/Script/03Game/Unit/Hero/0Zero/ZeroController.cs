@@ -50,8 +50,13 @@ public class ZeroController : RoleController
 
         zeroMagicArtsWeapon = ResourceSvc.Single.LoadOrCreate<GameObject>(WeaponPath.ZeroCastWeapon).GetComponent<ZeroMagicArtsWeapon>();
         zeroMagicArtsWeapon.Init(weapPos);
+        InputEvene();
     }
-    public override void USESkill(int skillID)
+    public virtual void InputEvene()
+    {
+        InputController.Single.operaterCB = USESkill;
+    }
+    public  void USESkill(int skillID)
     {
         if (currentSkill != null)
         {

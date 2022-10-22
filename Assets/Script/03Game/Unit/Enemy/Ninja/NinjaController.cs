@@ -14,10 +14,7 @@ public class NinjaController : RoleController
         base.Init();
         injuredState = new MonsterInjuredState(this);
     }
-    public override void InputEvene()
-    {
-    }
-
+   
     public override void Injured(InjuredData injuredData)
     {
         base.Injured(injuredData);
