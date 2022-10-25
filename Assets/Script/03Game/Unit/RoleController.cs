@@ -41,6 +41,7 @@ public class RoleController : MonoBehaviour, IInjured
         skillManager = gameObject.AddComponent<SkillManager>();
         animator = GetComponent<Animator>();
         injuredState = new MonsterInjuredState(this);
+        roleAttribute.hpValueCB += Die;
 
     }
     private void FixedUpdate()
@@ -125,6 +126,15 @@ public class RoleController : MonoBehaviour, IInjured
         {
             rig.sharedMaterial = AirMaterial;
         }
+    }
+
+    public void Die(int value)
+    {
+        if (value <= 0)
+        {
+            Debug.Log("Die...TODO");
+        }
+        Debug.Log(value);
     }
 }
 

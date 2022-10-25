@@ -26,6 +26,7 @@ namespace WUBT
         public MonsterStateEnum monsterStateEnum;
         public InjuredData injuredData;
         public Transform tackingRangeTarget;
+
         protected override void FixedUpdate()
         {
             veTr = transform.position;
@@ -34,19 +35,19 @@ namespace WUBT
         public Action updateInjuredCB;
         public void SetInjuredData(InjuredData injuredData)
         {
-            this.injuredData = injuredData;
             this.monsterStateEnum = MonsterStateEnum.Injured;
+            this.injuredData = injuredData;
             updateInjuredCB?.Invoke();
         }
         public override void OnDrawGizmosSelected()
         {
+            base.OnDrawGizmosSelected();
             Gizmos.color = tackingDrawColor;
             Vector2 tr = transform.position;
             Gizmos.DrawWireCube(tr + tackingRangeOffset, tackingRangeSize);
 
             Gizmos.color = attackDrawColor;
             Gizmos.DrawWireCube(tr + attackRangeOffset, attackRangeSize);
-            base.OnDrawGizmosSelected();
         }
     }
 }

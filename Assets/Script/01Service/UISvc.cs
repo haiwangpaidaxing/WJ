@@ -104,12 +104,12 @@ public class UISvc : MonoSingle<UISvc>
             SetPanelState(showPanel[i]);
         }
     }
-    public T GetPanel<T>(string path, StateType stateType = StateType.Close) where T : BasePanel
+    public T GetPanel<T>(string path, StateType stateType = StateType.Close) where T : BasePanel 
     {
         GameObject panel = ResourceSvc.Single.LoadOrCreate<GameObject>(path);
         T t = panel.GetComponent<T>();
         SetPanelState(t, stateType);
         return t;
     }
-
+  
 }

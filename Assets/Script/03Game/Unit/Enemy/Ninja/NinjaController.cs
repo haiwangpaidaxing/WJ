@@ -18,6 +18,7 @@ public class NinjaController : RoleController
     public override void Injured(InjuredData injuredData)
     {
         base.Injured(injuredData);
+        roleAttribute.SetHp((int)injuredData.harm);
         GameObject injuredEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("Prefabs/Effects/InjuredEffects");
         injuredEffects.transform.position = injuredPos.position;   
         injuredState.Enter(injuredData, () =>

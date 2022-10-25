@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameLevelManager : MonoBehaviour
+public class GameLevelManager : MonoSingle<GameLevelManager>
 {
     [SerializeField]
     List<Room> rooms;
     public Transform roleStartPos;
+    public LevelRoomPanel levelRoomPanel;
     private void Awake()
     {
+        levelRoomPanel = UISvc.Single.GetPanel<LevelRoomPanel>(UIPath.GameLevelRoomPanel, UISvc.StateType.Show);
         GameObject role = GameRoot.Single.CreateRole(MainSceneSys.Single.playerData.roleData);
         role.transform.position = roleStartPos.position;
         CameraControl.Single.SetTarget(role.transform);
@@ -37,7 +39,7 @@ public class GameLevelManager : MonoBehaviour
             }
         }
     }
-
+    public Room currentRoom;
     public void FixedUpdate()
     {
         if (rooms != null && rooms.Count > 0)
@@ -47,9 +49,15 @@ public class GameLevelManager : MonoBehaviour
                 if (Physics2D.OverlapBox(rooms[i].roomConfig.RoomPos.position, rooms[i].roomConfig.RoomSize, 0, LayerMask.GetMask("Hero")))
                 {
                     rooms[i].Enter();
+                    currentRoom = rooms[i];
                     rooms.RemoveAt(i);
+
                 }
             }
+        }
+        if (currentRoom != null)
+        {
+            currentRoom.Execute();
         }
     }
 }

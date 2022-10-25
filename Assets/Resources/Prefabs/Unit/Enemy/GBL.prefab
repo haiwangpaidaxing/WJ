@@ -172,6 +172,7 @@ MonoBehaviour:
   injuredPos: {fileID: 4632615030786285275}
   AirMaterial: {fileID: 0}
   GroundMaterial: {fileID: 0}
+  goblinRoleTree: {fileID: 0}
 --- !u!114 &5031309033245878951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,8 +200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roleController: {fileID: 0}
-  GroundOffset: {x: 0, y: 0}
-  GroundSize: {x: 0, y: 0}
+  GroundOffset: {x: 0, y: -0.98}
+  GroundSize: {x: 0.5, y: 0.3}
   GroundMask:
     serializedVersion: 2
     m_Bits: 512
@@ -214,14 +215,14 @@ MonoBehaviour:
     m_Bits: 2048
   tackingDrawColor: {r: 1, g: 1, b: 1, a: 1}
   patrolPoint: []
-  attackRangeSize: {x: 5.72, y: 3.14}
+  attackRangeSize: {x: 4.4, y: 3.14}
   attackRangeOffset: {x: 0, y: 0}
   attackMask:
     serializedVersion: 2
     m_Bits: 2048
   attackDrawColor: {r: 1, g: 0.77027416, b: 0.2028302, a: 1}
   veTr: {x: 0, y: 0}
-  MonsterStateEnum: 0
+  monsterStateEnum: 0
   tackingRangeTarget: {fileID: 0}
 --- !u!114 &4351706551936847246
 MonoBehaviour:

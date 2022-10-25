@@ -13,9 +13,11 @@ public class Room
     [Header("房间配置")]
     public RoomConfig roomConfig;
     public int index;
+    public int monsterCount;
     public void Enter()
     {
         //Open Null Wall
+        GameLevelManager.Single.levelRoomPanel.Show(roomConfig.RoomInfo);
         for (int i = 0; i < roomConfig.broundary.Count; i++)
         {
             roomConfig.broundary[i].SetActive(true);
@@ -35,14 +37,31 @@ public class Room
     }
     public void Execute()
     {
-
+        Create();
     }
     public void Create()
     {
-        //for (int i = 0; i < roomConfig.createConfig.Length; i++)
-        //{
+        if (monsterCount == 0)//代表制造出来的怪物全部死亡 开始准备下一波怪物
+        {
+            if (roomConfig.loop == 0)//循环制造怪物等于0时 代表已经通过该房间
+            {
+                return;
+            }
+            for (int i = 0; i < roomConfig.createConfig.Length; i++)
+            {
+                CreateEnemyConfigData createEnemyConfigData = roomConfig.createConfig[i];
+                for (int c = 0; c < createEnemyConfigData.Count.Length; c++)
+                {
+                    GameObject gameObject = ResourceSvc.Single.CreateMonster(roomConfig.createConfig[i].ID);//创建
+                    gameObject.transform.position = roomConfig.createConfig[i].startPos.position;//出生点
+                    gameObject.GetComponent<MonsterDatabase>().patrolPoint = roomConfig.createConfig[i].patrolPoint;
+                    monsterCount++;
+                }
 
-        //}
+            }
+            roomConfig.loop--;
+        }
+
     }
 }
 
@@ -50,7 +69,7 @@ public class Room
 public struct RoomConfig
 {
     [Header("循环次数")]
-    public int cycles;
+    public int loop;
     [Header("房间大小")]
     public Vector2 RoomSize;
     [Header("触发房间的范围")]
@@ -68,7 +87,7 @@ public struct RoomConfig
 public struct CreateEnemyConfigData
 {
     [Header("创建ID")]
-    public string ID;
+    public int ID;
     [Header("单次创建的数量")]
     public string Count;
     [Header("初始位置")]

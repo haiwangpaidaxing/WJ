@@ -23,7 +23,7 @@ public class RoleWallSlider : BaseRoleState
         if (database.InputDir.x != 0 && enterDir != database.InputDir.x)
         {
             roleController.MoveX(database.InputDir.x, 4);
-            roleController.MoveY(1, 7);
+            roleController.MoveY(1, 5);
 
         }
         else

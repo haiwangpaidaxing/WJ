@@ -11,7 +11,7 @@ namespace WUBT
         public float wallSlierSize;
         [SerializeField]
         private Vector2 wallOffset;
-       public Color wallRay;
+        public Color wallRay;
         [Header("¼ì²â¸ß¶È")]
         public float detectionHighly;
         [HideInInspector]
@@ -32,9 +32,9 @@ namespace WUBT
         public override void OnDrawGizmosSelected()
         {
             Gizmos.DrawRay(transform.position, Vector2.down * detectionHighly);
-            Gizmos.DrawWireCube(GroundCheckPos, GroundSize);
+           
             Gizmos.color = wallRay;
-            Gizmos.DrawRay(wallSliderCheckPos+wallOffset, Vector2.right * wallSlierSize);
+            Gizmos.DrawRay(wallSliderCheckPos + wallOffset, Vector2.right * wallSlierSize);
             base.OnDrawGizmosSelected();
         }
         protected override void FixedUpdate()

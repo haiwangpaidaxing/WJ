@@ -18,6 +18,7 @@ public class GobinRoleController : RoleController
     {
         base.Injured(injuredData);
         mData.SetInjuredData(injuredData);
+        roleAttribute.SetHp((int)injuredData.harm);
         GameObject injuredEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("Prefabs/Effects/InjuredEffects");
         injuredEffects.transform.position = injuredPos.position;
        

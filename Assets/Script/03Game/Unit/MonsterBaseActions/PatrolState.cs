@@ -43,7 +43,7 @@ public class PatrolState : BaseMonsterState
             //left
 
         }
-        database.roleController.MoveX(dir.x, database.roleAttribute.GetMoveSpeed());
+        database.roleController.MoveX(dir.x, database.roleAttribute.GetMoveSpeed()/2);
         if (Mathf.Abs(Vector2.Distance(tr, currentPatrol.position)) < 1)
         {
             GetPartolPonit();

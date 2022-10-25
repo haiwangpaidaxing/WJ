@@ -7,23 +7,39 @@ using cfg.Data;
 
 public class RoleAttribute : MonoBehaviour
 {
+    public System.Action<int> hpValueCB;
     Attribute baseAttribute;
     [SerializeField]
     WMData.EquipData[] equipDatas;//×°±¸ÊôÐÔ
+    public int BaseHp;
     public void Init(Attribute roleAttribut, WMData.EquipData[] equipDatas)
     {
         this.equipDatas = equipDatas;
         this.baseAttribute = roleAttribut;
+        BaseHp = baseAttribute.AttributeHP;
         SaveArchive.bagEquipUpdateCB = (data) => { equipDatas = data; };
     }
 
     public void Init(Attribute roleAttribut)
     {
-        this.baseAttribute = roleAttribut;  
+        this.baseAttribute = roleAttribut;
+        BaseHp = baseAttribute.AttributeHP;
     }
+    public bool ISEquip()
+    {
+        if (equipDatas==null)
+        {
+            return true;
+        }
 
+        return false;
+    }
     public float GetEquipHarm()
     {
+        if (ISEquip())
+        {
+            return 0;
+        }
         float harm = 0;
         for (int i = 0; i < equipDatas.Length; i++)
         {
@@ -33,6 +49,10 @@ public class RoleAttribute : MonoBehaviour
     }
     public float GetEquipCritHarm()
     {
+        if (ISEquip())
+        {
+            return 0;
+        }
         float critHarm = 0;
         for (int i = 0; i < equipDatas.Length; i++)
         {
@@ -42,6 +62,10 @@ public class RoleAttribute : MonoBehaviour
     }
     public float GetEquipCriticalChance()
     {
+        if (ISEquip())
+        {
+            return 0;
+        }
         float value = 0;
         for (int i = 0; i < equipDatas.Length; i++)
         {
@@ -51,6 +75,10 @@ public class RoleAttribute : MonoBehaviour
     }
     public float GetEquipHp()
     {
+        if (ISEquip())
+        {
+            return 0;
+        }
         float value = 0;
         for (int i = 0; i < equipDatas.Length; i++)
         {
@@ -58,9 +86,9 @@ public class RoleAttribute : MonoBehaviour
         }
         return value;
     }
-    public float GetHP()
+    public int GetHP()
     {
-        return baseAttribute.AttributeHP+GetEquipHp();
+        return (int)(BaseHp + GetEquipHp());
     }
     public float GetMP()
     {
@@ -88,7 +116,7 @@ public class RoleAttribute : MonoBehaviour
     public float GetCritHarm()
     {
         //»ù´¡±©»÷ÉËº¦+ÎäÆ÷ÉËº¦
-        return baseAttribute.AttributeCritHarm+GetEquipCritHarm();
+        return baseAttribute.AttributeCritHarm + GetEquipCritHarm();
     }
     /// <summary>
     /// ±©»÷ÂÊ
@@ -97,11 +125,8 @@ public class RoleAttribute : MonoBehaviour
     public float GetCriticalChance()
     {
         //»ù´¡±©»÷ÂÊ+ÎäÆ÷±©»÷ÂÊ
-        return baseAttribute.AttributeCriticalChance+GetEquipCriticalChance();
+        return baseAttribute.AttributeCriticalChance + GetEquipCriticalChance();
     }
-
-
-  
 
     public float GetJumpHeight()
     {
@@ -115,5 +140,11 @@ public class RoleAttribute : MonoBehaviour
     {
         float r = Random.Range(min, max);
         return r;
+    }
+
+    public void SetHp(int value)
+    {
+        BaseHp -= value;
+        hpValueCB?.Invoke(GetHP());
     }
 }

@@ -24,10 +24,12 @@ namespace WUBT
             roleController = GetComponent<RoleController>();//获取角色控制器
             roleAttribute = GetComponent<RoleAttribute>();
         }
-        public virtual void OnDrawGizmosSelected()
+        public virtual  void OnDrawGizmosSelected()
         {
+            Gizmos.color = Color.cyan;
             Vector2 GroundCheckPos = transform.position;
             GroundCheckPos += GroundOffset;
+            Gizmos.DrawWireCube(GroundCheckPos, GroundSize);
         }
         protected virtual void FixedUpdate()
         {

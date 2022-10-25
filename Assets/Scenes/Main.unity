@@ -497,4 +497,5 @@ MonoBehaviour:
   bagPanel: {fileID: 0}
   mainScenePanel: {fileID: 0}
   shopPanel: {fileID: 0}
+  selectLevelPanel: {fileID: 0}
   equipSoltItem: []
