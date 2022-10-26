@@ -2,7 +2,7 @@
 using UnityEngine;
 using WUBT;
 
-namespace WMMonsterState
+namespace WMState
 {
     public class BaseRoleState : BTAction
     {

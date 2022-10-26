@@ -279,9 +279,10 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     {
         MonsterData monsterData = tables.TBMonsterData.Get(id);
         GameObject monster = LoadOrCreate<GameObject>(EnemyPath.Enemy + "/" + monsterData.ResName);
-        monster.AddComponent<RoleAttribute>().Init(monsterData.RoleAttribute);
-        monster.GetComponent<RoleController>().Init(); monster.GetComponent<Database>().Init();
+        monster.AddComponent<RoleAttribute>().Init(monsterData.RoleAttribute);//必须首位添加
+        monster.GetComponent<Database>().Init();
         monster.GetComponent<BTTree<MonsterDatabase>>().Init();
+        monster.GetComponent<MonsterController>().Init(); 
         return monster;
     }
     public void Clear()

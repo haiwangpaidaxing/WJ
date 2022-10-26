@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using WUBT;
 
-namespace WMMonsterState
+namespace WMState
 {
-    public class IdleState : BaseMonsterState
+    public class MonsterIdleState : BaseMonsterState
     {
         int idleTime = 1;
         bool isIdle;
-        public IdleState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
+        public MonsterIdleState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
         {
         }
         int task;
@@ -20,7 +20,7 @@ namespace WMMonsterState
             isIdle = false;
             task = TimerSvc.instance.AddTask(idleTime * 1000, () =>
               {
-                  Debug.Log("Monster Idle Change Patrol");
+                 // Debug.Log("Monster Idle Change Patrol");
                   isIdle = true;
                   mData.monsterStateEnum = MonsterStateEnum.Patrol;
               }, "Monster Idle Change Patrol");

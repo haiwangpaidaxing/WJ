@@ -42,6 +42,7 @@ public class RoleController : MonoBehaviour, IInjured
         animator = GetComponent<Animator>();
         injuredState = new MonsterInjuredState(this);
         roleAttribute.hpValueCB += Die;
+        roleDir = 1;
 
     }
     private void FixedUpdate()

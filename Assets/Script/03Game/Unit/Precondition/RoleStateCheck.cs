@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WMMonsterState;
+using WMState;
 using WUBT;
 
 
@@ -106,7 +106,13 @@ public class MonsterStateCheck : BTPrecondition
                 {
                     return true;
                 }
-                return false; 
+                return false;
+            case MonsterStateEnum.Die:
+                if (mData.monsterStateEnum == MonsterStateEnum.Die)
+                {
+                    return true;
+                }
+                return false;
         }
         return false;
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using WUBT;
 
-namespace WMMonsterState
+namespace WMState
 {
     public class TackingState : BaseMonsterState
     {

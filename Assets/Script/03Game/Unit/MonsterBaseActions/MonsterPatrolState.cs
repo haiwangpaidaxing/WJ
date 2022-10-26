@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WMMonsterState;
+using WMState;
 using WUBT;
 
-public class PatrolState : BaseMonsterState
+public class MonsterPatrolState : BaseMonsterState
 {
 
     int index;
     protected Transform currentPatrol;
-    public PatrolState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
+    public MonsterPatrolState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
     {
     }
 

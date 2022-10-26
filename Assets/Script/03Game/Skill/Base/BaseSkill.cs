@@ -9,6 +9,9 @@ public class BaseSkill
     //public List<SkillData> skillDataList;
     protected RoleController roleController;
     protected Animator animator;
+    /// <summary>
+    /// 技能结束回调
+    /// </summary>
     protected Action skillEndCB;
     protected Database database;
     protected bool isAnimatorOver = false;//

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using WUBT;
 
-namespace WMMonsterState
+namespace WMState
 {
-    public class InjuredState : BaseMonsterState
+    public class MosterInjuredState : BaseMonsterState
     {   
 
-        public InjuredState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
+        public MosterInjuredState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
         {
         }
         public bool isInjured;

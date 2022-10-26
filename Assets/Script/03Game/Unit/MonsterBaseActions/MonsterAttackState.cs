@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using WUBT;
 
-namespace WMMonsterState
+namespace WMState
 {
-    public class AttackState : BaseMonsterState
+    public class MonsterAttackState : BaseMonsterState
     {
-        public AttackState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
+        public MonsterAttackState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
         {
         }
 

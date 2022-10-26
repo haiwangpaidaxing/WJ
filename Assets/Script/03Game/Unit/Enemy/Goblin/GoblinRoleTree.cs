@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WMMonsterState;
+using WMState;
 
 namespace WUBT
 {
@@ -20,21 +20,25 @@ namespace WUBT
 
 
             BTPrioritySelector injuredNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateEnum.Injured), "Injured");
-            InjuredState injuredState = new InjuredState(MonsterStateEnum.Injured, "Injured");
+            MosterInjuredState injuredState = new MosterInjuredState(MonsterStateEnum.Injured, "Injured");
 
             BTPrioritySelector patoplNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateEnum.Patrol), "MonsterPatopl");
-            PatrolState patrolState = new PatrolState(MonsterStateEnum.Patrol, "Run");
+            MonsterPatrolState patrolState = new MonsterPatrolState(MonsterStateEnum.Patrol, "Run");
 
             BTPrioritySelector tackingNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateEnum.Tracking), "MonsterTacking");
             TackingState tackingState = new TackingState(MonsterStateEnum.Tracking, "Run");
 
             BTPrioritySelector attackNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateEnum.Attack), "MonsterAttack");
 
-            AttackState attackState = new AttackState(MonsterStateEnum.Attack, "Attack");
+            MonsterAttackState attackState = new MonsterAttackState(MonsterStateEnum.Attack, "Attack");
 
             BTPrioritySelector idleNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateEnum.Idle), "Idle");
-            IdleState idleState = new IdleState(MonsterStateEnum.Idle, "Idle");
+            MonsterIdleState idleState = new MonsterIdleState(MonsterStateEnum.Idle, "Idle");
 
+            BTPrioritySelector dieNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateEnum.Die),"Die");
+            MonsterDieState dieState = new MonsterDieState(MonsterStateEnum.Die, "Die");
+
+            dieNode.AddChild(dieState);
             injuredNode.AddChild(injuredState);
             idleNode.AddChild(idleState);
             attackNode.AddChild(attackState);
@@ -46,6 +50,7 @@ namespace WUBT
             //BTPrioritySelector attackNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateCheck.CheckType.Attack), "MonsterAttack");
             //  ResourceSvc
 
+            root.AddChild(dieNode);
             root.AddChild(injuredNode);
             root.AddChild(idleNode);
             root.AddChild(attackNode);

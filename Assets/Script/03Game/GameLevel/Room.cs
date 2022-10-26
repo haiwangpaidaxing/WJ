@@ -7,13 +7,13 @@ using WUBT;
 [System.Serializable]
 public class Room
 {
+    public int currentMonsterCount;
     //Fixed Camera Position
     public Transform fixedCamerPos;
     public Action quitCB;
     [Header("房间配置")]
     public RoomConfig roomConfig;
-    public int index;
-    public int monsterCount;
+    
     public void Enter()
     {
         //Open Null Wall
@@ -23,9 +23,6 @@ public class Room
             roomConfig.broundary[i].SetActive(true);
         }
         Debug.Log("Enter" + roomConfig.RoomInfo);
-        GameObject gameObject = ResourceSvc.Single.CreateMonster(1001);
-        gameObject.transform.position = roomConfig.createConfig[0].startPos.position;
-        gameObject.GetComponent<MonsterDatabase>().patrolPoint = roomConfig.createConfig[0].patrolPoint;
     }
     public void Close()
     {
@@ -34,6 +31,8 @@ public class Room
         {
             roomConfig.broundary[i].SetActive(false);
         }
+
+        GameLevelManager.Single.currentRoom = null;
     }
     public void Execute()
     {
@@ -41,10 +40,11 @@ public class Room
     }
     public void Create()
     {
-        if (monsterCount == 0)//代表制造出来的怪物全部死亡 开始准备下一波怪物
+        if (currentMonsterCount == 0)//代表制造出来的怪物全部死亡 开始准备下一波怪物
         {
             if (roomConfig.loop == 0)//循环制造怪物等于0时 代表已经通过该房间
             {
+                Close();
                 return;
             }
             for (int i = 0; i < roomConfig.createConfig.Length; i++)
@@ -52,16 +52,22 @@ public class Room
                 CreateEnemyConfigData createEnemyConfigData = roomConfig.createConfig[i];
                 for (int c = 0; c < createEnemyConfigData.Count.Length; c++)
                 {
-                    GameObject gameObject = ResourceSvc.Single.CreateMonster(roomConfig.createConfig[i].ID);//创建
-                    gameObject.transform.position = roomConfig.createConfig[i].startPos.position;//出生点
-                    gameObject.GetComponent<MonsterDatabase>().patrolPoint = roomConfig.createConfig[i].patrolPoint;
-                    monsterCount++;
+                    GameObject monsterObject = ResourceSvc.Single.CreateMonster(roomConfig.createConfig[i].ID);//创建
+                    monsterObject.transform.position = roomConfig.createConfig[i].startPos.position;//出生点
+                    monsterObject.GetComponent<GobinRoleController>().dieCB = MonsterDieCB;
+                    monsterObject.GetComponent<MonsterDatabase>().patrolPoint = roomConfig.createConfig[i].patrolPoint;
+                    currentMonsterCount++;
                 }
 
             }
             roomConfig.loop--;
         }
 
+    }
+
+    private void MonsterDieCB()
+    {
+        currentMonsterCount--;
     }
 }
 

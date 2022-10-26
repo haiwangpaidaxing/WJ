@@ -109,5 +109,39 @@ public class GameRoot : MonoSingle<GameRoot>
         skillData.baseEffectsSkills[effectsSkillData.skillEffectsIndex] = (BaseEffectsSkill)obj;
         resourceSvc.Save();
     }
+
+
+    /// <summary>
+    /// 顿帧
+    /// </summary>
+    public  void PauseFrame(Animator[] animators)
+    {
+        ///卡肉
+
+        for (int i = 0; i < animators.Length; i++)
+        {
+            animators[i].speed = 0.2F;
+        }
+        Time.timeScale = 0.2f;
+        TimerSvc.instance.AddTask(0.2f * 1000, () =>
+        {
+            Time.timeScale = 1;
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].speed = 1;
+            }
+        });
+    }
+
+    /// <summary>
+    /// 镜头模糊
+    /// </summary>
+  public  void LensBlurEffects(Transform pos)
+    {
+        //镜头模糊
+        GameObject lensBlurEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("Prefabs/Effects/LensBlur");
+        lensBlurEffects.transform.position = pos.position;
+        GameObject.Destroy(lensBlurEffects, 0.2F);
+    }
     public Coroutine skillCDCoroutine;
 }

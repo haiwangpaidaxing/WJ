@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace WMMonsterState
+namespace WMState
 {
     public enum MonsterStateEnum
     {
-        Patrol, Tracking, Attack, Idle,
+        Patrol, 
+        Tracking, 
+        Attack,
+        Idle,
         Injured,
+        Die,
     }
 
 }
