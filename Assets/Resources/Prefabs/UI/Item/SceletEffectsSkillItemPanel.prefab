@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1513271412654955524}
   m_RootOrder: 0
@@ -109,6 +110,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1885370003261526947}
   - {fileID: 8436654294485236093}
@@ -214,13 +216,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce1c9182afd88e4fb724c6d86730687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeEffectsSkill: {fileID: 6122595839611598230}
   skillEffectsNmaeText: {fileID: 6940195067506133126}
+  showParent: {fileID: 0}
+  startParent: {fileID: 0}
   effectsSkillData:
     className: 
     value: 0
     name: 
     describe: 
+    skillEffectsIndex: 0
+    skillID: 0
+  clone: {fileID: 0}
 --- !u!1 &281316295646913982
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +257,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8245820772350676010}
   - {fileID: 8684252014055102037}
@@ -356,13 +363,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce1c9182afd88e4fb724c6d86730687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeEffectsSkill: {fileID: 417983534187094861}
   skillEffectsNmaeText: {fileID: 6094848740807723143}
+  showParent: {fileID: 0}
+  startParent: {fileID: 0}
   effectsSkillData:
     className: 
     value: 0
     name: 
     describe: 
+    skillEffectsIndex: 0
+    skillID: 0
+  clone: {fileID: 0}
 --- !u!1 &481918152771262734
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +402,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8921871325500144422}
   m_RootOrder: 0
@@ -470,6 +482,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 559713275297627707}
   m_RootOrder: 0
@@ -549,6 +562,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6901993873057051768}
   m_Father: {fileID: 0}
@@ -625,6 +639,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7732790729714486148}
   m_RootOrder: 0
@@ -706,6 +721,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 624731075118398725}
   - {fileID: 3174901571933689233}
@@ -811,13 +827,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce1c9182afd88e4fb724c6d86730687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeEffectsSkill: {fileID: 3918234733286577210}
   skillEffectsNmaeText: {fileID: 5618548158862862119}
+  showParent: {fileID: 0}
+  startParent: {fileID: 0}
   effectsSkillData:
     className: 
     value: 0
     name: 
     describe: 
+    skillEffectsIndex: 0
+    skillID: 0
+  clone: {fileID: 0}
 --- !u!1 &2688949454063143972
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,6 +866,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2056057818497187421}
   m_RootOrder: 0
@@ -927,6 +948,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8004222369578075490}
   - {fileID: 4367045740510115520}
@@ -1032,13 +1054,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce1c9182afd88e4fb724c6d86730687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeEffectsSkill: {fileID: 8924144829160372988}
   skillEffectsNmaeText: {fileID: 666048350768158690}
+  showParent: {fileID: 0}
+  startParent: {fileID: 0}
   effectsSkillData:
     className: 
     value: 0
     name: 
     describe: 
+    skillEffectsIndex: 0
+    skillID: 0
+  clone: {fileID: 0}
 --- !u!1 &3708402054423961556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,6 +1095,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1914121911357159673}
   - {fileID: 5374675224768855698}
@@ -1174,13 +1201,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce1c9182afd88e4fb724c6d86730687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeEffectsSkill: {fileID: 7895002471815515109}
   skillEffectsNmaeText: {fileID: 7358936281920648770}
+  showParent: {fileID: 0}
+  startParent: {fileID: 0}
   effectsSkillData:
     className: 
     value: 0
     name: 
     describe: 
+    skillEffectsIndex: 0
+    skillID: 0
+  clone: {fileID: 0}
 --- !u!1 &3787205379114714449
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,6 +1239,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 559713275297627707}
   m_RootOrder: 1
@@ -1268,6 +1300,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8921871325500144422}
   m_RootOrder: 1
@@ -1328,6 +1361,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7732790729714486148}
   m_RootOrder: 1
@@ -1391,6 +1425,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5240512973436464427}
   - {fileID: 8790137499674834625}
@@ -1496,13 +1531,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce1c9182afd88e4fb724c6d86730687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeEffectsSkill: {fileID: 6819183988193877284}
   skillEffectsNmaeText: {fileID: 8107921131866819713}
+  showParent: {fileID: 0}
+  startParent: {fileID: 0}
   effectsSkillData:
     className: 
     value: 0
     name: 
     describe: 
+    skillEffectsIndex: 0
+    skillID: 0
+  clone: {fileID: 0}
 --- !u!1 &6310977553739425126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1531,6 +1570,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1513271412654955524}
   - {fileID: 7164372261627201682}
@@ -1611,6 +1651,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7164372261627201682}
   m_RootOrder: 1
@@ -1673,6 +1714,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7106895229110919842}
   m_Father: {fileID: 6901993873057051768}
@@ -1762,6 +1804,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7164372261627201682}
   m_RootOrder: 0
@@ -1840,6 +1883,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1513271412654955524}
   m_RootOrder: 1
@@ -1902,6 +1946,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 946176102703809188}
   m_Father: {fileID: 4276444867387901395}
@@ -2007,6 +2052,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2056057818497187421}
   m_RootOrder: 1

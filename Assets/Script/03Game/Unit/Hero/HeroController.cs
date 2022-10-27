@@ -25,9 +25,9 @@ public class HeroController : RoleController
         heroDatabase.Injured(injuredData);
         //base.Injured(injuredData);
     }
-    public override void Die(int value)
+    public override void Die()
     {
-        base.Die(value);
+        base.Die();
     }
     public virtual void InputEvene()
     {

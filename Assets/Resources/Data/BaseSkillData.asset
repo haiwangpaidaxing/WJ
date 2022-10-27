@@ -97,7 +97,7 @@ MonoBehaviour:
     animName: Def
     soundEffectsPath: 
     baseEffectsSkills: []
-    cd: 5
+    cd: 2
     skillTime: 0
     currentCD: 0
     attackBackswing: 0

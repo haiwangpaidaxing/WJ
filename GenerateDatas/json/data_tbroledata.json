@@ -6,7 +6,7 @@
     "RoleAttribute": {
       "Attribute_HP": 100,
       "Attribute_MP": 100,
-      "Attribute_Harm": 100,
+      "Attribute_Harm": 10,
       "Attribute_CritHarm": 0,
       "Attribute_CriticalChance": 0,
       "Attribute_MoveSpeed": 6,
@@ -20,7 +20,7 @@
     "RoleAttribute": {
       "Attribute_HP": 100,
       "Attribute_MP": 100,
-      "Attribute_Harm": 100,
+      "Attribute_Harm": 10,
       "Attribute_CritHarm": 0,
       "Attribute_CriticalChance": 0,
       "Attribute_MoveSpeed": 6,

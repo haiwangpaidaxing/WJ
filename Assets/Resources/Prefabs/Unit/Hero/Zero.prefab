@@ -123,7 +123,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -242,6 +242,7 @@ MonoBehaviour:
   wallMask:
     serializedVersion: 2
     m_Bits: 1024
+  roleState: 0
 --- !u!114 &-5838456174768155246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +257,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   database: {fileID: 0}
   isRuning: 1
-  heroDatabase: {fileID: 0}
 --- !u!114 &5212051152566610019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +279,8 @@ MonoBehaviour:
   injuredPos: {fileID: 0}
   AirMaterial: {fileID: 0}
   GroundMaterial: {fileID: 0}
+  roleTree: {fileID: 0}
+  heroDatabase: {fileID: 0}
   zeroMagicArtsWeapon: {fileID: 0}
   weapPos: {fileID: 5360478368266506605}
 --- !u!114 &-4064871432311494859

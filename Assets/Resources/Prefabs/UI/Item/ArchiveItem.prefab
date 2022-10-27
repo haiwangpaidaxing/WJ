@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6716966389292404636}
   m_RootOrder: 0
@@ -109,6 +110,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6716966388405808675}
   - {fileID: 6716966389401333737}
@@ -216,6 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ArchiveNameText: {fileID: 6716966388405808668}
   ArchiveInfoText: {fileID: 6716966389401333738}
+  currentButton: {fileID: 0}
 --- !u!1 &6716966389401333736
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +247,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6716966389292404636}
   m_RootOrder: 1
