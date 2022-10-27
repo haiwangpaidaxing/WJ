@@ -24,15 +24,13 @@ namespace WUBT
         #endregion
         public Vector2 veTr;
         public MonsterStateEnum monsterStateEnum;
-        public InjuredData injuredData;
         public Transform tackingRangeTarget;
-
         protected override void FixedUpdate()
         {
             veTr = transform.position;
             base.FixedUpdate();
         }
-        public Action updateInjuredCB;
+        
         public void SetInjuredData(InjuredData injuredData)
         {
             this.monsterStateEnum = MonsterStateEnum.Injured;

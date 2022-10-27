@@ -7,21 +7,27 @@ using WMState;
 public class BaseDef : BaseSkill
 {
 
-    public BaseDef(RoleController roleController, Action<RoleController> InjuredCB, ref SkillData skillData) : base(roleController, ref skillData)
+    public BaseDef(RoleController roleController, ref SkillData skillData) : base(roleController, ref skillData)
     {
-        InjuredCB += Injured;
 
     }
 
-    public void Injured(RoleController releaser)
+    public void Injured(InjuredData data)
     {
-         Animator[] animators = new Animator[2] { roleController.animator, releaser.animator };
+        Animator[] animators = new Animator[2] { roleController.animator, data.releaser.animator };
         GameRoot.Single.PauseFrame(animators);
         GameRoot.Single.LensBlurEffects(roleController.transform);
+        WMEffectsSkill.EffectsSkillData effectsSkillData = new WMEffectsSkill.EffectsSkillData();
+        effectsSkillData.value = 3;
+        WMEffectsSkill.Diaup diaup = new WMEffectsSkill.Diaup(effectsSkillData);
+        data.baseEffectsSkillList = new WMEffectsSkill.BaseEffectsSkill[1] { diaup };
+        data.harm = database.roleAttribute.GetHarm()/2;
+        data.releaser.GetComponent<IInjured>().Injured(data);
     }
 
     public override void USE(Action skillOverCB)
-    {     
+    {
+        roleController.injuredCB += Injured;
         roleController.MoveX(0, 0);
         base.USE(skillOverCB);
     }
@@ -32,6 +38,7 @@ public class BaseDef : BaseSkill
     }
     protected override void AnimatorSkillOver()
     {
+        roleController.injuredCB -= Injured;
         roleController.MoveX(0, 0);
         skillEndCB.Invoke();
     }
@@ -39,19 +46,19 @@ public class BaseDef : BaseSkill
 public class ZeroDef : BaseDef
 {
     ZeroController zeroController;
-    public ZeroDef(RoleController roleController, Action<RoleController> InjuredCB, ref SkillData skillData) : base(roleController, InjuredCB, ref skillData)
+    public ZeroDef(RoleController roleController, ref SkillData skillData) : base(roleController, ref skillData)
     {
         zeroController = (ZeroController)roleController;
     }
 
     public override void USE(Action skillOverCB)
     {
-        zeroController.state = RoleState.Def;
+        zeroController.heroDatabase.roleState = RoleState.Def;
         base.USE(skillOverCB);
     }
     protected override void AnimatorSkillOver()
     {
-        zeroController.state = RoleState.Null;
+        zeroController.heroDatabase.roleState = RoleState.Null;
         base.AnimatorSkillOver();
     }
 }

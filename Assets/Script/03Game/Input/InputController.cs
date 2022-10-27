@@ -60,6 +60,5 @@ public class InputController : MonoSingle<InputController>
             }
             inputCB?.Invoke(oldInput);
         }
-
     }
 }

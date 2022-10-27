@@ -2,7 +2,7 @@
     "dataList": [
         {
             "archiveID": 1,
-            "saveDataTime": "2022/10/26 17:10:25",
+            "saveDataTime": "2022/10/27 16:09:08",
             "playerData": {
                 "selectRoleId": 1001,
                 "gold": 1000000,
@@ -113,7 +113,7 @@
                         "animName": "Def",
                         "soundEffectsPath": "",
                         "baseEffectsSkills": [],
-                        "cd": 5.0,
+                        "cd": 2.0,
                         "skillTime": 0.0,
                         "currentCD": 0.0,
                         "attackBackswing": 0.0,

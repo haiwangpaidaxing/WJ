@@ -81,6 +81,7 @@ public class ZeroMagicArtsWeapon : MonoBehaviour
         if (enemy == null)
         {
             currentState = ZeroMagicArtsWeaponState.Idle;
+            return;
         }
         Vector3 targtePos = enemy.transform.position;
         if (Vector2.Distance(transform.position, targtePos) > 0.1f)

@@ -20,13 +20,16 @@ public class MonsterInjuredState
         }
         roleController.animator.Play("Injured");   
         this.injuredOver = injuredOver;
-        for (int i = 0; i < injuredData.baseEffectsSkillList.Length; i++)
+        if (injuredData.baseEffectsSkillList!=null)
         {
-            if (injuredData.baseEffectsSkillList[i]==null)
+            for (int i = 0; i < injuredData.baseEffectsSkillList.Length; i++)
             {
-                continue;
+                if (injuredData.baseEffectsSkillList[i] == null)
+                {
+                    continue;
+                }
+                injuredData.baseEffectsSkillList[i].USE(roleController, injuredData.releaser);
             }
-            injuredData.baseEffectsSkillList[i].USE(roleController, injuredData.releaser);
         }
         injuredID = TimerSvc.instance.AddTask(1 * 1000, () =>
          {

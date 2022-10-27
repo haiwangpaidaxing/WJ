@@ -13,4 +13,9 @@ public class GobinRoleController : MonsterController
         base.Init();
         goblinRoleTree = GetComponent<GoblinRoleTree>();
     }
+
+    public override void Injured(InjuredData injuredData)
+    {
+        base.Injured(injuredData);
+    }
 }

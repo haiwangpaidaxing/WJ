@@ -20,6 +20,7 @@ namespace WUBT
         public Vector2 wallSliderCheckPos;
         public LayerMask wallMask;
         #endregion
+        public RoleState roleState;
         public override void Init()
         {
             base.Init();
@@ -32,7 +33,6 @@ namespace WUBT
         public override void OnDrawGizmosSelected()
         {
             Gizmos.DrawRay(transform.position, Vector2.down * detectionHighly);
-           
             Gizmos.color = wallRay;
             Gizmos.DrawRay(wallSliderCheckPos + wallOffset, Vector2.right * wallSlierSize);
             base.OnDrawGizmosSelected();
@@ -43,6 +43,12 @@ namespace WUBT
             wallSliderCheckPos = transform.position;
             wallSliderCheckPos += wallOffset;
             base.FixedUpdate();
+        }
+        public void Injured(InjuredData injuredData)
+        {
+            roleState = RoleState.Injured;
+            this.injuredData = injuredData;
+            updateInjuredCB?.Invoke();
         }
     }
 }

@@ -8,6 +8,7 @@ using WUBT;
 public class RoleStateCheck : BTPrecondition
 {
     HeroDatabase heroDatabase;
+    HeroController heroController;
     CheckType currentCheckType;
     public RoleStateCheck(CheckType checkType)
     {
@@ -18,6 +19,7 @@ public class RoleStateCheck : BTPrecondition
     {
         base.Init(database);
         heroDatabase = (HeroDatabase)database;
+        heroController = (HeroController)database.roleController;
     }
     protected override bool DoEvaluate()
     {
@@ -42,7 +44,10 @@ public class RoleStateCheck : BTPrecondition
 
             case CheckType.Ground:
                 return BoxCheck.Check(database.GroundCheckPos, database.GroundSize, database.GroundMask);
-
+            case CheckType.Injured:
+                return heroDatabase.roleState == RoleState.Injured;
+            case CheckType.Die:
+                return heroDatabase.roleState == RoleState.Die;
             default:
                 return false;
         }
@@ -51,7 +56,7 @@ public class RoleStateCheck : BTPrecondition
     public bool Wall()
     {
         //需要与墙壁到达一定高度才能激活 否则会来回不断切换别的状态
-        Debug.Log("需要与墙壁到达一定高度才能激活 否则会来回不断切换别的状态");
+   //     Debug.Log("需要与墙壁到达一定高度才能激活 否则会来回不断切换别的状态");
         if (RayCheck.Check(heroDatabase.wallSliderCheckPos, Vector2.right, heroDatabase.wallSlierSize, heroDatabase.wallMask) && !Physics2D.Raycast(database.transform.position, Vector2.down, heroDatabase.detectionHighly, LayerMask.GetMask("Ground"))
              /*&& database.InputDir.x != 0 && database.InputDir.x == database.roleController.roleDir*/)
         {
@@ -61,7 +66,9 @@ public class RoleStateCheck : BTPrecondition
     }
     public enum CheckType
     {
-        Air, Ground, Idle, Run, GroundJump, Fall, Attack, AirJump, Hutr, WallSlider
+        Air, Ground, Idle, Run, GroundJump, Fall, Attack, AirJump, Hutr, WallSlider,
+        Injured,
+        Die
     }
 }
 

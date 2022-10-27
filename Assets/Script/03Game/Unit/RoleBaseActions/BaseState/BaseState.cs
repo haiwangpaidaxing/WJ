@@ -12,7 +12,7 @@ namespace WMState
         protected string animName;
         protected string audioName;
         protected RoleController roleController;
-    
+        protected bool isAnimatorOver;
         public BaseRoleState(string animName, string audioName = "")
         {
             this.animName = animName;
@@ -33,6 +33,7 @@ namespace WMState
             {
                 animator.Play(animName);
             }
+            ISAnimatorOver();
             return base.Execute();
         }
 
@@ -59,6 +60,23 @@ namespace WMState
         protected override void Exit()
         {
             base.Exit();
+        }
+        public virtual void ISAnimatorOver()
+        {
+            if (!isAnimatorOver)
+            {
+                AnimatorStateInfo animatorInfo;
+                animatorInfo = roleController.animator.GetCurrentAnimatorStateInfo(0);  //要在update获取
+                if ((animatorInfo.normalizedTime > 1.0f) && (animatorInfo.IsName(animName)))//normalizedTime：0-1在播放、0开始、1结束 MyPlay为状态机动画的名字
+                {
+                    isAnimatorOver = true;
+                    AnimatorSkillOver();
+                }
+            }
+        }
+
+        protected virtual void AnimatorSkillOver()
+        {
         }
     }
 }

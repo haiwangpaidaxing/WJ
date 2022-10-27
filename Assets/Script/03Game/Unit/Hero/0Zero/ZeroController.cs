@@ -3,19 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZeroController : RoleController
-{
-    public RoleState state;
-    private RoleTree roleTree;
+public class ZeroController : HeroController
+{ 
     public ZeroMagicArtsWeapon zeroMagicArtsWeapon;
     //  public List<SkillData> skillData;
     public Transform weapPos;
-    Action <RoleController> injuredCB;
+
     public override void Init()
     {
         base.Init();
         skillDataList = ResourceSvc.Single.CurrentArchiveData.playerData.skillDatas;
-        roleTree = GetComponent<RoleTree>();
+  
         SkillData data = skillDataList[0];
         SkillData data1 = skillDataList[1];
 
@@ -29,7 +27,7 @@ public class ZeroController : RoleController
 
         SkillData data8 = skillDataList[8];//法术攻击
 
-        ZeroDef def = new ZeroDef(this,injuredCB, ref data4);
+        ZeroDef def = new ZeroDef(this, ref data4);
 
         ZeroNormalAttack1 zeroNormalAttack1 = new ZeroNormalAttack1(this, ref data1);
         ZeroNormalAttack2 zeroNormalAttack2 = new ZeroNormalAttack2(this, ref data2);
@@ -52,47 +50,8 @@ public class ZeroController : RoleController
 
         zeroMagicArtsWeapon = ResourceSvc.Single.LoadOrCreate<GameObject>(WeaponPath.ZeroCastWeapon).GetComponent<ZeroMagicArtsWeapon>();
         zeroMagicArtsWeapon.Init(weapPos);
-        InputEvene();
-    }
-    public virtual void InputEvene()
-    {
-        InputController.Single.operaterCB = USESkill;
-    }
-    public void USESkill(int skillID)
-    {
-        if (currentSkill != null)
-        {
-            return;
-        }
-        BaseSkill baseSkill = skillManager.USESkill(skillID);
-        if (baseSkill != null)
-        {
-            roleTree.isRuning = false;
-            if (currentSkill != null)
-            {
-                currentSkill.Quit();
-            }
-            currentSkill = baseSkill;
-            currentSkill.USE(() =>
-            {
-                roleTree.isRuning = true;
-                currentSkill = null;
-            });
-        }
     }
   
-    public override void Injured(InjuredData injuredData)
-    {
-        if (state==RoleState.Def)
-        {
-            injuredCB?.Invoke(injuredData.releaser);
-            return; 
-        }
-        base.Injured(injuredData);
-    }
 }
-public enum RoleState
-{
 
-   Null,Def
-}
+

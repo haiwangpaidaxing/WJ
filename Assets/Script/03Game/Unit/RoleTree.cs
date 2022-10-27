@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using WMState;
 using WUBT;
 public class RoleTree : BTTree<HeroDatabase>
 {
@@ -44,6 +45,11 @@ public class RoleTree : BTTree<HeroDatabase>
         RoleFall roleFall = new RoleFall(RoleAnimNmae.Fall);
         airFallSelector.AddChild(roleFall);
 
+        BTPrioritySelector injuredNode = new BTPrioritySelector(new RoleStateCheck( RoleStateCheck.CheckType.Injured),"Injured");
+        RoleInjuredState roleInjuredState = new RoleInjuredState("Injured");
+
+
+        injuredNode.AddChild(roleInjuredState);
         //添加空中子节点
         airSelect.AddChild(wallSliderSelector);
         airSelect.AddChild(airJumpParallel);
@@ -55,6 +61,7 @@ public class RoleTree : BTTree<HeroDatabase>
         groundSelector.AddChild(grIdleParallel);//站立
 
         //根节点的添加
+        root.AddChild(injuredNode);
         root.AddChild(groundSelector);
         root.AddChild(airSelect);
         root.Init(database);

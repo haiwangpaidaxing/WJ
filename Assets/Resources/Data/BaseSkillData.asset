@@ -94,7 +94,7 @@ MonoBehaviour:
     nexSkillID: 0
     skillName: "\u95EA\u907F"
     skillDescribe: 0a0
-    animName: Roll
+    animName: Def
     soundEffectsPath: 
     baseEffectsSkills: []
     cd: 5

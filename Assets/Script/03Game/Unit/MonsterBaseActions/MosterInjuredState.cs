@@ -6,7 +6,7 @@ using WUBT;
 namespace WMState
 {
     public class MosterInjuredState : BaseMonsterState
-    {   
+    {
 
         public MosterInjuredState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
         {
@@ -35,13 +35,16 @@ namespace WMState
 
         protected override BTResult Execute()
         {
-
+            
             bool isGround = BoxCheck.Check(database.GroundCheckPos, database.GroundSize, database.GroundMask);
-            if (isInjured)
+            if (isAnimatorOver)
             {
-                if (isGround)
+                if (isInjured)
                 {
-                    mData.monsterStateEnum = MonsterStateEnum.Patrol;
+                    if (isGround)
+                    {
+                        mData.monsterStateEnum = MonsterStateEnum.Patrol;
+                    }
                 }
             }
             return base.Execute();
@@ -50,6 +53,7 @@ namespace WMState
         public override void Clear()
         {
             base.Clear();
+            mData.injuredData = null;
             mData.updateInjuredCB -= UpdateInjured;
         }
 

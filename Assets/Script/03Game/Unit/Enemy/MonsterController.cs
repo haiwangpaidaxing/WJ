@@ -24,20 +24,18 @@ public class MonsterController : RoleController
     { 
         updateHP = true;
         roleAttribute.SetHp((int)injuredData.harm);
-        targetValue = mData.roleAttribute.GetHP();
-        if (roleAttribute.GetHP() <= 0)
-        {
-            mData.monsterStateEnum = WMState.MonsterStateEnum.Die;
-            dieCB?.Invoke(); 
-            return;
-        }
-        base.Injured(injuredData);
-        mData.SetInjuredData(injuredData);
         GameObject injuredEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("Prefabs/Effects/InjuredEffects");
         injuredEffects.transform.position = injuredPos.position;
-     
+        targetValue = mData.roleAttribute.GetHP();
+        base.Injured(injuredData);
+        mData.SetInjuredData(injuredData);
     }
-
+    public override void Die(int value)
+    {
+        base.Die(value);
+        mData.monsterStateEnum = WMState.MonsterStateEnum.Die;
+        dieCB?.Invoke();
+    }
     private void FixedUpdate()
     {
         if (updateHP)

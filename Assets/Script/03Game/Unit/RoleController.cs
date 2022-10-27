@@ -29,7 +29,7 @@ public class RoleController : MonoBehaviour, IInjured
     PhysicsMaterial2D AirMaterial;
     [SerializeField]
     public PhysicsMaterial2D GroundMaterial;
-
+    public Action<InjuredData> injuredCB;
     public MonsterInjuredState injuredState;
     public virtual void Init()
     {
@@ -129,7 +129,7 @@ public class RoleController : MonoBehaviour, IInjured
         }
     }
 
-    public void Die(int value)
+    public virtual void Die(int value)
     {
         if (value <= 0)
         {

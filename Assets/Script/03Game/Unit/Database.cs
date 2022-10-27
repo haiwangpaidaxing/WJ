@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,8 @@ namespace WUBT
         public RoleAttribute roleAttribute;
         [HideInInspector]
         public Vector2 GroundCheckPos;
+        public InjuredData injuredData;
+        public Action updateInjuredCB;
         public virtual void Init()
         {
             roleController = GetComponent<RoleController>();//获取角色控制器
