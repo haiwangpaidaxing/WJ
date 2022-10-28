@@ -21,18 +21,21 @@ public class MonsterController : RoleController
         hp.value = mData.roleAttribute.GetHP();
     }
     public override void Injured(InjuredData injuredData)
-    { 
+    {
         updateHP = true;
         roleAttribute.SetHp((int)injuredData.harm);
-        GameObject injuredEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("Prefabs/Effects/InjuredEffects");
-        injuredEffects.transform.position = injuredPos.position;
+        GameObject injuredEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("Prefabs/Effects/InjuredEffects"); injuredEffects.transform.position = injuredPos.position;
+        if (mData.monsterStateEnum == WMState.MonsterStateEnum.Die)
+        {
+            return;
+        }
         targetValue = mData.roleAttribute.GetHP();
         base.Injured(injuredData);
         mData.SetInjuredData(injuredData);
     }
-    public override void Die(int value)
+    public override void Die()
     {
-        base.Die(value);
+        base.Die();
         mData.monsterStateEnum = WMState.MonsterStateEnum.Die;
         dieCB?.Invoke();
     }
@@ -40,11 +43,11 @@ public class MonsterController : RoleController
     {
         if (updateHP)
         {
-            if (hp.value==targetValue)
+            if (hp.value == targetValue)
             {
                 return;
             }
-            hp.value = Mathf.Lerp(hp.value,targetValue,Time.deltaTime*2);
+            hp.value = Mathf.Lerp(hp.value, targetValue, Time.deltaTime * 2);
         }
     }
 }

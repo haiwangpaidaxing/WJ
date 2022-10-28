@@ -41,10 +41,12 @@ public class RoleController : MonoBehaviour, IInjured
         skillManager = gameObject.AddComponent<SkillManager>();
         animator = GetComponent<Animator>();
         injuredState = new MonsterInjuredState(this);
-        roleAttribute.hpValueCB += Die;
+        roleAttribute.hpValueCB += DieCheck;
         roleDir = 1;
 
     }
+
+  
     private void FixedUpdate()
     {
         if (currentSkill != null)
@@ -129,13 +131,19 @@ public class RoleController : MonoBehaviour, IInjured
         }
     }
 
-    public virtual void Die(int value)
+    public virtual void Die()
+    {
+        
+      
+    }
+    private void DieCheck(int value)
     {
         if (value <= 0)
         {
+            Die();
             Debug.Log("Die...TODO");
         }
-        Debug.Log(value);
     }
+
 }
 
