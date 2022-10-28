@@ -79,7 +79,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -223,6 +223,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   tackingDrawColor: {r: 1, g: 0.81939375, b: 0, a: 1}
+  patrolPoint: []
+  attackRangeSize: {x: 0, y: 0}
+  attackRangeOffset: {x: 0, y: 0}
+  attackMask:
+    serializedVersion: 2
+    m_Bits: 0
+  attackDrawColor: {r: 0, g: 0, b: 0, a: 0}
+  veTr: {x: 0, y: 0}
+  monsterStateEnum: 0
+  tackingRangeTarget: {fileID: 0}
 --- !u!1 &7938598538851167894
 GameObject:
   m_ObjectHideFlags: 0
