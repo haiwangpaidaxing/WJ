@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1346064506
+CRC: 881006964
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4b69d5ae48d0ba3df849fbdfe775dd8b
+    Hash: 174eecaa1b225c92793f6b54c15499aa
   TypeTreeHash:
     serializedVersion: 2
     Hash: 500925752d835afb753d67cb152600e6
@@ -21,5 +21,5 @@ SerializeReferenceClassIdentifiers:
 - AssemblyName: Assembly-CSharp
   ClassName: WMEffectsSkill.EffectsSkillData
 Assets:
-- Assets/Resources/Data/BaseSkillData.asset
+- Assets/AB/Data/BaseSkillData.asset
 Dependencies: []

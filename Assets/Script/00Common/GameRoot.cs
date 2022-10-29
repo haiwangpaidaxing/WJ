@@ -43,7 +43,7 @@ public class GameRoot : MonoSingle<GameRoot>
 
         //初始化系统
         logicSys = GetComponent<LogicSys>();
-        logicSys.Init();
+    //    logicSys.Init();
 
         //WMData.EquipData equipData = new WMData.EquipData();
         //equipData.EquipQualityType = cfg.Data.EquipQualityType.Rare;

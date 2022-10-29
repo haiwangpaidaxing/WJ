@@ -27,14 +27,13 @@ public class RoleController : MonoBehaviour, IInjured
     public Transform injuredPos;
     [SerializeField]
     PhysicsMaterial2D AirMaterial;
-    [SerializeField]
-    public PhysicsMaterial2D GroundMaterial;
+    //  PhysicsMaterial2D GroundMaterial;
     public Action<InjuredData> injuredCB;
     public MonsterInjuredState injuredState;
     public virtual void Init()
     {
-        AirMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("AirMaterial");
-        GroundMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("GroundMaterial");
+        //AirMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("AirMaterial");
+        //GroundMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("GroundMaterial");
         injuredPos = transform.Find("InjuredPos");
         this.roleAttribute = GetComponent<RoleAttribute>();
         rig = GetComponent<Rigidbody2D>();
@@ -46,7 +45,7 @@ public class RoleController : MonoBehaviour, IInjured
 
     }
 
-  
+
     private void FixedUpdate()
     {
         if (currentSkill != null)
@@ -118,23 +117,18 @@ public class RoleController : MonoBehaviour, IInjured
     }
     public void SetAirPhysicsMaterial2D()
     {
-        if (rig.sharedMaterial != AirMaterial)
-        {
-            rig.sharedMaterial = AirMaterial;
-        }
+
+        rig.sharedMaterial = AirMaterial;
     }
     public void SetGroundPhysicsMaterial2D()
     {
-        if (rig.sharedMaterial != GroundMaterial)
-        {
-            rig.sharedMaterial = AirMaterial;
-        }
+        rig.sharedMaterial = AirMaterial;
     }
 
     public virtual void Die()
     {
-        
-      
+
+
     }
     private void DieCheck(int value)
     {

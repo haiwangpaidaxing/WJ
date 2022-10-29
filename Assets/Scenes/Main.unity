@@ -391,6 +391,7 @@ GameObject:
   - component: {fileID: 1730240622}
   - component: {fileID: 1730240623}
   - component: {fileID: 1730240624}
+  - component: {fileID: 1730240625}
   m_Layer: 0
   m_Name: GameRoot
   m_TagString: Untagged
@@ -499,3 +500,16 @@ MonoBehaviour:
   shopPanel: {fileID: 0}
   selectLevelPanel: {fileID: 0}
   equipSoltItem: []
+--- !u!114 &1730240625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730240618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f400401913bd64fbeabbb239dadbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTestNet: 1

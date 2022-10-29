@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1688025393
+CRC: 2845856612
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d8d2d3bbe9b42a86b0195afbd5477baa
+    Hash: 6b075505a4f358b6006607221e3fbe3e
   TypeTreeHash:
     serializedVersion: 2
     Hash: f267fd2d8bcb1179236b6179ac5313bc
@@ -15,18 +15,18 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Resources/Sprites/Peop/LeatherPants.PNG
-- Assets/Resources/Sprites/UI/One.PNG
-- Assets/Resources/Sprites/UI/Four.PNG
-- Assets/Resources/Sprites/Peop/LeatherHelmet.PNG
-- Assets/Resources/Sprites/Peop/SilverSword.PNG
-- Assets/Resources/Sprites/Peop/ZYHelmet.PNG
-- Assets/Resources/Sprites/Peop/RareUnderpants.PNG
-- Assets/Resources/Sprites/Peop/ZYArmor.PNG
-- Assets/Resources/Sprites/Peop/KnightHelmet.PNG
-- Assets/Resources/Sprites/Level/Level1.PNG
-- Assets/Resources/Sprites/Peop/ZYShoe.PNG
-- Assets/Resources/Sprites/Peop/LeatherShoes.PNG
-- Assets/Resources/Sprites/Peop/ZYYataghan.PNG
-- Assets/Resources/Sprites/UI/Zero.png
+- Assets/AB/Sprites/Peop/LeatherHelmet.PNG
+- Assets/AB/Sprites/Peop/SilverSword.PNG
+- Assets/AB/Sprites/Peop/RareUnderpants.PNG
+- Assets/AB/Sprites/Peop/ZYHelmet.PNG
+- Assets/AB/Sprites/Peop/ZYYataghan.PNG
+- Assets/AB/Sprites/UI/Four.PNG
+- Assets/AB/Sprites/Peop/KnightHelmet.PNG
+- Assets/AB/Sprites/UI/One.PNG
+- Assets/AB/Sprites/Peop/LeatherShoes.PNG
+- Assets/AB/Sprites/Peop/ZYShoe.PNG
+- Assets/AB/Sprites/Level/Level1.PNG
+- Assets/AB/Sprites/Peop/ZYArmor.PNG
+- Assets/AB/Sprites/Peop/LeatherPants.PNG
+- Assets/AB/Sprites/UI/Zero.png
 Dependencies: []

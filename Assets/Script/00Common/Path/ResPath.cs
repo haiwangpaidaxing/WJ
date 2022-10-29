@@ -6,7 +6,7 @@ public static class SaveData
 {
     public static string GetSavePath()
     {
-        return Application.streamingAssetsPath+"/";
+        return Application.streamingAssetsPath + "/";
     }
 }
 
@@ -31,6 +31,54 @@ public static class ResPath
     public const string UIItem = UI + "Item/";
     public const string Sprites = "Sprites/";
     public const string SpritesUI = Sprites + "UI/";
+    public static string GetABDepend()
+    {
+#if UNITY_EDITOR
+        return "StandaloneWindows";
+#endif
+#if UNITY_ANDROID
+        Debug.Log("这是安卓平台。。。");
+#endif
+#if UNITY_IPHONE
+        Debug.Log("这是iPhone平台。。。"); // 不好听，用IOS代替
+#endif
+#if UNITY_IOS
+        Debug.Log("这是IOS平台。。。");
+#endif
+#if UNITY_STANDALONE_WIN
+        return "StandaloneWindows";
+#endif
+#if UNITY_STANDALONE_OSX
+    Debug.Log("这是OSX平台。。。");
+#endif
+
+    }
+    public static string GetABPath(bool isTestNet = false)
+    {
+#if UNITY_EDITOR
+        if (isTestNet)
+        {
+            return @"file:///D:\GetHubProject\DreamWJ\AssetBundles\StandaloneWindows\";
+            return @"http://localhost/AssetBundles/StandaloneWindows/";
+        }
+        return "AssetBundles/StandaloneWindows/";
+#endif
+#if UNITY_ANDROID
+        Debug.Log("这是安卓平台。。。");
+#endif
+#if UNITY_IPHONE
+        Debug.Log("这是iPhone平台。。。"); // 不好听，用IOS代替
+#endif
+#if UNITY_IOS
+        Debug.Log("这是IOS平台。。。");
+#endif
+#if UNITY_STANDALONE_WIN
+        return @"http://localhost/AssetBundles/StandaloneWindows/";
+#endif
+#if UNITY_STANDALONE_OSX
+    Debug.Log("这是OSX平台。。。");
+#endif
+    }
 }
 public class ScenePath
 {

@@ -9,12 +9,232 @@ using cfg.Data;
 using UnityEngine.SceneManagement;
 using WMEffectsSkill;
 using WUBT;
+using UnityEngine.Networking;
 
 public class ResourceSvc : MonoSingle<ResourceSvc>
 {
+    bool isAB = true;
+    public bool isTestNet;
+    public Dictionary<string, AssetBundle> cacheAssetBundle;
+    public override void Init()
+    {
+        cacheAssetBundle = new Dictionary<string, AssetBundle>();
+        cacheList = new Dictionary<string, Object>();
+        tables = new Tables(LoadByteBuf);//初始化表
+
+#if UNITY_EDITOR
+        StartCoroutine(InitABDepend("TT"));
+        //  InitAB();//编辑器模式下会加载本地文件
+        //  StartCoroutine(InitSingleAB("Prefabs"));
+#endif
+        // A correct website page.
+        StartCoroutine(GetRequest("https://www.example.com"));
+
+        // A non-existing page.
+       // StartCoroutine(GetRequest("https://error.html"));
+
+        Debug.Log("资源服务初始化..." + "AB加载" + isAB);
+    }
+    #region ABLoad
+
+
+    IEnumerator GetRequest(string uri)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        {
+            // Request and wait for the desired page.
+            yield return webRequest.SendWebRequest();
+
+            string[] pages = uri.Split('/');
+            int page = pages.Length - 1;
+
+            switch (webRequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.ProtocolError:
+                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
+                    Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                    break;
+            }
+        }
+    }
+
+
+    public IEnumerator InitABDepend(string abName)
+    {
+        //AssetBundle dependAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + ResPath.GetABDepend());
+        //AssetBundleManifest depend = dependAssetBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
+        //string[] abName = depend.GetAllAssetBundles();
+
+
+        using (UnityWebRequest request = UnityWebRequest.Get(ResPath.GetABPath(isTestNet) + abName))
+        {
+            yield return request.SendWebRequest();
+            Debug.Log(ResPath.GetABPath(isTestNet) + abName);
+            switch (request.result)
+            {
+                case UnityWebRequest.Result.Success:
+                    Debug.Log(request.downloadHandler.text);
+                   //AssetBundle ab = (request.downloadHandler as DownloadHandlerAssetBundle).assetBundle;
+                    //AssetBundleManifest depend = ab.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
+                    //string[] abd = depend.GetAllAssetBundles();
+                    //foreach (var item in abd)
+                    //{
+                    //    StartCoroutine(item);
+                    //}
+                    yield break;
+            }
+        }
+
+    }
+
+    public IEnumerator InitSingleAB(string abName)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(ResPath.GetABPath(isTestNet) + abName);
+        Debug.Log(ResPath.GetABPath(isTestNet) + abName);
+        yield return request.SendWebRequest();
+        if (request.isDone)
+        {
+            //6.判断是否下载错误
+            if (request.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.Log(request.error);
+            }
+            else
+            {
+                AssetBundle ab = DownloadHandlerAssetBundle.GetContent(request);
+                cacheAssetBundle.Add(abName, ab);
+                yield break;
+            }
+        }
+    }
+
+    public void InitAB()
+    {
+        //加载本地
+        AssetBundle prefabsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "Prefabs");
+        AssetBundle dataAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "Data");
+        AssetBundle soundEffectsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "SoundEffects");
+        AssetBundle spritesAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "Sprites");
+
+        cacheAssetBundle.Add("Prefabs", prefabsAssetBundle);
+        cacheAssetBundle.Add("Data", dataAssetBundle);
+        cacheAssetBundle.Add("SoundEffects", soundEffectsAssetBundle);
+        cacheAssetBundle.Add("Sprites", spritesAssetBundle);
+    }
+    private void OnDestroy()
+    {
+        AssetBundle.UnloadAllAssetBundles(true);
+    }
+    #endregion
+    #region ResourceFileLoad
     public Dictionary<string, Object> cacheList;
-    public AssetBundle ab;
     LoadPanel loadPanel;
+    public T Load<T>(string path) where T : Object
+    {
+
+        T t = FindCacheList<T>(path);
+        if (t != null)
+        {
+            return t;
+        }
+        if (isAB)
+        {
+            string[] abData = GetABPath(path);
+            AssetBundle ab = cacheAssetBundle[abData[0]];
+            t = ab.LoadAsset<T>(abData[1]);
+            if (t == null)
+            {
+                Debug.LogError("AB加载失败:AB包为:" + abData[0] + "资源名为：" + abData[1]);
+                return null;
+            }
+        }
+        else
+        {
+            t = Resources.Load<T>(path);
+            if (t == null)
+            {
+                Debug.LogError("加载失败请检查路径" + path);
+                return null;
+            }
+        }
+        cacheList.Add(path, t);
+        return t;
+    }
+    /// <summary>
+    /// 尝试创建
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public T LoadOrCreate<T>(string path) where T : Object
+    {
+        T t = FindCacheList<T>(path);
+        if (t != null)
+        {
+            if (t as GameObject)
+            {
+                T ob = GameObject.Instantiate(t);
+                return ob;
+            }
+        }
+        if (isAB)
+        {
+            string[] abData = GetABPath(path);
+            AssetBundle ab = cacheAssetBundle[abData[0]];
+            t = ab.LoadAsset<T>(abData[1]);
+            if (t == null)
+            {
+                Debug.LogError("AB加载失败:AB包为:" + abData[0] + "资源名为：" + abData[1]);
+                return null;
+            }
+        }
+        else
+        {
+            t = Resources.Load<T>(path);
+            if (t == null)
+            {
+                Debug.LogError("加载失败请检查路径" + path);
+                return null;
+            }
+        }
+        cacheList.Add(path, t);
+        if (t as GameObject)
+        {
+            T ob = GameObject.Instantiate(t);
+            return ob;
+        }
+        return t;
+    }
+    private T FindCacheList<T>(string path) where T : Object
+    {
+        Object ob;
+        T t;
+        if (cacheList.TryGetValue(path, out ob) && ob != null)
+        {
+            return t = ob as T;
+        }
+        return null;
+    }
+    public string[] GetABPath(string path)
+    {
+        string[] data = new string[2];
+        int abindex = path.IndexOf('/');
+        string abName = path.Remove(abindex);
+        data[0] = abName;
+        int reIndex = path.LastIndexOf('/');
+        string resName = path.Substring(reIndex + 1);
+        data[1] = resName;
+        //  Debug.Log("所属AB包" + abName + "资源名称" + resName);
+        return data;
+    }
+    #endregion
+    #region Data
     Tables tables;
     EffectsSkillDataConfig effectsSkillDataConfig;
     public ArchiveData CurrentArchiveData { get; set; }
@@ -27,20 +247,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             return tables.TBLevelConfig.DataList.ToArray();
         }
     }
-
     public MonsterData[] MonsterDatas { get { return tables.TBMonsterData.DataList.ToArray(); } }
-
-    public override void Init()
-    {
-        cacheList = new Dictionary<string, Object>();
-        tables = new Tables(LoadByteBuf);//初始化表
-
-        Debug.Log("资源服务初始化...");
-    }
-    public void Save()
-    {
-        SaveArchive.SavePlayDataArchive(CurrentArchiveData);
-    }
 
     public cfg.Data.RoleData GetRoleDataByID(int id)
     {
@@ -96,69 +303,6 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         return wmDataEquip;
     }
 
-    #region 资源加载
-    public T Load<T>(string path) where T : Object
-    {
-        T t = FindCacheList<T>(path);
-        if (t != null)
-        {
-            return t;
-        }
-        t = Resources.Load<T>(path);
-        if (t == null)
-        {
-            Debug.LogError("加载失败请检查路径" + path);
-            return null;
-        }
-        cacheList.Add(path, t);
-        return t;
-    }
-    /// <summary>
-    /// 尝试创建
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="path"></param>
-    /// <returns></returns>
-    public T LoadOrCreate<T>(string path) where T : Object
-    {
-        T t = FindCacheList<T>(path);
-        if (t != null)
-        {
-            if (t as GameObject)
-            {
-                T ob = GameObject.Instantiate(t);
-                return ob;
-            }
-        }
-        t = Resources.Load<T>(path);
-        if (t == null)
-        {
-            Debug.LogError("加载失败请检查路径" + path);
-            return null;
-        }
-        cacheList.Add(path, t);
-        if (t as GameObject)
-        {
-            T ob = GameObject.Instantiate(t);
-            return ob;
-        }
-        return t;
-    }
-    private T FindCacheList<T>(string path) where T : Object
-    {
-        Object ob;
-        T t;
-        if (cacheList.TryGetValue(path, out ob) && ob != null)
-        {
-            return t = ob as T;
-        }
-        return null;
-    }
-
-    //public GameObject CreateMonster(inr id)
-    //{
-
-    //}
     #endregion
     #region 跳转场景
     bool isLoadScene;
@@ -207,6 +351,10 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     }
     #endregion
     #region 存档
+    public void Save()
+    {
+        SaveArchive.SavePlayDataArchive(CurrentArchiveData);
+    }
     public ArchiveData GetArchiveByID(int id)
     {
         foreach (var item in archiveDataConfig.dataList)
@@ -274,7 +422,6 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         }//再次反射 
     }
     #endregion
-
     public GameObject CreateMonster(int id)
     {
         MonsterData monsterData = tables.TBMonsterData.Get(id);
@@ -282,7 +429,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         monster.AddComponent<RoleAttribute>().Init(monsterData.RoleAttribute);//必须首位添加
         monster.GetComponent<Database>().Init();
         monster.GetComponent<BTTree<MonsterDatabase>>().Init();
-        monster.GetComponent<MonsterController>().Init(); 
+        monster.GetComponent<MonsterController>().Init();
         return monster;
     }
     public void Clear()
