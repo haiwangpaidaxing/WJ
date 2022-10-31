@@ -32,6 +32,9 @@ public static class ResPath
     public const string Sprites = "Sprites/";
     public const string SpritesUI = Sprites + "UI/";
 
+    /// <summary>
+    /// 获取写入路径
+    /// </summary>
     public static string WriteABPath
     {
         get
@@ -76,9 +79,10 @@ public static class ResPath
 #if UNITY_STANDALONE_OSX
     Debug.Log("这是OSX平台。。。");
 #endif
-            
+
     }
-    public static string GetABPath(bool isTestNet = false)
+    ///
+    public static string GetLoadABPath(bool isTestNet = false)
     {
 #if UNITY_EDITOR
         if (isTestNet)

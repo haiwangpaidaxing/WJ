@@ -330,6 +330,7 @@ namespace AssetBundleBrowser
                 }
                 if (!Directory.Exists(m_UserData.m_OutputPath))
                     Directory.CreateDirectory(m_UserData.m_OutputPath);
+
             }
 
             BuildAssetBundleOptions opt = BuildAssetBundleOptions.None;
@@ -365,6 +366,7 @@ namespace AssetBundleBrowser
 
             if (m_CopyToStreaming.state)
                 DirectoryCopy(m_UserData.m_OutputPath, m_streamingPath);
+
         }
 
         private static void DirectoryCopy(string sourceDirName, string destDirName)

@@ -11,6 +11,7 @@ using WMEffectsSkill;
 using WUBT;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class ResourceSvc : MonoSingle<ResourceSvc>
 {
@@ -24,7 +25,8 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         cacheList = new Dictionary<string, Object>();
         tables = new Tables(LoadByteBuf);//初始化表 
 #if UNITY_EDITOR
-        StartCoroutine(GetUnityWebRequest("StandaloneWindows", LoadABConfig));
+        StartCoroutine(GetUnityWebRequest("Config.txt", GetCheckConfig));
+        //StartCoroutine(GetUnityWebRequest("StandaloneWindows", LoadABConfig));
 #endif
         //InitAB();//编辑器模式下会加载本地文件
         Debug.Log("资源服务初始化..." + "AB加载" + isAB);
@@ -33,13 +35,13 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     [SerializeField]
     ResourceLoadiProgressPanel resourceLoadiProgress;
 
-    public IEnumerator GetUnityWebRequest(string abName, System.Action<UnityWebRequest, string> successCB)
+    public IEnumerator GetUnityWebRequest(string resName, System.Action<UnityWebRequest, string> successCB)
     {
         //使用Head的好处是，Head会得到要下载数据的头文件，却不会下载文件。
         long totalLength = -1;
         string fileSize = "";
         long fileSzieValue = 0;
-        string uri = ResPath.GetABPath(isTestNet) + abName;
+        string uri = ResPath.GetLoadABPath(isTestNet) + resName;
         UnityWebRequest huwr = UnityWebRequest.Head(uri);
         yield return huwr.SendWebRequest();
         switch (huwr.result)
@@ -84,7 +86,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
                 resourceLoadiProgress.fileSizeText.text = "文件大小" + fileSize;
                 while (!request.isDone)
                 {
-                    Debug.Log("正在下载" + abName + "当前进度为:" + request.downloadProgress + "%" + "文件长度为:" + fileSize);
+                    Debug.Log("正在下载" + resName + "当前进度为:" + request.downloadProgress + "%" + "文件长度为:" + fileSize);
                     float progress = request.downloadProgress * 100;
                     resourceLoadiProgress.ProgressBar.value = progress;
                     resourceLoadiProgress.LoadProgressText.text = progress.ToString("0") + "%";
@@ -103,11 +105,28 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
                     yield return new WaitForSeconds(0.02f);
                 }
                 yield return new WaitForSeconds(0.5f);
-                successCB?.Invoke(request, abName);
+                successCB?.Invoke(request, resName);
                 yield break;
             }
             request.Dispose();
         }
+    }
+    public void GetCheckConfig(UnityWebRequest request, string abName)
+    {
+        CheckMD5DataConfig checkMD5DataConfig;
+        byte[] data = request.downloadHandler.data;
+        BinaryFormatter bf = new BinaryFormatter();
+        WriteFile(abName, data);
+
+        using (FileStream fsWrite = new FileStream(ResPath.GetLoadABPath() + "Config.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite))
+        {
+            checkMD5DataConfig = (CheckMD5DataConfig)bf.Deserialize(fsWrite);
+        }
+        foreach (var item in checkMD5DataConfig.checkDatas)
+        {
+            Debug.Log("Name_" + item.aBName + "_MD5_" + item.mD5);
+        }
+        StartCoroutine(GetUnityWebRequest("StandaloneWindows", LoadABConfig));
     }
     public void LoadABConfig(UnityWebRequest request, string abName)
     {
@@ -121,14 +140,14 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             abAllNameQueue.Enqueue(item);
         }
         //将AB写入文件夹中
-        AssetBundleWriteFile(abName, data);
+        WriteFile(abName, data);
         StartCoroutine(GetUnityWebRequest(abAllNameQueue.Dequeue(), LoadSingleAB));
     }
     public void LoadSingleAB(UnityWebRequest request, string abName)
     {
         AssetBundle assetBundle = UnityWebRequestByAssetBundle(request);
         byte[] data = request.downloadHandler.data;
-        AssetBundleWriteFile(abName, data);
+        WriteFile(abName, data);
         cacheAssetBundle.Add(abName, assetBundle);
         if (abAllNameQueue.Count > 0)
         {
@@ -140,30 +159,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             resourceLoadiProgress.fileSizeText.text = "";
         }
     }
-    public static string GetFileHash(string filePath)
-    {
-        try
-        {
-            FileStream fs = new FileStream(filePath, FileMode.Open);
-            int len = (int)fs.Length;
-            byte[] data = new byte[len];
-            fs.Read(data, 0, len);
-            fs.Close();
-            System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-            byte[] result = md5.ComputeHash(data);
-            string fileMD5 = "";
-            foreach (byte b in result)
-            {
-                fileMD5 += System.Convert.ToString(b, 16);
-            }
-            return fileMD5;
-        }
-        catch (FileNotFoundException e)
-        {
-            System.Console.WriteLine(e.Message);
-            return "";
-        }
-    }
+
 
     #region ABTOOL
     public AssetBundle UnityWebRequestByAssetBundle(UnityWebRequest request)
@@ -175,9 +171,9 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     /// <summary>
     /// AB包的写入
     /// </summary>
-    public void AssetBundleWriteFile(string abName, byte[] data)
+    public void WriteFile(string resName, byte[] data)
     {
-        FileInfo fileInfo = new FileInfo(ResPath.WriteABPath + abName);
+        FileInfo fileInfo = new FileInfo(ResPath.WriteABPath + resName);
         FileStream fs = fileInfo.Create();
         fs.Write(data, 0, data.Length);
         fs.Flush();     //文件写入存储到硬盘
@@ -188,7 +184,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     public void InitAB()
     {
         //加载本地
-        AssetBundle StandaloneWindowsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "StandaloneWindows");
+        AssetBundle StandaloneWindowsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetLoadABPath() + "StandaloneWindows");
 
         AssetBundleManifest assetBundleManifest = StandaloneWindowsAssetBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
         foreach (var item in assetBundleManifest.GetAllAssetBundles())
@@ -196,10 +192,10 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             Debug.Log(item);
         }
 
-        AssetBundle prefabsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "Prefabs");
-        AssetBundle dataAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "Data");
-        AssetBundle soundEffectsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "SoundEffects");
-        AssetBundle spritesAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "Sprites");
+        AssetBundle prefabsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetLoadABPath() + "Prefabs");
+        AssetBundle dataAssetBundle = AssetBundle.LoadFromFile(ResPath.GetLoadABPath() + "Data");
+        AssetBundle soundEffectsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetLoadABPath() + "SoundEffects");
+        AssetBundle spritesAssetBundle = AssetBundle.LoadFromFile(ResPath.GetLoadABPath() + "Sprites");
 
         cacheAssetBundle.Add("Prefabs", prefabsAssetBundle);
         cacheAssetBundle.Add("Data", dataAssetBundle);

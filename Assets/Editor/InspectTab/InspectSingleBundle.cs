@@ -27,7 +27,6 @@ namespace AssetBundleBrowser
             currentPath = path;
             m_inspectTabData = inspectTabData;
             m_assetBundleInspectTab = assetBundleInspectTab;
-
             //members
             m_Editor = null;
             if(bundle != null)
@@ -90,7 +89,6 @@ namespace AssetBundleBrowser
                 var leftStyle = new GUIStyle(GUI.skin.GetStyle("Label"));
                 leftStyle.alignment = TextAnchor.UpperLeft;
                 GUILayout.Label(new GUIContent("Name: " + bundle.name), leftStyle);
-
                 long fileSize = -1;
                 if(!System.String.IsNullOrEmpty(SingleBundleInspector.currentPath) && File.Exists(SingleBundleInspector.currentPath) )
                 {
@@ -112,7 +110,10 @@ namespace AssetBundleBrowser
                         EditorGUILayout.LabelField(asset);
                     EditorGUI.indentLevel--;
                 }
-
+                foreach (var item in assetNames)
+                {
+                    Debug.Log(item);
+                }
 
                 advancedFoldout = EditorGUILayout.Foldout(advancedFoldout, "Advanced Data");
 
