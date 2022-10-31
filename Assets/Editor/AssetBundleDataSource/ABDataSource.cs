@@ -97,7 +97,7 @@ namespace AssetBundleBrowser.AssetBundleDataSource
 
         /// <summary>
         /// Sets the asset bundle name (and variant) on a given asset
-        /// </summary>
+        /// </summary>ool BuildAssetBundles (ABBuildInfo info);
         void SetAssetBundleNameAndVariant (string assetPath, string bundleName, string variantName);
         /// <summary>
         /// Clears out any asset bundle names that do not have assets associated with them.

@@ -198,6 +198,7 @@ namespace AssetBundleBrowser
 
                 AddBundleFolder(folderPath);
 
+               
                 RefreshBundles();
             }
         }

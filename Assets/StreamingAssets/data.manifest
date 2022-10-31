@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 881006964
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 174eecaa1b225c92793f6b54c15499aa
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 500925752d835afb753d67cb152600e6
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: dc22b79d5cb4265488dc6286270eb81b, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Assembly-CSharp
+  ClassName: SkillData
+- AssemblyName: Assembly-CSharp
+  ClassName: WMEffectsSkill.BaseEffectsSkill
+- AssemblyName: Assembly-CSharp
+  ClassName: WMEffectsSkill.EffectsSkillData
+Assets:
+- Assets/AB/Data/BaseSkillData.asset
+Dependencies: []

@@ -32,9 +32,9 @@ public class GameRoot : MonoSingle<GameRoot>
         Debug.Log("GameRootInit...");
         DontDestroyOnLoad(gameObject);
         //初始化服务
-        GetSvc(ref resourceSvc);
-        GetSvc(ref audioSvc);
         GetSvc(ref uISvc);
+        GetSvc(ref resourceSvc);
+        GetSvc(ref audioSvc);      
         GetSvc(ref messageSvc);
         GetSvc(ref globalTimerSvc);
         GetSvc(ref netSvc);

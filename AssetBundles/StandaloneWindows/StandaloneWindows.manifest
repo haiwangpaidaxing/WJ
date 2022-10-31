@@ -1,19 +1,16 @@
 ManifestFileVersion: 0
-CRC: 1643523348
+CRC: 3039737660
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: data
       Dependencies: {}
     Info_1:
-      Name: prefabs
-      Dependencies: {}
-    Info_2:
       Name: soundeffects
       Dependencies: {}
-    Info_3:
+    Info_2:
       Name: sprites
       Dependencies: {}
-    Info_4:
-      Name: tt
+    Info_3:
+      Name: prefabs
       Dependencies: {}

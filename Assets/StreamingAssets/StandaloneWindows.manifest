@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 3039737660
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: data
+      Dependencies: {}
+    Info_1:
+      Name: soundeffects
+      Dependencies: {}
+    Info_2:
+      Name: sprites
+      Dependencies: {}
+    Info_3:
+      Name: prefabs
+      Dependencies: {}

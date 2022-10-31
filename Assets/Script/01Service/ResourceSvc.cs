@@ -10,113 +10,192 @@ using UnityEngine.SceneManagement;
 using WMEffectsSkill;
 using WUBT;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class ResourceSvc : MonoSingle<ResourceSvc>
 {
     bool isAB = true;
     public bool isTestNet;
     public Dictionary<string, AssetBundle> cacheAssetBundle;
+    Queue<string> abAllNameQueue = new Queue<string>();
     public override void Init()
     {
         cacheAssetBundle = new Dictionary<string, AssetBundle>();
         cacheList = new Dictionary<string, Object>();
-        tables = new Tables(LoadByteBuf);//初始化表
-
+        tables = new Tables(LoadByteBuf);//初始化表 
 #if UNITY_EDITOR
-        StartCoroutine(InitABDepend("TT"));
-        //  InitAB();//编辑器模式下会加载本地文件
-        //  StartCoroutine(InitSingleAB("Prefabs"));
+        StartCoroutine(GetUnityWebRequest("StandaloneWindows", LoadABConfig));
 #endif
-        // A correct website page.
-        StartCoroutine(GetRequest("https://www.example.com"));
-
-        // A non-existing page.
-       // StartCoroutine(GetRequest("https://error.html"));
-
+        //InitAB();//编辑器模式下会加载本地文件
         Debug.Log("资源服务初始化..." + "AB加载" + isAB);
     }
     #region ABLoad
+    [SerializeField]
+    ResourceLoadiProgressPanel resourceLoadiProgress;
 
-
-    IEnumerator GetRequest(string uri)
+    public IEnumerator GetUnityWebRequest(string abName, System.Action<UnityWebRequest, string> successCB)
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        //使用Head的好处是，Head会得到要下载数据的头文件，却不会下载文件。
+        long totalLength = -1;
+        string fileSize = "";
+        long fileSzieValue = 0;
+        string uri = ResPath.GetABPath(isTestNet) + abName;
+        UnityWebRequest huwr = UnityWebRequest.Head(uri);
+        yield return huwr.SendWebRequest();
+        switch (huwr.result)
         {
-            // Request and wait for the desired page.
-            yield return webRequest.SendWebRequest();
+            case UnityWebRequest.Result.Success:
+                totalLength = long.Parse(huwr.GetResponseHeader("Content-Length"));
+                //Debug.Log(totalLength);
 
-            string[] pages = uri.Split('/');
-            int page = pages.Length - 1;
-
-            switch (webRequest.result)
-            {
-                case UnityWebRequest.Result.ConnectionError:
-                case UnityWebRequest.Result.DataProcessingError:
-                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.ProtocolError:
-                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.Success:
-                    Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                    break;
-            }
+                if ((totalLength / 1048576) == 0)
+                {
+                    fileSzieValue = totalLength / 1024;
+                    fileSize = fileSzieValue + "kb";
+                }
+                else
+                {
+                    fileSzieValue = totalLength / 1048576;
+                    fileSize = fileSzieValue + "mb";
+                }
+                break;
+            case UnityWebRequest.Result.ConnectionError:
+                Debug.LogError(huwr.error);
+                break;
+            case UnityWebRequest.Result.ProtocolError:
+                Debug.LogError(huwr.error);
+                break;
+            case UnityWebRequest.Result.DataProcessingError:
+                Debug.LogError(huwr.error);
+                break;
         }
-    }
-
-
-    public IEnumerator InitABDepend(string abName)
-    {
-        //AssetBundle dependAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + ResPath.GetABDepend());
-        //AssetBundleManifest depend = dependAssetBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
-        //string[] abName = depend.GetAllAssetBundles();
-
-
-        using (UnityWebRequest request = UnityWebRequest.Get(ResPath.GetABPath(isTestNet) + abName))
+        using (UnityWebRequest request = UnityWebRequest.Get(uri))
         {
-            yield return request.SendWebRequest();
-            Debug.Log(ResPath.GetABPath(isTestNet) + abName);
-            switch (request.result)
+            //yield return request.SendWebRequest();后，是直接下载完成或者下载失败。但我们在这儿不需要等待，我们需要时刻知道下载进度
+            // yield return request.SendWebRequest();
+            resourceLoadiProgress.ProgressBar.value = 0;
+            request.SendWebRequest();
+            if (request.result == UnityWebRequest.Result.DataProcessingError || request.result == UnityWebRequest.Result.ProtocolError || request.result == UnityWebRequest.Result.ConnectionError)
             {
-                case UnityWebRequest.Result.Success:
-                    Debug.Log(request.downloadHandler.text);
-                   //AssetBundle ab = (request.downloadHandler as DownloadHandlerAssetBundle).assetBundle;
-                    //AssetBundleManifest depend = ab.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
-                    //string[] abd = depend.GetAllAssetBundles();
-                    //foreach (var item in abd)
-                    //{
-                    //    StartCoroutine(item);
-                    //}
-                    yield break;
-            }
-        }
-
-    }
-
-    public IEnumerator InitSingleAB(string abName)
-    {
-        UnityWebRequest request = UnityWebRequest.Get(ResPath.GetABPath(isTestNet) + abName);
-        Debug.Log(ResPath.GetABPath(isTestNet) + abName);
-        yield return request.SendWebRequest();
-        if (request.isDone)
-        {
-            //6.判断是否下载错误
-            if (request.result == UnityWebRequest.Result.ConnectionError)
-            {
-                Debug.Log(request.error);
+                Debug.LogError(request.error);
             }
             else
             {
-                AssetBundle ab = DownloadHandlerAssetBundle.GetContent(request);
-                cacheAssetBundle.Add(abName, ab);
+                resourceLoadiProgress.fileSizeText.text = "文件大小" + fileSize;
+                while (!request.isDone)
+                {
+                    Debug.Log("正在下载" + abName + "当前进度为:" + request.downloadProgress + "%" + "文件长度为:" + fileSize);
+                    float progress = request.downloadProgress * 100;
+                    resourceLoadiProgress.ProgressBar.value = progress;
+                    resourceLoadiProgress.LoadProgressText.text = progress.ToString("0") + "%";
+                    yield return new WaitForSeconds(0.02f);
+                }
+            }
+            if (request.isDone)
+            {
+                while (resourceLoadiProgress.ProgressBar.value < 1)
+                {
+                    resourceLoadiProgress.ProgressBar.value += 0.02f;
+
+                    float progress = resourceLoadiProgress.ProgressBar.value * 100;
+
+                    resourceLoadiProgress.LoadProgressText.text = progress.ToString("0") + "%";
+                    yield return new WaitForSeconds(0.02f);
+                }
+                yield return new WaitForSeconds(0.5f);
+                successCB?.Invoke(request, abName);
                 yield break;
             }
+            request.Dispose();
+        }
+    }
+    public void LoadABConfig(UnityWebRequest request, string abName)
+    {
+        //获取所有AB包的名字并却加载出来
+        AssetBundle assetBundle = UnityWebRequestByAssetBundle(request);
+        byte[] data = request.downloadHandler.data;
+        AssetBundleManifest assetBundleManifest = assetBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
+        string[] allABName = assetBundleManifest.GetAllAssetBundles();
+        foreach (var item in allABName)
+        {
+            abAllNameQueue.Enqueue(item);
+        }
+        //将AB写入文件夹中
+        AssetBundleWriteFile(abName, data);
+        StartCoroutine(GetUnityWebRequest(abAllNameQueue.Dequeue(), LoadSingleAB));
+    }
+    public void LoadSingleAB(UnityWebRequest request, string abName)
+    {
+        AssetBundle assetBundle = UnityWebRequestByAssetBundle(request);
+        byte[] data = request.downloadHandler.data;
+        AssetBundleWriteFile(abName, data);
+        cacheAssetBundle.Add(abName, assetBundle);
+        if (abAllNameQueue.Count > 0)
+        {
+            StartCoroutine(GetUnityWebRequest(abAllNameQueue.Dequeue(), LoadSingleAB));
+        }
+        else
+        {
+            resourceLoadiProgress.LoadProgressText.text = "资源下载完毕";
+            resourceLoadiProgress.fileSizeText.text = "";
+        }
+    }
+    public static string GetFileHash(string filePath)
+    {
+        try
+        {
+            FileStream fs = new FileStream(filePath, FileMode.Open);
+            int len = (int)fs.Length;
+            byte[] data = new byte[len];
+            fs.Read(data, 0, len);
+            fs.Close();
+            System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            byte[] result = md5.ComputeHash(data);
+            string fileMD5 = "";
+            foreach (byte b in result)
+            {
+                fileMD5 += System.Convert.ToString(b, 16);
+            }
+            return fileMD5;
+        }
+        catch (FileNotFoundException e)
+        {
+            System.Console.WriteLine(e.Message);
+            return "";
         }
     }
 
+    #region ABTOOL
+    public AssetBundle UnityWebRequestByAssetBundle(UnityWebRequest request)
+    {
+        byte[] data = request.downloadHandler.data;
+        AssetBundle assetBundle = AssetBundle.LoadFromMemory(data);
+        return assetBundle;
+    }
+    /// <summary>
+    /// AB包的写入
+    /// </summary>
+    public void AssetBundleWriteFile(string abName, byte[] data)
+    {
+        FileInfo fileInfo = new FileInfo(ResPath.WriteABPath + abName);
+        FileStream fs = fileInfo.Create();
+        fs.Write(data, 0, data.Length);
+        fs.Flush();     //文件写入存储到硬盘
+        fs.Close();     //关闭文件流对象
+        fs.Dispose();   //销毁文件对象
+    }
+    #endregion
     public void InitAB()
     {
         //加载本地
+        AssetBundle StandaloneWindowsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "StandaloneWindows");
+
+        AssetBundleManifest assetBundleManifest = StandaloneWindowsAssetBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
+        foreach (var item in assetBundleManifest.GetAllAssetBundles())
+        {
+            Debug.Log(item);
+        }
+
         AssetBundle prefabsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "Prefabs");
         AssetBundle dataAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "Data");
         AssetBundle soundEffectsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetABPath() + "SoundEffects");
@@ -127,10 +206,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         cacheAssetBundle.Add("SoundEffects", soundEffectsAssetBundle);
         cacheAssetBundle.Add("Sprites", spritesAssetBundle);
     }
-    private void OnDestroy()
-    {
-        AssetBundle.UnloadAllAssetBundles(true);
-    }
+
     #endregion
     #region ResourceFileLoad
     public Dictionary<string, Object> cacheList;
@@ -435,5 +511,9 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     public void Clear()
     {
         cacheList.Clear();
+    }
+    private void OnDestroy()
+    {
+        AssetBundle.UnloadAllAssetBundles(true);
     }
 }

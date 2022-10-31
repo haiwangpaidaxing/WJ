@@ -12,7 +12,7 @@ namespace AssetBundleBrowser
     internal class AssetBundleBuildTab
     {
         const string k_BuildPrefPrefix = "ABBBuild:";
-
+        string  outputPath;
         private string m_streamingPath = "Assets/StreamingAssets";
 
         [SerializeField]
@@ -200,6 +200,7 @@ namespace AssetBundleBrowser
                 EditorGUILayout.Space();
                 GUILayout.BeginHorizontal();
                 var newPath = EditorGUILayout.TextField("Output Path", m_UserData.m_OutputPath);
+                outputPath = newPath;
                 if (!System.String.IsNullOrEmpty(newPath) && newPath != m_UserData.m_OutputPath)
                 {
                     m_UserData.m_UseDefaultPath = false;
@@ -286,6 +287,7 @@ namespace AssetBundleBrowser
             {
                 EditorApplication.delayCall += ExecuteBuild;
                 Debug.Log("Build");
+
             }
             GUILayout.EndVertical();
             EditorGUILayout.EndScrollView();
@@ -361,7 +363,7 @@ namespace AssetBundleBrowser
 
             AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
 
-            if(m_CopyToStreaming.state)
+            if (m_CopyToStreaming.state)
                 DirectoryCopy(m_UserData.m_OutputPath, m_streamingPath);
         }
 
