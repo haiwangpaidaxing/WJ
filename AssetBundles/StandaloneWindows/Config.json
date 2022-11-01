@@ -1,0 +1,28 @@
+{
+    "checkDatas": [
+        {
+            "aBName": "StandaloneWindows",
+            "mD5": "955971f77a73522874b2b26284bdce6"
+        },
+        {
+            "aBName": "data",
+            "mD5": "dfca480fffebbcc82a52d48ad622f4"
+        },
+        {
+            "aBName": "generatedatas",
+            "mD5": "ac4bf189f7c9a7ecb96244281eb23c21"
+        },
+        {
+            "aBName": "prefabs",
+            "mD5": "bf4fa63bbeff694dcf8a2294283ac"
+        },
+        {
+            "aBName": "soundeffects",
+            "mD5": "3f464a207a7a44a6e353277267f436f"
+        },
+        {
+            "aBName": "sprites",
+            "mD5": "8de19a31bce87045e79d6da163f18b95"
+        }
+    ]
+}

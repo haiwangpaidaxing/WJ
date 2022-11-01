@@ -1,6 +1,6 @@
 public class WeaponPath {
     
-    public static string Weapon = "Prefabs/Weapon";
+    public static string Weapon = "prefabs/Weapon";
     
-    public static string ZeroCastWeapon = "Prefabs/Weapon/ZeroMagicArtsWeapon";
+    public static string ZeroCastWeapon = "prefabs/Weapon/ZeroMagicArtsWeapon";
 }

@@ -1,6 +1,6 @@
 public class DataPath {
     
-    public static string BaseSkillData = "Data/BaseSkillData";
+    public static string BaseSkillData = "data/BaseSkillData";
     
-    public static string Data = "Data";
+    public static string Data = "data";
 }

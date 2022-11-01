@@ -34,16 +34,19 @@ public class GameRoot : MonoSingle<GameRoot>
         //初始化服务
         GetSvc(ref uISvc);
         GetSvc(ref resourceSvc);
-        GetSvc(ref audioSvc);      
+        GetSvc(ref audioSvc);
         GetSvc(ref messageSvc);
         GetSvc(ref globalTimerSvc);
         GetSvc(ref netSvc);
 
-
-
+        resourceSvc.abLoadDone = () =>
+        {
+            logicSys = GetComponent<LogicSys>();
+            logicSys.Init();
+            resourceSvc.abLoadDone = null;
+            resourceSvc.DownloadDone();
+        };
         //初始化系统
-        logicSys = GetComponent<LogicSys>();
-    //    logicSys.Init();
 
         //WMData.EquipData equipData = new WMData.EquipData();
         //equipData.EquipQualityType = cfg.Data.EquipQualityType.Rare;
@@ -114,7 +117,7 @@ public class GameRoot : MonoSingle<GameRoot>
     /// <summary>
     /// 顿帧
     /// </summary>
-    public  void PauseFrame(Animator[] animators)
+    public void PauseFrame(Animator[] animators)
     {
         ///卡肉
 
@@ -136,7 +139,7 @@ public class GameRoot : MonoSingle<GameRoot>
     /// <summary>
     /// 镜头模糊
     /// </summary>
-  public  void LensBlurEffects(Transform pos)
+    public void LensBlurEffects(Transform pos)
     {
         //镜头模糊
         GameObject lensBlurEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("Prefabs/Effects/LensBlur");

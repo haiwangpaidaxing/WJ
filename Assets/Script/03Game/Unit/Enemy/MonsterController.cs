@@ -24,7 +24,7 @@ public class MonsterController : RoleController
     {
         updateHP = true;
         roleAttribute.SetHp((int)injuredData.harm);
-        GameObject injuredEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("Prefabs/Effects/InjuredEffects"); injuredEffects.transform.position = injuredPos.position;
+        GameObject injuredEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("prefabs/Effects/InjuredEffects"); injuredEffects.transform.position = injuredPos.position;
         if (mData.monsterStateEnum == WMState.MonsterStateEnum.Die)
         {
             return;

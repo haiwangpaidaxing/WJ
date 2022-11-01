@@ -12,8 +12,8 @@ public static class SaveData
 
 public static class SoundEffects
 {
-    public const string BGM = "SoundEffects/BGM/";
-    public const string Button = "SoundEffects/Button/";
+    public const string BGM = "soundeffects/BGM/";
+    public const string Button = "soundeffects/Button/";
     /// <summary>
     /// 游戏音效与UI音效保存路径
     /// </summary>
@@ -24,18 +24,18 @@ public static class SoundEffects
 }
 public static class ResPath
 {
-    public const string Prefabs = "Prefabs/";
-    public const string Audios = "Prefabs/";
+    public const string Prefabs = "prefabs/";
+    public const string Audios = "prefabs/";
     public const string UI = ResPath.Prefabs + "UI/";
     public const string UIPanel = UI + "Panel/";
     public const string UIItem = UI + "Item/";
-    public const string Sprites = "Sprites/";
+    public const string Sprites = "sprites/";
     public const string SpritesUI = Sprites + "UI/";
 
     /// <summary>
-    /// 获取写入路径
+    /// 保存文件路径
     /// </summary>
-    public static string WriteABPath
+    public static string SaveFilePath
     {
         get
         {
@@ -81,7 +81,11 @@ public static class ResPath
 #endif
 
     }
-    ///
+    /// <summary>
+    /// 获取加载AB包的路径
+    /// </summary>
+    /// <param name="isTestNet"></param>
+    /// <returns></returns>
     public static string GetLoadABPath(bool isTestNet = false)
     {
 #if UNITY_EDITOR

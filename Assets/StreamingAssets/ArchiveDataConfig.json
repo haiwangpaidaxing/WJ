@@ -2,7 +2,7 @@
     "dataList": [
         {
             "archiveID": 1,
-            "saveDataTime": "2022/10/29 15:48:49",
+            "saveDataTime": "2022/11/1 18:38:17",
             "playerData": {
                 "selectRoleId": 1001,
                 "gold": 1000000,
@@ -557,6 +557,40 @@
                         0
                     ],
                     "bagIndex": 12
+                },
+                {
+                    "Id": 1001,
+                    "ISOpen": false,
+                    "EquipName": "追忆头盔",
+                    "ResName": "ZYHelmet",
+                    "Describe": "追忆头盔暂无",
+                    "EntryNumber": 0,
+                    "PriceWeapons": 1000,
+                    "EquipType": 1,
+                    "EquipQualityType": 2,
+                    "Attribute_Harm": 0.0,
+                    "Attribute_HP": 0.0,
+                    "Attribute_CritHarm": 0.0,
+                    "Attribute_CriticalChance": 0.0,
+                    "entryKey": [],
+                    "bagIndex": 12
+                },
+                {
+                    "Id": 1003,
+                    "ISOpen": false,
+                    "EquipName": "追忆长剑",
+                    "ResName": "ZYYataghan",
+                    "Describe": "追忆长剑暂无",
+                    "EntryNumber": 0,
+                    "PriceWeapons": 1000,
+                    "EquipType": 5,
+                    "EquipQualityType": 2,
+                    "Attribute_Harm": 0.0,
+                    "Attribute_HP": 0.0,
+                    "Attribute_CritHarm": 0.0,
+                    "Attribute_CriticalChance": 0.0,
+                    "entryKey": [],
+                    "bagIndex": 13
                 }
             ]
         },

@@ -286,8 +286,6 @@ namespace AssetBundleBrowser
             if (GUILayout.Button("Build") )
             {
                 EditorApplication.delayCall += ExecuteBuild;
-                Debug.Log("Build");
-
             }
             GUILayout.EndVertical();
             EditorGUILayout.EndScrollView();

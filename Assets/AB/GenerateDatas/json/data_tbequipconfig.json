@@ -1,0 +1,172 @@
+[
+  {
+    "untID": 1001,
+    "unitName": "追忆头盔",
+    "ResName": "ZYHelmet",
+    "Describe": "追忆头盔暂无",
+    "EquipType": 1,
+    "EntryNumber": 0,
+    "PriceWeapons": 1000,
+    "EquipQualityType": 2,
+    "EquipAttribute": {
+      "Attribute_Harm": 0,
+      "Attribute_HP": 0,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0
+    },
+    "ISOpen": false
+  },
+  {
+    "untID": 1002,
+    "unitName": "追忆盔甲",
+    "ResName": "ZYArmor",
+    "Describe": "追忆盔甲暂无",
+    "EquipType": 2,
+    "EntryNumber": 0,
+    "PriceWeapons": 1000,
+    "EquipQualityType": 2,
+    "EquipAttribute": {
+      "Attribute_Harm": 0,
+      "Attribute_HP": 0,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0
+    },
+    "ISOpen": false
+  },
+  {
+    "untID": 1003,
+    "unitName": "追忆长剑",
+    "ResName": "ZYYataghan",
+    "Describe": "追忆长剑暂无",
+    "EquipType": 5,
+    "EntryNumber": 0,
+    "PriceWeapons": 1000,
+    "EquipQualityType": 2,
+    "EquipAttribute": {
+      "Attribute_Harm": 0,
+      "Attribute_HP": 0,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0
+    },
+    "ISOpen": false
+  },
+  {
+    "untID": 1004,
+    "unitName": "牛皮鞋",
+    "ResName": "LeatherShoes",
+    "Describe": "粗糙的牛皮鞋子",
+    "EquipType": 4,
+    "EntryNumber": 0,
+    "PriceWeapons": 500,
+    "EquipQualityType": 4,
+    "EquipAttribute": {
+      "Attribute_Harm": 0,
+      "Attribute_HP": 0,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0
+    },
+    "ISOpen": false
+  },
+  {
+    "untID": 1005,
+    "unitName": "原味裤衩",
+    "ResName": "RareUnderpants",
+    "Describe": "稀有的裤衩",
+    "EquipType": 3,
+    "EntryNumber": 0,
+    "PriceWeapons": 5000,
+    "EquipQualityType": 1,
+    "EquipAttribute": {
+      "Attribute_Harm": 0,
+      "Attribute_HP": 0,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0
+    },
+    "ISOpen": false
+  },
+  {
+    "untID": 1006,
+    "unitName": "牛皮头盔",
+    "ResName": "LeatherHelmet",
+    "Describe": "粗糙的牛皮头盔",
+    "EquipType": 1,
+    "EntryNumber": 0,
+    "PriceWeapons": 500,
+    "EquipQualityType": 4,
+    "EquipAttribute": {
+      "Attribute_Harm": 0,
+      "Attribute_HP": 0,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0
+    },
+    "ISOpen": false
+  },
+  {
+    "untID": 1007,
+    "unitName": "白银头盔",
+    "ResName": "KnightHelmet",
+    "Describe": "白银头盔",
+    "EquipType": 1,
+    "EntryNumber": 0,
+    "PriceWeapons": 1000,
+    "EquipQualityType": 3,
+    "EquipAttribute": {
+      "Attribute_Harm": 0,
+      "Attribute_HP": 0,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0
+    },
+    "ISOpen": false
+  },
+  {
+    "untID": 1008,
+    "unitName": "牛皮长裤",
+    "ResName": "LeatherPants",
+    "Describe": "粗糙的牛皮长裤",
+    "EquipType": 3,
+    "EntryNumber": 0,
+    "PriceWeapons": 500,
+    "EquipQualityType": 4,
+    "EquipAttribute": {
+      "Attribute_Harm": 0,
+      "Attribute_HP": 0,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0
+    },
+    "ISOpen": false
+  },
+  {
+    "untID": 1009,
+    "unitName": "白银剑",
+    "ResName": "SilverSword",
+    "Describe": "白银打造的剑",
+    "EquipType": 5,
+    "EntryNumber": 0,
+    "PriceWeapons": 700,
+    "EquipQualityType": 3,
+    "EquipAttribute": {
+      "Attribute_Harm": 0,
+      "Attribute_HP": 0,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0
+    },
+    "ISOpen": false
+  },
+  {
+    "untID": 1010,
+    "unitName": "追忆之靴",
+    "ResName": "ZYShoe",
+    "Describe": "追忆之靴暂无",
+    "EquipType": 4,
+    "EntryNumber": 0,
+    "PriceWeapons": 1000,
+    "EquipQualityType": 2,
+    "EquipAttribute": {
+      "Attribute_Harm": 0,
+      "Attribute_HP": 0,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0
+    },
+    "ISOpen": false
+  }
+]

@@ -7,7 +7,7 @@ set CONF_ROOT=%WORKSPACE%\LuBan\Config
  -d %CONF_ROOT%\Defines\__root__.xml ^
  --input_data_dir %CONF_ROOT%\Datas ^
  --output_code_dir %WORKSPACE%\Assets\Gen ^
- --output_data_dir ..\GenerateDatas\json ^
+ --output_data_dir D:\GetHubProject\DreamWJ\Assets\AB\GenerateDatas\json ^
  --gen_types code_cs_unity_json,data_json ^
  -s all 
 

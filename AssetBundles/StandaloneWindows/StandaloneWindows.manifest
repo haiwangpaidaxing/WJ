@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3592351098
+CRC: 3638516550
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -13,4 +13,7 @@ AssetBundleManifest:
       Dependencies: {}
     Info_3:
       Name: sprites
+      Dependencies: {}
+    Info_4:
+      Name: generatedatas
       Dependencies: {}
