@@ -13,6 +13,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
 
+
 public class ResourceSvc : MonoSingle<ResourceSvc>
 {
     bool isAB = true;
@@ -22,30 +23,108 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     public System.Action abLoadDone;
     public override void Init()
     {
+
         cacheAssetBundle = new Dictionary<string, AssetBundle>();
         cacheList = new Dictionary<string, Object>();
+
+
 
         //  首次进入游戏是 因为没有AB包的原因 又需要一个加载面板资源 所以必须内资一个基础的加载面板      显示下载进度等
         Transform uiRoot = GameObject.Find("UIRoot").transform;
         GameObject loadPanel = Resources.Load<GameObject>("ResourceLoadiProgressPanel");
         resourceLoadiProgress = GameObject.Instantiate(loadPanel).GetComponent<ResourceLoadiProgressPanel>();
         resourceLoadiProgress.transform.SetParent(uiRoot, false);
-
-        if (!File.Exists(ResPath.SaveFilePath + "Config.json"))//获取校验文件
+        bool checkFile = File.Exists(ResPath.SaveFilePath + "Config.json");
+        if (!PingNetAddress())
         {
-            Debug.Log("首次启动游戏");
-            StartCoroutine(GetUnityWebRequest("StandaloneWindows", LoadABConfig));
+            //未连接网络 并且首次启动游戏时
+            if (!checkFile)//因为校验文件是最后下载的如果 没有检验文件代表下载过程中，中途断网等  
+            {
+                Debug.Log("TODO提示第一次打开游戏需要连接网络，强制退出");
+            }
+            else
+            {
+                Debug.Log("跳过校验直接开始游戏");
+                abLoadDone();
+            }
         }
         else
         {
-            StartCoroutine(GetUnityWebRequest("Config.json", GetCheckConfig));
+            //已经连接网络时 检测服务器是否开启
+            StartCoroutine(CheckServer((isOpen) =>
+            {
+                if (isOpen)//当服务器开启时候
+                {
+                    if (!checkFile)
+                    {
+                        Debug.Log("首次启动游戏");
+                        StartCoroutine(GetUnityWebRequest("StandaloneWindows", LoadABConfig));
+                    }
+                    else
+                    {
+                        //服务器开启 有网络状态  并却已经存在文件时  校验检测 
+                        Debug.Log("服务器开启 有网络状态  并却已经存在文件时  校验检测 ");
+                        StartCoroutine(GetUnityWebRequest("Config.json", GetCheckConfig));//检测更新
+                    }
+                }
+                else
+                {
+                    if (!checkFile)
+                    {
+                        Debug.Log("在有网络状态下，检测到服务器未开启，未有文件，强制退出");
+                    }
+                    else
+                    {
+                        Debug.Log("在有网络状态下，检测到服务器未开启，已有文件，跳过校验直接开始游戏");
+                        abLoadDone();
+                    }
+                }
+            }));
         }
+
+        //检测服务器是否开始    //一种是服务器未开启  一种是本机未开启网络
+
+
+        //if (!File.Exists(ResPath.SaveFilePath + "Config.json"))//获取校验文件
+        //{
+        //    Debug.Log("首次启动游戏");
+        //    StartCoroutine(GetUnityWebRequest("StandaloneWindows", LoadABConfig));
+        //}
+        //else
+        //{
+        //    StartCoroutine(GetUnityWebRequest("Config.json", GetCheckConfig));
+        //}
+
+
         //InitAB();//编辑器模式下会加载本地文件
         Debug.Log("资源服务初始化..." + "AB加载" + isAB);
     }
     #region ABLoad
     ResourceLoadiProgressPanel resourceLoadiProgress;
-
+    public IEnumerator CheckServer(System.Action<bool> checkCB)
+    {
+        string uri = ResPath.GetLoadABPath(isTestNet) + "Config.json";
+        UnityWebRequest huwr = UnityWebRequest.Head(uri);
+        yield return huwr.SendWebRequest();
+        switch (huwr.result)
+        {
+            case UnityWebRequest.Result.Success:
+                checkCB(true);
+                yield break;
+            case UnityWebRequest.Result.ConnectionError:
+                checkCB(false);
+                Debug.LogError("未连接网络" + huwr.error);
+                yield break;
+            case UnityWebRequest.Result.ProtocolError:
+                checkCB(false);
+                Debug.LogError("错误路径" + ResPath.GetLoadABPath(isTestNet));
+                yield break;
+            case UnityWebRequest.Result.DataProcessingError:
+                checkCB(false);
+                Debug.LogError("错误路径" + ResPath.GetLoadABPath(isTestNet));
+                yield break;
+        }
+    }
     public IEnumerator GetUnityWebRequest(string resName, System.Action<UnityWebRequest, string> successCB)
     {
         Debug.Log("开始下载资源" + resName);
@@ -74,7 +153,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
                 }
                 break;
             case UnityWebRequest.Result.ConnectionError:
-                Debug.LogError("错误路径" + ResPath.GetLoadABPath(isTestNet) + resName + "_" + huwr.error);
+                Debug.LogError("未连接网络" + huwr.error);
                 yield break;
             case UnityWebRequest.Result.ProtocolError:
                 Debug.LogError("错误路径" + ResPath.GetLoadABPath(isTestNet) + resName + "_" + huwr.error);
@@ -124,7 +203,29 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             request.Dispose();
         }
     }
-
+    private bool PingNetAddress()
+    {
+        try
+        {
+            System.Net.NetworkInformation.Ping ping = new System.Net.NetworkInformation.Ping();
+            System.Net.NetworkInformation.PingReply pr = ping.Send("www.baidu.com", 3000);
+            if (pr.Status == System.Net.NetworkInformation.IPStatus.Success)
+            {
+                Debug.Log("网络连接信号正常");
+                return true;
+            }
+            else
+            {
+                Debug.Log("网络连接无信号");
+                return false;
+            }
+        }
+        catch (System.Exception e)
+        {
+            return false;
+            Debug.Log("网络连接信号异常" + e.Message);
+        }
+    }
     public void LoadABConfig(UnityWebRequest request, string abName)
     {
         //获取所有AB包的名字并却加载出来
@@ -236,9 +337,9 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         if (abDownloadQueue.Count > 0)
         {
             Debug.Log("检测到资源需要更新");
-            resourceLoadiProgress.LoadProgressText.text = "检测到资源需要更新";
-            TimerSvc.instance.AddTask(0.5F*1000, () => { StartCoroutine(GetUnityWebRequest(abDownloadQueue.Dequeue(), LoadSingleAB)); });
-           
+            resourceLoadiProgress.LoadProgressText.text = "...检测到资源需要更新...";
+            TimerSvc.instance.AddTask(0.5F * 1000, () => { StartCoroutine(GetUnityWebRequest(abDownloadQueue.Dequeue(), LoadSingleAB)); });
+
             return;
         }
         else
