@@ -32,11 +32,12 @@ public class GameRoot : MonoSingle<GameRoot>
         Debug.Log("GameRootInit...");
         DontDestroyOnLoad(gameObject);
         //初始化服务
+        GetSvc(ref globalTimerSvc);
         GetSvc(ref uISvc);
         GetSvc(ref resourceSvc);
         GetSvc(ref audioSvc);
         GetSvc(ref messageSvc);
-        GetSvc(ref globalTimerSvc);
+
         GetSvc(ref netSvc);
 
         resourceSvc.abLoadDone = () =>
@@ -53,6 +54,11 @@ public class GameRoot : MonoSingle<GameRoot>
         //equipData.entryKey = new System.Collections.Generic.List<WMData.EntryKey>();
         //equipData.OpenEquip();
     }
+
+    void LoadABDone()
+    {
+
+    }
     public void GetSvc<T>(ref T t) where T : MonoSingle<T>
     {
 
@@ -65,9 +71,9 @@ public class GameRoot : MonoSingle<GameRoot>
             }
             t.Init();
         }
-        catch
+        catch (Exception a)
         {
-
+            Debug.Log(a);
         }
     }
     private void Update()
@@ -142,7 +148,7 @@ public class GameRoot : MonoSingle<GameRoot>
     public void LensBlurEffects(Transform pos)
     {
         //镜头模糊
-        GameObject lensBlurEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("Prefabs/Effects/LensBlur");
+        GameObject lensBlurEffects = ResourceSvc.Single.LoadOrCreate<GameObject>(EffectPath.LensBlur);
         lensBlurEffects.transform.position = pos.position;
         GameObject.Destroy(lensBlurEffects, 0.2F);
     }

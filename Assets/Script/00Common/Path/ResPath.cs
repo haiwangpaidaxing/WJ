@@ -86,14 +86,10 @@ public static class ResPath
     /// </summary>
     /// <param name="isTestNet"></param>
     /// <returns></returns>
-    public static string GetLoadABPath(bool isTestNet = false)
+    public static string GetLoadABPath()
     {
 #if UNITY_EDITOR
-        if (isTestNet)
-        {
-            //return @"file:///D:\GetHubProject\DreamWJ\AssetBundles\StandaloneWindows\";
-            return @"http://localhost/AssetBundles/StandaloneWindows/";
-        }
+        //  return @"file:///D:\GetHubProject\DreamWJ\AssetBundles\StandaloneWindows\";
         return "AssetBundles/StandaloneWindows/";
 #endif
 #if UNITY_ANDROID

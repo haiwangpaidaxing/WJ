@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3027634797
+CRC: 2725092308
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ca41fd456e3606a99d4f05013bc433a8
+    Hash: 4f3a3245fa3405b15bd4583541c7bc76
   TypeTreeHash:
     serializedVersion: 2
-    Hash: a9b012bab62be683a8786dd937d0de46
+    Hash: 249cff42add488ec0bd2008d5a62ea52
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -98,6 +98,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 11f55b31f16895648ab5074ff934b039, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 9b27f1a0eed73444cba279235b5c3dac, type: 3}
@@ -160,6 +162,8 @@ ClassTypes:
 SerializeReferenceClassIdentifiers:
 - AssemblyName: Assembly-CSharp
   ClassName: WMEffectsSkill.EffectsSkillData
+- AssemblyName: Unity.RenderPipelines.Universal.Runtime
+  ClassName: UnityEngine.Rendering.Universal.LightUtility/LightMeshVertex
 - AssemblyName: UnityEngine.CoreModule
   ClassName: UnityEngine.Events.PersistentCallGroup
 - AssemblyName: UnityEngine.CoreModule

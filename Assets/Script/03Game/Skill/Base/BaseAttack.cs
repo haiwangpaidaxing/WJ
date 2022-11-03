@@ -33,7 +33,7 @@ public class BaseAttack : BaseSkill
     protected virtual void LensBlurEffects()
     {
         //¾µÍ·Ä£ºý
-        GameObject lensBlurEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("prefabs/Effects/LensBlur");
+        GameObject lensBlurEffects = ResourceSvc.Single.LoadOrCreate<GameObject>(EffectPath.LensBlur);
         lensBlurEffects.transform.position = roleController.transform.position;
         GameObject.Destroy(lensBlurEffects, 0.2F);
     }
@@ -69,6 +69,6 @@ public class BaseAttack : BaseSkill
     }
     protected virtual void Damage(IInjured enemy)
     {
-  
+
     }
 }

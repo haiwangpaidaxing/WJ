@@ -21,6 +21,7 @@ namespace WMState
 
         protected override void Enter()
         {
+            enemyFinder.Close();
             base.Enter();
 
             Transform target = mData.tackingRangeTarget;

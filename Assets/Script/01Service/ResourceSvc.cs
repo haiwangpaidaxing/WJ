@@ -17,74 +17,81 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class ResourceSvc : MonoSingle<ResourceSvc>
 {
     bool isAB = true;
-    public bool isTestNet;
+    public bool isEDITOR;
     public Dictionary<string, AssetBundle> cacheAssetBundle;
     Queue<string> abDownloadQueue = new Queue<string>();
     public System.Action abLoadDone;
     public override void Init()
     {
-
         cacheAssetBundle = new Dictionary<string, AssetBundle>();
         cacheList = new Dictionary<string, Object>();
-
-
-
         //  首次进入游戏是 因为没有AB包的原因 又需要一个加载面板资源 所以必须内资一个基础的加载面板      显示下载进度等
         Transform uiRoot = GameObject.Find("UIRoot").transform;
         GameObject loadPanel = Resources.Load<GameObject>("ResourceLoadiProgressPanel");
         resourceLoadiProgress = GameObject.Instantiate(loadPanel).GetComponent<ResourceLoadiProgressPanel>();
         resourceLoadiProgress.transform.SetParent(uiRoot, false);
-        bool checkFile = File.Exists(ResPath.SaveFilePath + "Config.json");
-        if (!PingNetAddress())
+        if (isEDITOR)
         {
-            //未连接网络 并且首次启动游戏时
-            if (!checkFile)//因为校验文件是最后下载的如果 没有检验文件代表下载过程中，中途断网等  
-            {
-                Debug.Log("TODO提示第一次打开游戏需要连接网络，强制退出");
-            }
-            else
-            {
-                Debug.Log("跳过校验直接开始游戏");
-                abLoadDone();
-            }
+            InitAB();//编辑器模式下会加载本地文件
         }
         else
         {
-            //已经连接网络时 检测服务器是否开启
-            StartCoroutine(CheckServer((isOpen) =>
+#if UNITY_ANDROID
+        Debug.Log("这是安卓平台。。。");
+#endif
+#if UNITY_STANDALONE_WIN
+
+            bool checkFile = File.Exists(ResPath.SaveFilePath + "Config.json");
+            if (!PingNetAddress())
             {
-                if (isOpen)//当服务器开启时候
+                //未连接网络 并且首次启动游戏时
+                if (!checkFile)//因为校验文件是最后下载的如果 没有检验文件代表下载过程中，中途断网等  
                 {
-                    if (!checkFile)
-                    {
-                        Debug.Log("首次启动游戏");
-                        StartCoroutine(GetUnityWebRequest("StandaloneWindows", LoadABConfig));
-                    }
-                    else
-                    {
-                        //服务器开启 有网络状态  并却已经存在文件时  校验检测 
-                        Debug.Log("服务器开启 有网络状态  并却已经存在文件时  校验检测 ");
-                        StartCoroutine(GetUnityWebRequest("Config.json", GetCheckConfig));//检测更新
-                    }
+                    Debug.Log("TODO提示第一次打开游戏需要连接网络，强制退出");
                 }
                 else
                 {
-                    if (!checkFile)
+                    Debug.Log("跳过校验直接开始游戏");
+                    abLoadDone();
+                }
+            }
+            else
+            {
+                //已经连接网络时 检测服务器是否开启
+                StartCoroutine(CheckServer((isOpen) =>
+                {
+                    if (isOpen)//当服务器开启时候
                     {
-                        Debug.Log("在有网络状态下，检测到服务器未开启，未有文件，强制退出");
+                        if (!checkFile)
+                        {
+                            Debug.Log("首次启动游戏");
+                            StartCoroutine(GetUnityWebRequest("StandaloneWindows", LoadABConfig));
+                        }
+                        else
+                        {
+                            //服务器开启 有网络状态  并却已经存在文件时  校验检测 
+                            Debug.Log("服务器开启 有网络状态  并却已经存在文件时  校验检测 ");
+                            StartCoroutine(GetUnityWebRequest("Config.json", GetCheckConfig));//检测更新
+                        }
                     }
                     else
                     {
-                        Debug.Log("在有网络状态下，检测到服务器未开启，已有文件，跳过校验直接开始游戏");
-                        abLoadDone();
+                        if (!checkFile)
+                        {
+                            Debug.Log("在有网络状态下，检测到服务器未开启，未有文件，强制退出");
+                        }
+                        else
+                        {
+                            Debug.Log("在有网络状态下，检测到服务器未开启，已有文件，跳过校验直接开始游戏");
+                            abLoadDone();
+                        }
                     }
-                }
-            }));
+                }));
+            }
+#endif
         }
 
         //检测服务器是否开始    //一种是服务器未开启  一种是本机未开启网络
-
-
         //if (!File.Exists(ResPath.SaveFilePath + "Config.json"))//获取校验文件
         //{
         //    Debug.Log("首次启动游戏");
@@ -94,16 +101,13 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         //{
         //    StartCoroutine(GetUnityWebRequest("Config.json", GetCheckConfig));
         //}
-
-
-        //InitAB();//编辑器模式下会加载本地文件
         Debug.Log("资源服务初始化..." + "AB加载" + isAB);
     }
     #region ABLoad
     ResourceLoadiProgressPanel resourceLoadiProgress;
     public IEnumerator CheckServer(System.Action<bool> checkCB)
     {
-        string uri = ResPath.GetLoadABPath(isTestNet) + "Config.json";
+        string uri = ResPath.GetLoadABPath() + "Config.json";
         UnityWebRequest huwr = UnityWebRequest.Head(uri);
         yield return huwr.SendWebRequest();
         switch (huwr.result)
@@ -117,11 +121,11 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
                 yield break;
             case UnityWebRequest.Result.ProtocolError:
                 checkCB(false);
-                Debug.LogError("错误路径" + ResPath.GetLoadABPath(isTestNet));
+                Debug.LogError("错误路径" + ResPath.GetLoadABPath());
                 yield break;
             case UnityWebRequest.Result.DataProcessingError:
                 checkCB(false);
-                Debug.LogError("错误路径" + ResPath.GetLoadABPath(isTestNet));
+                Debug.LogError("错误路径" + ResPath.GetLoadABPath());
                 yield break;
         }
     }
@@ -132,7 +136,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         long totalLength = -1;
         string fileSize = "";
         long fileSzieValue = 0;
-        string uri = ResPath.GetLoadABPath(isTestNet) + resName;
+        string uri = ResPath.GetLoadABPath() + resName;
         UnityWebRequest huwr = UnityWebRequest.Head(uri);
         yield return huwr.SendWebRequest();
         switch (huwr.result)
@@ -156,10 +160,10 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
                 Debug.LogError("未连接网络" + huwr.error);
                 yield break;
             case UnityWebRequest.Result.ProtocolError:
-                Debug.LogError("错误路径" + ResPath.GetLoadABPath(isTestNet) + resName + "_" + huwr.error);
+                Debug.LogError("错误路径" + ResPath.GetLoadABPath() + resName + "_" + huwr.error);
                 yield break;
             case UnityWebRequest.Result.DataProcessingError:
-                Debug.LogError("错误路径" + ResPath.GetLoadABPath(isTestNet) + resName + "_" + huwr.error);
+                Debug.LogError("错误路径" + ResPath.GetLoadABPath() + resName + "_" + huwr.error);
                 yield break;
         }
         using (UnityWebRequest request = UnityWebRequest.Get(uri))
@@ -386,15 +390,16 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             Debug.Log(item);
         }
 
-        AssetBundle prefabsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetLoadABPath() + "Prefabs");
+        AssetBundle prefabsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetLoadABPath() + "prefabs");
         AssetBundle dataAssetBundle = AssetBundle.LoadFromFile(ResPath.GetLoadABPath() + "Data");
-        AssetBundle soundEffectsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetLoadABPath() + "SoundEffects");
-        AssetBundle spritesAssetBundle = AssetBundle.LoadFromFile(ResPath.GetLoadABPath() + "Sprites");
+        AssetBundle soundEffectsAssetBundle = AssetBundle.LoadFromFile(ResPath.GetLoadABPath() + "soundeffects");
+        AssetBundle spritesAssetBundle = AssetBundle.LoadFromFile(ResPath.GetLoadABPath() + "sprites");
 
-        cacheAssetBundle.Add("Prefabs", prefabsAssetBundle);
-        cacheAssetBundle.Add("Data", dataAssetBundle);
-        cacheAssetBundle.Add("SoundEffects", soundEffectsAssetBundle);
-        cacheAssetBundle.Add("Sprites", spritesAssetBundle);
+        cacheAssetBundle.Add("prefabs", prefabsAssetBundle);
+        cacheAssetBundle.Add("data", dataAssetBundle);
+        cacheAssetBundle.Add("soundeffects", soundEffectsAssetBundle);
+        cacheAssetBundle.Add("sprites", spritesAssetBundle);
+        TimerSvc.instance.AddTask(1 * 1000, () => { abLoadDone(); });
     }
 
     #endregion

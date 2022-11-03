@@ -546,4 +546,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f400401913bd64fbeabbb239dadbd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTestNet: 1
+  isEDITOR: 1
