@@ -13,7 +13,7 @@ public class Room
     public Action quitCB;
     [Header("房间配置")]
     public RoomConfig roomConfig;
-    
+
     public void Enter()
     {
         //Open Null Wall
@@ -49,10 +49,12 @@ public class Room
             }
             for (int i = 0; i < roomConfig.createConfig.Length; i++)
             {
+
                 CreateEnemyConfigData createEnemyConfigData = roomConfig.createConfig[i];
                 for (int c = 0; c < createEnemyConfigData.Count.Length; c++)
                 {
                     GameObject monsterObject = ResourceSvc.Single.CreateMonster(roomConfig.createConfig[i].ID);//创建
+                    monsterObject.transform.SetParent(GameLevelManager.Single.EnemyList.transform, false);
                     monsterObject.transform.position = roomConfig.createConfig[i].startPos.position;//出生点
                     monsterObject.GetComponent<GobinRoleController>().dieCB = MonsterDieCB;
                     monsterObject.GetComponent<MonsterDatabase>().patrolPoint = roomConfig.createConfig[i].patrolPoint;

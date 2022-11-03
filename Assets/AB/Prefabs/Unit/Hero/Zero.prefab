@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &137886225370758730
+--- !u!1 &1407560975274538680
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,54 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7331093056480517526}
-  - component: {fileID: 8116333999150828072}
+  - component: {fileID: 8039009315880698279}
   m_Layer: 11
-  m_Name: Light 2D
+  m_Name: Find
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 1065353216
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7331093056480517526
+--- !u!4 &8039009315880698279
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137886225370758730}
+  m_GameObject: {fileID: 1407560975274538680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.24, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4441259093511674304}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1643998998159431071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6178050182855734869}
+  - component: {fileID: 731587176779164319}
+  - component: {fileID: 6104274876790858091}
+  m_Layer: 11
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6178050182855734869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643998998159431071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,24 +64,23 @@ Transform:
   m_Father: {fileID: 4441259093511674304}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8116333999150828072
+--- !u!114 &731587176779164319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137886225370758730}
+  m_GameObject: {fileID: 1643998998159431071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 7292074621909112818, guid: 00000000000000000000000000000000,
-    type: 0}
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_LightType: 1
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.599
-  m_Color: {r: 1, g: 0.94399047, b: 0.8443396, a: 1}
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 0.9339623, g: 0.8404839, b: 0.6035511, a: 1}
   m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -689,37 +720,20 @@ MonoBehaviour:
   - {x: 0.4157348, y: -0.27778515, z: 0}
   - {x: 0.46193978, y: -0.19134171, z: 0}
   - {x: 0.49039266, y: -0.09754512, z: 0}
---- !u!1 &1407560975274538680
-GameObject:
+--- !u!114 &6104274876790858091
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8039009315880698279}
-  m_Layer: 11
-  m_Name: Find
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8039009315880698279
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1407560975274538680}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.24, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4441259093511674304}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1643998998159431071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb6c6265e3b9224e98cb9d631113cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackingTarget: {fileID: 0}
+  speed: 2
 --- !u!1 &3787845099158107653
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,8 +746,8 @@ GameObject:
   m_Layer: 11
   m_Name: MagicArtsWeaponPos
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 485
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5360478368266506605
@@ -764,13 +778,10 @@ GameObject:
   - component: {fileID: 4441259093511674310}
   - component: {fileID: 4441259093511674311}
   - component: {fileID: 4441259093511674307}
-  - component: {fileID: 5605257801605735762}
-  - component: {fileID: 1151484502299779135}
-  - component: {fileID: 5889364486220668508}
-  - component: {fileID: 5904642301375852858}
-  - component: {fileID: 2326309885228999366}
-  - component: {fileID: 1998911897912720338}
-  - component: {fileID: 1281498553400129095}
+  - component: {fileID: 1177728057341408119}
+  - component: {fileID: -5838456174768155246}
+  - component: {fileID: 5212051152566610019}
+  - component: {fileID: -4064871432311494859}
   m_Layer: 11
   m_Name: Zero
   m_TagString: Hero
@@ -786,13 +797,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4441259093511674308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: -0.95500934, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8039009315880698279}
   - {fileID: 5360478368266506605}
-  - {fileID: 7331093056480517526}
+  - {fileID: 6178050182855734869}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -816,7 +827,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2201926925264695563, guid: 00000000000000000000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -837,8 +848,7 @@ SpriteRenderer:
   m_SortingLayerID: -817355217
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6652774967919551018, guid: 00000000000000000000000000000000,
-    type: 0}
+  m_Sprite: {fileID: 21300000, guid: b8bc03185001323449476f9d6b91f0ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -865,8 +875,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: -5703746337923750047, guid: 00000000000000000000000000000000,
-    type: 0}
+  m_Material: {fileID: 6200000, guid: 38e755185c2598f4f9216304b4cf8ee3, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -897,8 +906,7 @@ Animator:
   m_GameObject: {fileID: 4441259093511674308}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 4088776312187326298, guid: 00000000000000000000000000000000,
-    type: 0}
+  m_Controller: {fileID: 9100000, guid: d3092019130febf44bbe6f4e0856e088, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -908,7 +916,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5605257801605735762
+--- !u!114 &1177728057341408119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -917,30 +925,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 4441259093511674308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -8737371252519383148, guid: 00000000000000000000000000000000,
-    type: 0}
+  m_Script: {fileID: 11500000, guid: 05fd8703704457c4a88170c0aea695c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roleController: {fileID: 5889364486220668508}
+  roleController: {fileID: 5212051152566610019}
   GroundOffset: {x: 0.01, y: -0.87}
   GroundSize: {x: 0.39, y: 0.36}
   GroundMask:
     serializedVersion: 2
     m_Bits: 512
   InputDir: {x: 0, y: 0}
-  roleAttribute: {fileID: 1998911897912720338}
-  GroundCheckPos: {x: -8.99, y: -1.8250093}
+  roleAttribute: {fileID: 0}
+  GroundCheckPos: {x: 0, y: 0}
   wallSlierSize: 1
   wallOffset: {x: -0.25, y: 0}
   wallRay: {r: 0.10849059, g: 1, b: 0.18027931, a: 1}
   detectionHighly: 1.5
   wallCheckDir: {x: 1, y: 0}
-  wallSliderCheckPos: {x: -9.25, y: -0.95500934}
+  wallSliderCheckPos: {x: 0, y: 0}
   wallMask:
     serializedVersion: 2
     m_Bits: 1024
   roleState: 0
---- !u!114 &1151484502299779135
+--- !u!114 &-5838456174768155246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -949,13 +956,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4441259093511674308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 5066276095977310189, guid: 00000000000000000000000000000000,
-    type: 0}
+  m_Script: {fileID: 11500000, guid: 1314e2b665c899e419fd4325971ca0c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  database: {fileID: 5605257801605735762}
+  database: {fileID: 0}
   isRuning: 1
---- !u!114 &5889364486220668508
+--- !u!114 &5212051152566610019
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -964,200 +970,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4441259093511674308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -129034385199370718, guid: 00000000000000000000000000000000,
-    type: 0}
+  m_Script: {fileID: 11500000, guid: 6ceb3ae472c916c4c8260e23cc9b6f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillDataList:
-  - id: 1001
-    nexSkillID: 0
-    skillName: 
-    skillDescribe: 
-    animName: 
-    soundEffectsPath: 
-    baseEffectsSkills: []
-    cd: 0.1
-    skillTime: 0
-    currentCD: -0.02
-    attackBackswing: 0.1
-    comboValidTime: 0
-    comboCurrentValidTime: 0
-    skillEffectsNuumber: 0
-  - id: 10011
-    nexSkillID: 0
-    skillName: "\u666E\u901A\u653B\u51FB\u7B2C\u4E00\u6BB5"
-    skillDescribe: Qwq
-    animName: GroundA1
-    soundEffectsPath: 
-    baseEffectsSkills:
-    - skillData:
-        className: Diaup
-        value: 8
-        name: "\u51FB\u98DE"
-        describe: "\u4F7F\u5176\u654C\u4EBA\u51FB\u98DE"
-        skillEffectsIndex: 0
-        skillID: 10011
-    cd: 0.1
-    skillTime: 0
-    currentCD: 0
-    attackBackswing: 0.2
-    comboValidTime: 0.2
-    comboCurrentValidTime: 0
-    skillEffectsNuumber: 1
-  - id: 10012
-    nexSkillID: 0
-    skillName: "\u666E\u901A\u653B\u51FB\u7B2C\u4E8C\u6BB5"
-    skillDescribe: 1.1
-    animName: GroundA2
-    soundEffectsPath: 
-    baseEffectsSkills:
-    - skillData:
-        className: 
-        value: 0
-        name: 
-        describe: 
-        skillEffectsIndex: 0
-        skillID: 0
-    cd: 0.1
-    skillTime: 0
-    currentCD: 0
-    attackBackswing: 0.2
-    comboValidTime: 0.2
-    comboCurrentValidTime: 0.2
-    skillEffectsNuumber: 1
-  - id: 10013
-    nexSkillID: 0
-    skillName: "\u666E\u901A\u653B\u51FB\u7B2C\u4E09\u6BB5"
-    skillDescribe: 1.1
-    animName: GroundA3
-    soundEffectsPath: 
-    baseEffectsSkills:
-    - skillData:
-        className: 
-        value: 0
-        name: 
-        describe: 
-        skillEffectsIndex: 0
-        skillID: 0
-    cd: 0.1
-    skillTime: 0
-    currentCD: 0
-    attackBackswing: 0.2
-    comboValidTime: 0.2
-    comboCurrentValidTime: 0
-    skillEffectsNuumber: 1
-  - id: 1002
-    nexSkillID: 0
-    skillName: "\u95EA\u907F"
-    skillDescribe: 0a0
-    animName: Def
-    soundEffectsPath: 
-    baseEffectsSkills: []
-    cd: 2
-    skillTime: 0
-    currentCD: 0
-    attackBackswing: 0
-    comboValidTime: 0
-    comboCurrentValidTime: 0
-    skillEffectsNuumber: 0
-  - id: 12001
-    nexSkillID: 0
-    skillName: "\u7A7A\u4E2D\u653B\u51FB\u7B2C\u4E00\u6BB5"
-    skillDescribe: 0a0
-    animName: AirA1
-    soundEffectsPath: 
-    baseEffectsSkills:
-    - skillData:
-        className: 
-        value: 0
-        name: 
-        describe: 
-        skillEffectsIndex: 0
-        skillID: 0
-    cd: 0.1
-    skillTime: 0
-    currentCD: 0
-    attackBackswing: 0.2
-    comboValidTime: 0.2
-    comboCurrentValidTime: 0
-    skillEffectsNuumber: 1
-  - id: 12002
-    nexSkillID: 0
-    skillName: "\u7A7A\u4E2D\u653B\u51FB\u7B2C\u4E8C\u6BB5"
-    skillDescribe: 0a0
-    animName: AirA2
-    soundEffectsPath: 
-    baseEffectsSkills:
-    - skillData:
-        className: 
-        value: 0
-        name: 
-        describe: 
-        skillEffectsIndex: 0
-        skillID: 0
-    cd: 0.1
-    skillTime: 0
-    currentCD: 0
-    attackBackswing: 0.2
-    comboValidTime: 0.2
-    comboCurrentValidTime: 0
-    skillEffectsNuumber: 1
-  - id: 12003
-    nexSkillID: 0
-    skillName: "\u7A7A\u4E2D\u653B\u51FB\u7B2C\u4E09\u6BB5"
-    skillDescribe: 0a0
-    animName: AirA3
-    soundEffectsPath: 
-    baseEffectsSkills:
-    - skillData:
-        className: 
-        value: 0
-        name: 
-        describe: 
-        skillEffectsIndex: 0
-        skillID: 0
-    cd: 0.1
-    skillTime: 0
-    currentCD: 0
-    attackBackswing: 0
-    comboValidTime: 0.2
-    comboCurrentValidTime: 0
-    skillEffectsNuumber: 1
-  - id: 1003
-    nexSkillID: 0
-    skillName: "\u6CD5\u672F\u653B\u51FB"
-    skillDescribe: "\u6CD5\u672F\u653B\u51FB"
-    animName: MagicArts
-    soundEffectsPath: 
-    baseEffectsSkills:
-    - skillData:
-        className: 
-        value: 0
-        name: 
-        describe: 
-        skillEffectsIndex: 0
-        skillID: 0
-    cd: 0.1
-    skillTime: 0
-    currentCD: 0
-    attackBackswing: 0.1
-    comboValidTime: 0.2
-    comboCurrentValidTime: 0
-    skillEffectsNuumber: 1
+  skillDataList: []
   syncImge: 1
   fallMultiplier: 2.5
   isFall: 1
-  roleDir: 1
-  animator: {fileID: 4441259093511674307}
-  roleAttribute: {fileID: 1998911897912720338}
+  roleDir: 0
+  animator: {fileID: 0}
+  roleAttribute: {fileID: 0}
   injuredPos: {fileID: 0}
-  AirMaterial: {fileID: -5703746337923750047, guid: 00000000000000000000000000000000,
-    type: 0}
-  roleTree: {fileID: 1151484502299779135}
-  heroDatabase: {fileID: 5605257801605735762}
+  AirMaterial: {fileID: 6200000, guid: 38e755185c2598f4f9216304b4cf8ee3, type: 2}
+  roleTree: {fileID: 0}
+  heroDatabase: {fileID: 0}
   zeroMagicArtsWeapon: {fileID: 0}
   weapPos: {fileID: 5360478368266506605}
---- !u!114 &5904642301375852858
+--- !u!114 &-4064871432311494859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1166,8 +995,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4441259093511674308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -3732460376984113157, guid: 00000000000000000000000000000000,
-    type: 0}
+  m_Script: {fileID: 11500000, guid: d94e11c6bb7a1864ca04ec3b23d8c5fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   boxPos: {fileID: 8039009315880698279}
@@ -1175,145 +1003,3 @@ MonoBehaviour:
   enemyTag:
   - Enemy
   debugColor: {r: 0, g: 0, b: 0, a: 0}
---- !u!61 &2326309885228999366
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4441259093511674308}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0031886697, y: -0.17635137}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.125, y: 2.3125}
-    newSize: {x: 1.015625, y: 1.953125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.9443284, y: 1.9597973}
-  m_EdgeRadius: 0
---- !u!114 &1998911897912720338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4441259093511674308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 468a1f2a9a8534c49ab15b1bb93cee0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equipDatas:
-  - Id: 1003
-    ISOpen: 1
-    EquipName: "\u8FFD\u5FC6\u957F\u5251"
-    ResName: ZYYataghan
-    Describe: "\u8FFD\u5FC6\u957F\u5251\u6682\u65E0"
-    EntryNumber: 3
-    PriceWeapons: 1000
-    EquipType: 5
-    EquipQualityType: 2
-    Attribute_Harm: 92
-    Attribute_HP: 0
-    Attribute_CritHarm: 0
-    Attribute_CriticalChance: 0
-    entryKey: 030000000200000000000000
-    bagIndex: 10
-  - Id: 1001
-    ISOpen: 1
-    EquipName: "\u8FFD\u5FC6\u5934\u76D4"
-    ResName: ZYHelmet
-    Describe: "\u8FFD\u5FC6\u5934\u76D4\u6682\u65E0"
-    EntryNumber: 1
-    PriceWeapons: 1000
-    EquipType: 1
-    EquipQualityType: 2
-    Attribute_Harm: 0
-    Attribute_HP: 0
-    Attribute_CritHarm: 0
-    Attribute_CriticalChance: 5
-    entryKey: 03000000
-    bagIndex: 10
-  - Id: 1002
-    ISOpen: 1
-    EquipName: "\u8FFD\u5FC6\u76D4\u7532"
-    ResName: ZYArmor
-    Describe: "\u8FFD\u5FC6\u76D4\u7532\u6682\u65E0"
-    EntryNumber: 1
-    PriceWeapons: 1000
-    EquipType: 2
-    EquipQualityType: 2
-    Attribute_Harm: 0
-    Attribute_HP: 0
-    Attribute_CritHarm: 5
-    Attribute_CriticalChance: 0
-    entryKey: 02000000
-    bagIndex: 6
-  - Id: 0
-    ISOpen: 0
-    EquipName: 
-    ResName: 
-    Describe: 
-    EntryNumber: 0
-    PriceWeapons: 0
-    EquipType: 0
-    EquipQualityType: 0
-    Attribute_Harm: 0
-    Attribute_HP: 0
-    Attribute_CritHarm: 0
-    Attribute_CriticalChance: 0
-    entryKey: 
-    bagIndex: 0
-  - Id: 0
-    ISOpen: 0
-    EquipName: 
-    ResName: 
-    Describe: 
-    EntryNumber: 0
-    PriceWeapons: 0
-    EquipType: 0
-    EquipQualityType: 0
-    Attribute_Harm: 0
-    Attribute_HP: 0
-    Attribute_CritHarm: 0
-    Attribute_CriticalChance: 0
-    entryKey: 
-    bagIndex: 0
-  BaseHp: 100
---- !u!114 &1281498553400129095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4441259093511674308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e7d3768b0bfa3a4e8dd614e6172c19b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentSkill:
-    id: 0
-    nexSkillID: 0
-    skillName: 
-    skillDescribe: 
-    animName: 
-    soundEffectsPath: 
-    baseEffectsSkills: []
-    cd: 0
-    skillTime: 0
-    currentCD: 0
-    attackBackswing: 0.1
-    comboValidTime: 0
-    comboCurrentValidTime: 0
-    skillEffectsNuumber: 2

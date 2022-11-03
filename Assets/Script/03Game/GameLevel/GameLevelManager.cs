@@ -9,8 +9,10 @@ public class GameLevelManager : MonoSingle<GameLevelManager>
     List<Room> rooms;
     public Transform roleStartPos;
     public LevelRoomPanel levelRoomPanel;
+    public GameObject EnemyList;
     private void Awake()
     {
+        EnemyList = new GameObject("EnemyList");
         levelRoomPanel = UISvc.Single.GetPanel<LevelRoomPanel>(UIPath.GameLevelRoomPanel, UISvc.StateType.Show);
         GameObject role = GameRoot.Single.CreateRole(MainSceneSys.Single.playerData.roleData);
         role.transform.position = roleStartPos.position;

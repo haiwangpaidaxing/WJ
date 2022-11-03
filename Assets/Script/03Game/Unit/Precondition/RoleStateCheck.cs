@@ -44,6 +44,7 @@ public class RoleStateCheck : BTPrecondition
 
             case CheckType.Ground:
                 return BoxCheck.Check(database.GroundCheckPos, database.GroundSize, database.GroundMask);
+            //Collider2D[] collider2D = Physics2D.OverlapBoxAll(database.GroundCheckPos, database.GroundSize, 0);
             case CheckType.Injured:
                 return heroDatabase.roleState == RoleState.Injured;
             case CheckType.Die:
@@ -52,16 +53,30 @@ public class RoleStateCheck : BTPrecondition
                 return false;
         }
     }
-
+    //public LayerMask groundWall = 1 << 0;
     public bool Wall()
     {
-        //需要与墙壁到达一定高度才能激活 否则会来回不断切换别的状态
-   //     Debug.Log("需要与墙壁到达一定高度才能激活 否则会来回不断切换别的状态");
-        if (RayCheck.Check(heroDatabase.wallSliderCheckPos, Vector2.right, heroDatabase.wallSlierSize, heroDatabase.wallMask) && !Physics2D.Raycast(database.transform.position, Vector2.down, heroDatabase.detectionHighly, LayerMask.GetMask("Ground"))
-             /*&& database.InputDir.x != 0 && database.InputDir.x == database.roleController.roleDir*/)
+        RaycastHit2D[] raycastHit2D = Physics2D.RaycastAll(heroDatabase.wallSliderCheckPos + heroDatabase.wallOffset, Vector2.right, heroDatabase.wallSlierSize);
+        Debug.DrawRay(heroDatabase.wallSliderCheckPos, Vector3.right * heroDatabase.wallSlierSize, Color.blue);
+        //进入爬墙检测时
+        foreach (var item in raycastHit2D)
         {
-            return true;
+            //   Debug.Log(heroDatabase.wallMask.value);
+            //if (LayerMask.LayerToName(item.collider.gameObject.layer) == heroDatabase.wallMask)
+            //{
+
+            //}
+            LayerMask layerMask = 1 << item.collider.gameObject.layer;
+            if (layerMask == heroDatabase.wallMask || item.collider.tag == "Ground")
+            {
+                if (!Physics2D.Raycast(database.transform.position, Vector2.down, heroDatabase.detectionHighly, LayerMask.GetMask("Ground")))
+                {
+                    return true;
+                }
+            }
         }
+        //需要与墙壁到达一定高度才能激活 否则会来回不断切换别的状态
+        //     Debug.Log("需要与墙壁到达一定高度才能激活 否则会来回不断切换别的状态");
         return false;
     }
     public enum CheckType

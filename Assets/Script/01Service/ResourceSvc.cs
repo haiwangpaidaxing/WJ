@@ -40,7 +40,6 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         Debug.Log("这是安卓平台。。。");
 #endif
 #if UNITY_STANDALONE_WIN
-
             bool checkFile = File.Exists(ResPath.SaveFilePath + "Config.json");
             if (!PingNetAddress())
             {
@@ -336,6 +335,10 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
                 {
                     abDownloadQueue.Enqueue(localCheckMD5DataConfig.checkDatas[l].aBName);
                 }
+                else
+                {
+                    Debug.Log("正在校验资源" + localCheckMD5DataConfig.checkDatas[l].aBName);
+                }
             }
         }
         if (abDownloadQueue.Count > 0)
@@ -343,7 +346,6 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             Debug.Log("检测到资源需要更新");
             resourceLoadiProgress.LoadProgressText.text = "...检测到资源需要更新...";
             TimerSvc.instance.AddTask(0.5F * 1000, () => { StartCoroutine(GetUnityWebRequest(abDownloadQueue.Dequeue(), LoadSingleAB)); });
-
             return;
         }
         else
