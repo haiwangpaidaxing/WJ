@@ -10,7 +10,7 @@ namespace WUBT
         [Header("ª¨«ΩºÏ≤‚≈‰÷√"), SerializeField]
         public float wallSlierSize;
         [SerializeField]
-        private Vector2 wallOffset;
+        public Vector2 wallOffset;
         public Color wallRay;
         [Header("ºÏ≤‚∏ﬂ∂»")]
         public float detectionHighly;

@@ -12,6 +12,7 @@ namespace WUBT
         [Header("地面检测配置"), SerializeField]
         protected Vector2 GroundOffset;
         public Vector2 GroundSize;
+        [Header("地面图层")]
         public LayerMask GroundMask;
         #endregion
         [Header("输入方向")]
