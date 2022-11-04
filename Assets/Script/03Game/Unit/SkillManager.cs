@@ -89,7 +89,7 @@ public class SkillManager : MonoBehaviour
                 StopCoroutine(skillCDCoroutineList[index]);
             }
             skillData.currentCD -= 0.02f;
-               Debug.Log(skillData.id + "______" + skillData.currentCD + skillData.animName + "¿‰»¥÷–...");
+            Debug.Log(skillData.id + "______" + skillData.currentCD + skillData.animName + "¿‰»¥÷–...");
             yield return new WaitForSecondsRealtime(0.02f);
         }
     }

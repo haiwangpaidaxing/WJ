@@ -28,19 +28,19 @@ public class GameRoot : MonoSingle<GameRoot>
 
     private void Awake()
     {
-        LayerMask l0 = 1 << 0;//1
-        LayerMask l1 = 1 << 1;//2
-        LayerMask l2 = 1 << 2;//4
-        LayerMask l3 = 1 << 3;//8
-        LayerMask l4 = 1 << 4;//16
-        LayerMask l5 = 1 << 5;//32
+        //LayerMask l0 = 1 << 0;//1
+        //LayerMask l1 = 1 << 1;//2
+        //LayerMask l2 = 1 << 2;//4
+        //LayerMask l3 = 1 << 3;//8
+        //LayerMask l4 = 1 << 4;//16
+        //LayerMask l5 = 1 << 5;//32
 
-        int c = 0;
-        for (int i = 0; i <11 ; i++)
-        {
-            LayerMask l = 1 << i;//1
-            Debug.Log(l.value);
-        }
+        //int c = 0;
+        //for (int i = 0; i <11 ; i++)
+        //{
+        //    LayerMask l = 1 << i;//1
+        //    Debug.Log(l.value);
+        //}
         Debug.Log("GameRootInit...");
         DontDestroyOnLoad(gameObject);
         //初始化服务

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3524794030
+CRC: 1958413745
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 87b433579088f9574ca385083319fcb2
+    Hash: 97a12454d7bb896b60b4cebda6d169f0
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 36dce823e6044c58b28606afd1b230ab
+    Hash: 0bcbb1d337e7afe607da23716949ec7e
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -141,6 +141,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 6c8bbf82dac337a4786b24b829b47259, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: bf9793553aaa89645bfd2c6f3eb5783c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7c49d04c53949ac40bd16463b71f5cc3, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -197,7 +199,6 @@ SerializeReferenceClassIdentifiers:
 Assets:
 - Assets/AB/Prefabs/UI/Item/SelectRoleItem.prefab
 - Assets/AB/Prefabs/UI/Item/SkillEffectsList.prefab
-- Assets/AB/Prefabs/UI/Panel/SkillPanel.prefab
 - Assets/AB/Prefabs/UI/Item/SelectLevelItem.prefab
 - Assets/AB/Prefabs/Unit/Enemy/KL.prefab
 - Assets/AB/Prefabs/UI/Item/ArchiveItem.prefab
@@ -205,36 +206,38 @@ Assets:
 - Assets/AB/Prefabs/Effects/BoLiPoSui.prefab
 - Assets/AB/Prefabs/Effects/LensBlur.prefab
 - Assets/AB/Prefabs/UI/Item/DamageTextitem.prefab
-- Assets/AB/Prefabs/UI/Panel/SelectLevelPanel.prefab
-- Assets/AB/Prefabs/UI/Panel/SelectRoomPanel.prefab
-- Assets/AB/Prefabs/UI/Panel/LevelRoomPanel.prefab
 - Assets/AB/Prefabs/Unit/Enemy/GBL.prefab
 - Assets/AB/Prefabs/Unit/Hero/Three.prefab
 - Assets/AB/Prefabs/Weapon/ZeroMagicArtsWeapon.prefab
 - Assets/AB/Prefabs/UI/Panel/BattlePanel.prefab
+- Assets/AB/Prefabs/Unit/Hero/Four.prefab
+- Assets/AB/Prefabs/UI/Panel/JoinRoomPanel.prefab
+- Assets/AB/Prefabs/UI/Item/SceletEffectsSkillItemPanel.prefab
+- Assets/AB/Prefabs/UI/Panel/MainScenePanel.prefab
+- Assets/AB/Prefabs/Effects/InjuredEffects.prefab
+- Assets/AB/Prefabs/UI/Item/SkillEffectsItem.prefab
+- Assets/AB/Prefabs/UI/Panel/ShopPanel.prefab
+- Assets/AB/Prefabs/Unit/Enemy/Red.prefab
+- Assets/AB/Prefabs/UI/Panel/LoadPanel.prefab
+- Assets/AB/Prefabs/UI/Item/SkillEffectsSetItem.prefab
+- Assets/AB/Prefabs/UI/Panel/CreateRoomPanel.prefab
+- Assets/AB/Prefabs/Unit/Enemy/Ninja.prefab
+- Assets/AB/Prefabs/UI/Panel/SkillPanel.prefab
+- Assets/AB/Prefabs/UI/Panel/SelectLevelPanel.prefab
+- Assets/AB/Prefabs/UI/Panel/SelectRoomPanel.prefab
+- Assets/AB/Prefabs/UI/Panel/LevelRoomPanel.prefab
 - Assets/AB/Prefabs/Unit/Hero/One.prefab
 - Assets/AB/Prefabs/UI/Item/SkillSetItem.prefab
 - Assets/AB/Prefabs/UI/Item/MapItem.prefab
-- Assets/AB/Prefabs/UI/Panel/JoinRoomPanel.prefab
-- Assets/AB/Prefabs/Unit/Hero/Four.prefab
-- Assets/AB/Prefabs/UI/Item/SceletEffectsSkillItemPanel.prefab
-- Assets/AB/Prefabs/UI/Panel/MainScenePanel.prefab
 - Assets/AB/Prefabs/UI/Panel/WeaponInfoPanel.prefab
-- Assets/AB/Prefabs/Effects/InjuredEffects.prefab
-- Assets/AB/Prefabs/UI/Item/SkillEffectsItem.prefab
 - Assets/AB/Prefabs/UI/Panel/SelectRolePanel.prefab
 - Assets/AB/Prefabs/UI/Panel/RoomPanel.prefab
-- Assets/AB/Prefabs/UI/Panel/ShopPanel.prefab
-- Assets/AB/Prefabs/Unit/Enemy/Red.prefab
 - Assets/AB/Prefabs/UI/Panel/LogicPanel.prefab
 - Assets/AB/Prefabs/UI/Panel/BagPanel.prefab
 - Assets/AB/Prefabs/UI/Item/ShopEquipSalesItem.prefab
 - Assets/AB/Prefabs/UI/Panel/ArchivePanel.prefab
-- Assets/AB/Prefabs/UI/Panel/LoadPanel.prefab
-- Assets/AB/Prefabs/UI/Item/SkillEffectsSetItem.prefab
-- Assets/AB/Prefabs/UI/Panel/CreateRoomPanel.prefab
 - Assets/AB/Prefabs/UI/Item/ShopOpenWeaponEquipItem.prefab
-- Assets/AB/Prefabs/Unit/Enemy/Ninja.prefab
+- Assets/AB/Prefabs/UI/Panel/RoleInfoPane.prefab
 - Assets/AB/Prefabs/UI/Item/BagEquipItem.prefab
 - Assets/AB/Prefabs/UI/Item/EquipSolt.prefab
 Dependencies: []

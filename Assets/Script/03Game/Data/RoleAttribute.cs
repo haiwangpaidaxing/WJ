@@ -12,6 +12,23 @@ public class RoleAttribute : MonoBehaviour
     [SerializeField]
     WMData.EquipData[] equipDatas;//装备属性
     public int BaseHp;
+    public int BaseMp;
+
+    public int MaxHP
+    {
+        get
+        {
+            return (baseAttribute.AttributeHP + GetEquipHp());
+        }
+    }
+
+    public int MaxMP
+    {
+        get
+        {
+            return (baseAttribute.AttributeHP + GetEquipHp());
+        }
+    }
     public void Init(Attribute roleAttribut, WMData.EquipData[] equipDatas)
     {
         this.equipDatas = equipDatas;
@@ -24,17 +41,18 @@ public class RoleAttribute : MonoBehaviour
     {
         this.baseAttribute = roleAttribut;
         BaseHp = baseAttribute.AttributeHP;
+        BaseMp = baseAttribute.AttributeHP;
     }
     public bool ISEquip()
     {
-        if (equipDatas==null)
+        if (equipDatas == null)
         {
             return true;
         }
 
         return false;
     }
-    public float GetEquipHarm()
+    public int GetEquipHarm()
     {
         if (ISEquip())
         {
@@ -45,9 +63,9 @@ public class RoleAttribute : MonoBehaviour
         {
             harm += equipDatas[i].Attribute_Harm;
         }
-        return harm;
+        return (int)harm;
     }
-    public float GetEquipCritHarm()
+    public int GetEquipCritHarm()
     {
         if (ISEquip())
         {
@@ -58,9 +76,9 @@ public class RoleAttribute : MonoBehaviour
         {
             critHarm += equipDatas[i].Attribute_CritHarm;
         }
-        return critHarm;
+        return (int)critHarm;
     }
-    public float GetEquipCriticalChance()
+    public int GetEquipCriticalChance()
     {
         if (ISEquip())
         {
@@ -71,9 +89,13 @@ public class RoleAttribute : MonoBehaviour
         {
             value += equipDatas[i].Attribute_CriticalChance;
         }
-        return value;
+        return (int)value;
     }
-    public float GetEquipHp()
+    /// <summary>
+    /// 装备加成的HP
+    /// </summary>
+    /// <returns></returns>
+    public int GetEquipHp()
     {
         if (ISEquip())
         {
@@ -84,28 +106,28 @@ public class RoleAttribute : MonoBehaviour
         {
             value += equipDatas[i].Attribute_HP;
         }
-        return value;
+        return (int)value;
     }
     public int GetHP()
     {
         return (int)(BaseHp + GetEquipHp());
     }
-    public float GetMP()
+    public int GetMP()
     {
-        return baseAttribute.AttributeMP;
+        return (int)baseAttribute.AttributeMP;
     }
-    public float GetHarm()
+    public int GetHarm()
     {
         float cuttrntCritHarm = GetCriticalChance();
         float baseHarm = baseAttribute.AttributeHarm + GetEquipHarm();
         if (cuttrntCritHarm >= GetRandom(0f, 101f))
         {
             float ch = GetCritHarm();//爆伤百分比
-            return baseHarm + (baseHarm * (ch / 100f));
+            return (int)(baseHarm + (baseHarm * (ch / 100f)));
         }
         else
         {
-            return baseHarm;
+            return (int)baseHarm;
         }
     }
 

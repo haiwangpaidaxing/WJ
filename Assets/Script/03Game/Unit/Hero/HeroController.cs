@@ -7,13 +7,52 @@ public class HeroController : RoleController
 {
     public RoleTree roleTree;
     public HeroDatabase heroDatabase;
+    RoleInfoPane infoPane;
+    bool isUpdateUI;//¸üÐÂUI
+    int currentRoleHP;
     public override void Init()
     {
         base.Init();
+        infoPane = GetComponentInChildren<RoleInfoPane>(true);
+        infoPane.SetHP(this.roleAttribute.GetHP(), this.roleAttribute.MaxHP);
+        roleAttribute.hpValueCB += (value) =>
+        {
+            currentRoleHP = value < 0 ? 0 : value;
+            isUpdateUI = true;
+        };
         roleTree = GetComponent<RoleTree>();
         heroDatabase = GetComponent<HeroDatabase>();
         InputEvene();
     }
+    private void FixedUpdate()
+    {
+        if (isUpdateUI)
+        {
+
+            if (infoPane.HP.fillAmount != (currentRoleHP / roleAttribute.MaxHP))
+            {
+                float value = infoPane.HP.fillAmount * roleAttribute.MaxHP;
+                value = Mathf.Lerp(value, (currentRoleHP), Time.deltaTime * 1);
+                Debug.Log(value + "_" + currentRoleHP);
+                infoPane.SetHP(value, this.roleAttribute.MaxHP);
+            }
+            else
+            {
+                isUpdateUI = false;
+            }
+        }
+
+         
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            roleAttribute.SetHp(10);
+        }
+    }
+
     public override void Injured(InjuredData injuredData)
     {
         if (heroDatabase.roleState == RoleState.Def)
@@ -35,7 +74,7 @@ public class HeroController : RoleController
     }
     public void USESkill(int skillID)
     {
-        if (heroDatabase.roleState==RoleState.Injured)
+        if (heroDatabase.roleState == RoleState.Injured)
         {
             return;
         }
