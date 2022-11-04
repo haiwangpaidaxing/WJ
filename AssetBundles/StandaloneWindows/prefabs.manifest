@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4169449114
+CRC: 3524794030
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1f9f1e6ad4037e5ffe2701086c59cf3f
+    Hash: 87b433579088f9574ca385083319fcb2
   TypeTreeHash:
     serializedVersion: 2
-    Hash: bea6f7c0e01c23307a0e518994e70aa1
+    Hash: 36dce823e6044c58b28606afd1b230ab
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -63,6 +63,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 3c6a8d2cd82001a409e4507aa0fe049a, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: b64ed61c98ab6a0478ad45af28f31b96, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9bb6c6265e3b9224e98cb9d631113cb0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: e8ab4242a2ccc7642ac62a3891b4f46e, type: 3}
 - Class: 114
@@ -139,8 +141,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 6c8bbf82dac337a4786b24b829b47259, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: bf9793553aaa89645bfd2c6f3eb5783c, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 9bb6c6265e3b9224e98cb9d631113cb0, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -202,6 +202,7 @@ Assets:
 - Assets/AB/Prefabs/Unit/Enemy/KL.prefab
 - Assets/AB/Prefabs/UI/Item/ArchiveItem.prefab
 - Assets/AB/Prefabs/Unit/Hero/Zero.prefab
+- Assets/AB/Prefabs/Effects/BoLiPoSui.prefab
 - Assets/AB/Prefabs/Effects/LensBlur.prefab
 - Assets/AB/Prefabs/UI/Item/DamageTextitem.prefab
 - Assets/AB/Prefabs/UI/Panel/SelectLevelPanel.prefab

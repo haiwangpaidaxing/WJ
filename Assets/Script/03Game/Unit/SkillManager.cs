@@ -45,7 +45,7 @@ public class SkillManager : MonoBehaviour
                 skill = currentSkill;
                 break;
             }
-        }
+        }//先查找技能
         return CheckSkillConditions(ref skill.skillData);
     }
     private bool CheckSkillConditions(ref SkillData skillData)
@@ -89,7 +89,7 @@ public class SkillManager : MonoBehaviour
                 StopCoroutine(skillCDCoroutineList[index]);
             }
             skillData.currentCD -= 0.02f;
-            //   Debug.Log(skillData.id + "______" + skillData.currentCD + skillData.animName + "冷却中...");
+               Debug.Log(skillData.id + "______" + skillData.currentCD + skillData.animName + "冷却中...");
             yield return new WaitForSecondsRealtime(0.02f);
         }
     }
