@@ -25,9 +25,9 @@ public class RoleInfoPane : BasePanel
         HP.fillAmount = (value / MaxHP);
     }
 
-    public void SetMP(int value,int MaxMP)
+    public void SetMP(float value,int MaxMP)
     {
-        HP.fillAmount = value / MaxMP;
+       MP.fillAmount = value / MaxMP;
     }
     public override void Clear()
     {

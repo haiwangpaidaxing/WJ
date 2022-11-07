@@ -56,7 +56,7 @@ public class LogicSys : BaseSys<LogicSys>
         for (int i = 0; i < roleDatas.Length; i++)
         {
             SelectRoleItem selectRoleItem = resourceSvc.LoadOrCreate<GameObject>(UIItemPath.SelectRoleItem).GetComponent<SelectRoleItem>();
-            selectRoleItem.Init(roleDatas[i].UnitName, resourceSvc.Load<Sprite>("Sprites/UI/" + roleDatas[i].ResName), roleDatas[i].UntID);
+            selectRoleItem.Init(roleDatas[i].UnitName, resourceSvc.Load<Sprite>("sprites/UI/" + roleDatas[i].ResName), roleDatas[i].UntID);
             selectRolePanel.TransformChildAdd(selectRolePanel.content.transform, selectRoleItem.gameObject.transform);
         }
         UISvc.Single.SetSinglePanel(selectRolePanel, UISvc.StateType.Show);

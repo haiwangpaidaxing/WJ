@@ -1,17 +1,14 @@
-﻿using System.Collections;
+﻿using cfg;
+using cfg.Data;
+using SimpleJSON;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using Bright.Serialization;
 using UnityEngine;
-using SimpleJSON;
-using cfg;
-using cfg.Data;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using WMEffectsSkill;
 using WUBT;
-using UnityEngine.Networking;
-using UnityEngine.UI;
-using System.Runtime.Serialization.Formatters.Binary;
 
 
 public class ResourceSvc : MonoSingle<ResourceSvc>
@@ -225,8 +222,9 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         }
         catch (System.Exception e)
         {
-            return false;
             Debug.Log("网络连接信号异常" + e.Message);
+            return false;
+            
         }
     }
     public void LoadABConfig(UnityWebRequest request, string abName)

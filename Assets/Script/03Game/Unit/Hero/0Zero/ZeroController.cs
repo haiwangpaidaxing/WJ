@@ -15,6 +15,7 @@ public class ZeroController : HeroController
         skillDataList = ResourceSvc.Single.CurrentArchiveData.playerData.skillDatas;
   
         SkillData data = skillDataList[0];
+  
         SkillData data1 = skillDataList[1];
 
         SkillData data2 = skillDataList[2];
@@ -32,7 +33,9 @@ public class ZeroController : HeroController
         ZeroNormalAttack1 zeroNormalAttack1 = new ZeroNormalAttack1(this, ref data1);
         ZeroNormalAttack2 zeroNormalAttack2 = new ZeroNormalAttack2(this, ref data2);
         ZeroNormalArrack3 zeroNormalAttack3 = new ZeroNormalArrack3(this, ref data3);
+
         BaseSkill[] groundSkill = new BaseSkill[3] { zeroNormalAttack1, zeroNormalAttack2, zeroNormalAttack3 };
+
         ZeroGroundNormalController zeroGroundNoralController = new ZeroGroundNormalController(this, ref data, ref groundSkill);
 
         ZeroAirNormalAttack1 zeroAirNormalAttack1 = new ZeroAirNormalAttack1(this, ref data5);

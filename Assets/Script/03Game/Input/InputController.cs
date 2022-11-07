@@ -30,6 +30,8 @@ public class InputController : MonoSingle<InputController>
     public System.Action<int> operaterCB;
 
     public bool LockDir { get; set; }
+
+    
     private void Update()
     {
         //if (Input.GetMouseButtonDown(0))

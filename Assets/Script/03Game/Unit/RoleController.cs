@@ -46,7 +46,7 @@ public class RoleController : MonoBehaviour, IInjured
     }
 
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (currentSkill != null)
         {
@@ -54,7 +54,7 @@ public class RoleController : MonoBehaviour, IInjured
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (currentSkill != null)
         {

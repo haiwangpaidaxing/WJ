@@ -9,9 +9,6 @@ namespace WMData
         Harm,
         Hp,
         CritHarm,
-        /// <summary>
-        /// ¬ 
-        /// </summary>
         CriticalChance,
         Count
     }
@@ -109,16 +106,16 @@ namespace WMData
             {
                 //TODO ≤‚ ‘
                 case EntryKey.Harm:
-                    Attribute_Harm += 5;
+                    Attribute_Harm += Random.Range(10, 10);
                     break;
                 case EntryKey.Hp:
-                    Attribute_HP += 50;
+                    Attribute_HP += Random.Range(10, 100);
                     break;
                 case EntryKey.CritHarm:
-                    Attribute_CritHarm += 5;
+                    Attribute_CritHarm += Random.Range(10, 10);
                     break;
                 case EntryKey.CriticalChance:
-                    Attribute_CriticalChance += 5;
+                    Attribute_CriticalChance += Random.Range(10, 10);
                     break;
             }
         }

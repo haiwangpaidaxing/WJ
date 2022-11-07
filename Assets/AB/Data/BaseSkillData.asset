@@ -15,11 +15,12 @@ MonoBehaviour:
   skillDatas:
   - id: 1001
     nexSkillID: 0
-    skillName: 
+    skillName: "\u6280\u80FD\u4E2D\u8F6C"
     skillDescribe: 
     animName: 
     soundEffectsPath: 
     baseEffectsSkills: []
+    MP: 20
     cd: 0.1
     skillTime: 0
     currentCD: 0
@@ -41,6 +42,7 @@ MonoBehaviour:
         describe: 
         skillEffectsIndex: 0
         skillID: 0
+    MP: 20
     cd: 0.1
     skillTime: 0
     currentCD: 0
@@ -62,6 +64,7 @@ MonoBehaviour:
         describe: 
         skillEffectsIndex: 0
         skillID: 0
+    MP: 20
     cd: 0.1
     skillTime: 0
     currentCD: 0
@@ -83,6 +86,7 @@ MonoBehaviour:
         describe: 
         skillEffectsIndex: 0
         skillID: 0
+    MP: 20
     cd: 0.1
     skillTime: 0
     currentCD: 0
@@ -92,11 +96,12 @@ MonoBehaviour:
     skillEffectsNuumber: 1
   - id: 1002
     nexSkillID: 0
-    skillName: "\u95EA\u907F"
+    skillName: "\u9632\u5FA1"
     skillDescribe: 0a0
     animName: Def
     soundEffectsPath: 
     baseEffectsSkills: []
+    MP: 20
     cd: 5
     skillTime: 0
     currentCD: 0
@@ -118,6 +123,7 @@ MonoBehaviour:
         describe: 
         skillEffectsIndex: 0
         skillID: 0
+    MP: 20
     cd: 0.1
     skillTime: 0
     currentCD: 0
@@ -139,6 +145,7 @@ MonoBehaviour:
         describe: 
         skillEffectsIndex: 0
         skillID: 0
+    MP: 20
     cd: 0.1
     skillTime: 0
     currentCD: 0
@@ -160,6 +167,7 @@ MonoBehaviour:
         describe: 
         skillEffectsIndex: 0
         skillID: 0
+    MP: 20
     cd: 0.1
     skillTime: 0
     currentCD: 0
@@ -181,6 +189,7 @@ MonoBehaviour:
         describe: 
         skillEffectsIndex: 0
         skillID: 0
+    MP: 10
     cd: 0.1
     skillTime: 0
     currentCD: 0

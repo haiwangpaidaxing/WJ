@@ -8,8 +8,10 @@ public class HeroController : RoleController
     public RoleTree roleTree;
     public HeroDatabase heroDatabase;
     RoleInfoPane infoPane;
-    bool isUpdateUI;//更新UI
+    bool isUpdateHPUI;//更新UI
+    bool isUpdateMPUI;//更新UI
     int currentRoleHP;
+    int currentRoleMP;
     public override void Init()
     {
         base.Init();
@@ -18,15 +20,21 @@ public class HeroController : RoleController
         roleAttribute.hpValueCB += (value) =>
         {
             currentRoleHP = value < 0 ? 0 : value;
-            isUpdateUI = true;
+            isUpdateHPUI = true;
+        };
+        roleAttribute.mpValueCB += (value) =>
+        {
+            currentRoleMP = value < 0 ? 0 : value;
+            isUpdateMPUI = true;
         };
         roleTree = GetComponent<RoleTree>();
         heroDatabase = GetComponent<HeroDatabase>();
         InputEvene();
     }
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
-        if (isUpdateUI)
+        base.FixedUpdate();
+        if (isUpdateHPUI)
         {
 
             if (infoPane.HP.fillAmount != (currentRoleHP / roleAttribute.MaxHP))
@@ -38,19 +46,29 @@ public class HeroController : RoleController
             }
             else
             {
-                isUpdateUI = false;
+                isUpdateHPUI = false;
+            }
+
+        }
+        if (isUpdateMPUI)
+        {
+            if (infoPane.MP.fillAmount != (currentRoleMP / roleAttribute.MaxMP))
+            {
+                float value = infoPane.MP.fillAmount * roleAttribute.MaxMP;
+                value = Mathf.Lerp(value, (currentRoleMP), Time.deltaTime * 2);
+                Debug.Log(value + "_" + currentRoleMP);
+                infoPane.SetMP(value, this.roleAttribute.MaxMP);
+            }
+            else
+            {
+                isUpdateMPUI = false;
             }
         }
-
-         
+       
     }
-
-    private void Update()
+    protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            roleAttribute.SetHp(10);
-        }
+        base.Update();    
     }
 
     public override void Injured(InjuredData injuredData)
@@ -82,7 +100,7 @@ public class HeroController : RoleController
         {
             return;
         }
-        BaseSkill baseSkill = skillManager.USESkill(skillID);
+        BaseSkill baseSkill = skillManager.USESkill(skillID, ref roleAttribute);
         if (baseSkill != null)
         {
             roleTree.isRuning = false;

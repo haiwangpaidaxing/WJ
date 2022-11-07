@@ -8,6 +8,7 @@ using cfg.Data;
 public class RoleAttribute : MonoBehaviour
 {
     public System.Action<int> hpValueCB;
+    public System.Action<int> mpValueCB;
     Attribute baseAttribute;
     [SerializeField]
     WMData.EquipData[] equipDatas;//×°±¸ÊôÐÔ
@@ -26,14 +27,16 @@ public class RoleAttribute : MonoBehaviour
     {
         get
         {
-            return (baseAttribute.AttributeHP + GetEquipHp());
+            return (baseAttribute.AttributeMP + GetEquipMP());
         }
     }
+
     public void Init(Attribute roleAttribut, WMData.EquipData[] equipDatas)
     {
         this.equipDatas = equipDatas;
         this.baseAttribute = roleAttribut;
         BaseHp = baseAttribute.AttributeHP;
+        BaseMp = baseAttribute.AttributeMP;
         SaveArchive.bagEquipUpdateCB = (data) => { equipDatas = data; };
     }
 
@@ -41,7 +44,7 @@ public class RoleAttribute : MonoBehaviour
     {
         this.baseAttribute = roleAttribut;
         BaseHp = baseAttribute.AttributeHP;
-        BaseMp = baseAttribute.AttributeHP;
+        BaseMp = baseAttribute.AttributeMP;
     }
     public bool ISEquip()
     {
@@ -108,13 +111,24 @@ public class RoleAttribute : MonoBehaviour
         }
         return (int)value;
     }
+
+    public int GetEquipMP()
+    {
+        if (ISEquip())
+        {
+            return 0;
+        }
+        float value = 0;
+        return (int)value;
+    }
+
     public int GetHP()
     {
-        return (int)(BaseHp + GetEquipHp());
+        return BaseHp + GetEquipHp();
     }
     public int GetMP()
     {
-        return (int)baseAttribute.AttributeMP;
+        return (int)BaseMp + GetEquipHp();
     }
     public int GetHarm()
     {
@@ -168,5 +182,28 @@ public class RoleAttribute : MonoBehaviour
     {
         BaseHp -= value;
         hpValueCB?.Invoke(GetHP());
+    }
+    public void SetMP(int value)
+    {
+        BaseMp -= value;
+        mpValueCB?.Invoke(GetMP());
+    }
+    public void SetMPAdd(int value)
+    {
+        BaseMp += value;
+        mpValueCB?.Invoke(GetMP());
+    }
+    float time;
+    private void FixedUpdate()
+    {
+        time += Time.deltaTime;
+        if (GetMP() <= MaxMP)
+        {
+            if (time >= 1)
+            {
+                time = 0;
+                SetMPAdd(5);
+            }
+        }
     }
 }

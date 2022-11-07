@@ -5,6 +5,7 @@ public class SkillManager : MonoBehaviour
 {
     [SerializeField] BaseSkill[] baseSkillList;
     public SkillData currentSkill;
+    public RoleAttribute roleAttribute;
     /// <summary>
     /// 技能CD的携程
     /// </summary>
@@ -14,10 +15,12 @@ public class SkillManager : MonoBehaviour
         this.baseSkillList = baseSkillList;
         skillCDCoroutineList = new List<Coroutine>();
     }
-    public BaseSkill USESkill(int skillID)
+    public BaseSkill USESkill(int skillID, ref RoleAttribute roleAttribute)
     {
+        this.roleAttribute = roleAttribute;
+
         BaseSkill _currentSkill = null;
-        if (FindSkillByID(skillID,ref _currentSkill))
+        if (FindSkillByID(skillID, ref _currentSkill))
         {
             return _currentSkill;
         }
@@ -36,7 +39,7 @@ public class SkillManager : MonoBehaviour
     }
 
     //根据ID查找技能
-    public bool FindSkillByID(int skillID,ref BaseSkill skill)
+    public bool FindSkillByID(int skillID, ref BaseSkill skill)
     {
         foreach (var currentSkill in baseSkillList)
         {
@@ -57,8 +60,9 @@ public class SkillManager : MonoBehaviour
         //    skillCDCoroutine = StartCoroutine(SkillCD(nextSkill.skillData));
         //    return true;
         //}
-        if (skillData.currentCD <= 0)
+        if (skillData.currentCD <= 0 && (roleAttribute.GetMP() - skillData.MP >= 0))
         {
+            roleAttribute.SetMP((int)skillData.MP);
             skillData.currentCD = skillData.cd + skillData.skillTime;
             AddCDTask(ref skillData);
             //技能的动画时间+技能cd

@@ -1,11 +1,6 @@
-﻿using System.Collections;
+﻿using System;
 using UnityEngine;
-using System.CodeDom;
-using System.IO;
-using System.CodeDom.Compiler;
-using UnityEditor;
 using WMEffectsSkill;
-using System;
 
 public interface IInit
 {
@@ -28,19 +23,6 @@ public class GameRoot : MonoSingle<GameRoot>
 
     private void Awake()
     {
-        //LayerMask l0 = 1 << 0;//1
-        //LayerMask l1 = 1 << 1;//2
-        //LayerMask l2 = 1 << 2;//4
-        //LayerMask l3 = 1 << 3;//8
-        //LayerMask l4 = 1 << 4;//16
-        //LayerMask l5 = 1 << 5;//32
-
-        //int c = 0;
-        //for (int i = 0; i <11 ; i++)
-        //{
-        //    LayerMask l = 1 << i;//1
-        //    Debug.Log(l.value);
-        //}
         Debug.Log("GameRootInit...");
         DontDestroyOnLoad(gameObject);
         //初始化服务
@@ -60,20 +42,14 @@ public class GameRoot : MonoSingle<GameRoot>
             resourceSvc.DownloadDone();
         };
         //初始化系统
-
         //WMData.EquipData equipData = new WMData.EquipData();
         //equipData.EquipQualityType = cfg.Data.EquipQualityType.Rare;
         //equipData.entryKey = new System.Collections.Generic.List<WMData.EntryKey>();
         //equipData.OpenEquip();
     }
-
-    void LoadABDone()
-    {
-
-    }
+        
     public void GetSvc<T>(ref T t) where T : MonoSingle<T>
     {
-
         try
         {
             t = GetComponent<T>();
@@ -103,7 +79,6 @@ public class GameRoot : MonoSingle<GameRoot>
         return role;
     }
 
-
     /// <summary>
     /// 设置技能效果
     /// </summary>
@@ -131,14 +106,12 @@ public class GameRoot : MonoSingle<GameRoot>
         resourceSvc.Save();
     }
 
-
     /// <summary>
     /// 顿帧
     /// </summary>
     public void PauseFrame(Animator[] animators)
     {
         ///卡肉
-
         for (int i = 0; i < animators.Length; i++)
         {
             animators[i].speed = 0.2F;
