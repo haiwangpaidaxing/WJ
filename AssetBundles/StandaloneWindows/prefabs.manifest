@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3752405896
+CRC: 3003669270
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: df3a53483fb0ff073e55a2140dcf77a6
+    Hash: 3f4f15f2b7cd31312c7c2d2fe3da9b15
   TypeTreeHash:
     serializedVersion: 2
-    Hash: b14ac9f3e70d28b38df7254c9572479b
+    Hash: b79df17ceac253cc8e9736163e169c6d
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -165,6 +165,8 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers:
 - AssemblyName: Assembly-CSharp
+  ClassName: CreateGhostData
+- AssemblyName: Assembly-CSharp
   ClassName: WMEffectsSkill.EffectsSkillData
 - AssemblyName: Unity.RenderPipelines.Universal.Runtime
   ClassName: UnityEngine.Rendering.Universal.LightUtility/LightMeshVertex
@@ -207,6 +209,7 @@ Assets:
 - Assets/AB/Prefabs/Effects/LensBlur.prefab
 - Assets/AB/Prefabs/UI/Item/DamageTextitem.prefab
 - Assets/AB/Prefabs/Unit/Enemy/GBL.prefab
+- Assets/AB/Prefabs/Unit/Hero/Ghost.prefab
 - Assets/AB/Prefabs/Unit/Hero/Three.prefab
 - Assets/AB/Prefabs/Weapon/ZeroMagicArtsWeapon.prefab
 - Assets/AB/Prefabs/UI/Panel/BattlePanel.prefab

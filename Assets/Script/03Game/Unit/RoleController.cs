@@ -30,17 +30,22 @@ public class RoleController : MonoBehaviour, IInjured
     //  PhysicsMaterial2D GroundMaterial;
     public Action<InjuredData> injuredCB;
     public MonsterInjuredState injuredState;
+    public SpriteRenderer spriteRenderer;
+
     public virtual void Init()
     {
         //AirMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("AirMaterial");
         //GroundMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("GroundMaterial");
+
         injuredPos = transform.Find("InjuredPos");
+        spriteRenderer = GetComponent<SpriteRenderer>();
         this.roleAttribute = GetComponent<RoleAttribute>();
         rig = GetComponent<Rigidbody2D>();
         skillManager = gameObject.AddComponent<SkillManager>();
         animator = GetComponent<Animator>();
         injuredState = new MonsterInjuredState(this);
         roleAttribute.hpValueCB += DieCheck;
+        ghostList = new List<GhostData>();
         roleDir = 1;
 
     }
@@ -59,6 +64,10 @@ public class RoleController : MonoBehaviour, IInjured
         if (currentSkill != null)
         {
             currentSkill.OnUpdate();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            OpenGhost();
         }
     }
 
@@ -138,6 +147,77 @@ public class RoleController : MonoBehaviour, IInjured
             Debug.Log("Die...TODO");
         }
     }
+    float currentGhostTime;
+    float currentSingleGhostTime;
+    float createSinleGhostTime;
+    List<GhostData> ghostList;
+    [SerializeField]
+    protected CreateGhostData createGhostData;
+    public void OpenGhost()
+    {
+        currentGhostTime = 0;
+        createSinleGhostTime = 0;
+        currentSingleGhostTime = 0;
+        StartCoroutine(Ghost());
+    }
+    IEnumerator Ghost()
+    {
+        while (true)
+        {
+            currentGhostTime += 0.02f;//整个残影效果的时间
+            currentSingleGhostTime += 0.02f;//当个的存活时间
+            createSinleGhostTime += 0.02f;
 
+            if (currentGhostTime >= createGhostData.ghostTime)//整个残影效果的时间
+            {
+                if (ghostList.Count == 0)
+                {
+                    yield break;
+                }
+            }
+
+            if (currentSingleGhostTime >= createGhostData.singleGhostTime && ghostList.Count > 0)//单个残影效果的时间
+            {
+                currentSingleGhostTime = 0;
+                ghostList[0].Clear();
+                ghostList.RemoveAt(0);
+            }
+
+            if (createSinleGhostTime >= createGhostData.singleCreateGohstInterval)//创建单个残影
+            {
+                GhostData ghostData = new GhostData();
+                ghostData.Open(spriteRenderer.sprite, transform.position,transform.localScale);
+                ghostList.Add(ghostData);
+                createSinleGhostTime = 0;
+            }
+            yield return new WaitForSecondsRealtime(0.02f);
+        }
+    }
 }
-
+[System.Serializable]
+public struct CreateGhostData
+{
+    [Header("残影效果持续时间")]
+    public float ghostTime;
+    [Header("创建单个残影的间隔")]
+    public float singleCreateGohstInterval;
+    [Header("单个残剑的存活时间")]
+    public float singleGhostTime;
+}
+public struct GhostData
+{
+    public Sprite sprite;
+    GameObject ghost;
+    public void Open(Sprite sprite, Vector3 startPos, Vector3 trLocalScale)
+    {
+        this.sprite = sprite;
+        ghost = ResourceSvc.Single.LoadOrCreate<GameObject>(HeroPath.Ghost);
+        ghost.transform.position = startPos;
+        ghost.GetComponent<SpriteRenderer>().sprite = sprite;
+        ghost.transform.localScale = trLocalScale;
+    }
+    public void Clear()
+    {
+        GameObject.Destroy(ghost);
+    }
+}

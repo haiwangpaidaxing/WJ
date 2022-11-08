@@ -7,6 +7,8 @@ public class HeroPath {
     public static string UnitOne = "prefabs/Unit/Hero/UnitOne";
     
     public static string UnitThree = "prefabs/Unit/Hero/UnitThree";
-    
+
+    public static string Ghost = "prefabs/Unit/Hero/Ghost";
+
     public static string Hero = "prefabs/Unit/Hero";
 }

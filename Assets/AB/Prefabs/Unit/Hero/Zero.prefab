@@ -983,6 +983,11 @@ MonoBehaviour:
   roleAttribute: {fileID: 0}
   injuredPos: {fileID: 0}
   AirMaterial: {fileID: 6200000, guid: 38e755185c2598f4f9216304b4cf8ee3, type: 2}
+  spriteRenderer: {fileID: 0}
+  createGhostData:
+    ghostTime: 5
+    singleCreateGohstInterval: 0.2
+    singleGhostTime: 0.1
   roleTree: {fileID: 0}
   heroDatabase: {fileID: 0}
   zeroMagicArtsWeapon: {fileID: 0}

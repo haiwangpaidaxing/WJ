@@ -49,6 +49,7 @@ public class ShopEquipSalesItem : BasePanelCancelDrag
         if (MainSceneSys.Single.playerData.gold - equipData.PriceWeapons < 0)
         {
             //TODO
+            UISvc.Single.AddTips("金币不足");
             Debug.Log("金币不足");
         }
         else
@@ -60,6 +61,7 @@ public class ShopEquipSalesItem : BasePanelCancelDrag
             //archiveData.bagEquipData.Add(resourceSvc.CfgDataEquidToWMDataEquip(equipData));
             //SaveArchive.SavePlayDataArchive(archiveData);
             SaveArchive.BagEquipAdd(resourceSvc.CfgDataEquidToWMDataEquip(equipData));
+            UISvc.Single.AddTips("购买成功");
             Debug.Log("购买成功");
         }
     }

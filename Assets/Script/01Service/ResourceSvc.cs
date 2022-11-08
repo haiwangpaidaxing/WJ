@@ -43,6 +43,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
                 //未连接网络 并且首次启动游戏时
                 if (!checkFile)//因为校验文件是最后下载的如果 没有检验文件代表下载过程中，中途断网等  
                 {
+                    UISvc.Single.AddTips("第一次打开游戏需要连接网络");
                     Debug.Log("TODO提示第一次打开游戏需要连接网络，强制退出");
                 }
                 else
@@ -224,7 +225,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         {
             Debug.Log("网络连接信号异常" + e.Message);
             return false;
-            
+
         }
     }
     public void LoadABConfig(UnityWebRequest request, string abName)
@@ -335,12 +336,15 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
                 }
                 else
                 {
+
                     Debug.Log("正在校验资源" + localCheckMD5DataConfig.checkDatas[l].aBName);
                 }
             }
         }
         if (abDownloadQueue.Count > 0)
         {
+
+            UISvc.Single.AddTips("检测到资源需要更新");
             Debug.Log("检测到资源需要更新");
             resourceLoadiProgress.LoadProgressText.text = "...检测到资源需要更新...";
             TimerSvc.instance.AddTask(0.5F * 1000, () => { StartCoroutine(GetUnityWebRequest(abDownloadQueue.Dequeue(), LoadSingleAB)); });
@@ -350,6 +354,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         {
             resourceLoadiProgress.LoadProgressText.text = "资源无需更新";
             Debug.Log("资源无需更新");
+            UISvc.Single.AddTips("资源无需更新");
             TimerSvc.instance.AddTask(0.5F * 1000, () => { abLoadDone?.Invoke(); });
         }
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UISvc : MonoSingle<UISvc>
 {
+    public TipsWindow tipsWindow;
     public enum StateType
     {
         Show, Close, Popup
@@ -12,24 +13,32 @@ public class UISvc : MonoSingle<UISvc>
     //Transform uiShow;
     //Transform uiClose;
     Transform uiPopup;
-
+    [SerializeField]
+    Transform uiCommon;
     [SerializeField]
     List<BasePanel> showPanel;
     [SerializeField]
     List<BasePanel> closePanel;
 
+    public void AddTips(string hint)
+    {
+        tipsWindow.AddHint(hint);
+    }
     public override void Init()
     {
         showPanel = new List<BasePanel>();
         closePanel = new List<BasePanel>();
         uiRoot = GameObject.Find("UIRoot").transform;
+     //   uiCommon = new GameObject("Common").transform;
         uiPopup = new GameObject("Popup").transform;
+    //    uiCommon.SetParent(uiRoot, false);
         uiPopup.SetParent(uiRoot, false);
+        tipsWindow.gameObject.transform.SetParent(uiRoot,true);
         Debug.Log("UI服务");
     }
     void UIShow(BasePanel pl)
     {
-        pl.transform.SetParent(uiRoot, false);
+        pl.transform.SetParent(uiCommon,false);
         pl.SetPanelState(true);
         if (!showPanel.Contains(pl))
         {
@@ -42,7 +51,7 @@ public class UISvc : MonoSingle<UISvc>
     }
     void UIClose(BasePanel pl)
     {
-        pl.transform.SetParent(uiRoot, false);
+        pl.transform.SetParent(uiCommon, false);
         pl.SetPanelState(false);
         if (!closePanel.Contains(pl))
         {
@@ -104,12 +113,13 @@ public class UISvc : MonoSingle<UISvc>
             SetPanelState(showPanel[i]);
         }
     }
-    public T GetPanel<T>(string path, StateType stateType = StateType.Close) where T : BasePanel 
+    public T GetPanel<T>(string path, StateType stateType = StateType.Close) where T : BasePanel
     {
         GameObject panel = ResourceSvc.Single.LoadOrCreate<GameObject>(path);
         T t = panel.GetComponent<T>();
+//        panel.transform.SetParent(uiCommon,false);
         SetPanelState(t, stateType);
         return t;
     }
-  
+
 }
