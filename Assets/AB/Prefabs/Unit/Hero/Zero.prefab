@@ -987,7 +987,7 @@ MonoBehaviour:
   createGhostData:
     ghostTime: 5
     singleCreateGohstInterval: 0.2
-    singleGhostTime: 0.1
+    singleGhostTime: 0.5
   roleTree: {fileID: 0}
   heroDatabase: {fileID: 0}
   zeroMagicArtsWeapon: {fileID: 0}

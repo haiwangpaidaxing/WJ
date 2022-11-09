@@ -148,7 +148,6 @@ public class RoleController : MonoBehaviour, IInjured
         }
     }
     float currentGhostTime;
-    float currentSingleGhostTime;
     float createSinleGhostTime;
     List<GhostData> ghostList;
     [SerializeField]
@@ -157,7 +156,6 @@ public class RoleController : MonoBehaviour, IInjured
     {
         currentGhostTime = 0;
         createSinleGhostTime = 0;
-        currentSingleGhostTime = 0;
         StartCoroutine(Ghost());
     }
     IEnumerator Ghost()
@@ -165,7 +163,6 @@ public class RoleController : MonoBehaviour, IInjured
         while (true)
         {
             currentGhostTime += 0.02f;//整个残影效果的时间
-            currentSingleGhostTime += 0.02f;//当个的存活时间
             createSinleGhostTime += 0.02f;
 
             if (currentGhostTime >= createGhostData.ghostTime)//整个残影效果的时间
@@ -175,21 +172,28 @@ public class RoleController : MonoBehaviour, IInjured
                     yield break;
                 }
             }
-
-            if (currentSingleGhostTime >= createGhostData.singleGhostTime && ghostList.Count > 0)//单个残影效果的时间
+            if (ghostList.Count > 0)
             {
-                currentSingleGhostTime = 0;
-                ghostList[0].Clear();
-                ghostList.RemoveAt(0);
+                for (int i = ghostList.Count-1; i >= 0; i--)
+                {
+                    if (ghostList[i].Update(0.02f))
+                    {
+                        ghostList.RemoveAt(i);
+                    }
+                }
+            }
+          
+            if (currentGhostTime <= createGhostData.ghostTime)
+            {
+                if (createSinleGhostTime >= createGhostData.singleCreateGohstInterval)//创建单个残影
+                {
+                    GhostData ghostData = new GhostData();
+                    ghostData.Open(createGhostData.singleGhostTime, spriteRenderer.sprite, transform.position, transform.localScale);
+                    ghostList.Add(ghostData);
+                    createSinleGhostTime = 0;
+                }
             }
 
-            if (createSinleGhostTime >= createGhostData.singleCreateGohstInterval)//创建单个残影
-            {
-                GhostData ghostData = new GhostData();
-                ghostData.Open(spriteRenderer.sprite, transform.position,transform.localScale);
-                ghostList.Add(ghostData);
-                createSinleGhostTime = 0;
-            }
             yield return new WaitForSecondsRealtime(0.02f);
         }
     }
@@ -204,17 +208,31 @@ public struct CreateGhostData
     [Header("单个残剑的存活时间")]
     public float singleGhostTime;
 }
-public struct GhostData
+public class GhostData
 {
+    public float currentTime;
     public Sprite sprite;
     GameObject ghost;
-    public void Open(Sprite sprite, Vector3 startPos, Vector3 trLocalScale)
+    float setTime;
+    public void Open(float setTime, Sprite sprite, Vector3 startPos, Vector3 trLocalScale)
     {
+        this.setTime = setTime;
         this.sprite = sprite;
         ghost = ResourceSvc.Single.LoadOrCreate<GameObject>(HeroPath.Ghost);
         ghost.transform.position = startPos;
         ghost.GetComponent<SpriteRenderer>().sprite = sprite;
         ghost.transform.localScale = trLocalScale;
+    }
+
+    public bool Update(float value)
+    {
+        currentTime += value;
+        if (currentTime >= setTime)
+        {
+            Clear();
+            return true;
+        }
+        return false;
     }
     public void Clear()
     {
