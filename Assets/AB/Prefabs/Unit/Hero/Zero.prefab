@@ -782,6 +782,7 @@ GameObject:
   - component: {fileID: -5838456174768155246}
   - component: {fileID: 5212051152566610019}
   - component: {fileID: -4064871432311494859}
+  - component: {fileID: 4848962265563783213}
   m_Layer: 11
   m_Name: Zero
   m_TagString: Hero
@@ -986,8 +987,9 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   createGhostData:
     ghostTime: 5
-    singleCreateGohstInterval: 0.2
+    singleCreateGohstInterval: 0.8
     singleGhostTime: 0.5
+    color: {r: 1, g: 1, b: 1, a: 1}
   roleTree: {fileID: 0}
   heroDatabase: {fileID: 0}
   zeroMagicArtsWeapon: {fileID: 0}
@@ -1008,7 +1010,34 @@ MonoBehaviour:
   boxSize: {x: 1, y: 1}
   enemyTag:
   - Enemy
+  - Prop
   debugColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!61 &4848962265563783213
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4441259093511674308}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.013118014, y: -0.139925}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.125, y: 2.3125}
+    newSize: {x: 1.015625, y: 1.953125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5976056, y: 1.8402534}
+  m_EdgeRadius: 0
 --- !u!1 &6894749854854192523
 GameObject:
   m_ObjectHideFlags: 0

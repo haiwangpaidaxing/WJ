@@ -12,6 +12,11 @@ public class ZeroNormalAttack1 : BaseNormalGroundAttack
     }
     public override void USE(Action cb)
     {
+        //跑步状态是进行普通攻击第一段 前方有怪物时候会有一段吸附效果
+        if (Math.Abs(roleController.RigVelocity.x) >= database.roleAttribute.GetMoveSpeed())
+        {
+
+        }
         base.USE(cb);
     }
 

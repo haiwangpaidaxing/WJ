@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// ÈÌÕß¿ØÖÆÆ÷
+/// </summary>
 public class NinjaController : RoleController
 {
+    /// <summary>
+    /// ÊÜÉË×´Ì¬
+    /// </summary>
     MonsterInjuredState injuredState;
     private void Start()
     {

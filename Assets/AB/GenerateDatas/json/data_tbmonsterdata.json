@@ -26,5 +26,19 @@
       "Attribute_MoveSpeed": 6,
       "Attribute_JumpHeight": 6
     }
+  },
+  {
+    "untID": 11001,
+    "unitName": "Red",
+    "ResName": "Red",
+    "RoleAttribute": {
+      "Attribute_HP": 10000,
+      "Attribute_MP": 100,
+      "Attribute_Harm": 100,
+      "Attribute_CritHarm": 0,
+      "Attribute_CriticalChance": 0,
+      "Attribute_MoveSpeed": 4,
+      "Attribute_JumpHeight": 6
+    }
   }
 ]

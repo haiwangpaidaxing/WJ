@@ -25,6 +25,8 @@ namespace WUBT
         public Vector2 veTr;
         public MonsterStateEnum monsterStateEnum;
         public Transform tackingRangeTarget;
+
+        
         protected override void FixedUpdate()
         {
             veTr = transform.position;
@@ -48,4 +50,6 @@ namespace WUBT
             Gizmos.DrawWireCube(tr + attackRangeOffset, attackRangeSize);
         }
     }
+
+    
 }

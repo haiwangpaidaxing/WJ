@@ -3,6 +3,7 @@ using WMState;
 using WUBT;
 public class RoleTree : BTTree<HeroDatabase>
 {
+ 
     public override void Init()
     {
         base.Init();
@@ -19,21 +20,21 @@ public class RoleTree : BTTree<HeroDatabase>
         //  BTPrioritySelector thump = new BTPrioritySelector(, "普通攻击");//轻击节点
 
         //站立
-        BTParallel grIdleParallel = new BTParallel(new RoleStateCheck(RoleStateCheck.CheckType.Idle), BTParallel.ParallelFunction.Or, "Idle");
-        RoleIdleState roleIdle = new RoleIdleState(RoleAnimNmae.Idle);
+        BTParallel grIdleParallel = new(new RoleStateCheck(RoleStateCheck.CheckType.Idle), BTParallel.ParallelFunction.Or, "Idle");
+        RoleIdleState roleIdle = new(RoleAnimNmae.Idle);
         grIdleParallel.AddChild(roleIdle);
         //跑步执行节点
-        BTParallel grRunParallel = new BTParallel(new RoleStateCheck(RoleStateCheck.CheckType.Run), BTParallel.ParallelFunction.Or, "Run");
-        RoleRunStaet roleRun = new RoleRunStaet(RoleAnimNmae.Run);//执行节点
+        BTParallel grRunParallel = new(new RoleStateCheck(RoleStateCheck.CheckType.Run), BTParallel.ParallelFunction.Or, "Run");
+        RoleRunStaet roleRun = new(RoleAnimNmae.Run);//执行节点
         grRunParallel.AddChild(roleRun);
         //跳跃执行节点
-        BTParallel grJumpParallel = new BTParallel(new RoleStateCheck(RoleStateCheck.CheckType.GroundJump), BTParallel.ParallelFunction.Or, "GroundJump");
+        BTParallel grJumpParallel = new(new RoleStateCheck(RoleStateCheck.CheckType.GroundJump), BTParallel.ParallelFunction.Or, "GroundJump");
         RoleGroundJump roleJump = new RoleGroundJump(RoleAnimNmae.Jump);
         grJumpParallel.AddChild(roleJump);
         //空中节点的创建
-        BTPrioritySelector airSelect = new BTPrioritySelector(new RoleStateCheck(RoleStateCheck.CheckType.Air), "Air");
+        BTPrioritySelector airSelect = new(new RoleStateCheck(RoleStateCheck.CheckType.Air), "Air");
         //空中跳跃
-        BTPrioritySelector airJumpParallel = new BTPrioritySelector(new RoleStateCheck(RoleStateCheck.CheckType.AirJump), "AirJump");
+        BTPrioritySelector airJumpParallel = new(new RoleStateCheck(RoleStateCheck.CheckType.AirJump), "AirJump");
         RoleAirJumpState roleAirJumpState = new RoleAirJumpState(RoleAnimNmae.Jump);
         airJumpParallel.AddChild(roleAirJumpState);
         //滑墙
@@ -66,7 +67,4 @@ public class RoleTree : BTTree<HeroDatabase>
         root.AddChild(airSelect);
         root.Init(database);
     }
-
-
-
 }

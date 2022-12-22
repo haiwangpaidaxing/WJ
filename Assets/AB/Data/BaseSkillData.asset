@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BaseSkillData
   m_EditorClassIdentifier: 
   skillDatas:
-  - id: 1001
+  - id: 1000
     nexSkillID: 0
-    skillName: "\u6280\u80FD\u4E2D\u8F6C"
+    skillName: "\u666E\u901A\u653B\u51FB"
     skillDescribe: 
     animName: 
     soundEffectsPath: 

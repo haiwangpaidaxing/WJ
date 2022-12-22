@@ -1,0 +1,32 @@
+ManifestFileVersion: 0
+CRC: 2845856612
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6b075505a4f358b6006607221e3fbe3e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f267fd2d8bcb1179236b6179ac5313bc
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AB/Sprites/Peop/LeatherHelmet.PNG
+- Assets/AB/Sprites/Peop/SilverSword.PNG
+- Assets/AB/Sprites/Peop/RareUnderpants.PNG
+- Assets/AB/Sprites/Peop/ZYHelmet.PNG
+- Assets/AB/Sprites/Peop/ZYYataghan.PNG
+- Assets/AB/Sprites/UI/Four.PNG
+- Assets/AB/Sprites/Peop/KnightHelmet.PNG
+- Assets/AB/Sprites/UI/One.PNG
+- Assets/AB/Sprites/Peop/LeatherShoes.PNG
+- Assets/AB/Sprites/Peop/ZYShoe.PNG
+- Assets/AB/Sprites/Level/Level1.PNG
+- Assets/AB/Sprites/Peop/ZYArmor.PNG
+- Assets/AB/Sprites/Peop/LeatherPants.PNG
+- Assets/AB/Sprites/UI/Zero.png
+Dependencies: []

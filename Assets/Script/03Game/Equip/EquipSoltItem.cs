@@ -23,6 +23,13 @@ public class EquipSoltItem : MonoBehaviour, IDropHandler, IEquipData, IPointerDo
     }
     public void CB()
     {
+        /// 晚安晚安好梦
+        ///     早
+        ///早 晚上安 晚
+        ///上   好   安
+        ///好        咯
+        /// 
+        /// 再
     }
     public void Init(EquipData equipData)
     {
@@ -49,12 +56,14 @@ public class EquipSoltItem : MonoBehaviour, IDropHandler, IEquipData, IPointerDo
         }
         if (!equip.EquipData.ISOpen)
         {
-            Debug.Log("装备未开封");
+            UISvc.Single.AddTips("装备未解锁");
+            //   Debug.Log("装备未开封");
             return;
         }
         if (equip.EquipData.EquipType != equipType)
         {
-            Debug.Log("装备类型不一");
+            UISvc.Single.AddTips("装备类型不一");
+            //   Debug.Log("装备类型不一");
             return;
         }
 

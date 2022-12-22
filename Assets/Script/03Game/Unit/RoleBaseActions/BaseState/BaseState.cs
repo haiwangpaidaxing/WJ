@@ -6,9 +6,9 @@ namespace WMState
 {
     public class BaseRoleState : BTAction
     {
-        Animator animator;
+        protected Animator animator;
         AnimatorStateInfo stateinfo;
-        AudioSource audioSource;
+        protected AudioSource audioSource;
         protected string animName;
         protected string audioName;
         protected RoleController roleController;
@@ -21,13 +21,13 @@ namespace WMState
         public override void Init(WUBT.Database database)
         {
             base.Init(database);
-            roleController = database.roleController;
-            animator = database.GetComponent<Animator>();
+            roleController = database.GetComponent<RoleController>();
+            animator = database.GetComponentInChildren<Animator>();
         }
 
         protected override BTResult Execute()
         {
-            //Debug.Log(database.gameObject.name + "-" + animName + "....");
+            Debug.Log(database.gameObject.name + "-" + animName + "....");
             stateinfo = animator.GetCurrentAnimatorStateInfo(0);
             if (!stateinfo.IsName(animName))
             {
@@ -57,6 +57,7 @@ namespace WMState
                 Debug.Log("音效.....");
             }
         }
+
         protected override void Exit()
         {
             base.Exit();

@@ -25,9 +25,10 @@ namespace WUBT
             this.nodeName = name;
             this.precond = bTPrecondition;
         }
+
         public BTNode()
         {
-
+          
         }
 
         /// <summary>

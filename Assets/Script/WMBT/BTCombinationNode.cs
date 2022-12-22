@@ -81,23 +81,6 @@ namespace WUBT
             return false;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /// <summary>
     /// 顺序组合节点
     /// </summary>
@@ -174,7 +157,6 @@ namespace WUBT
 
         }
     }
-
 
     /// <summary>
     /// 并行组合节点
@@ -273,6 +255,7 @@ namespace WUBT
             int index = _children.IndexOf(aNode);
             _results.RemoveAt(index);
             base.RemoveChild(aNode);
+          
         }
 
         protected override bool DoEvaluate()
@@ -285,6 +268,7 @@ namespace WUBT
                 }
             }
             return true;
+            ///抱歉哈哈，我还是想厚脸皮的问一下，你想在的想法，我觉得现在这种气氛真的很奇怪，也许是你还没想好，或是你想磨灭我对你的好感，来委婉的拒绝我，也可能是我想太多了只是单纯的不想理我罢了，如果是这样子的话，你已经失算了哈哈，我已经在那之前说出来了嘿嘿，所以我还是很想知道你的想法，很想知道，我再继续这样子下去对你来说是不是一种困扰，也许你是想要我放弃吧，对你说这种话可能又给你困扰到了吧哈哈，能再给我任性一次吗？我想最后不识趣的问一下可以吗？
         }
 
 

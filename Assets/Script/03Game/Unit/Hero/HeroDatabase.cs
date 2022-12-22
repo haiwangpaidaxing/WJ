@@ -47,7 +47,7 @@ namespace WUBT
         public void Injured(InjuredData injuredData)
         {
             roleState = RoleState.Injured;
-            this.injuredData = injuredData;
+            this.injuredData = injuredData;        
             updateInjuredCB?.Invoke();
         }
     }

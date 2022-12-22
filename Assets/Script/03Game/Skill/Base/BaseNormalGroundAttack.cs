@@ -6,9 +6,14 @@ public class BaseNormalGroundAttack : BaseAttack
     public BaseNormalGroundAttack(RoleController roleController, ref SkillData skillData) : base(roleController, ref skillData)
     {
     }
+    /// <summary>
+    /// 使用技能时候调用且只调用一次
+    /// </summary>
+    /// <param name="cb">技能结束时候的回调</param>
     public override void USE(Action cb)
     {
         base.USE(cb);
+      
         roleController.SyncImage(InputController.Single.InputDir.x);
         roleController.MoveX(0, 0);
         roleController.MoveY(0, 0);//防止在移动中使用时 会因为力而进行滑动
@@ -26,6 +31,7 @@ public class BaseNormalGroundAttack : BaseAttack
          //   roleController.MoveX(dir.x, 10, ForceMode2D.Impulse);//滑动不美观
           //  roleController.RoleRigidbody.position += dir * 1f;//瞬间移动会穿越强 可使用射线检测前方是否有墙壁 TODO
         }
+       
     }
 
     protected override void AnimatorClipCB()

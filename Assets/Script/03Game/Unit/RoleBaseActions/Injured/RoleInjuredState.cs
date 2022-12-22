@@ -18,16 +18,15 @@ namespace WMState
             heroDatabase = (HeroDatabase)database;
         }
         public RoleInjuredState(string animName, string audioName = "") : base(animName, audioName)
-        {
-            ;
+        {    
         }
         protected override void Enter()
         {
+            roleController.MoveX(0, 0);
+            roleController.MoveY(0, 0);
             base.Enter();
             EnterInjured();
             database.updateInjuredCB = EnterInjured;
-            roleController.MoveX(0, 0);
-            roleController.MoveY(0, 0);
         }
 
         private void EnterInjured()

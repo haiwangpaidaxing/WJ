@@ -23,7 +23,7 @@ public class RoleController : MonoBehaviour, IInjured
     public Animator animator;
     public BaseSkill currentSkill;
     public RoleAttribute roleAttribute;
-    [Header("受伤位置")]
+    [Header("受伤位置")]    
     public Transform injuredPos;
     [SerializeField]
     PhysicsMaterial2D AirMaterial;
@@ -34,15 +34,16 @@ public class RoleController : MonoBehaviour, IInjured
 
     public virtual void Init()
     {
+       
         //AirMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("AirMaterial");
         //GroundMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("GroundMaterial");
 
         injuredPos = transform.Find("InjuredPos");
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         this.roleAttribute = GetComponent<RoleAttribute>();
         rig = GetComponent<Rigidbody2D>();
         skillManager = gameObject.AddComponent<SkillManager>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         injuredState = new MonsterInjuredState(this);
         roleAttribute.hpValueCB += DieCheck;
         ghostList = new List<GhostData>();
@@ -50,11 +51,11 @@ public class RoleController : MonoBehaviour, IInjured
 
     }
 
-
     protected virtual void FixedUpdate()
     {
         if (currentSkill != null)
         {
+            //Debug.Log(currentSkill.skillData.currentCD);
             currentSkill.OnFixedUpdate();
         }
     }
@@ -152,12 +153,19 @@ public class RoleController : MonoBehaviour, IInjured
     List<GhostData> ghostList;
     [SerializeField]
     protected CreateGhostData createGhostData;
+    /// <summary>
+    /// 开启
+    /// </summary>
     public void OpenGhost()
     {
         currentGhostTime = 0;
         createSinleGhostTime = 0;
         StartCoroutine(Ghost());
     }
+    /// <summary>
+    /// 残影携程
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Ghost()
     {
         while (true)
@@ -174,7 +182,7 @@ public class RoleController : MonoBehaviour, IInjured
             }
             if (ghostList.Count > 0)
             {
-                for (int i = ghostList.Count-1; i >= 0; i--)
+                for (int i = ghostList.Count - 1; i >= 0; i--)
                 {
                     if (ghostList[i].Update(0.02f))
                     {
@@ -182,13 +190,13 @@ public class RoleController : MonoBehaviour, IInjured
                     }
                 }
             }
-          
+
             if (currentGhostTime <= createGhostData.ghostTime)
             {
                 if (createSinleGhostTime >= createGhostData.singleCreateGohstInterval)//创建单个残影
                 {
                     GhostData ghostData = new GhostData();
-                    ghostData.Open(createGhostData.singleGhostTime, spriteRenderer.sprite, transform.position, transform.localScale);
+                    ghostData.Open(createGhostData.singleGhostTime, spriteRenderer.sprite, transform.position, transform.localScale, createGhostData.color);
                     ghostList.Add(ghostData);
                     createSinleGhostTime = 0;
                 }
@@ -197,6 +205,7 @@ public class RoleController : MonoBehaviour, IInjured
             yield return new WaitForSecondsRealtime(0.02f);
         }
     }
+    
 }
 [System.Serializable]
 public struct CreateGhostData
@@ -207,6 +216,8 @@ public struct CreateGhostData
     public float singleCreateGohstInterval;
     [Header("单个残剑的存活时间")]
     public float singleGhostTime;
+    [Header("初始颜色")]
+    public Color color;
 }
 public class GhostData
 {
@@ -214,6 +225,19 @@ public class GhostData
     public Sprite sprite;
     GameObject ghost;
     float setTime;
+    public void Open(float setTime, Sprite sprite, Vector3 startPos, Vector3 trLocalScale, Color color)
+    {
+        this.setTime = setTime;
+        this.sprite = sprite;
+        ghost = ResourceSvc.Single.LoadOrCreate<GameObject>(HeroPath.Ghost);
+        SpriteRenderer spriteRenderer = ghost.GetComponent<SpriteRenderer>();
+        ghost.transform.position = startPos;
+        spriteRenderer.sprite = sprite;
+        spriteRenderer.color = color;
+        ghost.transform.localScale = trLocalScale;
+
+    }
+    //
     public void Open(float setTime, Sprite sprite, Vector3 startPos, Vector3 trLocalScale)
     {
         this.setTime = setTime;
@@ -234,6 +258,7 @@ public class GhostData
         }
         return false;
     }
+    
     public void Clear()
     {
         GameObject.Destroy(ghost);

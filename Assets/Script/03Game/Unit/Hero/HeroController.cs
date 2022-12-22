@@ -41,14 +41,13 @@ public class HeroController : RoleController
             {
                 float value = infoPane.HP.fillAmount * roleAttribute.MaxHP;
                 value = Mathf.Lerp(value, (currentRoleHP), Time.deltaTime * 1);
-                Debug.Log(value + "_" + currentRoleHP);
+               // Debug.Log(value + "_" + currentRoleHP);
                 infoPane.SetHP(value, this.roleAttribute.MaxHP);
             }
             else
             {
                 isUpdateHPUI = false;
             }
-
         }
         if (isUpdateMPUI)
         {
@@ -56,7 +55,7 @@ public class HeroController : RoleController
             {
                 float value = infoPane.MP.fillAmount * roleAttribute.MaxMP;
                 value = Mathf.Lerp(value, (currentRoleMP), Time.deltaTime * 2);
-                Debug.Log(value + "_" + currentRoleMP);
+                //Debug.Log(value + "_" + currentRoleMP);
                 infoPane.SetMP(value, this.roleAttribute.MaxMP);
             }
             else
@@ -70,7 +69,6 @@ public class HeroController : RoleController
     {
         base.Update();    
     }
-
     public override void Injured(InjuredData injuredData)
     {
         if (heroDatabase.roleState == RoleState.Def)
@@ -82,10 +80,12 @@ public class HeroController : RoleController
         heroDatabase.Injured(injuredData);
         //base.Injured(injuredData);
     }
+
     public override void Die()
     {
         base.Die();
     }
+
     public virtual void InputEvene()
     {
         InputController.Single.operaterCB = USESkill;
@@ -119,6 +119,5 @@ public class HeroController : RoleController
 }
 public enum RoleState
 {
-
     Null, Def, Injured, Die
 }

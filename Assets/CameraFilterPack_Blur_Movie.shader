@@ -20,8 +20,7 @@ Shader "CameraFilterPack/Blur_Movie" {
                     #pragma target 3.0
                     #pragma glsl
                     #include "UnityCG.cginc"
-                     
-                     
+                      
                     uniform sampler2D _MainTex;
                     uniform float _TimeX;
                     uniform float _Distortion;

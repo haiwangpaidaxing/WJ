@@ -6,7 +6,8 @@ using UnityEngine;
 public class GameLevelManager : MonoSingle<GameLevelManager>
 {
     [SerializeField]
-    List<Room> rooms;
+    List<Room> rooms;//所有房间数据
+    [Header("角色初始位置设定")]
     public Transform roleStartPos;
     public LevelRoomPanel levelRoomPanel;
     public GameObject EnemyList;
@@ -53,7 +54,7 @@ public class GameLevelManager : MonoSingle<GameLevelManager>
                     rooms[i].Enter();
                     currentRoom = rooms[i];
                     rooms.RemoveAt(i);
-
+                
                 }
             }
         }

@@ -1,24 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum SkillOperate
-{
-    Null,
-    /// <summary>
-    /// 重击
-    /// </summary>
-    Thump,
-    /// <summary>
-    /// 普通攻击
-    /// </summary>
-    NormalAttack,
-    /// <summary>
-    /// 闪避
-    /// </summary>
-    Dodge,
-    //重击, 轻击, 闪避,
-
-}
 
 public class InputController : MonoSingle<InputController>
 {
@@ -40,7 +22,7 @@ public class InputController : MonoSingle<InputController>
         //}
         if (Input.GetKeyDown(KeyCode.J))
         {
-            operaterCB?.Invoke(1001);
+            operaterCB?.Invoke(1000);
         }
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -63,4 +45,6 @@ public class InputController : MonoSingle<InputController>
             inputCB?.Invoke(oldInput);
         }
     }
+
+   
 }

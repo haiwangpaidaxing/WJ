@@ -128,6 +128,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     }
     public IEnumerator GetUnityWebRequest(string resName, System.Action<UnityWebRequest, string> successCB)
     {
+        // UISvc.Single.AddTips("");
         Debug.Log("开始下载资源" + resName);
         //使用Head的好处是，Head会得到要下载数据的头文件，却不会下载文件。
         long totalLength = -1;
@@ -466,7 +467,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             t = ab.LoadAsset<T>(abData[1]);
             if (t == null)
             {
-                Debug.LogError("AB加载失败:AB包为:" + abData[0] + "资源名为：" + abData[1]);
+                Debug.LogError("AB加载失败:AB包为:" + abData[0] + "资源名为:" + abData[1]);
                 return null;
             }
         }
@@ -644,10 +645,18 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     }
     #endregion
     #region 存档
+    /// <summary>
+    /// 保存存档
+    /// </summary>
     public void Save()
     {
         SaveArchive.SavePlayDataArchive(CurrentArchiveData);
     }
+    /// <summary>
+    /// 根据ID获取存档
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public ArchiveData GetArchiveByID(int id)
     {
         foreach (var item in archiveDataConfig.dataList)
@@ -659,6 +668,10 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         }
         return new ArchiveData();
     }
+    /// <summary>
+    /// 设置已经存在的存档
+    /// </summary>
+    /// <param name="newData"></param>
     public void SetArchiveByID(ArchiveData newData)
     {
         int id = newData.archiveID;
@@ -671,6 +684,9 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             }
         }
     }
+    /// <summary>
+    /// 存档配置
+    /// </summary>
     public ArchiveDataConfig ArchiveDataConfig
     {
         get
@@ -684,6 +700,10 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         }
     }
     ArchiveDataConfig archiveDataConfig;
+    /// <summary>
+    /// 存档配置
+    /// </summary>
+    /// <returns></returns>
     ArchiveDataConfig GetArchiveConfig()
     {
         if (!File.Exists(SaveData.GetSavePath() + "ArchiveDataConfig.json"))
@@ -701,7 +721,10 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         archiveDataConfig = JsonUtility.FromJson<ArchiveDataConfig>(aDataText);
         return archiveDataConfig;
     }
-
+    /// <summary>
+    /// 设置存档数据
+    /// </summary>
+    /// <param name="id"></param>
     public void SetArchiveData(int id)
     {
         CurrentArchiveData = GetArchiveByID(id);
@@ -721,7 +744,11 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         GameObject monster = LoadOrCreate<GameObject>(EnemyPath.Enemy + "/" + monsterData.ResName);
         monster.AddComponent<RoleAttribute>().Init(monsterData.RoleAttribute);//必须首位添加
         monster.GetComponent<Database>().Init();
-        monster.GetComponent<BTTree<MonsterDatabase>>().Init();
+        BTTree<MonsterDatabase> bTTree = monster.GetComponent<BTTree<MonsterDatabase>>();
+        if (bTTree!=null)
+        {
+            bTTree.Init();
+        }
         monster.GetComponent<MonsterController>().Init();
         return monster;
     }

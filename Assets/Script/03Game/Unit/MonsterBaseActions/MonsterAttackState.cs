@@ -8,7 +8,7 @@ namespace WMState
 {
     public class MonsterAttackState : BaseMonsterState
     {
-        EnemyFinder enemyFinder;
+        protected EnemyFinder enemyFinder;
         public override void Init(Database database)
         {
             base.Init(database);
@@ -23,7 +23,6 @@ namespace WMState
         {
             enemyFinder.Close();
             base.Enter();
-
             Transform target = mData.tackingRangeTarget;
             if (target == null)
             {
@@ -39,16 +38,16 @@ namespace WMState
             {
 
                 roleController.SyncImage(-1);
-            }
+            }//矫正需要面向玩家英雄
             roleController.animatorClipCb = AttackCheck;
         }
 
-        private void AttackCheck()
+        protected virtual void AttackCheck()
         {
             InjuredData injuredData = new InjuredData();
-            injuredData.harm = database.roleAttribute.GetHarm();
-            injuredData.releaser = database.roleController;
-            enemyFinder.enemyCB = (injured) => { injured.Injured(injuredData); };
+             injuredData.harm = database.roleAttribute.GetHarm();
+              injuredData.releaser = database.roleController;
+             enemyFinder.enemyCB = (injured) => { injured.Injured(injuredData); };
             enemyFinder.OpenFindTargetAll();
         }
 

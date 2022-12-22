@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ZeroController : HeroController
-{ 
+{
     public ZeroMagicArtsWeapon zeroMagicArtsWeapon;
     //  public List<SkillData> skillData;
     public Transform weapPos;
@@ -12,22 +12,29 @@ public class ZeroController : HeroController
     public override void Init()
     {
         base.Init();
+
+        RoleSkillPanel roleSkillPanel = UISvc.Single.GetPanel<RoleSkillPanel>(UIPath.RoleGamePanel, UISvc.StateType.Show);
+
         skillDataList = ResourceSvc.Single.CurrentArchiveData.playerData.skillDatas;
-  
+
         SkillData data = skillDataList[0];
-  
-        SkillData data1 = skillDataList[1];
 
-        SkillData data2 = skillDataList[2];
-        SkillData data3 = skillDataList[3];
-        SkillData data4 = skillDataList[4];
+        SkillData data1 = skillDataList[1];//普通攻击第一段
 
-        SkillData data5 = skillDataList[5];//Aor1
-        SkillData data6 = skillDataList[6];//Air2
-        SkillData data7 = skillDataList[7];//Air3
+        SkillData data2 = skillDataList[2];//普通攻击第二段
 
+        SkillData data3 = skillDataList[3];//普通攻击第三段
+
+        SkillData data4 = skillDataList[4];//防御
+
+        SkillData data5 = skillDataList[5];//空中攻击第一段
+        SkillData data6 = skillDataList[6];//空中攻击第二段
+        SkillData data7 = skillDataList[7];//空中攻击第三段
         SkillData data8 = skillDataList[8];//法术攻击
 
+       //roleSkillPanel.skill1.CheckCD();
+        roleSkillPanel.skill2.CheckCD( data4);
+        roleSkillPanel.skill3.CheckCD(data8);
         ZeroDef def = new ZeroDef(this, ref data4);
 
         ZeroNormalAttack1 zeroNormalAttack1 = new ZeroNormalAttack1(this, ref data1);
@@ -44,7 +51,6 @@ public class ZeroController : HeroController
         BaseSkill[] airSkill = new BaseSkill[3] { zeroAirNormalAttack1, zeroAirNormalAttack2, zeroAirNormalAttack3 };
         ZeroAirNormalController zeroAirNormalController = new ZeroAirNormalController(this, ref data, ref airSkill);
 
-
         ZeroNormalController zeroNormalController = new ZeroNormalController(this, data, zeroAirNormalController, zeroGroundNoralController);
 
         ZeroMagicArts zeroMagicArts = new ZeroMagicArts(this, ref data8);
@@ -54,7 +60,7 @@ public class ZeroController : HeroController
         zeroMagicArtsWeapon = ResourceSvc.Single.LoadOrCreate<GameObject>(WeaponPath.ZeroCastWeapon).GetComponent<ZeroMagicArtsWeapon>();
         zeroMagicArtsWeapon.Init(weapPos);
     }
-  
+
 }
 
 

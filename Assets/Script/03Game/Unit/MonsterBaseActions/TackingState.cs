@@ -26,7 +26,7 @@ namespace WMState
                 dir = Vector2.left;
                 //left
             }
-            database.roleController.MoveX(dir.x, database.roleAttribute.GetMoveSpeed());
+            database.roleController.MoveX(dir.x, database.roleAttribute.GetMoveSpeed()); 
             return base.Execute();
         }
         public override void Clear()

@@ -56,7 +56,7 @@ public class Room
                     GameObject monsterObject = ResourceSvc.Single.CreateMonster(roomConfig.createConfig[i].ID);//创建
                     monsterObject.transform.SetParent(GameLevelManager.Single.EnemyList.transform, false);
                     monsterObject.transform.position = roomConfig.createConfig[i].startPos.position;//出生点
-                    monsterObject.GetComponent<GobinRoleController>().dieCB = MonsterDieCB;
+                    monsterObject.GetComponent<MonsterController>().dieCB = MonsterDieCB;
                     monsterObject.GetComponent<MonsterDatabase>().patrolPoint = roomConfig.createConfig[i].patrolPoint;
                     currentMonsterCount++;
                 }

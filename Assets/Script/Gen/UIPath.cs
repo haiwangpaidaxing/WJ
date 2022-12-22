@@ -34,4 +34,6 @@ public class UIPath {
 
     public static  string GameLevelRoomPanel = "prefabs/UI/Panel/LevelRoomPanel";
 
+    public static string RoleGamePanel = "prefabs/UI/Panel/RoleGamePanel";
+
 }

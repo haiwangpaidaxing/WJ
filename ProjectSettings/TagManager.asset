@@ -8,6 +8,7 @@ TagManager:
   - Hero
   - Wall
   - Ground
+  - Prop
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Wall
   - Hero
   - Enemy
-  - 
+  - Prop
   - 
   - 
   - 

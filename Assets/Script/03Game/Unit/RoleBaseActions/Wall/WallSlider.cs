@@ -28,11 +28,19 @@ public class RoleWallSlider : BaseRoleState
         //     /*&& database.InputDir.x != 0 && database.InputDir.x == database.roleController.roleDir*/)
         //{
         //}
+        wallSiderSpeed = -1;//重置下滑速度
         base.Enter();
     }
-
+    /// <summary>
+    /// 下滑速度
+    /// </summary>
+    float wallSiderSpeed;
     protected override BTResult Execute()
     {
+        if (database.InputDir.y == -1)
+        {
+            wallSiderSpeed = -5;//加快下滑速度
+        }
         if (database.InputDir.x != 0 && enterDir != database.InputDir.x)
         {
             roleController.MoveX(database.InputDir.x, 4);
@@ -41,7 +49,8 @@ public class RoleWallSlider : BaseRoleState
         }
         else
         {
-            roleController.MoveY(1, (-1 + -Time.deltaTime));
+            wallSiderSpeed += (-Time.deltaTime);
+            roleController.MoveY(1, wallSiderSpeed);
         }
         return base.Execute();
     }

@@ -81,7 +81,16 @@ public class RoleStateCheck : BTPrecondition
     }
     public enum CheckType
     {
-        Air, Ground, Idle, Run, GroundJump, Fall, Attack, AirJump, Hutr, WallSlider,
+        Air,
+        Ground,
+        Idle,
+        Run,
+        GroundJump,
+        Fall,
+        Attack,
+        AirJump,
+        Hutr,
+        WallSlider,
         Injured,
         Die
     }
@@ -89,8 +98,12 @@ public class RoleStateCheck : BTPrecondition
 
 public class MonsterStateCheck : BTPrecondition
 {
-    MonsterDatabase mData;
-    MonsterStateEnum currentCheckType;
+    protected MonsterDatabase mData;
+    protected MonsterStateEnum currentCheckType;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="checkType">初始状态</param>
     public MonsterStateCheck(MonsterStateEnum checkType)
     {
         this.currentCheckType = checkType;
@@ -105,40 +118,27 @@ public class MonsterStateCheck : BTPrecondition
         switch (currentCheckType)
         {
             case MonsterStateEnum.Patrol:
-                return true;
+                return Patrol();
             case MonsterStateEnum.Tracking:
-                Collider2D collider2D = Physics2D.OverlapBox(mData.veTr + mData.tackingRangeOffset, mData.tackingRangeSize, 0, mData.tackingMask);
-                if (collider2D == null)
-                {
-                    mData.tackingRangeTarget = null;
-                    return false;
-                }
-                mData.tackingRangeTarget = collider2D.transform;
-                return true;
+                return Tracking();
             case MonsterStateEnum.Attack:
                 return Attack();
+            case MonsterStateEnum.Attack1:
+                return Attack1();
+            case MonsterStateEnum.Attack2:
+                return Attack2();
+            case MonsterStateEnum.Attack3:
+                return Attack3();
             case MonsterStateEnum.Idle:
-                if (mData.monsterStateEnum == MonsterStateEnum.Idle)
-                {
-                    return true;
-                }
-                return false;
+                return Idle();
             case MonsterStateEnum.Injured:
-                if (mData.monsterStateEnum == MonsterStateEnum.Injured)
-                {
-                    return true;
-                }
-                return false;
+                return Injured();
             case MonsterStateEnum.Die:
-                if (mData.monsterStateEnum == MonsterStateEnum.Die)
-                {
-                    return true;
-                }
-                return false;
+                return Die();
         }
         return false;
     }
-    public bool Attack()
+    public virtual bool Attack()
     {
         if (Physics2D.OverlapBox(mData.veTr + mData.attackRangeOffset, mData.attackRangeSize, 0, mData.attackMask) || mData.monsterStateEnum == MonsterStateEnum.Attack)
         {
@@ -147,4 +147,60 @@ public class MonsterStateCheck : BTPrecondition
         return false;
     }
 
+    public virtual bool Attack1()
+    {
+        return false;
+    }
+    public virtual bool Attack2()
+    {
+        return false;
+    }
+    public virtual bool Attack3()
+    {
+        return false;
+    }
+
+    public virtual bool Patrol()//巡逻
+    {
+        return true;
+    }
+
+    public virtual bool Tracking()//追踪敌人
+    {
+        Collider2D collider2D = Physics2D.OverlapBox(mData.veTr + mData.tackingRangeOffset, mData.tackingRangeSize, 0, mData.tackingMask);
+        if (collider2D == null)
+        {
+            mData.tackingRangeTarget = null;
+            return false;
+        }
+        mData.tackingRangeTarget = collider2D.transform;
+        return true;
+    }
+
+    public virtual bool Idle()
+    {
+        if (mData.monsterStateEnum == MonsterStateEnum.Idle)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public virtual bool Injured()
+    {
+        if (mData.monsterStateEnum == MonsterStateEnum.Injured)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public virtual bool Die()
+    {
+        if (mData.monsterStateEnum == MonsterStateEnum.Die)
+        {
+            return true;
+        }
+        return false;
+    }
 }

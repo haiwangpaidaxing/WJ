@@ -82,7 +82,7 @@ public class RoleAttribute : MonoBehaviour
         return (int)critHarm;
     }
     public int GetEquipCriticalChance()
-    {
+     {
         if (ISEquip())
         {
             return 0;
@@ -199,10 +199,10 @@ public class RoleAttribute : MonoBehaviour
         time += Time.deltaTime;
         if (GetMP() <= MaxMP)
         {
-            if (time >= 1)
+            if (time >= 1)//√ø√Îªÿ∏¥10µ„
             {
                 time = 0;
-                SetMPAdd(5);
+                SetMPAdd(10);
             }
         }
     }

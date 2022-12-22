@@ -68,6 +68,7 @@ public class GameRoot : MonoSingle<GameRoot>
     {
         globalTimerSvc.UpdateTask();
     }
+
     public GameObject CreateRole(cfg.Data.RoleData roleData)
     {
         GameObject role = resourceSvc.LoadOrCreate<GameObject>(HeroPath.Hero + "/" + roleData.ResName);
@@ -80,9 +81,9 @@ public class GameRoot : MonoSingle<GameRoot>
     }
 
     /// <summary>
-    /// 设置技能效果
+    /// 设置技能效果 
     /// </summary>
-    /// <param name="effectsSkillData"></param>
+    /// <param name="effectsSkillData"></param> 
     public void SetSkillEffect(EffectsSkillData effectsSkillData)
     {
         SkillData skillData = null;
@@ -114,7 +115,7 @@ public class GameRoot : MonoSingle<GameRoot>
         ///卡肉
         for (int i = 0; i < animators.Length; i++)
         {
-            animators[i].speed = 0.2F;
+            animators[i].speed = 0.2F;//动作减慢
         }
         Time.timeScale = 0.2f;
         TimerSvc.instance.AddTask(0.2f * 1000, () =>
