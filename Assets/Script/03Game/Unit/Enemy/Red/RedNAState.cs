@@ -10,12 +10,12 @@ public class RedNAState : MonsterAttackState
     private int index;//攻击次数下标
     private int combosCount;
     public string oldAnimName;
-    RedMonsterDatabase redMonsterDatabase;
+    RedMonsterDatabase redData;
 
     public override void Init(Database database)
     {
         base.Init(database);
-        redMonsterDatabase = mData as RedMonsterDatabase;
+        redData = mData as RedMonsterDatabase;
     }
     public RedNAState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "", int combosCount = 3) : base(monsterStateEnum, animName, audioName)
     {
@@ -28,28 +28,36 @@ public class RedNAState : MonsterAttackState
         switch (index)
         {
             case 0:
-                redMonsterDatabase.diaup.skillData.value = 3;
-                redMonsterDatabase.injuredData.baseEffectsSkillList = new BaseEffectsSkill[1] { redMonsterDatabase.diaup };
+                redData.diaup.skillData.value = 3;
+                redData.injuredData.baseEffectsSkillList = new BaseEffectsSkill[1] { redData.diaup };
                 break;
             case 1:
-                redMonsterDatabase.diaup.skillData.value = 3;
-                redMonsterDatabase.injuredData.baseEffectsSkillList = new BaseEffectsSkill[1] { redMonsterDatabase.diaup };
+                redData.diaup.skillData.value = 3;
+                redData.injuredData.baseEffectsSkillList = new BaseEffectsSkill[1] { redData.diaup };
                 break;
             case 2:
-                redMonsterDatabase.diaup.skillData.value = 5;
-                redMonsterDatabase.repel.skillData.value = 5;
-                redMonsterDatabase.injuredData.baseEffectsSkillList = new BaseEffectsSkill[2] { redMonsterDatabase.diaup, redMonsterDatabase.repel };
+                redData.diaup.skillData.value = 5;
+                redData.repel.skillData.value = 5;
+                redData.injuredData.baseEffectsSkillList = new BaseEffectsSkill[2] { redData.diaup, redData.repel };
                 break;
         }
-        redMonsterDatabase.injuredData.harm = database.roleAttribute.GetHarm();
-        redMonsterDatabase.injuredData.releaser = database.roleController;
-        enemyFinder.enemyCB = (injured) => { injured.Injured(redMonsterDatabase.injuredData); };
+        redData.injuredData.harm = database.roleAttribute.GetHarm();
+        redData.injuredData.releaser = database.roleController;
+        enemyFinder.enemyCB = (injured) => { injured.Injured(redData.injuredData); };
         enemyFinder.OpenFindTargetAll();
     }
     protected override void Enter()
     {
-        redMonsterDatabase.attackState = RedRoleStateCheck.AttackState.NA;
+        redData.attackState = RedRoleStateCheck.AttackState.NA;
         animName = oldAnimName + index;
+        if (redData.tackingRangeTarget.position.x > redData.transform.position.x)
+        {
+            roleController.MoveX(1, 2);
+        }
+        else
+        {
+            roleController.MoveX(-1, 2);
+        }
         base.Enter();
     }
 
@@ -57,7 +65,7 @@ public class RedNAState : MonsterAttackState
     {
         if (isAnimatorOver && index == combosCount)
         {
-            redMonsterDatabase.attackState = RedRoleStateCheck.AttackState.Null;
+            redData.attackState = RedRoleStateCheck.AttackState.Null;
             index = 0;
             return BTResult.Ended;
         }

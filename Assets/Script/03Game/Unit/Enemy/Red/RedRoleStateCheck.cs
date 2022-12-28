@@ -56,7 +56,7 @@ public class RedRoleStateCheck : MonsterStateCheck
         {
             return false;
         }
-        if (Physics2D.OverlapBox(mData.veTr + mData.attackRangeOffset, mData.attackRangeSize, 0, mData.attackMask) || redData.attackState == AttackState.TA)
+        if (Physics2D.OverlapBox(mData.veTr + mData.attackRangeOffset,redData.thumpRangeSize, 0, mData.attackMask) || redData.attackState == AttackState.TA)
         {
             if (redData.attackState != AttackState.TA)
             {
@@ -113,7 +113,14 @@ public class RedRoleStateCheck : MonsterStateCheck
 
     public override bool Injured()
     {
-        return base.Injured();
+        if (mData.currentShieldValue>0)
+        {
+            return false;
+        }
+        else
+        {
+           return base.Injured();
+        }
     }
 
     public override bool Patrol()

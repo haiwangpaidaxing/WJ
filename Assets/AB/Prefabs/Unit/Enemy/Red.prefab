@@ -304,10 +304,14 @@ MonoBehaviour:
   veTr: {x: 0, y: 0}
   monsterStateEnum: 0
   tackingRangeTarget: {fileID: 0}
+  currentShieldValue: 0
+  shieldValue: 5
+  shieldRecover: 3
   RangeAttackDis: 4.89
   createArrowPos: {fileID: 236673001053928192}
-  currentArrow: 10
-  arrowMax: 0
+  currentArrow: 3
+  arrowMax: 3
+  arrowRecoverTime: 5
   attackState: 0
   efData:
     className: 
@@ -332,6 +336,7 @@ MonoBehaviour:
       describe: 
       skillEffectsIndex: 0
       skillID: 0
+  thumpRangeSize: {x: 5, y: 3.14}
 --- !u!114 &7034378642805472954
 MonoBehaviour:
   m_ObjectHideFlags: 0

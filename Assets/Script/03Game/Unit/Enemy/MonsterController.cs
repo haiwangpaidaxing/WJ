@@ -33,7 +33,7 @@ public class MonsterController : RoleController
         roleAttribute.SetHp((int)injuredData.harm);//设置角色的血量
         GameObject injuredEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("prefabs/Effects/InjuredEffects");//受伤特效
         injuredEffects.transform.position = injuredPos.position;//受伤特效的位置
-        if (mData.monsterStateEnum == WMState.MonsterStateEnum.Die)
+        if ( mData.monsterStateEnum == WMState.MonsterStateEnum.Die)
         {
             return;
         }

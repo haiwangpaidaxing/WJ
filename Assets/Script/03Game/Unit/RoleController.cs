@@ -231,6 +231,7 @@ public class GhostData
         this.sprite = sprite;
         ghost = ResourceSvc.Single.LoadOrCreate<GameObject>(HeroPath.Ghost);
         SpriteRenderer spriteRenderer = ghost.GetComponent<SpriteRenderer>();
+        ghost.GetComponent<SpriteRenderer>().sortingOrder= -1;
         ghost.transform.position = startPos;
         spriteRenderer.sprite = sprite;
         spriteRenderer.color = color;
@@ -245,6 +246,7 @@ public class GhostData
         ghost = ResourceSvc.Single.LoadOrCreate<GameObject>(HeroPath.Ghost);
         ghost.transform.position = startPos;
         ghost.GetComponent<SpriteRenderer>().sprite = sprite;
+        ghost.GetComponent<SpriteRenderer>().sortingOrder = -1;
         ghost.transform.localScale = trLocalScale;
     }
 

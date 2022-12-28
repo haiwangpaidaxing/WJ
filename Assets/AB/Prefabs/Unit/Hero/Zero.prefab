@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &758852770581111531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7861244513994982244}
+  m_Layer: 11
+  m_Name: InjuredPos
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7861244513994982244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758852770581111531}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4441259093511674304}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1407560975274538680
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,6 +837,7 @@ Transform:
   - {fileID: 5360478368266506605}
   - {fileID: 6178050182855734869}
   - {fileID: 1241738270522091636}
+  - {fileID: 7861244513994982244}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -829,7 +861,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 82ea68a891e7c26409bab7973a21460d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -982,14 +1014,14 @@ MonoBehaviour:
   roleDir: 0
   animator: {fileID: 0}
   roleAttribute: {fileID: 0}
-  injuredPos: {fileID: 0}
+  injuredPos: {fileID: 7861244513994982244}
   AirMaterial: {fileID: 6200000, guid: 38e755185c2598f4f9216304b4cf8ee3, type: 2}
   spriteRenderer: {fileID: 0}
   createGhostData:
     ghostTime: 5
-    singleCreateGohstInterval: 0.8
+    singleCreateGohstInterval: 0.2
     singleGhostTime: 0.5
-    color: {r: 1, g: 1, b: 1, a: 1}
+    color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 0.8352941}
   roleTree: {fileID: 0}
   heroDatabase: {fileID: 0}
   zeroMagicArtsWeapon: {fileID: 0}

@@ -76,6 +76,8 @@ public class HeroController : RoleController
             injuredCB?.Invoke(injuredData);
             return;
         }
+        GameObject injuredEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("prefabs/Effects/InjuredEffects");//受伤特效
+        injuredEffects.transform.position = injuredPos.position;//受伤特效的位置
         roleAttribute.SetHp((int)injuredData.harm);
         heroDatabase.Injured(injuredData);
         //base.Injured(injuredData);

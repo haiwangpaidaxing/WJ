@@ -23,6 +23,8 @@ public class RedRoleRAState : MonsterAttackState
         isEnd = false;
         redData.attackState = RedRoleStateCheck.AttackState.RA;
         roleController.animatorClipCb += CreateArreow;
+      
+
     }
     private void CreateArreow()
     {
@@ -37,8 +39,11 @@ public class RedRoleRAState : MonsterAttackState
         redData.injuredData.harm = database.roleAttribute.GetHarm();
         redData.injuredData.releaser = database.roleController;
         redArrow.InjuredData = redData.injuredData;
+        redData.currentArrow--;
+        
         GameObject.Destroy(redArrow, 5);
     }
+    
     bool isEnd;
     protected override BTResult Execute()
     {
@@ -69,7 +74,7 @@ public class RedRoleRAState : MonsterAttackState
     }
     protected override void AnimatorSkillOver()
     {
-        Debug.Log(isEnd);
+      //  Debug.Log(isEnd);
         TimerSvc.instance.AddTask(2 * 1000, () => { 
             isEnd = true;
         });

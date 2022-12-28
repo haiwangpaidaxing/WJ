@@ -10,10 +10,29 @@ public class InputController : MonoSingle<InputController>
     private Vector2 oldInput;
     public System.Action<Vector2> inputCB;
     public System.Action<int> operaterCB;
-
     public bool LockDir { get; set; }
-
-    
+    [SerializeField]
+    bool isRocker;
+    private void Start()
+    {
+        Rocker.Single.dirEvent += (dir)=> {
+            if (dir != oldInput)
+            {
+                isRocker = true;
+                oldInput = dir;
+                if (LockDir)
+                {
+                    inputCB(Vector2.zero);
+                    return;
+                }
+                inputCB?.Invoke(oldInput);
+                if (oldInput==Vector2.zero)
+                {
+                    isRocker = false;
+                }
+            }
+        };
+    }
     private void Update()
     {
         //if (Input.GetMouseButtonDown(0))
@@ -34,7 +53,7 @@ public class InputController : MonoSingle<InputController>
         }
         inputDir.x = Input.GetAxisRaw("Horizontal");
         inputDir.y = Input.GetAxisRaw("Vertical");
-        if (inputDir != oldInput)
+        if (inputDir != oldInput && !isRocker)
         {
             oldInput = inputDir;
             if (LockDir)

@@ -30,7 +30,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.3
+        time: 0.5
         value: 3.19
         inSlope: 0
         outSlope: 0
@@ -58,7 +58,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.3
+        time: 0.5
         value: 2.49
         inSlope: 0
         outSlope: 0
@@ -81,9 +81,9 @@ AnimationClip:
       value: {fileID: 21300000, guid: 7d0e2529f300b7f4199168f069e1b008, type: 3}
     - time: 0.2
       value: {fileID: 21300000, guid: 52c0232ddd328de438fd3338b0f09a7f, type: 3}
-    - time: 0.3
+    - time: 0.5
       value: {fileID: 21300000, guid: a87083a9ad96e514b835f860ee997ec8, type: 3}
-    - time: 0.4
+    - time: 0.6
       value: {fileID: 21300000, guid: cf17f9e5420b1404791822cd38ab7ec6, type: 3}
     attribute: m_Sprite
     path: 
@@ -128,7 +128,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 0.70000005
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -157,7 +157,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.3
+        time: 0.5
         value: 3.19
         inSlope: 0
         outSlope: 0
@@ -185,7 +185,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.3
+        time: 0.5
         value: 2.49
         inSlope: 0
         outSlope: 0
@@ -204,7 +204,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.3
+  - time: 0.5
     functionName: AnimatorEvent
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -2,7 +2,7 @@
     "checkDatas": [
         {
             "aBName": "StandaloneWindows",
-            "mD5": "f5ff38be6c9aeef9cc03068dca930"
+            "mD5": "99a16e7eb1119fb7f87232ec9ed96b"
         },
         {
             "aBName": "data",
@@ -10,11 +10,11 @@
         },
         {
             "aBName": "generatedatas",
-            "mD5": "36515665f844e9fd56f4d75ae583e82a"
+            "mD5": "911a3423c8b087a34962b4f9798da36a"
         },
         {
             "aBName": "prefabs",
-            "mD5": "97892c336d997fb399fbdc3f5549ffd"
+            "mD5": "7f663fb3a53a6df82d6f1da84523273"
         },
         {
             "aBName": "soundeffects",

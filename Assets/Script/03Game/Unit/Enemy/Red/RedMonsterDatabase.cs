@@ -14,13 +14,15 @@ public class RedMonsterDatabase : MonsterDatabase
     public int currentArrow;
     [Header("箭的最大数量")]
     public int arrowMax;
-
+    public float arrowRecoverTime;
+    float currentArrowRecoverTime;
     public RedRoleStateCheck.AttackState attackState;
     public InjuredData injuredData = new InjuredData();
     public EffectsSkillData efData = new EffectsSkillData();
     public Diaup diaup;
     public Repel repel;
- 
+    public Vector2 thumpRangeSize;
+   
     public override void OnDrawGizmosSelected()
     {
         base.OnDrawGizmosSelected();
@@ -32,6 +34,20 @@ public class RedMonsterDatabase : MonsterDatabase
         base.Init();
         diaup = new Diaup(efData);
         repel = new Repel(efData);
+        currentArrow = arrowMax;
         tackingRangeTarget = GameObject.FindGameObjectWithTag("Hero").transform;
+    }
+
+    private void Update()
+    {
+        if (currentArrow==0)
+        {
+            currentArrowRecoverTime += Time.deltaTime;
+            if (currentArrowRecoverTime>=arrowRecoverTime)
+            {
+                currentArrow = arrowMax;
+                currentArrowRecoverTime = 0;
+            }
+        }
     }
 }

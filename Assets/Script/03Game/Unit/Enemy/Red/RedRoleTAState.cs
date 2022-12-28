@@ -22,6 +22,28 @@ public class RedRoleTAState : MonsterAttackState
     {
         redData.attackState = RedRoleStateCheck.AttackState.TA;
         base.Enter();
+        if (redData.tackingRangeTarget.position.x > redData.transform.position.x)
+        {
+            roleController.MoveX(1,5);
+        }
+        else
+        {
+            roleController.MoveX(-1,5);
+        }
+    }
+    protected override BTResult Execute()
+    {
+
+        if (Vector2.Distance(roleController.transform.position, redData.tackingRangeTarget.position)<=0.5f)
+        {
+            roleController.MoveX(0, 0);
+        }
+        return base.Execute();
+        
+        //if ()
+        //{
+
+        //}
     }
     protected override void AttackCheck()
     {

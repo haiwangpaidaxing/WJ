@@ -17,9 +17,16 @@ public class RedArrow : BaseArrow
         injured.Injured(InjuredData);
         Destroy(gameObject);
     }
+    float t;
     private void FixedUpdate()
     {
         Move();
+        //t += Time.fixedDeltaTime;
+        //Vector2 startPos = transform.position;
+        //Vector2 p1 = new Vector2(startPos.x, startPos.y );
+        //Vector2 p2 = targetPos.position;
+        //Vector2 point = CalculateCubicBezierPoint(t, startPos, p1, p2);
+        //LookTarget(point);
         LookTarget();
         enemyFinder.OpenFindTargetAll();
     }
@@ -29,4 +36,3 @@ public class RedArrow : BaseArrow
         Destroy(gameObject);
     }
 }
-    

@@ -9,14 +9,15 @@ namespace WMState
     {
         Patrol, 
         Tracking, 
-        Attack,
-        Attack1,
-        Attack2,
-        Attack3,
-        Attack4,
         Idle,
         Injured,
         Die,
+
+        Attack=1001,
+        Attack1=1002,
+        Attack2=1003,
+        Attack3=1004,
+        Attack4=1005,
     }
 
 }

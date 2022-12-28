@@ -27,7 +27,7 @@ namespace WMState
 
         protected override BTResult Execute()
         {
-            Debug.Log(database.gameObject.name + "-" + animName + "....");
+           // Debug.Log(database.gameObject.name + "-" + animName + "....");
             stateinfo = animator.GetCurrentAnimatorStateInfo(0);
             if (!stateinfo.IsName(animName))
             {

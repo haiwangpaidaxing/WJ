@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1053302735
+CRC: 4091912858
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d4aafbc75df2f2a7940b9d406ec3013b
+    Hash: 50c4cbd6b26efff4b1658fbd20e2119a
   TypeTreeHash:
     serializedVersion: 2
-    Hash: b9e01a05ee063238f0c11535b1b8491e
+    Hash: b2609ae160510d0cb2e92fe18380c2c2
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -63,6 +63,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 396ea2862c90dca44a45c84c38460c91, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 3c6a8d2cd82001a409e4507aa0fe049a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 63bcd820e44020045a2533329cafe81d, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: b64ed61c98ab6a0478ad45af28f31b96, type: 3}
 - Class: 114
@@ -244,6 +246,7 @@ Assets:
 - Assets/AB/Prefabs/UI/Panel/RoleGamePanel.prefab
 - Assets/AB/Prefabs/Unit/Enemy/Ninja.prefab
 - Assets/AB/Prefabs/UI/Panel/SkillPanel.prefab
+- Assets/AB/Prefabs/UI/Panel/Easytouch.prefab
 - Assets/AB/Prefabs/UI/Panel/SelectLevelPanel.prefab
 - Assets/AB/Prefabs/UI/Panel/SelectRoomPanel.prefab
 - Assets/AB/Prefabs/UI/Panel/LevelRoomPanel.prefab

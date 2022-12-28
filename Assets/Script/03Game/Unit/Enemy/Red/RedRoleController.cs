@@ -16,5 +16,6 @@ public class RedRoleController : MonsterController
     public override void Injured(InjuredData injuredData)
     {
         base.Injured(injuredData);
+
     }
 }

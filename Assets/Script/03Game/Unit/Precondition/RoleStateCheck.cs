@@ -188,6 +188,7 @@ public class MonsterStateCheck : BTPrecondition
 
     public virtual bool Injured()
     {
+
         if (mData.monsterStateEnum == MonsterStateEnum.Injured)
         {
             return true;

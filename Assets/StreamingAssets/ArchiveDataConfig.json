@@ -2,7 +2,7 @@
     "dataList": [
         {
             "archiveID": 1,
-            "saveDataTime": "2022/12/7 15:13:35",
+            "saveDataTime": "2022/12/27 17:57:11",
             "playerData": {
                 "selectRoleId": 1001,
                 "gold": 0,
@@ -35,12 +35,12 @@
                         "baseEffectsSkills": [
                             {
                                 "skillData": {
-                                    "className": "",
-                                    "value": 0.0,
-                                    "name": "",
-                                    "describe": "",
+                                    "className": "Repel",
+                                    "value": 5.0,
+                                    "name": "击退",
+                                    "describe": "使敌人击退效果",
                                     "skillEffectsIndex": 0,
-                                    "skillID": 0
+                                    "skillID": 10011
                                 }
                             }
                         ],
@@ -63,12 +63,12 @@
                         "baseEffectsSkills": [
                             {
                                 "skillData": {
-                                    "className": "",
-                                    "value": 0.0,
-                                    "name": "",
-                                    "describe": "",
+                                    "className": "Diaup",
+                                    "value": 4.0,
+                                    "name": "击飞",
+                                    "describe": "使其敌人击飞",
                                     "skillEffectsIndex": 0,
-                                    "skillID": 0
+                                    "skillID": 10012
                                 }
                             }
                         ],

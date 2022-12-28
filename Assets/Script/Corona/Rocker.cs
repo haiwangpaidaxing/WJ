@@ -1,17 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Rocker : MonoBehaviour, IBaseSole
+public class Rocker : MonoSingle<Rocker>, IBaseSole
 {
     //圆心的位置
     public Transform head;
 
     public Vector2 orginPos;
     public float radius = 100;
-
+    [SerializeField]
     public Vector2 dir;
+
+    public Action<Vector2> dirEvent;
     private void Start()
     {
         orginPos = head.position;
@@ -65,6 +68,7 @@ public class Rocker : MonoBehaviour, IBaseSole
         {
             dir.x = 1;
         }
+        dirEvent?.Invoke(dir);
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -89,6 +93,7 @@ public class Rocker : MonoBehaviour, IBaseSole
     {
         head.localPosition = Vector3.zero;
         dir.x = 0;
+        dirEvent?.Invoke(Vector2.zero);
     }
 }
 interface IBaseSole : IDragHandler, IDropHandler, IPointerUpHandler, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler

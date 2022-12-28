@@ -202,7 +202,7 @@ public class RoleAttribute : MonoBehaviour
             if (time >= 1)//√ø√Îªÿ∏¥10µ„
             {
                 time = 0;
-                SetMPAdd(10);
+                SetMPAdd(15);
             }
         }
     }

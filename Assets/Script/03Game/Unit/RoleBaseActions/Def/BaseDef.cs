@@ -55,6 +55,7 @@ public class ZeroDef : BaseDef
     {
         zeroController.heroDatabase.roleState = RoleState.Def;
         base.USE(skillOverCB);
+        roleController.MoveX(roleController.roleDir, 3  );
     }
     protected override void AnimatorSkillOver()
     {

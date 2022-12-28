@@ -25,16 +25,35 @@ namespace WUBT
         public Vector2 veTr;
         public MonsterStateEnum monsterStateEnum;
         public Transform tackingRangeTarget;
-
-        
+        [Header("»¤¶Ü")]
+        public int currentShieldValue;
+        public int shieldValue;
+        public int shieldRecover;
+        [SerializeField]
+        private float currentTime;
+        public override void Init()
+        {
+            base.Init();
+            currentShieldValue = shieldValue;
+        }
         protected override void FixedUpdate()
         {
             veTr = transform.position;
+            if (currentShieldValue <= 0)
+            {
+                currentTime += Time.deltaTime;
+                if (currentTime >= shieldRecover)
+                {
+                    currentTime = 0;
+                    currentShieldValue = shieldValue;
+                }
+            }
             base.FixedUpdate();
         }
-        
+
         public void SetInjuredData(InjuredData injuredData)
         {
+            currentShieldValue--;
             this.monsterStateEnum = MonsterStateEnum.Injured;
             this.injuredData = injuredData;
             updateInjuredCB?.Invoke();
@@ -51,5 +70,5 @@ namespace WUBT
         }
     }
 
-    
+
 }
