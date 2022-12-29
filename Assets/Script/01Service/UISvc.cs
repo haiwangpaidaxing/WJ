@@ -39,6 +39,7 @@ public class UISvc : MonoSingle<UISvc>
     void UIShow(BasePanel pl)
     {
         pl.transform.SetParent(uiCommon,false);
+        pl.transform.SetSiblingIndex(uiCommon.childCount);
         pl.SetPanelState(true);
         if (!showPanel.Contains(pl))
         {
@@ -115,6 +116,20 @@ public class UISvc : MonoSingle<UISvc>
     }
     public T GetPanel<T>(string path, StateType stateType = StateType.Close) where T : BasePanel
     {
+        foreach (var item in showPanel)
+        {
+            if (item is T)
+            {
+                return item as T;
+            }
+        }
+        foreach (var item in closePanel)
+        {
+            if (item is T)
+            {
+                return item as T;
+            }
+        }
         GameObject panel = ResourceSvc.Single.LoadOrCreate<GameObject>(path);
         T t = panel.GetComponent<T>();
 //        panel.transform.SetParent(uiCommon,false);

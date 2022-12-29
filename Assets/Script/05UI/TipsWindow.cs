@@ -30,7 +30,7 @@ public class TipsWindow : MonoBehaviour
         }
     }
 
-    public void AddHint(string hint)
+    public  void AddHint(string hint)
     {
         if (m_AllHint==null)
         {

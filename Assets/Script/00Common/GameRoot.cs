@@ -20,34 +20,37 @@ public class GameRoot : MonoSingle<GameRoot>
     public TimerSvc globalTimerSvc;
     public UISvc uISvc;
     public LogicSys logicSys;
-
+    public System.Action abLoadDone;
     private void Awake()
     {
         Debug.Log("GameRootInit...");
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject); 
+        abLoadDone = () =>
+         {
+             UISvc.Single.AddTips("000000");
+             logicSys = GetComponent<LogicSys>();
+             UISvc.Single.AddTips("111111");
+             logicSys.Init();
+             UISvc.Single.AddTips("222222");
+             UISvc.Single.AddTips("3333333");
+             resourceSvc.DownloadDone();
+             UISvc.Single.AddTips("4444444");
+         };
         //初始化服务
         GetSvc(ref globalTimerSvc);
         GetSvc(ref uISvc);
         GetSvc(ref resourceSvc);
         GetSvc(ref audioSvc);
         GetSvc(ref messageSvc);
-
         GetSvc(ref netSvc);
-
-        resourceSvc.abLoadDone = () =>
-        {
-            logicSys = GetComponent<LogicSys>();
-            logicSys.Init();
-            resourceSvc.abLoadDone = null;
-            resourceSvc.DownloadDone();
-        };
+        UISvc.Single.AddTips("GameRootInit...");
         //初始化系统
         //WMData.EquipData equipData = new WMData.EquipData();
         //equipData.EquipQualityType = cfg.Data.EquipQualityType.Rare;
         //equipData.entryKey = new System.Collections.Generic.List<WMData.EntryKey>();
         //equipData.OpenEquip();
     }
-        
+
     public void GetSvc<T>(ref T t) where T : MonoSingle<T>
     {
         try

@@ -31,7 +31,16 @@ public static class ResPath
     public const string UIItem = UI + "Item/";
     public const string Sprites = "sprites/";
     public const string SpritesUI = Sprites + "UI/";
-
+    public static bool ISEDITOR
+    {
+        get
+        {
+#if UNITY_EDITOR
+            return true;
+#endif
+            return false;
+        }
+    }
     /// <summary>
     /// 保存文件路径
     /// </summary>
@@ -43,6 +52,7 @@ public static class ResPath
             return Application.streamingAssetsPath + "/";
 #endif
 #if UNITY_ANDROID
+  return Application.persistentDataPath + "/"+"GameRes"+"/";
         Debug.Log("这是安卓平台。。。");
 #endif
 #if UNITY_IPHONE
@@ -66,6 +76,7 @@ public static class ResPath
 #endif
 #if UNITY_ANDROID
         Debug.Log("这是安卓平台。。。");
+        return "StandaloneWindows";
 #endif
 #if UNITY_IPHONE
         Debug.Log("这是iPhone平台。。。"); // 不好听，用IOS代替
@@ -89,11 +100,12 @@ public static class ResPath
     public static string GetLoadABPath()
     {
 #if UNITY_EDITOR
-        //  return @"file:///D:\GetHubProject\DreamWJ\AssetBundles\StandaloneWindows\";
+        //return @"file:///D:\GetHubProject\DreamWJ\AssetBundles\StandaloneWindows\";
         return "AssetBundles/StandaloneWindows/";
 #endif
 #if UNITY_ANDROID
         Debug.Log("这是安卓平台。。。");
+        return @"http://localhost/AssetBundles/StandaloneWindows/";
 #endif
 #if UNITY_IPHONE
         Debug.Log("这是iPhone平台。。。"); // 不好听，用IOS代替

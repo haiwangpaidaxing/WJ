@@ -2,7 +2,7 @@
     "dataList": [
         {
             "archiveID": 1,
-            "saveDataTime": "2022/12/27 17:57:11",
+            "saveDataTime": "2022/12/29 15:07:39",
             "playerData": {
                 "selectRoleId": 1001,
                 "gold": 0,
@@ -11,7 +11,7 @@
                     {
                         "id": 1000,
                         "nexSkillID": 0,
-                        "skillName": "技能中转",
+                        "skillName": "普通攻击",
                         "skillDescribe": "",
                         "animName": "",
                         "soundEffectsPath": "",
@@ -35,12 +35,12 @@
                         "baseEffectsSkills": [
                             {
                                 "skillData": {
-                                    "className": "Repel",
-                                    "value": 5.0,
-                                    "name": "击退",
-                                    "describe": "使敌人击退效果",
+                                    "className": "",
+                                    "value": 0.0,
+                                    "name": "",
+                                    "describe": "",
                                     "skillEffectsIndex": 0,
-                                    "skillID": 10011
+                                    "skillID": 0
                                 }
                             }
                         ],
@@ -63,12 +63,12 @@
                         "baseEffectsSkills": [
                             {
                                 "skillData": {
-                                    "className": "Diaup",
-                                    "value": 4.0,
-                                    "name": "击飞",
-                                    "describe": "使其敌人击飞",
+                                    "className": "",
+                                    "value": 0.0,
+                                    "name": "",
+                                    "describe": "",
                                     "skillEffectsIndex": 0,
-                                    "skillID": 10012
+                                    "skillID": 0
                                 }
                             }
                         ],

@@ -1,0 +1,20 @@
+{
+    "resPath": [
+        "ArchiveDataConfig.json",
+        "sprites.manifest",
+        "generatedatas",
+        "soundeffects.manifest",
+        "StandaloneWindows",
+        "generatedatas.manifest",
+        "StandaloneWindows.manifest",
+        "data.manifest",
+        "Assets/StreamingAssets",
+        "prefabs",
+        "sprites",
+        "Config.json",
+        "data",
+        "StreamingAssetsPathResPathConfig.json",
+        "soundeffects",
+        "prefabs.manifest"
+    ]
+}

@@ -5,7 +5,8 @@ public class ResourceLoadiProgressPanel : BasePanel {
     public UnityEngine.UI.Text LoadProgressText;
     
     public UnityEngine.UI.Text fileSizeText;
-    
+
+    public UnityEngine.UI.Text debugText;
     public virtual void InitGetCompoent() {
         UnityEngine.Transform fprogressbar = transform.Find("FProgressBar");
         ProgressBar = fprogressbar.GetComponent<UnityEngine.UI.Slider>();
@@ -14,7 +15,11 @@ public class ResourceLoadiProgressPanel : BasePanel {
         UnityEngine.Transform ffilesizetext = transform.Find("FFileSizeText");
         fileSizeText = ffilesizetext.GetComponent<UnityEngine.UI.Text>();
     }
-    
+
+    public void Debug(string debug)
+    {
+        debugText.text = debug;       
+    }
     public override void Init() {
     }
     

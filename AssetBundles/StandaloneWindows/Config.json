@@ -2,27 +2,27 @@
     "checkDatas": [
         {
             "aBName": "StandaloneWindows",
-            "mD5": "99a16e7eb1119fb7f87232ec9ed96b"
+            "mD5": "e5cadf5d11a1f49e3517492deb0f1f5"
         },
         {
             "aBName": "data",
-            "mD5": "4449ea9e80a770eaa7919e563ab7df8"
+            "mD5": "186fd5d3bf8814e9c21feb3fcdac7f5a"
         },
         {
             "aBName": "generatedatas",
-            "mD5": "911a3423c8b087a34962b4f9798da36a"
+            "mD5": "7eb835bb7a92f15339a092954550e7"
         },
         {
             "aBName": "prefabs",
-            "mD5": "7f663fb3a53a6df82d6f1da84523273"
+            "mD5": "b0292bad9e37372d6248e575bad05f25"
         },
         {
             "aBName": "soundeffects",
-            "mD5": "3f464a207a7a44a6e353277267f436f"
+            "mD5": "7a9bc3843e5153d9f94a5e1c13b2a66"
         },
         {
             "aBName": "sprites",
-            "mD5": "8de19a31bce87045e79d6da163f18b95"
+            "mD5": "586414bdae12a1324eb69a88cd8398e"
         }
     ]
 }

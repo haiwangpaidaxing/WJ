@@ -7,10 +7,23 @@ using UnityEngine;
 
 public static class CreateABMD5
 {
-    [MenuItem("CreateABMD5/Create")]
+    [MenuItem("Create/CreateStreamingAssetsPathResPath")]
+    public static void StreamingAssetsPathResPath()
+    {
+        StreamingAssetsPathResPathConfig streamingAssetsPathResPathConfig = new StreamingAssetsPathResPathConfig();
+        UnityEngine.Object[] arr = Selection.GetFiltered(typeof(UnityEngine.Object), SelectionMode.DeepAssets);
+        for (int i = 0; i < arr.Length; i++)
+        {
+            string path = AssetDatabase.GetAssetPath(arr[i]);
+            path = path.Replace("Assets/StreamingAssets/", "");
+            streamingAssetsPathResPathConfig.resPath.Add(path);
+        }
+        string jsonData = JsonUtility.ToJson(streamingAssetsPathResPathConfig, true);
+        File.WriteAllText(Application.streamingAssetsPath + "/StreamingAssetsPathResPathConfig.json", jsonData);
+    }
+    [MenuItem("Create/CreateABMD5")]
     public static void Create()
     {
-
         CheckMD5DataConfig checkMD5DataConfig = new CheckMD5DataConfig();
         byte[] data = File.ReadAllBytes(ResPath.GetLoadABPath() + ResPath.GetABDepend());
         AssetBundle assetBundle = AssetBundle.LoadFromMemory(data);
