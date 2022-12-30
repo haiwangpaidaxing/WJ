@@ -26,7 +26,7 @@ public class LogicSys : BaseSys<LogicSys>
         UISvc.Single.CloseAll();
         resourceSvc.SetArchiveData(archiveID);
         Debug.Log("进入主场景当前选中的存档的ID为：" + archiveID);
-       // UISvc.Single.AddTips("进入主场景当前选中的存档的ID为：" + archiveID);
+        // UISvc.Single.AddTips("进入主场景当前选中的存档的ID为：" + archiveID);
         resourceSvc.JumpSceme(ScenePath.MainScene, () => { MainSceneSys.Single.Init(); });
     }
 

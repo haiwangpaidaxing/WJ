@@ -51,7 +51,7 @@ public static class SaveArchive
         // ResourceSvc.Single.ArchiveDataConfig.dataList.Remove(archiveData);
         //  ResourceSvc.Single.ArchiveDataConfig.dataList.Add(newData);
         string pathJson = JsonUtility.ToJson(ResourceSvc.Single.ArchiveDataConfig, true);
-        using (StreamWriter streamWriter = File.CreateText(SaveData.GetSavePath() + "ArchiveDataConfig.json"))
+        using (StreamWriter streamWriter = File.CreateText(ResPath.SaveFilePath + "ArchiveDataConfig.json"))
         {
             streamWriter.Write(pathJson);
             streamWriter.Close();

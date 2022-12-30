@@ -17,7 +17,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     public bool isEDITOR;
     public Dictionary<string, AssetBundle> cacheAssetBundle;
     Queue<string> abDownloadQueue = new Queue<string>();
-  
+
     StreamingAssetsPathResPathConfig streamingAssetsPathResPathConfig;
     public override void Init()
     {
@@ -160,17 +160,17 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             case UnityWebRequest.Result.ConnectionError:
                 checkCB(false);
                 UISvc.Single.AddTips("服务器未连接网络");
-                Debug.LogError("未连接网络" + huwr.error);
+                Debug.Log("未连接网络" + huwr.error);
                 yield break;
             case UnityWebRequest.Result.ProtocolError:
                 checkCB(false);
                 UISvc.Single.AddTips("错误路径" + ResPath.GetLoadABPath());
-                Debug.LogError("错误路径" + ResPath.GetLoadABPath());
+                Debug.Log("错误路径" + ResPath.GetLoadABPath());
                 yield break;
             case UnityWebRequest.Result.DataProcessingError:
                 checkCB(false);
                 UISvc.Single.AddTips("错误路径" + ResPath.GetLoadABPath());
-                Debug.LogError("错误路径" + ResPath.GetLoadABPath());
+                Debug.Log("错误路径" + ResPath.GetLoadABPath());
                 yield break;
         }
     }
@@ -284,7 +284,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         {
             UISvc.Single.AddTips("跳过校验直接开始游戏");
             Debug.Log("跳过校验直接开始游戏");
-           GameRoot.Single. abLoadDone();
+            GameRoot.Single.abLoadDone();
         }
     }
     /// <summary>
@@ -865,19 +865,21 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     /// <returns></returns>
     ArchiveDataConfig GetArchiveConfig()
     {
-        if (!File.Exists(SaveData.GetSavePath() + "ArchiveDataConfig.json"))
+        Debug.Log("获取存档配置路径为" + ResPath.SaveFilePath + "ArchiveDataConfig.json" + "——存档是否存在" + File.Exists(ResPath.SaveFilePath + "ArchiveDataConfig.json"));
+        if (!File.Exists(ResPath.SaveFilePath + "ArchiveDataConfig.json"))
         {
             archiveDataConfig = new ArchiveDataConfig();
             string pathJson = JsonUtility.ToJson(archiveDataConfig, true);
-            using (StreamWriter streamWriter = File.CreateText(SaveData.GetSavePath() + "ArchiveDataConfig.json"))
+            using (StreamWriter streamWriter = File.CreateText(ResPath.SaveFilePath + "ArchiveDataConfig.json"))
             {
                 //表示生成C#代码
                 streamWriter.Write(pathJson);
                 streamWriter.Close();
             }
         }
-        string aDataText = File.ReadAllText(SaveData.GetSavePath() + "ArchiveDataConfig.json");
+        string aDataText = File.ReadAllText(ResPath.SaveFilePath  + "ArchiveDataConfig.json");
         archiveDataConfig = JsonUtility.FromJson<ArchiveDataConfig>(aDataText);
+        UISvc.Single.AddTips("存档数量" + archiveDataConfig.dataList.Count);
         return archiveDataConfig;
     }
     /// <summary>

@@ -24,17 +24,17 @@ public class GameRoot : MonoSingle<GameRoot>
     private void Awake()
     {
         Debug.Log("GameRootInit...");
-        DontDestroyOnLoad(gameObject); 
+        DontDestroyOnLoad(gameObject);
         abLoadDone = () =>
          {
-             UISvc.Single.AddTips("000000");
+             //       UISvc.Single.AddTips("000000");
              logicSys = GetComponent<LogicSys>();
-             UISvc.Single.AddTips("111111");
+             //   UISvc.Single.AddTips("111111");
              logicSys.Init();
-             UISvc.Single.AddTips("222222");
-             UISvc.Single.AddTips("3333333");
+             //   UISvc.Single.AddTips("222222");
+             //   UISvc.Single.AddTips("3333333");
              resourceSvc.DownloadDone();
-             UISvc.Single.AddTips("4444444");
+             //   UISvc.Single.AddTips("4444444");
          };
         //初始化服务
         GetSvc(ref globalTimerSvc);
@@ -43,7 +43,7 @@ public class GameRoot : MonoSingle<GameRoot>
         GetSvc(ref audioSvc);
         GetSvc(ref messageSvc);
         GetSvc(ref netSvc);
-        UISvc.Single.AddTips("GameRootInit...");
+        // UISvc.Single.AddTips("GameRootInit...");
         //初始化系统
         //WMData.EquipData equipData = new WMData.EquipData();
         //equipData.EquipQualityType = cfg.Data.EquipQualityType.Rare;
