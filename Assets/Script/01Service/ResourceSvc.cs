@@ -56,7 +56,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
                 }));
                 bool resConfig = File.Exists(ResPath.SaveFilePath + "Config.json");
                 EnterGameCheck(resConfig);
-                resourceLoadiProgress.Debug("路径" + ResPath.SaveFilePath + "\n路径是否存在" + Directory.Exists(ResPath.SaveFilePath).ToString());
+                resourceLoadiProgress.Debug("首次进入" + "路径" + ResPath.SaveFilePath + "\n路径是否存在" + Directory.Exists(ResPath.SaveFilePath).ToString());
             }
             else
             {
@@ -150,6 +150,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     public IEnumerator CheckServer(System.Action<bool> checkCB)
     {
         string uri = ResPath.GetLoadABPath() + "Config.json";
+        Debug.Log(ResPath.GetLoadABPath());
         UnityWebRequest huwr = UnityWebRequest.Head(uri);
         yield return huwr.SendWebRequest();
         switch (huwr.result)
@@ -182,7 +183,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         //使用Head的好处是，Head会得到要下载数据的头文件，却不会下载文件。
         long totalLength = -1;
         string fileSize = "";
-        long fileSzieValue = 0;
+        long fileSizeValue = 0;
         string uri = ResPath.GetLoadABPath() + resName;
         UnityWebRequest huwr = UnityWebRequest.Head(uri);
         yield return huwr.SendWebRequest();
@@ -194,13 +195,14 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
 
                 if ((totalLength / 1048576) == 0)
                 {
-                    fileSzieValue = totalLength / 1024;
-                    fileSize = fileSzieValue + "kb";
+                    fileSizeValue = totalLength / 1024;
+                    fileSizeValue = fileSizeValue > 0 ? fileSizeValue : 1;
+                    fileSize = fileSizeValue + "kb";
                 }
                 else
                 {
-                    fileSzieValue = totalLength / 1048576;
-                    fileSize = fileSzieValue + "MB";
+                    fileSizeValue = totalLength / 1048576;
+                    fileSize = fileSizeValue + "MB";
                 }
                 break;
             case UnityWebRequest.Result.ConnectionError:
@@ -259,15 +261,15 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     }
     public void EnterGameCheck(bool value)
     {
+        NormalNetEnterGame(value);
+        //if (!PingNetAddress())//网络状态异常时候
+        //{
+        //    NetworkExceptionEnteredGame(value);
+        //}
+        //else
+        //{
 
-        if (!PingNetAddress())//网络状态异常时候
-        {
-            NetworkExceptionEnteredGame(value);
-        }
-        else
-        {
-            NormalNetEnterGame(value);
-        }
+        //}
     }
     /// <summary>
     /// 网络异常时候进入游戏
@@ -282,7 +284,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         }
         else
         {
-            UISvc.Single.AddTips("跳过校验直接开始游戏");
+            //  UISvc.Single.AddTips("跳过校验直接开始游戏");
             Debug.Log("跳过校验直接开始游戏");
             GameRoot.Single.abLoadDone();
         }
@@ -305,7 +307,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
                 else
                 {
                     //服务器开启 有网络状态  并却已经存在文件时  校验检测 
-                    UISvc.Single.AddTips("服务器开启 有网络状态  并却已经存在文件时  校验检测 ");
+                    //  UISvc.Single.AddTips("服务器开启 有网络状态  并却已经存在文件时  校验检测 ");
                     Debug.Log("服务器开启 有网络状态  并却已经存在文件时  校验检测 ");
                     StartCoroutine(GetUnityWebRequest("Config.json", GetCheckConfig));//检测更新
                 }
@@ -314,12 +316,12 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
             {
                 if (!value)
                 {
-                    UISvc.Single.AddTips("在有网络状态下，检测到服务器未开启，未有文件，强制退出");
+                    //    UISvc.Single.AddTips("在有网络状态下，检测到服务器未开启，未有文件，强制退出");
                     Debug.Log("在有网络状态下，检测到服务器未开启，未有文件，强制退出");
                 }
                 else
                 {
-                    UISvc.Single.AddTips("在有网络状态下，检测到服务器未开启，已有文件，跳过校验直接开始游戏");
+                    //    UISvc.Single.AddTips("在有网络状态下，检测到服务器未开启，已有文件，跳过校验直接开始游戏");
                     Debug.Log("在有网络状态下，检测到服务器未开启，已有文件，跳过校验直接开始游戏");
                     GameRoot.Single.abLoadDone();
                 }
@@ -480,7 +482,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         {
             resourceLoadiProgress.LoadProgressText.text = "资源无需更新";
             Debug.Log("资源无需更新");
-            UISvc.Single.AddTips("资源无需更新");
+            //   UISvc.Single.AddTips("资源无需更新");
             TimerSvc.instance.AddTask(0.5F * 1000, () => { GameRoot.Single.abLoadDone?.Invoke(); });
         }
     }
@@ -711,8 +713,13 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         {
             if (effectsSkillDataConfig == null)
             {
-                string aDataText = File.ReadAllText(SaveData.GetSavePath() + "EffectsSkillDataConfig.json");
-                effectsSkillDataConfig = JsonUtility.FromJson<EffectsSkillDataConfig>(aDataText);
+                Debug.Log("技能效果配置" + File.Exists(ResPath.SaveFilePath + "EffectsSkillDataConfig.Json"));
+                StreamReader reader = new StreamReader(ResPath.SaveFilePath + "EffectsSkillDataConfig.Json");
+                string jsonData = reader.ReadToEnd();
+                reader.Close();
+                reader.Dispose();
+                //string aDataText = File.ReadAllText(ResPath.SaveFilePath + "EffectsSkillDataConfig.json");
+                effectsSkillDataConfig = JsonUtility.FromJson<EffectsSkillDataConfig>(jsonData);
             }
             return effectsSkillDataConfig;
         }
@@ -877,9 +884,9 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
                 streamWriter.Close();
             }
         }
-        string aDataText = File.ReadAllText(ResPath.SaveFilePath  + "ArchiveDataConfig.json");
+        string aDataText = File.ReadAllText(ResPath.SaveFilePath + "ArchiveDataConfig.json");
         archiveDataConfig = JsonUtility.FromJson<ArchiveDataConfig>(aDataText);
-        UISvc.Single.AddTips("存档数量" + archiveDataConfig.dataList.Count);
+        // UISvc.Single.AddTips("存档数量" + archiveDataConfig.dataList.Count);
         return archiveDataConfig;
     }
     /// <summary>

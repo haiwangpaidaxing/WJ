@@ -1,20 +1,21 @@
 {
     "resPath": [
-        "ArchiveDataConfig.json",
         "sprites.manifest",
-        "generatedatas",
-        "soundeffects.manifest",
-        "StandaloneWindows",
-        "generatedatas.manifest",
-        "StandaloneWindows.manifest",
-        "data.manifest",
-        "Assets/StreamingAssets",
-        "prefabs",
-        "sprites",
-        "Config.json",
         "data",
         "StreamingAssetsPathResPathConfig.json",
+        "prefabs.manifest",
+        "sprites",
+        "prefabs",
+        "build_info",
+        "Config.json",
+        "generatedatas.manifest",
+        "ArchiveDataConfig.json",
+        "soundeffects.manifest",
+        "data.manifest",
+        "StandaloneWindows.manifest",
         "soundeffects",
-        "prefabs.manifest"
+        "EffectsSkillDataConfig.Json",
+        "StandaloneWindows",
+        "generatedatas"
     ]
 }

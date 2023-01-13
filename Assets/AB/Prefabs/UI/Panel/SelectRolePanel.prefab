@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1499973349}
   m_RootOrder: 0
@@ -108,6 +109,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 650321401}
   m_Father: {fileID: 772208961373658844}
@@ -227,6 +229,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 772208961671546651}
   m_RootOrder: 0
@@ -289,6 +292,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 772208963408252796}
   - {fileID: 1499973349}
@@ -352,6 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f22f2b3e870680c4eb37869c33084223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDragHandler: 0
   info: {fileID: 1483297330579768677}
   content: {fileID: 772208961332534377}
   startGameButton: {fileID: 1499973350}
@@ -386,6 +391,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 772208961332534382}
   m_Father: {fileID: 772208963408252796}
@@ -476,6 +482,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 772208961671546651}
   m_Father: {fileID: 772208961373658844}
@@ -582,6 +589,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7995990212545019537}
   m_Father: {fileID: 772208961373658844}
@@ -658,6 +666,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4760719894843170859}
   m_RootOrder: 0
@@ -754,12 +763,12 @@ PrefabInstance:
     - target: {fileID: 3909954910843221822, guid: 592a891742cf4e94db2f5dff04a965da,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 236.2561
+      value: 135
       objectReference: {fileID: 0}
     - target: {fileID: 3909954910843221822, guid: 592a891742cf4e94db2f5dff04a965da,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 101.63452
+      value: 156.05356
       objectReference: {fileID: 0}
     - target: {fileID: 3909954910843221822, guid: 592a891742cf4e94db2f5dff04a965da,
         type: 3}
@@ -799,12 +808,12 @@ PrefabInstance:
     - target: {fileID: 3909954910843221822, guid: 592a891742cf4e94db2f5dff04a965da,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 118.130005
+      value: 67.5
       objectReference: {fileID: 0}
     - target: {fileID: 3909954910843221822, guid: 592a891742cf4e94db2f5dff04a965da,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50.82007
+      value: -78.027
       objectReference: {fileID: 0}
     - target: {fileID: 3909954910843221822, guid: 592a891742cf4e94db2f5dff04a965da,
         type: 3}
@@ -821,10 +830,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4009054696017810065, guid: 592a891742cf4e94db2f5dff04a965da,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5138228185774662493, guid: 592a891742cf4e94db2f5dff04a965da,
         type: 3}
       propertyPath: m_Name
       value: FReturnButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451037556451364659, guid: 592a891742cf4e94db2f5dff04a965da,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451037556451364659, guid: 592a891742cf4e94db2f5dff04a965da,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -241596206302090280, guid: 07ed7579df588f142b916cc1ae315d94,
+        type: 3}
+    - target: {fileID: 6451037556451364659, guid: 592a891742cf4e94db2f5dff04a965da,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.22654775
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451037556451364659, guid: 592a891742cf4e94db2f5dff04a965da,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.20825917
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451037556451364659, guid: 592a891742cf4e94db2f5dff04a965da,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.3773585
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 592a891742cf4e94db2f5dff04a965da, type: 3}

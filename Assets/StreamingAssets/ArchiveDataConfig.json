@@ -2,10 +2,10 @@
     "dataList": [
         {
             "archiveID": 1,
-            "saveDataTime": "2022/12/29 15:07:39",
+            "saveDataTime": "2022/12/31 15:12:48",
             "playerData": {
                 "selectRoleId": 1001,
-                "gold": 0,
+                "gold": 10000000,
                 "heroLevel": 0,
                 "skillDatas": [
                     {
@@ -259,20 +259,22 @@
                     "bagIndex": 0
                 },
                 {
-                    "Id": 0,
-                    "ISOpen": false,
-                    "EquipName": "",
-                    "ResName": "",
-                    "Describe": "",
-                    "EntryNumber": 0,
-                    "PriceWeapons": 0,
-                    "EquipType": 0,
-                    "EquipQualityType": 0,
+                    "Id": 1001,
+                    "ISOpen": true,
+                    "EquipName": "追忆头盔",
+                    "ResName": "ZYHelmet",
+                    "Describe": "追忆头盔暂无",
+                    "EntryNumber": 1,
+                    "PriceWeapons": 1000,
+                    "EquipType": 1,
+                    "EquipQualityType": 2,
                     "Attribute_Harm": 0.0,
-                    "Attribute_HP": 0.0,
+                    "Attribute_HP": 125.0,
                     "Attribute_CritHarm": 0.0,
                     "Attribute_CriticalChance": 0.0,
-                    "entryKey": [],
+                    "entryKey": [
+                        1
+                    ],
                     "bagIndex": 0
                 },
                 {
@@ -327,7 +329,30 @@
                     "bagIndex": 0
                 }
             ],
-            "bagEquipData": []
+            "bagEquipData": [
+                {
+                    "Id": 1003,
+                    "ISOpen": true,
+                    "EquipName": "追忆长剑",
+                    "ResName": "ZYYataghan",
+                    "Describe": "追忆长剑暂无",
+                    "EntryNumber": 4,
+                    "PriceWeapons": 1000,
+                    "EquipType": 5,
+                    "EquipQualityType": 2,
+                    "Attribute_Harm": 47.0,
+                    "Attribute_HP": 0.0,
+                    "Attribute_CritHarm": 0.0,
+                    "Attribute_CriticalChance": 0.0,
+                    "entryKey": [
+                        0,
+                        2,
+                        3,
+                        1
+                    ],
+                    "bagIndex": 0
+                }
+            ]
         }
     ]
 }

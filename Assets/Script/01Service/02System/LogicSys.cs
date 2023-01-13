@@ -18,7 +18,7 @@ public class LogicSys : BaseSys<LogicSys>
         selectRolePanel = UISvc.Single.GetPanel<SelectRolePanel>(UIPath.SelectRolePanel, UISvc.StateType.Close);
         EnterLogicPanel();
         Debug.Log("初始化登录系统....");
-        UISvc.Single.AddTips("初始化登录系统....");
+        //UISvc.Single.AddTips("初始化登录系统....");
     }
 
     public void EntGame(int archiveID)

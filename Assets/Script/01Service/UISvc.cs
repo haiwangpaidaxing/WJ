@@ -120,6 +120,7 @@ public class UISvc : MonoSingle<UISvc>
         {
             if (item is T)
             {
+                SetPanelState(item, stateType);
                 return item as T;
             }
         }
@@ -127,6 +128,7 @@ public class UISvc : MonoSingle<UISvc>
         {
             if (item is T)
             {
+                SetPanelState(item, stateType);
                 return item as T;
             }
         }

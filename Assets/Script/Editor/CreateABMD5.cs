@@ -12,11 +12,17 @@ public static class CreateABMD5
     {
         StreamingAssetsPathResPathConfig streamingAssetsPathResPathConfig = new StreamingAssetsPathResPathConfig();
         UnityEngine.Object[] arr = Selection.GetFiltered(typeof(UnityEngine.Object), SelectionMode.DeepAssets);
+  
         for (int i = 0; i < arr.Length; i++)
         {
             string path = AssetDatabase.GetAssetPath(arr[i]);
             path = path.Replace("Assets/StreamingAssets/", "");
-            streamingAssetsPathResPathConfig.resPath.Add(path);
+            path = path.Replace("Assets/StreamingAssets", "");
+            if (path!="")
+            {
+                streamingAssetsPathResPathConfig.resPath.Add(path);
+                Debug.Log(path);
+            }
         }
         string jsonData = JsonUtility.ToJson(streamingAssetsPathResPathConfig, true);
         File.WriteAllText(Application.streamingAssetsPath + "/StreamingAssetsPathResPathConfig.json", jsonData);
@@ -25,23 +31,24 @@ public static class CreateABMD5
     public static void Create()
     {
         CheckMD5DataConfig checkMD5DataConfig = new CheckMD5DataConfig();
-        byte[] data = File.ReadAllBytes(ResPath.GetLoadABPath() + ResPath.GetABDepend());
+        string abPath = "AssetBundles/StandaloneWindows/";
+        byte[] data = File.ReadAllBytes(abPath + ResPath.GetABDepend());
         AssetBundle assetBundle = AssetBundle.LoadFromMemory(data);
         AssetBundleManifest assetBundleManifest = assetBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
         string[] allABName = assetBundleManifest.GetAllAssetBundles();
-        CheckData cdata = new CheckData(ResPath.GetABDepend(), GetFileHash((ResPath.GetLoadABPath() + ResPath.GetABDepend())));
+        CheckData cdata = new CheckData(ResPath.GetABDepend(), GetFileHash((abPath + ResPath.GetABDepend())));
         checkMD5DataConfig.checkDatas.Add(cdata);
-        Debug.Log(GetFileHash(ResPath.GetLoadABPath() + ResPath.GetABDepend()));
+        Debug.Log(GetFileHash(abPath + ResPath.GetABDepend()));
         foreach (var item in allABName)
         {
-            CheckData checkData = new CheckData(item, GetFileHash((ResPath.GetLoadABPath() + item)));
+            CheckData checkData = new CheckData(item, GetFileHash((abPath + item)));
             checkMD5DataConfig.checkDatas.Add(checkData);
-            Debug.Log(GetFileHash(ResPath.GetLoadABPath() + item));
+            Debug.Log(GetFileHash(abPath + item));
         }
         string jsonData = JsonUtility.ToJson(checkMD5DataConfig, true);
-        File.WriteAllText(ResPath.GetLoadABPath() + "Config.json", jsonData);
+        File.WriteAllText(abPath + "Config.json", jsonData);
         AssetBundle.UnloadAllAssetBundles(true);
-        Debug.Log("WritePath" + ResPath.GetLoadABPath() + "Config.json");
+        Debug.Log("WritePath" + abPath + "Config.json");
 
         //LuBanDataConfig luBanDataConfig = new LuBanDataConfig();
         //string lubanDataConfigPath = Application.dataPath + "/../GenerateDatas/json/";

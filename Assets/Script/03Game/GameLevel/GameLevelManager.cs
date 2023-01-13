@@ -11,6 +11,7 @@ public class GameLevelManager : MonoSingle<GameLevelManager>
     public Transform roleStartPos;
     public LevelRoomPanel levelRoomPanel;
     public GameObject EnemyList;
+    public RoleSkillPanel skillPanel;
     private void Awake()
     {
         EnemyList = new GameObject("EnemyList");

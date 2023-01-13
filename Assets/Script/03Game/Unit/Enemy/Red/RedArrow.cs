@@ -23,7 +23,7 @@ public class RedArrow : BaseArrow
         Move();
         //t += Time.fixedDeltaTime;
         //Vector2 startPos = transform.position;
-        //Vector2 p1 = new Vector2(startPos.x, startPos.y );
+        //Vector2 p1 = new Vector2(startPos.x, startPos.y);
         //Vector2 p2 = targetPos.position;
         //Vector2 point = CalculateCubicBezierPoint(t, startPos, p1, p2);
         //LookTarget(point);

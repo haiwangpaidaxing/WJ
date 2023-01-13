@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class SaveData
-{
-    public static string GetSavePath()
-    {
-        return Application.streamingAssetsPath + "/";
-    }
-}
+//public static class SaveData
+//{
+//    public static string GetSavePath()
+//    {
+//        return Application.streamingAssetsPath + "/";
+//    }
+//}
 
 public static class SoundEffects
 {
@@ -52,8 +52,8 @@ public static class ResPath
             return Application.streamingAssetsPath + "/";
 #endif
 #if UNITY_ANDROID
-  return Application.persistentDataPath + "/"+"GameRes"+"/";
-        Debug.Log("这是安卓平台。。。");
+            return Application.persistentDataPath + "/" + "GameRes" + "/";
+            Debug.Log("这是安卓平台。。。");
 #endif
 #if UNITY_IPHONE
         Debug.Log("这是iPhone平台。。。"); // 不好听，用IOS代替
@@ -101,11 +101,11 @@ public static class ResPath
     {
 #if UNITY_EDITOR
         //return @"file:///D:\GetHubProject\DreamWJ\AssetBundles\StandaloneWindows\";
-        return "AssetBundles/StandaloneWindows/";
+        return @"http://192.168.0.117:8080/StandaloneWindows/";
 #endif
 #if UNITY_ANDROID
         Debug.Log("这是安卓平台。。。");
-        return @"http://localhost/AssetBundles/StandaloneWindows/";
+        return @"http://192.168.0.117:8080/StandaloneWindows/";
 #endif
 #if UNITY_IPHONE
         Debug.Log("这是iPhone平台。。。"); // 不好听，用IOS代替
@@ -114,7 +114,7 @@ public static class ResPath
         Debug.Log("这是IOS平台。。。");
 #endif
 #if UNITY_STANDALONE_WIN
-        return @"http://localhost/AssetBundles/StandaloneWindows/";
+       return @"http://192.168.0.117:8080/StandaloneWindows/";
 #endif
 #if UNITY_STANDALONE_OSX
     Debug.Log("这是OSX平台。。。");
