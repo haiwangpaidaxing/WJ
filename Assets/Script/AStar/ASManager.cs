@@ -36,6 +36,7 @@ namespace WMAStar
         public void FindNode(Vector2Int vector2)
         {
             //∑¿÷π‘ΩΩÁ 
+
             if (mapInfo[vector2.x + 1, vector2.y] != null)//”“±ﬂ
             {
                 openList.Add(mapInfo[vector2.x + 1, vector2.y] );
