@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InputController : MonoSingle<InputController>
 {
@@ -11,11 +9,20 @@ public class InputController : MonoSingle<InputController>
     public System.Action<Vector2> inputCB;
     public System.Action<int> operaterCB;
     public bool LockDir { get; set; }
+
+    public bool isEnabled { get; private set; }
     [SerializeField]
     bool isRocker;
+
+    public void Close()
+    {
+        inputCB = null;
+        operaterCB = null;
+    }
     private void Start()
     {
-        Rocker.Single.dirEvent += (dir)=> {
+        Rocker.Single.dirEvent += (dir) =>
+        {
             if (dir != oldInput)
             {
                 isRocker = true;
@@ -26,14 +33,12 @@ public class InputController : MonoSingle<InputController>
                     return;
                 }
                 inputCB?.Invoke(oldInput);
-                if (oldInput==Vector2.zero)
+                if (oldInput == Vector2.zero)
                 {
                     isRocker = false;
                 }
             }
         };
-
-        DontDestroyOnLoad(gameObject);
     }
     private void Update()
     {
@@ -67,5 +72,5 @@ public class InputController : MonoSingle<InputController>
         }
     }
 
-   
+
 }

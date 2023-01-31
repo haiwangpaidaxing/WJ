@@ -41,7 +41,7 @@ public class HeroController : RoleController
             {
                 float value = infoPane.HP.fillAmount * roleAttribute.MaxHP;
                 value = Mathf.Lerp(value, (currentRoleHP), Time.deltaTime * 1);
-               // Debug.Log(value + "_" + currentRoleHP);
+                // Debug.Log(value + "_" + currentRoleHP);
                 infoPane.SetHP(value, this.roleAttribute.MaxHP);
             }
             else
@@ -63,11 +63,11 @@ public class HeroController : RoleController
                 isUpdateMPUI = false;
             }
         }
-       
+
     }
     protected override void Update()
     {
-        base.Update();    
+        base.Update();
     }
     public override void Injured(InjuredData injuredData)
     {
@@ -80,11 +80,12 @@ public class HeroController : RoleController
         injuredEffects.transform.position = injuredPos.position;//受伤特效的位置
         roleAttribute.SetHp((int)injuredData.harm);
         heroDatabase.Injured(injuredData);
-        //base.Injured(injuredData);
+        base.Injured(injuredData);
     }
 
     public override void Die()
     {
+        heroDatabase.roleState = RoleState.Die;
         base.Die();
     }
 

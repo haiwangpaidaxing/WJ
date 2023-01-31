@@ -11,12 +11,12 @@ public class RedRoleTAState : MonsterAttackState
     RedMonsterDatabase redData;
     public RedRoleTAState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
     {
-        redData = mData as RedMonsterDatabase;
+       
     }
     public override void Init(Database database)
     {
         base.Init(database);
-        redData = mData as RedMonsterDatabase;
+        redData = database.GetComponent<RedMonsterDatabase>();
     }
     protected override void Enter()
     {

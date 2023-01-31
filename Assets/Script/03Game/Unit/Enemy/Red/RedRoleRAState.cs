@@ -14,7 +14,7 @@ public class RedRoleRAState : MonsterAttackState
     public override void Init(Database database)
     {
         base.Init(database);
-        redData = this.database as RedMonsterDatabase;
+        redData  = database.GetComponent<RedMonsterDatabase>();
 
     }
     protected override void Enter()

@@ -13,7 +13,7 @@ public class Room
     public Action quitCB;
     [Header("房间配置")]
     public RoomConfig roomConfig;
-
+    public List<BTTree> treeList = new List<BTTree>();
     public void Enter()
     {
         //Open Null Wall
@@ -38,6 +38,15 @@ public class Room
     {
         Create();
     }
+
+    public void End()
+    {
+        foreach (var item in treeList)
+        {
+            item.GetComponent<Animator>().Play(RoleAnimNmae.Idle);
+            item.isRuning = false;
+        }
+    }
     public void Create()
     {
         if (currentMonsterCount == 0)//代表制造出来的怪物全部死亡 开始准备下一波怪物
@@ -59,8 +68,8 @@ public class Room
                     monsterObject.GetComponent<MonsterController>().dieCB = MonsterDieCB;
                     monsterObject.GetComponent<MonsterDatabase>().patrolPoint = roomConfig.createConfig[i].patrolPoint;
                     currentMonsterCount++;
+                    treeList.Add(monsterObject.GetComponent<BTTree>());
                 }
-
             }
             roomConfig.loop--;
         }

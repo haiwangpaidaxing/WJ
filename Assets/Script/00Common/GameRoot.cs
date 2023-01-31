@@ -27,14 +27,9 @@ public class GameRoot : MonoSingle<GameRoot>
         DontDestroyOnLoad(gameObject);
         abLoadDone = () =>
          {
-             //       UISvc.Single.AddTips("000000");
              logicSys = GetComponent<LogicSys>();
-             //   UISvc.Single.AddTips("111111");
              logicSys.Init();
-             //   UISvc.Single.AddTips("222222");
-             //   UISvc.Single.AddTips("3333333");
              resourceSvc.DownloadDone();
-             //   UISvc.Single.AddTips("4444444");
          };
         //初始化服务
         GetSvc(ref globalTimerSvc);

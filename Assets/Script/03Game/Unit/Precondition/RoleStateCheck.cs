@@ -18,7 +18,7 @@ public class RoleStateCheck : BTPrecondition
     public override void Init(Database database)
     {
         base.Init(database);
-        heroDatabase = (HeroDatabase)database;
+        heroDatabase = database.GetComponent<HeroDatabase>();
         heroController = (HeroController)database.roleController;
     }
     protected override bool DoEvaluate()
@@ -111,7 +111,7 @@ public class MonsterStateCheck : BTPrecondition
     public override void Init(Database database)
     {
         base.Init(database);
-        mData = (MonsterDatabase)database;
+        mData = database.GetComponent<MonsterDatabase>();
     }
     protected override bool DoEvaluate()
     {

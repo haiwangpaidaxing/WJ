@@ -107,8 +107,8 @@ public class RedRoleStateCheck : MonsterStateCheck
     public override void Init(Database database)
     {
         base.Init(database);
-        mData = (MonsterDatabase)database;
-        redData = (RedMonsterDatabase)database;
+        mData = database.GetComponent<MonsterDatabase>(); 
+        redData = database.GetComponent<RedMonsterDatabase>();
     }
 
     public override bool Injured()

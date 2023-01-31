@@ -46,8 +46,12 @@ namespace WUBT
         }
         public void Injured(InjuredData injuredData)
         {
+            if (roleState == RoleState.Die)
+            {
+                return;
+            }
             roleState = RoleState.Injured;
-            this.injuredData = injuredData;        
+            this.injuredData = injuredData;
             updateInjuredCB?.Invoke();
         }
     }

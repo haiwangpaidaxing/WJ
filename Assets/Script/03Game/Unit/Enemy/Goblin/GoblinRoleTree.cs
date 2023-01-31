@@ -6,7 +6,7 @@ using WMState;
 
 namespace WUBT
 {
-    public class GoblinRoleTree : BTTree<MonsterDatabase>
+    public class GoblinRoleTree : BTTree
     {
         public override void Init()
         {

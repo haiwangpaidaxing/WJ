@@ -9,7 +9,7 @@ public class StateCheck : BTPrecondition
     HeroDatabase heroDatabase;
     public override void Init(Database database)
     {
-        heroDatabase = (HeroDatabase)database;
+        heroDatabase = database.GetComponent<HeroDatabase>();
         base.Init(database);
     }
     public StateCheck(CheckType groundCheck)

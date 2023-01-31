@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using WMState;
 using WUBT;
-public class RoleTree : BTTree<HeroDatabase>
+public class RoleTree : BTTree
 {
- 
+
     public override void Init()
     {
         base.Init();
@@ -18,6 +18,9 @@ public class RoleTree : BTTree<HeroDatabase>
 
         //  BTPrioritySelector skillPS = new BTPrioritySelector(new SkillCheck(), "SelectSkill");
         //  BTPrioritySelector thump = new BTPrioritySelector(, "普通攻击");//轻击节点
+
+        BTPrioritySelector dieNode = new BTPrioritySelector(new RoleStateCheck(RoleStateCheck.CheckType.Die), "Die");
+        dieNode.AddChild(new RoleDie("Die"));
 
         //站立
         BTParallel grIdleParallel = new(new RoleStateCheck(RoleStateCheck.CheckType.Idle), BTParallel.ParallelFunction.Or, "Idle");
@@ -46,7 +49,7 @@ public class RoleTree : BTTree<HeroDatabase>
         RoleFall roleFall = new RoleFall(RoleAnimNmae.Fall);
         airFallSelector.AddChild(roleFall);
 
-        BTPrioritySelector injuredNode = new BTPrioritySelector(new RoleStateCheck( RoleStateCheck.CheckType.Injured),"Injured");
+        BTPrioritySelector injuredNode = new BTPrioritySelector(new RoleStateCheck(RoleStateCheck.CheckType.Injured), "Injured");
         RoleInjuredState roleInjuredState = new RoleInjuredState("Injured");
 
 
@@ -62,6 +65,7 @@ public class RoleTree : BTTree<HeroDatabase>
         groundSelector.AddChild(grIdleParallel);//站立
 
         //根节点的添加
+        root.AddChild(dieNode);
         root.AddChild(injuredNode);
         root.AddChild(groundSelector);
         root.AddChild(airSelect);

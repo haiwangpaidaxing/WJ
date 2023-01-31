@@ -1,0 +1,375 @@
+{
+    "dataList": [
+        {
+            "archiveID": 1,
+            "saveDataTime": "2023/1/30 14:36:49",
+            "playerData": {
+                "selectRoleId": 1001,
+                "gold": 10000000,
+                "heroLevel": 0,
+                "skillDatas": [
+                    {
+                        "id": 1000,
+                        "nexSkillID": 0,
+                        "skillName": "普通攻击",
+                        "skillDescribe": "",
+                        "animName": "",
+                        "soundEffectsPath": "",
+                        "baseEffectsSkills": [],
+                        "MP": 20.0,
+                        "cd": 0.10000000149011612,
+                        "skillTime": 0.0,
+                        "currentCD": 0.0,
+                        "attackBackswing": 0.10000000149011612,
+                        "comboValidTime": 0.0,
+                        "comboCurrentValidTime": 0.0,
+                        "skillEffectsNuumber": 0
+                    },
+                    {
+                        "id": 10011,
+                        "nexSkillID": 0,
+                        "skillName": "普通攻击第一段",
+                        "skillDescribe": "Qwq",
+                        "animName": "GroundA1",
+                        "soundEffectsPath": "",
+                        "baseEffectsSkills": [
+                            {
+                                "skillData": {
+                                    "className": "",
+                                    "value": 0.0,
+                                    "name": "",
+                                    "describe": "",
+                                    "skillEffectsIndex": 0,
+                                    "skillID": 0
+                                }
+                            }
+                        ],
+                        "MP": 20.0,
+                        "cd": 0.10000000149011612,
+                        "skillTime": 0.0,
+                        "currentCD": 0.0,
+                        "attackBackswing": 0.20000000298023225,
+                        "comboValidTime": 0.20000000298023225,
+                        "comboCurrentValidTime": 0.0,
+                        "skillEffectsNuumber": 1
+                    },
+                    {
+                        "id": 10012,
+                        "nexSkillID": 0,
+                        "skillName": "普通攻击第二段",
+                        "skillDescribe": "1.1",
+                        "animName": "GroundA2",
+                        "soundEffectsPath": "",
+                        "baseEffectsSkills": [
+                            {
+                                "skillData": {
+                                    "className": "",
+                                    "value": 0.0,
+                                    "name": "",
+                                    "describe": "",
+                                    "skillEffectsIndex": 0,
+                                    "skillID": 0
+                                }
+                            }
+                        ],
+                        "MP": 20.0,
+                        "cd": 0.10000000149011612,
+                        "skillTime": 0.0,
+                        "currentCD": 0.0,
+                        "attackBackswing": 0.20000000298023225,
+                        "comboValidTime": 0.20000000298023225,
+                        "comboCurrentValidTime": 0.0,
+                        "skillEffectsNuumber": 1
+                    },
+                    {
+                        "id": 10013,
+                        "nexSkillID": 0,
+                        "skillName": "普通攻击第三段",
+                        "skillDescribe": "1.1",
+                        "animName": "GroundA3",
+                        "soundEffectsPath": "",
+                        "baseEffectsSkills": [
+                            {
+                                "skillData": {
+                                    "className": "",
+                                    "value": 0.0,
+                                    "name": "",
+                                    "describe": "",
+                                    "skillEffectsIndex": 0,
+                                    "skillID": 0
+                                }
+                            }
+                        ],
+                        "MP": 20.0,
+                        "cd": 0.10000000149011612,
+                        "skillTime": 0.0,
+                        "currentCD": 0.0,
+                        "attackBackswing": 0.20000000298023225,
+                        "comboValidTime": 0.20000000298023225,
+                        "comboCurrentValidTime": 0.0,
+                        "skillEffectsNuumber": 1
+                    },
+                    {
+                        "id": 1002,
+                        "nexSkillID": 0,
+                        "skillName": "防御",
+                        "skillDescribe": "0a0",
+                        "animName": "Def",
+                        "soundEffectsPath": "",
+                        "baseEffectsSkills": [],
+                        "MP": 20.0,
+                        "cd": 5.0,
+                        "skillTime": 0.0,
+                        "currentCD": 0.0,
+                        "attackBackswing": 0.0,
+                        "comboValidTime": 0.0,
+                        "comboCurrentValidTime": 0.0,
+                        "skillEffectsNuumber": 0
+                    },
+                    {
+                        "id": 12001,
+                        "nexSkillID": 0,
+                        "skillName": "空中攻击第一段",
+                        "skillDescribe": "0a0",
+                        "animName": "AirA1",
+                        "soundEffectsPath": "",
+                        "baseEffectsSkills": [
+                            {
+                                "skillData": {
+                                    "className": "",
+                                    "value": 0.0,
+                                    "name": "",
+                                    "describe": "",
+                                    "skillEffectsIndex": 0,
+                                    "skillID": 0
+                                }
+                            }
+                        ],
+                        "MP": 20.0,
+                        "cd": 0.10000000149011612,
+                        "skillTime": 0.0,
+                        "currentCD": 0.0,
+                        "attackBackswing": 0.20000000298023225,
+                        "comboValidTime": 0.20000000298023225,
+                        "comboCurrentValidTime": 0.0,
+                        "skillEffectsNuumber": 1
+                    },
+                    {
+                        "id": 12002,
+                        "nexSkillID": 0,
+                        "skillName": "空中攻击第二段",
+                        "skillDescribe": "0a0",
+                        "animName": "AirA2",
+                        "soundEffectsPath": "",
+                        "baseEffectsSkills": [
+                            {
+                                "skillData": {
+                                    "className": "",
+                                    "value": 0.0,
+                                    "name": "",
+                                    "describe": "",
+                                    "skillEffectsIndex": 0,
+                                    "skillID": 0
+                                }
+                            }
+                        ],
+                        "MP": 20.0,
+                        "cd": 0.10000000149011612,
+                        "skillTime": 0.0,
+                        "currentCD": 0.0,
+                        "attackBackswing": 0.20000000298023225,
+                        "comboValidTime": 0.20000000298023225,
+                        "comboCurrentValidTime": 0.0,
+                        "skillEffectsNuumber": 1
+                    },
+                    {
+                        "id": 12003,
+                        "nexSkillID": 0,
+                        "skillName": "空中攻击第三段",
+                        "skillDescribe": "0a0",
+                        "animName": "AirA3",
+                        "soundEffectsPath": "",
+                        "baseEffectsSkills": [
+                            {
+                                "skillData": {
+                                    "className": "",
+                                    "value": 0.0,
+                                    "name": "",
+                                    "describe": "",
+                                    "skillEffectsIndex": 0,
+                                    "skillID": 0
+                                }
+                            }
+                        ],
+                        "MP": 20.0,
+                        "cd": 0.10000000149011612,
+                        "skillTime": 0.0,
+                        "currentCD": 0.0,
+                        "attackBackswing": 0.0,
+                        "comboValidTime": 0.20000000298023225,
+                        "comboCurrentValidTime": 0.0,
+                        "skillEffectsNuumber": 1
+                    },
+                    {
+                        "id": 1003,
+                        "nexSkillID": 0,
+                        "skillName": "法术攻击",
+                        "skillDescribe": "法术攻击",
+                        "animName": "MagicArts",
+                        "soundEffectsPath": "",
+                        "baseEffectsSkills": [
+                            {
+                                "skillData": {
+                                    "className": "",
+                                    "value": 0.0,
+                                    "name": "",
+                                    "describe": "",
+                                    "skillEffectsIndex": 0,
+                                    "skillID": 0
+                                }
+                            }
+                        ],
+                        "MP": 10.0,
+                        "cd": 0.10000000149011612,
+                        "skillTime": 0.0,
+                        "currentCD": 0.0,
+                        "attackBackswing": 0.10000000149011612,
+                        "comboValidTime": 0.20000000298023225,
+                        "comboCurrentValidTime": 0.0,
+                        "skillEffectsNuumber": 1
+                    }
+                ]
+            },
+            "equipSoltDatas": [
+                {
+                    "Id": 0,
+                    "ISOpen": false,
+                    "EquipName": "",
+                    "ResName": "",
+                    "Describe": "",
+                    "EntryNumber": 0,
+                    "PriceWeapons": 0,
+                    "EquipType": 0,
+                    "EquipQualityType": 0,
+                    "Attribute_Harm": 0.0,
+                    "Attribute_HP": 0.0,
+                    "Attribute_CritHarm": 0.0,
+                    "Attribute_CriticalChance": 0.0,
+                    "entryKey": [],
+                    "bagIndex": 0
+                },
+                {
+                    "Id": 1001,
+                    "ISOpen": true,
+                    "EquipName": "追忆头盔",
+                    "ResName": "ZYHelmet",
+                    "Describe": "追忆头盔暂无",
+                    "EntryNumber": 1,
+                    "PriceWeapons": 1000,
+                    "EquipType": 1,
+                    "EquipQualityType": 2,
+                    "Attribute_Harm": 0.0,
+                    "Attribute_HP": 125.0,
+                    "Attribute_CritHarm": 0.0,
+                    "Attribute_CriticalChance": 0.0,
+                    "entryKey": [
+                        1
+                    ],
+                    "bagIndex": 0
+                },
+                {
+                    "Id": 0,
+                    "ISOpen": false,
+                    "EquipName": "",
+                    "ResName": "",
+                    "Describe": "",
+                    "EntryNumber": 0,
+                    "PriceWeapons": 0,
+                    "EquipType": 0,
+                    "EquipQualityType": 0,
+                    "Attribute_Harm": 0.0,
+                    "Attribute_HP": 0.0,
+                    "Attribute_CritHarm": 0.0,
+                    "Attribute_CriticalChance": 0.0,
+                    "entryKey": [],
+                    "bagIndex": 0
+                },
+                {
+                    "Id": 0,
+                    "ISOpen": false,
+                    "EquipName": "",
+                    "ResName": "",
+                    "Describe": "",
+                    "EntryNumber": 0,
+                    "PriceWeapons": 0,
+                    "EquipType": 0,
+                    "EquipQualityType": 0,
+                    "Attribute_Harm": 0.0,
+                    "Attribute_HP": 0.0,
+                    "Attribute_CritHarm": 0.0,
+                    "Attribute_CriticalChance": 0.0,
+                    "entryKey": [],
+                    "bagIndex": 0
+                },
+                {
+                    "Id": 0,
+                    "ISOpen": false,
+                    "EquipName": "",
+                    "ResName": "",
+                    "Describe": "",
+                    "EntryNumber": 0,
+                    "PriceWeapons": 0,
+                    "EquipType": 0,
+                    "EquipQualityType": 0,
+                    "Attribute_Harm": 0.0,
+                    "Attribute_HP": 0.0,
+                    "Attribute_CritHarm": 0.0,
+                    "Attribute_CriticalChance": 0.0,
+                    "entryKey": [],
+                    "bagIndex": 0
+                }
+            ],
+            "bagEquipData": [
+                {
+                    "Id": 1003,
+                    "ISOpen": true,
+                    "EquipName": "追忆长剑",
+                    "ResName": "ZYYataghan",
+                    "Describe": "追忆长剑暂无",
+                    "EntryNumber": 4,
+                    "PriceWeapons": 1000,
+                    "EquipType": 5,
+                    "EquipQualityType": 2,
+                    "Attribute_Harm": 47.0,
+                    "Attribute_HP": 0.0,
+                    "Attribute_CritHarm": 0.0,
+                    "Attribute_CriticalChance": 0.0,
+                    "entryKey": [
+                        0,
+                        2,
+                        3,
+                        1
+                    ],
+                    "bagIndex": 0
+                },
+                {
+                    "Id": 1009,
+                    "ISOpen": false,
+                    "EquipName": "白银剑",
+                    "ResName": "SilverSword",
+                    "Describe": "白银打造的剑",
+                    "EntryNumber": 0,
+                    "PriceWeapons": 700,
+                    "EquipType": 5,
+                    "EquipQualityType": 3,
+                    "Attribute_Harm": 0.0,
+                    "Attribute_HP": 0.0,
+                    "Attribute_CritHarm": 0.0,
+                    "Attribute_CriticalChance": 0.0,
+                    "entryKey": [],
+                    "bagIndex": 1
+                }
+            ]
+        }
+    ]
+}

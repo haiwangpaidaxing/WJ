@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1577837266
+CRC: 2323934244
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b8e34b4e3c0c6a35e5ebc444fe1b3a28
+    Hash: 2c8205dd4e775325d837e4c2fc741f9e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 255c8d781a068c381f5be003530a5735
+    Hash: 5ba0907a1e4679efaca5aa2f35c27b67
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -125,6 +125,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 0e741c67e45b83740a7b27f31475b345, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 6ceb3ae472c916c4c8260e23cc9b6f90, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6e9ba09d5270b2943a902ec7e967db8f, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 38c9871419d8c44419a6760115a9392c, type: 3}
 - Class: 114
@@ -260,6 +262,7 @@ Assets:
 - Assets/AB/Prefabs/UI/Panel/BagPanel.prefab
 - Assets/AB/Prefabs/UI/Item/ShopEquipSalesItem.prefab
 - Assets/AB/Prefabs/UI/Panel/ArchivePanel.prefab
+- Assets/AB/Prefabs/UI/Panel/GameOverPanel.prefab
 - Assets/AB/Prefabs/UI/Item/ShopOpenWeaponEquipItem.prefab
 - Assets/AB/Prefabs/UI/Panel/RoleInfoPane.prefab
 - Assets/AB/Prefabs/UI/Item/BagEquipItem.prefab

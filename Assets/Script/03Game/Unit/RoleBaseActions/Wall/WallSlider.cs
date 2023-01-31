@@ -14,7 +14,7 @@ public class RoleWallSlider : BaseRoleState
 
     public override void Init(Database database)
     {
-        heroDatabase = database as HeroDatabase;
+        heroDatabase = database.GetComponent<HeroDatabase>();
         base.Init(database);
     }
 

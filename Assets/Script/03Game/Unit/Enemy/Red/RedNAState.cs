@@ -15,7 +15,7 @@ public class RedNAState : MonsterAttackState
     public override void Init(Database database)
     {
         base.Init(database);
-        redData = mData as RedMonsterDatabase;
+        redData = database.GetComponent<RedMonsterDatabase>();
     }
     public RedNAState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "", int combosCount = 3) : base(monsterStateEnum, animName, audioName)
     {

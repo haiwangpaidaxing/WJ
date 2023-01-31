@@ -15,10 +15,10 @@ namespace WMState
         public override void Init(Database database)
         {
             base.Init(database);
-            heroDatabase = (HeroDatabase)database;
+            heroDatabase = database.GetComponent<HeroDatabase>();
         }
         public RoleInjuredState(string animName, string audioName = "") : base(animName, audioName)
-        {    
+        {
         }
         protected override void Enter()
         {

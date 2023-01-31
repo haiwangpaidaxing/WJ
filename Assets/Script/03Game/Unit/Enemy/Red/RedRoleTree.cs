@@ -4,7 +4,7 @@ using UnityEngine;
 using WMState;
 using WUBT;
 
-public class RedRoleTree : BTTree<RedMonsterDatabase>
+public class RedRoleTree : BTTree
 {
 
     public override void Init()

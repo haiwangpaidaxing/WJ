@@ -9,7 +9,7 @@ public class BaseMonsterState : BaseRoleState
 {
     protected MonsterDatabase mData;
     protected MonsterStateEnum stateEnum;
- 
+
 
     public BaseMonsterState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(animName, audioName)
     {
@@ -20,14 +20,14 @@ public class BaseMonsterState : BaseRoleState
     {
         isAnimatorOver = false;
         mData.monsterStateEnum = stateEnum;
-        roleController.MoveX(0,0);
+        roleController.MoveX(0, 0);
         base.Enter();
     }
 
     public override void Init(Database database)
     {
-        mData = database as MonsterDatabase;
+        mData = database.GetComponent<MonsterDatabase>();
         base.Init(database);
     }
-   
+
 }

@@ -23,7 +23,7 @@ public class RoleController : MonoBehaviour, IInjured
     public Animator animator;
     public BaseSkill currentSkill;
     public RoleAttribute roleAttribute;
-    [Header("受伤位置")]    
+    [Header("受伤位置")]
     public Transform injuredPos;
     [SerializeField]
     PhysicsMaterial2D AirMaterial;
@@ -32,9 +32,11 @@ public class RoleController : MonoBehaviour, IInjured
     public MonsterInjuredState injuredState;
     public SpriteRenderer spriteRenderer;
 
+    public Action DieCB;
+
     public virtual void Init()
     {
-       
+
         //AirMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("AirMaterial");
         //GroundMaterial = ResourceSvc.Single.Load<PhysicsMaterial2D>("GroundMaterial");
 
@@ -74,9 +76,7 @@ public class RoleController : MonoBehaviour, IInjured
 
     public virtual void MoveX(float dir, float speed)
     {
-
         SyncImage(dir);
-
         if (dir != 0)
         {
             roleDir = dir;
@@ -123,6 +123,7 @@ public class RoleController : MonoBehaviour, IInjured
     }
     public virtual void Injured(InjuredData injuredData)
     {
+        //创建受伤的文本
         ResourceSvc.Single.LoadOrCreate<GameObject>(UIItemPath.DamageTextitem).GetComponent<DamageText>().Init(injuredData.harm, injuredPos);
     }
     public void SetAirPhysicsMaterial2D()
@@ -137,15 +138,14 @@ public class RoleController : MonoBehaviour, IInjured
 
     public virtual void Die()
     {
-
-
+        DieCB?.Invoke();
+       
     }
     private void DieCheck(int value)
     {
         if (value <= 0)
         {
             Die();
-            Debug.Log("Die...TODO");
         }
     }
     float currentGhostTime;
@@ -205,7 +205,7 @@ public class RoleController : MonoBehaviour, IInjured
             yield return new WaitForSecondsRealtime(0.02f);
         }
     }
-    
+
 }
 [System.Serializable]
 public struct CreateGhostData
@@ -231,7 +231,7 @@ public class GhostData
         this.sprite = sprite;
         ghost = ResourceSvc.Single.LoadOrCreate<GameObject>(HeroPath.Ghost);
         SpriteRenderer spriteRenderer = ghost.GetComponent<SpriteRenderer>();
-        ghost.GetComponent<SpriteRenderer>().sortingOrder= -1;
+        ghost.GetComponent<SpriteRenderer>().sortingOrder = -1;
         ghost.transform.position = startPos;
         spriteRenderer.sprite = sprite;
         spriteRenderer.color = color;
@@ -260,7 +260,7 @@ public class GhostData
         }
         return false;
     }
-    
+
     public void Clear()
     {
         GameObject.Destroy(ghost);

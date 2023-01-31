@@ -12,6 +12,10 @@ public class ZeroController : HeroController
     public override void Init()
     {
         base.Init();
+        foreach (var item in ResourceSvc.Single.CurrentArchiveData.playerData.skillDatas)
+        {
+            item.currentCD = 0;
+        }
 
         RoleSkillPanel roleSkillPanel = UISvc.Single.GetPanel<RoleSkillPanel>(UIPath.RoleGamePanel, UISvc.StateType.Show);
 
@@ -60,7 +64,6 @@ public class ZeroController : HeroController
         zeroMagicArtsWeapon = ResourceSvc.Single.LoadOrCreate<GameObject>(WeaponPath.ZeroCastWeapon).GetComponent<ZeroMagicArtsWeapon>();
         zeroMagicArtsWeapon.Init(weapPos);
     }
-
 }
 
 

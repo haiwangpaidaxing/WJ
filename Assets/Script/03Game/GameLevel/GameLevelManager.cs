@@ -12,15 +12,43 @@ public class GameLevelManager : MonoSingle<GameLevelManager>
     public LevelRoomPanel levelRoomPanel;
     public GameObject EnemyList;
     public RoleSkillPanel skillPanel;
+    public GameOverPanel gameOverPanel;
+    public HeroController heroController { get; set; }
     private void Awake()
     {
         EnemyList = new GameObject("EnemyList");
         levelRoomPanel = UISvc.Single.GetPanel<LevelRoomPanel>(UIPath.GameLevelRoomPanel, UISvc.StateType.Show);
+        gameOverPanel = UISvc.Single.GetPanel<GameOverPanel>(UIPath.GameOverPanel, UISvc.StateType.Close);
         GameObject role = GameRoot.Single.CreateRole(MainSceneSys.Single.playerData.roleData);
         role.transform.position = roleStartPos.position;
         CameraControl.Single.SetTarget(role.transform);
+        heroController = role.GetComponent<HeroController>();
+        heroController.DieCB += RoleDie;
         Init();
+        gameOverPanel.ReturnBtn.onClick.AddListener(EnterMainScene);
     }
+    public void EnterMainScene()
+    {
+        ResourceSvc.Single.JumpSceme(ScenePath.MainScene, () => { MainSceneSys.Single.Init(); });
+    }
+    public void RoleDie()
+    {
+        InputController.Single.Close();
+        levelRoomPanel.Show("You Die");
+        TimerSvc.instance.AddTask(0.5F * 1000, () =>
+          {
+              currentRoom.End();
+              GameRoot.Single.PauseFrame(new Animator[] { heroController.animator });
+              UISvc.Single.SetPanelState(gameOverPanel, UISvc.StateType.Show);
+          });
+
+    }
+
+    public void GameWinner()
+    {
+
+    }
+
     public void Init()
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -55,7 +83,7 @@ public class GameLevelManager : MonoSingle<GameLevelManager>
                     rooms[i].Enter();
                     currentRoom = rooms[i];
                     rooms.RemoveAt(i);
-                
+
                 }
             }
         }

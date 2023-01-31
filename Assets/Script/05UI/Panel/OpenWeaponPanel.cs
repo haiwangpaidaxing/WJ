@@ -98,22 +98,23 @@ public class OpenWeaponPanel : BasePanelCancelDrag, IDropHandler
     public WMData.EquipData RandomEntryPromote(ref WMData.EquipData equipData)
     {
         //随机到的词条
-        int r = Random.Range(0, equipData.entryKey.Count);
-        switch (equipData.entryKey[r])
+        foreach (var item in equipData.entryKey)
         {
-          
-            case EntryKey.Harm:
-                equipData.Attribute_Harm += Random.Range(10, 100); 
-                break;
-            case EntryKey.Hp:
-                equipData.Attribute_HP += Random.Range(50, 200);
-                break;
-            case EntryKey.CritHarm:
-                equipData.Attribute_CritHarm += Random.Range(1, 20);
-                break;
-            case EntryKey.CriticalChance:
-                equipData.Attribute_CriticalChance += Random.Range(1, 20); ;
-                break;
+            switch (item)
+            {
+                case EntryKey.Harm:
+                    equipData.Attribute_Harm += Random.Range(10, 100);
+                    break;
+                case EntryKey.Hp:
+                    equipData.Attribute_HP += Random.Range(50, 200);
+                    break;
+                case EntryKey.CritHarm:
+                    equipData.Attribute_CritHarm += Random.Range(1, 20);
+                    break;
+                case EntryKey.CriticalChance:
+                    equipData.Attribute_CriticalChance += Random.Range(1, 20); ;
+                    break;
+            }
         }
         return equipData;
     }

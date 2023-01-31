@@ -8,11 +8,12 @@
 //using UnityEditor.Callbacks;
 //using UnityEngine;
 //using UnityEngine.UI;
-
+////当Assets中的CS文件名与类名继承Mono不一致时候项目会崩溃
 //public class GenCode : EditorWindow
 //{
 //    //删除所有Miss的脚本
 
+  
 //    public class DeleteMissingScripts
 //    {
 //        [MenuItem("Tool/Cleanup Missing Scripts")]
@@ -66,7 +67,7 @@
 //    /// <summary>
 //    /// 生成面板路径
 //    /// </summary>
-//    public string genUIPanelPath = @"D:\GetHubProject\Dream\Assets\Script\Gen";
+//    public string genUIPanelPath = @"D:\GetHubProject\DreamWJ\Assets\Script\05UI\Panel\";
 //    /// <summary>
 //    /// 生成UI面板类名
 //    /// </summary>
@@ -77,7 +78,7 @@
 //        EditorWindow editorWindow = GetWindow(typeof(GenCode), true);
 //    }
 //    static GenSelectPanelData genSelectPanelData = new GenSelectPanelData();
-
+    
 //    private void OnGUI()
 //    {
 
@@ -115,7 +116,7 @@
 //            for (int i = 0; i < arr.Length; i++)
 //            {
 
-//                string panelPath = AssetDatabase.GetAssetPath(arr[i]);
+//                string panelPath = AssetDatabase.GetAssetPath(arr[i]);//获取点击资源的路径
 //                GameObject panel = AssetDatabase.LoadAssetAtPath(panelPath, typeof(GameObject)) as GameObject;
 //                genSelectPanelData.selectPath.Add(panelPath);
 //                if (panel != null)
@@ -157,6 +158,8 @@
 //                        }
 
 //                    }
+
+
 //                    GenTool.Gen(genUIPanelPath, panel.name, panelClass);//生成脚本
 
 //                    //// 1.Load(命名空间名称)，GetType(命名空间.类名)
@@ -196,7 +199,6 @@
 //    public static void OnCompileScripts()
 //    {
 //        UpdatePanel();
-//        //    Debug.Log("Update");
 //    }
 //    public static void SaveelectPanelData()
 //    {

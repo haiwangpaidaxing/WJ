@@ -912,7 +912,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         GameObject monster = LoadOrCreate<GameObject>(EnemyPath.Enemy + "/" + monsterData.ResName);
         monster.AddComponent<RoleAttribute>().Init(monsterData.RoleAttribute);//必须首位添加
         monster.GetComponent<Database>().Init();
-        BTTree<MonsterDatabase> bTTree = monster.GetComponent<BTTree<MonsterDatabase>>();
+        BTTree bTTree = monster.GetComponent<BTTree>();
         if (bTTree != null)
         {
             bTTree.Init();

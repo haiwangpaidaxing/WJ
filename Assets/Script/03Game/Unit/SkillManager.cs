@@ -25,17 +25,6 @@ public class SkillManager : MonoBehaviour
             return _currentSkill;
         }
         return null;
-        //if (CheckSkillConditions(ref currentSkill.skillData))
-        //{
-        //    if (currentSkill.skillData.nexSkillID != 0)
-        //    {
-        //        if (currentSkill.skillData.comboCurrentValidTime > 0)
-        //        {
-        //            currentSkill = FindSkillByID(currentSkill.skillData.id);
-        //        }
-        //    }
-        //    return currentSkill;
-        //}
     }
 
     //根据ID查找技能
@@ -58,28 +47,11 @@ public class SkillManager : MonoBehaviour
     }
     private bool CheckSkillConditions(ref SkillData skillData)
     {
-        //if (skillData.comboCurrentValidTime > 0)
-        //{
-        //    BaseSkill nextSkill = FindSkillByID(skillData.nexSkillID);
-        //    nextSkill.skillData.currentCD = nextSkill.skillData.cd + nextSkill.skillData.skillTime;
-        //    skillCDCoroutine = StartCoroutine(SkillCD(nextSkill.skillData));
-        //    return true;
-        //}
         if (skillData.currentCD <= 0 && (roleAttribute.GetMP() - skillData.MP >= 0))
         {
             roleAttribute.SetMP((int)skillData.MP);
             skillData.currentCD = skillData.cd + skillData.skillTime;
             AddCDTask(ref skillData);
-            //技能的动画时间+技能cd
-            //for (int i = 0; i < skillCDCoroutineList.Length; i++)
-            //{
-            //    if (skillCDCoroutineList[i] == null)
-            //    {
-            //        skillCDCoroutineList[i] = StartCoroutine(SkillCD(skillData, i));
-            //        break;
-            //    }
-            //}
-            //TimerSvc.instance.AddTask(skillData.currentCD, () => { SkillCD( skillData); },"CD");
             return true;
         }
         return false;
