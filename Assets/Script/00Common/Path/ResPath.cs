@@ -123,6 +123,7 @@ public static class ResPath
 }
 public class ScenePath
 {
+    public const string Logic = "Main"; 
     public const string MainScene = "MainScene";
 }
 public static class PrefabPath

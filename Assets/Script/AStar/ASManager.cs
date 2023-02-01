@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -174,7 +173,7 @@ namespace WMAStar
                 }
                 else if (openList[0].F == node.F)
                 {
-                    if (minNode.H < node.H || minNode.H == node.H)
+                    if (minNode.H < node.H)
                     {
                         openList.Add(node);
                     }
@@ -182,7 +181,17 @@ namespace WMAStar
                     {
                         openList.Insert(0, node);
                     }
-
+                    else if (minNode.H == node.H)
+                    {
+                        if (minNode.G > node.G || minNode.G == node.G)
+                        {
+                            openList.Add(node);
+                        }
+                        else
+                        {
+                            openList.Insert(0, node);
+                        }
+                    }
                 }
             }
             else

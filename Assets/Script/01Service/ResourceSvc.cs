@@ -772,7 +772,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     /// <summary>
     /// 跳转场景
     /// </summary>
-    public void JumpSceme(string sName, System.Action jumpDone = null)
+    public void JumpScene(string sName, System.Action jumpDone = null)
     {
         //TODO 
         if (isLoadScene) return;

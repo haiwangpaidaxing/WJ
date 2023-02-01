@@ -1,11 +1,9 @@
 using cfg.Data;
-using System;
 using UnityEngine;
-using WMEffectsSkill;
 
 public class MainSceneSys : BaseSys<MainSceneSys>
 {
-  
+
     #region UIPanel
     public SkillPanel skillPanel;
     public BagPanel bagPanel;
@@ -39,13 +37,20 @@ public class MainSceneSys : BaseSys<MainSceneSys>
     public override void Quit()
     {
         EventCenter.RemoveListener((EventType)MyEvent.EType.UpdateBag, UpdateBag);
+        UISvc.Single.SetPanelState(skillPanel);
+        UISvc.Single.SetPanelState(bagPanel);
+        UISvc.Single.SetPanelState(mainScenePanel);
+        UISvc.Single.SetPanelState(shopPanel);
+        UISvc.Single.SetPanelState(selectLevelPanel);
     }
+
 
     #region InitPanel...
     public void InitUIPanel()
     {
         //主场景面板
         mainScenePanel = UISvc.Single.GetPanel<MainScenePanel>(UIPath.MainScenePanel, UISvc.StateType.Show);
+        mainScenePanel.ReturnButton.onClick.AddListener(EnterLogic);
         //技能设置面板
         skillPanel = UISvc.Single.GetPanel<SkillPanel>(UIPath.SkillPanel);
         shopPanel = UISvc.Single.GetPanel<ShopPanel>(UIPath.ShopPanel);
@@ -53,7 +58,13 @@ public class MainSceneSys : BaseSys<MainSceneSys>
         selectLevelPanel = UISvc.Single.GetPanel<SelectLevelPanel>(UIPath.SelectLevelPanel);
     }
     #endregion
-
+    public void EnterLogic()
+    {
+        resourceSvc.JumpScene(ScenePath.Logic, () =>
+        {
+            Destroy(gameObject);
+        });
+    }
     #region EenPanel...
     /// <summary>
     /// 进入技能设置界面
@@ -219,11 +230,14 @@ public class MainSceneSys : BaseSys<MainSceneSys>
             GameObject shopItem = resourceSvc.LoadOrCreate<GameObject>(UIItemPath.ShopEquipSalesItem);
             ShopEquipSalesItem shopEquipSalesItem = shopItem.GetComponent<ShopEquipSalesItem>();
             shopEquipSalesItem.Init(equipDatas[i].UntID);
-            shopEquipSalesItem.BuyButton.onClick.AddListener(()=> {
+            shopEquipSalesItem.BuyButton.onClick.AddListener(() =>
+            {
                 shopPanel.UpdateCoin(resourceSvc.CurrentArchiveData.playerData.gold);
             });
             shopPanel.TransformChildAdd(shopPanel.EquipSalesContent, shopItem.transform);
         }
     }
     #endregion
+
+
 }

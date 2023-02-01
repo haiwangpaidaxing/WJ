@@ -48,7 +48,7 @@ public class GameLevelManager : MonoSingle<GameLevelManager>
 
     public void EnterMainScene()
     {
-        ResourceSvc.Single.JumpSceme(ScenePath.MainScene, () => { MainSceneSys.Single.Init(); });
+        ResourceSvc.Single.JumpScene(ScenePath.MainScene, () => { MainSceneSys.Single.Init(); });
     }
     public void RoleDie()
     {

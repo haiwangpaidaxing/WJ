@@ -29,7 +29,7 @@ public class SelectLevelItem : BasePanelCancelDrag
         ButtonOnClickSoundEffects(StartGameButton, () =>
         {
             UISvc.Single.CloseAll();
-            resourceSvc.JumpSceme(jumpName);
+            resourceSvc.JumpScene(jumpName);
         });
     }
     public override void Clear()

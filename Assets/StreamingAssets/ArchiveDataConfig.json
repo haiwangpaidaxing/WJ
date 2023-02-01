@@ -2,10 +2,10 @@
     "dataList": [
         {
             "archiveID": 1,
-            "saveDataTime": "2023/2/1 17:22:38",
+            "saveDataTime": "2023/2/1 22:13:38",
             "playerData": {
                 "selectRoleId": 1001,
-                "gold": 4020,
+                "gold": 4150,
                 "heroLevel": 0,
                 "skillDatas": [
                     {
@@ -120,7 +120,7 @@
                         "MP": 20.0,
                         "cd": 5.0,
                         "skillTime": 0.0,
-                        "currentCD": -0.03999579697847366,
+                        "currentCD": 0.0,
                         "attackBackswing": 0.0,
                         "comboValidTime": 0.0,
                         "comboCurrentValidTime": 0.0,
