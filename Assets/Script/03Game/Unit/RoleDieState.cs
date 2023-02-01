@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using WMState;
 
-public class RoleDie : BaseRoleState
+public class RoleDieState : BaseRoleState
 {
-    public RoleDie(string animName, string audioName = "") : base(animName, audioName)
+    public RoleDieState(string animName, string audioName = "") : base(animName, audioName)
     {
     }
 

@@ -65,9 +65,10 @@ public class Room
                     GameObject monsterObject = ResourceSvc.Single.CreateMonster(roomConfig.createConfig[i].ID);//创建
                     monsterObject.transform.SetParent(GameLevelManager.Single.EnemyList.transform, false);
                     monsterObject.transform.position = roomConfig.createConfig[i].startPos.position;//出生点
-                    monsterObject.GetComponent<MonsterController>().dieCB = MonsterDieCB;
+                    monsterObject.GetComponent<MonsterController>().DieCB = MonsterDieCB;
                     monsterObject.GetComponent<MonsterDatabase>().patrolPoint = roomConfig.createConfig[i].patrolPoint;
                     currentMonsterCount++;
+
                     treeList.Add(monsterObject.GetComponent<BTTree>());
                 }
             }
@@ -78,6 +79,8 @@ public class Room
 
     private void MonsterDieCB()
     {
+
+        GameLevelManager.Single.OnUpdatekillCount?.Invoke();
         currentMonsterCount--;
     }
 }

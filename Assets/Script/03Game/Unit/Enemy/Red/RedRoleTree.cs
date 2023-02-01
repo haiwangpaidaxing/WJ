@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using WMState;
 using WUBT;
 
@@ -18,6 +15,10 @@ public class RedRoleTree : BTTree
         root = new BTPrioritySelector(null, "Root");
 
         BTPrioritySelector injuredNode = new BTPrioritySelector(new RedRoleStateCheck(MonsterStateEnum.Injured), "Injured");
+
+        BTPrioritySelector dieNode = new BTPrioritySelector(new RedRoleStateCheck(MonsterStateEnum.Die), "Die");
+        dieNode.AddChild(new RoleDieState(RoleAnimNmae.Die));
+
         MosterInjuredState injuredState = new MosterInjuredState(MonsterStateEnum.Injured, "Injured");
 
         BTPrioritySelector patoplNode = new BTPrioritySelector(new RedRoleStateCheck(MonsterStateEnum.Patrol), "Tracking");
@@ -44,6 +45,7 @@ public class RedRoleTree : BTTree
         injuredNode.AddChild(injuredState);
         patoplNode.AddChild(patrolState);
 
+        root.AddChild(dieNode);
         root.AddChild(injuredNode);
         root.AddChild(attackNode);
         root.AddChild(patoplNode);

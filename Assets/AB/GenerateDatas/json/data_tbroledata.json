@@ -4,7 +4,7 @@
     "unitName": "零",
     "ResName": "Zero",
     "RoleAttribute": {
-      "Attribute_HP": 300,
+      "Attribute_HP": 1000,
       "Attribute_MP": 100,
       "Attribute_Harm": 100,
       "Attribute_CritHarm": 0,
@@ -18,7 +18,7 @@
     "unitName": "祀",
     "ResName": "Four",
     "RoleAttribute": {
-      "Attribute_HP": 100,
+      "Attribute_HP": 1000,
       "Attribute_MP": 100,
       "Attribute_Harm": 100,
       "Attribute_CritHarm": 0,

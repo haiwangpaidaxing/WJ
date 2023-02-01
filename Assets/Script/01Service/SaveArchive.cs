@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -66,7 +65,14 @@ public static class SaveArchive
         SaveArchive.SavePlayDataArchive(archiveData);
     }
 
-    public static void BagEquipSet(int index,WMData.EquipData equipData)
+    public static void SavePlayerDate(PlayerData playerData)
+    {
+        ArchiveData archiveData = ResourceSvc.Single.CurrentArchiveData;
+        archiveData.playerData = playerData;
+        SaveArchive.SavePlayDataArchive(archiveData);
+    }
+
+    public static void BagEquipSet(int index, WMData.EquipData equipData)
     {
         ArchiveData archiveData = ResourceSvc.Single.CurrentArchiveData;
         archiveData.bagEquipData[index] = equipData;

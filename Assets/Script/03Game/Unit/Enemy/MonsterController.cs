@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using WUBT;
@@ -11,7 +8,6 @@ public class MonsterController : RoleController
     /// 怪物的数据
     /// </summary>
     protected MonsterDatabase mData;
-    public Action dieCB;
     public Slider hp;
     public bool updateHP;
     public int targetValue;
@@ -32,30 +28,34 @@ public class MonsterController : RoleController
         updateHP = true;//代表更新当前的HP
         roleAttribute.SetHp((int)injuredData.harm);//设置角色的血量
         GameObject injuredEffects = ResourceSvc.Single.LoadOrCreate<GameObject>("prefabs/Effects/InjuredEffects");//受伤特效
+        targetValue = mData.roleAttribute.GetHP();
         injuredEffects.transform.position = injuredPos.position;//受伤特效的位置
-        if ( mData.monsterStateEnum == WMState.MonsterStateEnum.Die)
+        if (mData.monsterStateEnum == WMState.MonsterStateEnum.Die)
         {
             return;
         }
-        targetValue = mData.roleAttribute.GetHP();
         base.Injured(injuredData);
         mData.SetInjuredData(injuredData);
     }
     public override void Die()
     {
         base.Die();
+        hp.gameObject.SetActive(false);
+        spriteRenderer.color = Color.gray;  
         mData.monsterStateEnum = WMState.MonsterStateEnum.Die;//更改受伤的枚举
-        dieCB?.Invoke();//死亡的回调
     }
+
+
     private void FixedUpdate()
     {
-        roleDir= transform.localScale.x ;
+        roleDir = transform.localScale.x;
         if (updateHP)
         {
             if (hp.value == targetValue)
             {
                 return;
             }
+
             hp.value = Mathf.Lerp(hp.value, targetValue, Time.deltaTime * 2);
         }
     }

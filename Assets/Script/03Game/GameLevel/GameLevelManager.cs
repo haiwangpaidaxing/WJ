@@ -1,5 +1,4 @@
-using cfg.Data;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,19 +13,39 @@ public class GameLevelManager : MonoSingle<GameLevelManager>
     public RoleSkillPanel skillPanel;
     public GameOverPanel gameOverPanel;
     public HeroController heroController { get; set; }
+    [SerializeField]
+    PlayerLevelData playerLevelData;
+
+    public Action OnUpdatekillCount;
     private void Awake()
     {
+        playerLevelData = new PlayerLevelData();
         EnemyList = new GameObject("EnemyList");
         levelRoomPanel = UISvc.Single.GetPanel<LevelRoomPanel>(UIPath.GameLevelRoomPanel, UISvc.StateType.Show);
         gameOverPanel = UISvc.Single.GetPanel<GameOverPanel>(UIPath.GameOverPanel, UISvc.StateType.Close);
-        GameObject role = GameRoot.Single.CreateRole(MainSceneSys.Single.playerData.roleData);
+        GameObject role = GameRoot.Single.CreateRole(ResourceSvc.Single.CurrentArchiveData.playerData.roleData);
         role.transform.position = roleStartPos.position;
         CameraControl.Single.SetTarget(role.transform);
         heroController = role.GetComponent<HeroController>();
         heroController.DieCB += RoleDie;
         Init();
         gameOverPanel.ReturnBtn.onClick.AddListener(EnterMainScene);
+        OnUpdatekillCount = UpdateKillCount;
+        gameOverPanel.ReturnBtn.onClick.AddListener(Settlement);
     }
+
+    private void Settlement()
+    {
+        ResourceSvc.Single.CurrentArchiveData.playerData.gold += playerLevelData.goldCount;
+        ResourceSvc.Single.Save();
+    }
+
+    private void UpdateKillCount()
+    {
+        playerLevelData.killCount++;
+        playerLevelData.goldCount = playerLevelData.killCount * 10;
+    }
+
     public void EnterMainScene()
     {
         ResourceSvc.Single.JumpSceme(ScenePath.MainScene, () => { MainSceneSys.Single.Init(); });
@@ -37,18 +56,22 @@ public class GameLevelManager : MonoSingle<GameLevelManager>
         levelRoomPanel.Show("You Die");
         TimerSvc.instance.AddTask(0.5F * 1000, () =>
           {
-              currentRoom.End();
+              if (currentRoom != null)
+              {
+                  currentRoom.End();
+              }
+              gameOverPanel.KillMonsterCountText.text = playerLevelData.killCount.ToString();
+              gameOverPanel.GoldCountText.text = playerLevelData.goldCount.ToString();
               GameRoot.Single.PauseFrame(new Animator[] { heroController.animator });
               UISvc.Single.SetPanelState(gameOverPanel, UISvc.StateType.Show);
           });
 
     }
-
     public void GameWinner()
     {
+        InputController.Single.Close();
 
     }
-
     public void Init()
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -92,4 +115,14 @@ public class GameLevelManager : MonoSingle<GameLevelManager>
             currentRoom.Execute();
         }
     }
+
+
+
+}
+[System.Serializable]
+public struct PlayerLevelData
+{
+    public float time;
+    public int killCount;
+    public int goldCount;
 }

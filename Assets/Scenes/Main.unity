@@ -581,11 +581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b1dc07aba6a8c47877ebaaa69d1e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData:
-    selectRoleId: 0
-    gold: 0
-    heroLevel: 0
-    skillDatas: []
   skillPanel: {fileID: 0}
   bagPanel: {fileID: 0}
   mainScenePanel: {fileID: 0}
@@ -605,6 +600,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEDITOR: 0
+  CurrentArchiveData:
+    archiveID: 0
+    saveDataTime: 
+    playerData:
+      selectRoleId: 0
+      gold: 0
+      heroLevel: 0
+      skillDatas: []
+    equipSoltDatas: []
+    bagEquipData: []
 --- !u!1 &2038004640
 GameObject:
   m_ObjectHideFlags: 0

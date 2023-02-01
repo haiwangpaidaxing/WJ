@@ -19,6 +19,8 @@ public class BagPanel : BasePanel
 
     public UnityEngine.UI.Text Harm;
 
+    public UnityEngine.UI.Text coinCountText;
+
     public EquipSoltItem[] soltItem;
 
     public EquipInfoPanel equipInfoPanel;
@@ -57,6 +59,7 @@ public class BagPanel : BasePanel
     }
     public void UpdaRoleInfo(EquipData[] equipDatas)
     {
+
         float harmValue = 0;
         float hpValue = 0;
         float critHarmValue = 0;
@@ -68,10 +71,16 @@ public class BagPanel : BasePanel
             critHarmValue += equipDatas[i].Attribute_CritHarm;
             criticalChanceValue += equipDatas[i].Attribute_CriticalChance;
         }
+
         Harm.text = "ÉËº¦:" + harmValue;
         HPText.text = "ÑªÁ¿:" + hpValue;
         CriticalDamageText.text = "±©»÷ÉËº¦:" + critHarmValue + "%";
         CriticalChanceText.text = "±©»÷ÂÊ" + criticalChanceValue + "%";
+    }
+
+    public void UpdateCoin(float value)
+    {
+        coinCountText.text = value.ToString();
     }
     public override void Clear()
     {

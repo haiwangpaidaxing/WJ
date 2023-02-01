@@ -20,7 +20,7 @@ public class RoleTree : BTTree
         //  BTPrioritySelector thump = new BTPrioritySelector(, "普通攻击");//轻击节点
 
         BTPrioritySelector dieNode = new BTPrioritySelector(new RoleStateCheck(RoleStateCheck.CheckType.Die), "Die");
-        dieNode.AddChild(new RoleDie("Die"));
+        dieNode.AddChild(new RoleDieState("Die"));
 
         //站立
         BTParallel grIdleParallel = new(new RoleStateCheck(RoleStateCheck.CheckType.Idle), BTParallel.ParallelFunction.Or, "Idle");

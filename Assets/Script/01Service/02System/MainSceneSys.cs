@@ -5,7 +5,7 @@ using WMEffectsSkill;
 
 public class MainSceneSys : BaseSys<MainSceneSys>
 {
-    public PlayerData playerData;
+  
     #region UIPanel
     public SkillPanel skillPanel;
     public BagPanel bagPanel;
@@ -19,6 +19,7 @@ public class MainSceneSys : BaseSys<MainSceneSys>
         base.Init();
         EventCenter.AddListener((EventType)MyEvent.EType.UpdateBag, UpdateBag);
         ArchiveData archiveData = resourceSvc.CurrentArchiveData;
+        PlayerData playerData;
         playerData = archiveData.playerData;//获取当前玩家数据
         playerData.roleData = resourceSvc.GetRoleDataByID(playerData.selectRoleId);
         InitUIPanel();
@@ -163,6 +164,7 @@ public class MainSceneSys : BaseSys<MainSceneSys>
     #region BagFunction
     private void UpdateBag()
     {
+        bagPanel.UpdateCoin(resourceSvc.CurrentArchiveData.playerData.gold);
         bagPanel.TransformChildReset(bagPanel.BgContent);
         ArchiveData archiveData = resourceSvc.CurrentArchiveData;
         for (int i = 0; i < archiveData.bagEquipData.Count; i++)
@@ -209,6 +211,7 @@ public class MainSceneSys : BaseSys<MainSceneSys>
 
     public void UpdateEquipSales()
     {
+        shopPanel.UpdateCoin(resourceSvc.CurrentArchiveData.playerData.gold);
         shopPanel.TransformChildReset(shopPanel.EquipSalesContent);
         EquipData[] equipDatas = resourceSvc.EquipConfig;
         for (int i = 0; i < equipDatas.Length; i++)
@@ -216,6 +219,9 @@ public class MainSceneSys : BaseSys<MainSceneSys>
             GameObject shopItem = resourceSvc.LoadOrCreate<GameObject>(UIItemPath.ShopEquipSalesItem);
             ShopEquipSalesItem shopEquipSalesItem = shopItem.GetComponent<ShopEquipSalesItem>();
             shopEquipSalesItem.Init(equipDatas[i].UntID);
+            shopEquipSalesItem.BuyButton.onClick.AddListener(()=> {
+                shopPanel.UpdateCoin(resourceSvc.CurrentArchiveData.playerData.gold);
+            });
             shopPanel.TransformChildAdd(shopPanel.EquipSalesContent, shopItem.transform);
         }
     }

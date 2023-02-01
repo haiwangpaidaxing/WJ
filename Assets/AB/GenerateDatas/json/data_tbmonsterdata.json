@@ -32,7 +32,7 @@
     "unitName": "Red",
     "ResName": "Red",
     "RoleAttribute": {
-      "Attribute_HP": 10000,
+      "Attribute_HP": 2000,
       "Attribute_MP": 100,
       "Attribute_Harm": 100,
       "Attribute_CritHarm": 0,

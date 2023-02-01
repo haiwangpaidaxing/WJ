@@ -20,6 +20,7 @@ public class ShopPanel : BasePanel
 
     public Transform shopPropPos;
 
+    public UnityEngine.UI.Text coinCountText;
     public virtual void InitGetCompoent()
     {
         UnityEngine.Transform fequipsales = transform.Find("FEquipSales");
@@ -30,7 +31,10 @@ public class ShopPanel : BasePanel
         UnityEngine.Transform fequipbutton = transform.Find("FEquipButton");
         EquipButton = fequipbutton.GetComponent<UnityEngine.UI.Button>();
     }
-
+    public void UpdateCoin(float value)
+    {
+        coinCountText.text = value.ToString();
+    }
     public override void Init()
     {
 

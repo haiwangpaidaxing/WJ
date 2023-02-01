@@ -135,15 +135,16 @@ public class RoleController : MonoBehaviour, IInjured
     {
         rig.sharedMaterial = AirMaterial;
     }
-
+    bool die;
     public virtual void Die()
     {
+        die = true;
         DieCB?.Invoke();
-       
+
     }
     private void DieCheck(int value)
     {
-        if (value <= 0)
+        if (value <= 0 && !die)
         {
             Die();
         }

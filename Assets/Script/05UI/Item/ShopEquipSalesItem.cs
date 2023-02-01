@@ -46,7 +46,7 @@ public class ShopEquipSalesItem : BasePanelCancelDrag
     public void OnClickBuyButton()
     {
         //TODOBuyEquip
-        if (MainSceneSys.Single.playerData.gold - equipData.PriceWeapons < 0)
+        if (resourceSvc.CurrentArchiveData.playerData.gold - equipData.PriceWeapons < 0)
         {
             //TODO
             UISvc.Single.AddTips("½ð±Ò²»×ã");
@@ -54,7 +54,7 @@ public class ShopEquipSalesItem : BasePanelCancelDrag
         }
         else
         {
-            MainSceneSys.Single.playerData.gold -= equipData.PriceWeapons;
+            resourceSvc.CurrentArchiveData.playerData.gold -= equipData.PriceWeapons;
             //ArchiveData archiveData = resourceSvc.CurrentArchiveData;
             //archiveData.playerData = MainSceneSys.Single.playerData;
             //// archiveData.bagEquipData = new System.Collections.Generic.List<EquipData>();

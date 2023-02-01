@@ -120,6 +120,9 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
                 yield break;
         }
     }
+    /// <summary>
+    /// 安卓端
+    /// </summary>
     public void AndroidCopyStreamingAssetsPathRes()
     {
         foreach (var item in streamingAssetsPathResPathConfig.resPath)
@@ -150,7 +153,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     public IEnumerator CheckServer(System.Action<bool> checkCB)
     {
         string uri = ResPath.GetLoadABPath() + "Config.json";
-        Debug.Log(ResPath.GetLoadABPath());
+        Debug.Log("HTTP_Path" + ResPath.GetLoadABPath());
         UnityWebRequest huwr = UnityWebRequest.Head(uri);
         yield return huwr.SendWebRequest();
         switch (huwr.result)
@@ -683,7 +686,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     #region Data
     Tables tables;
     EffectsSkillDataConfig effectsSkillDataConfig;
-    public ArchiveData CurrentArchiveData { get; set; }
+    public ArchiveData CurrentArchiveData;
     public cfg.Data.EquipData[] EquipConfig { get { return tables.TBEquipConfig.DataList.ToArray(); } }
     public cfg.Data.RoleData[] RoleDataConfig { get { return tables.TBRoleData.DataList.ToArray(); } }
     public LevelConfigData[] LevelConfigDatas
@@ -896,6 +899,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     public void SetArchiveData(int id)
     {
         CurrentArchiveData = GetArchiveByID(id);
+        CurrentArchiveData.playerData.roleData = GetRoleDataByID(CurrentArchiveData.playerData.selectRoleId);
         PlayerData playerData = CurrentArchiveData.playerData;
         for (int i = 0; i < playerData.skillDatas.Count; i++)
         {
