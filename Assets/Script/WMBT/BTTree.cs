@@ -14,7 +14,8 @@ namespace WMBT
         public virtual void Init()
         {
             database = GetComponent<Database>();
-        }
+            InitBehavior();
+        }   
         private void FixedUpdate()
         {
             if (!isRuning) return;

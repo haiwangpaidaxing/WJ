@@ -1,19 +1,19 @@
 ManifestFileVersion: 0
-CRC: 1719887643
+CRC: 4019691434
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: data
+      Name: generatedatas
       Dependencies: {}
     Info_1:
-      Name: prefabs
-      Dependencies: {}
-    Info_2:
       Name: soundeffects
       Dependencies: {}
+    Info_2:
+      Name: prefabs
+      Dependencies: {}
     Info_3:
-      Name: sprites
+      Name: data
       Dependencies: {}
     Info_4:
-      Name: generatedatas
+      Name: sprites
       Dependencies: {}
