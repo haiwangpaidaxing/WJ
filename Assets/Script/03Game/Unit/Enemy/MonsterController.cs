@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using WUBT;
+using WMBT;
 
 public class MonsterController : RoleController
 {
@@ -8,9 +8,10 @@ public class MonsterController : RoleController
     /// 怪物的数据
     /// </summary>
     protected MonsterDatabase mData;
+    [HideInInspector]
     public Slider hp;
-    public bool updateHP;
-    public int targetValue;
+    bool updateHP;
+    int targetValue;
     public override void Init()
     {
         base.Init();
@@ -41,7 +42,7 @@ public class MonsterController : RoleController
     {
         base.Die();
         hp.gameObject.SetActive(false);
-        spriteRenderer.color = Color.gray;  
+        spriteRenderer.color = Color.gray;
         mData.monsterStateEnum = WMState.MonsterStateEnum.Die;//更改受伤的枚举
     }
 

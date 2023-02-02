@@ -1,14 +1,8 @@
 ﻿using UnityEngine;
 using WMState;
-using WUBT;
+using WMBT;
 public class RoleTree : BTTree
 {
-
-    public override void Init()
-    {
-        base.Init();
-        InitBasedBehavior();
-    }
     protected virtual void InitBasedBehavior()
     {
         root = new BTPrioritySelector(null, "root");

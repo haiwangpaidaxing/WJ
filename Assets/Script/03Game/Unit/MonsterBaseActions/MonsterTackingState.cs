@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WUBT;
+using WMBT;
 
 namespace WMState
 {
-    public class TackingState : BaseMonsterState
+    public class MonsterTackingState : BaseMonsterState
     {
-        public TackingState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
+        public MonsterTackingState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
         {
         }
 

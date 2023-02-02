@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using WMEffectsSkill;
-using WUBT;
+using WMBT;
 
 
 public class ResourceSvc : MonoSingle<ResourceSvc>

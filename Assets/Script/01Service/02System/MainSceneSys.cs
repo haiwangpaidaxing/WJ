@@ -91,12 +91,10 @@ public class MainSceneSys : BaseSys<MainSceneSys>
                 seItme.Init(GameRoot.Single.SetSkillEffect, a, skillDataList[i].id, skillPanel);
                 if (skillDataList[i].baseEffectsSkills.Length > 0 && skillDataList[i].baseEffectsSkills[a] != null)
                 {
-
                     seItme.skillEffectsNameText.text = skillDataList[i].baseEffectsSkills[a].skillData.name;
                 }
                 else
                 {
-
                     seItme.skillEffectsNameText.text = "δ�趨";
                 }
                 skillSetItem.TransformChildAdd(skillSetItem.conetents, skillEffectsItem);

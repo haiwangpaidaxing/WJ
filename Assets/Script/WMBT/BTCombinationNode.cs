@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace WUBT
+namespace WMBT
 {
     /// <summary>
     /// 选择组合节点

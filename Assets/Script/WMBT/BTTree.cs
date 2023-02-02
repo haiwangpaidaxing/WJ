@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace WUBT
+namespace WMBT
 {
-    public class BTTree : MonoBehaviour 
+    public class BTTree : MonoBehaviour
     {
+        [HideInInspector]
         public Database database;
         public BTNode root;
         public bool isRuning = true;
@@ -21,6 +22,10 @@ namespace WUBT
             {
                 root.Update();
             }
+        }
+
+        protected virtual void InitBehavior()
+        {
         }
     }
 }

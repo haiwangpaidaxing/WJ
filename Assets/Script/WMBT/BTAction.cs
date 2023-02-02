@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WUBT
+namespace WMBT
 {
     //行为节点，继承于BTNode。具体的游戏逻辑应该放在这个节点里面。
     public class BTAction : BTNode

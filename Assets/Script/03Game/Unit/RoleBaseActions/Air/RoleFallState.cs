@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WMState;
-using WUBT;
+using WMBT;
 
 /// <summary>
 /// 角色下落

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WMState;
-using WUBT;
+using WMBT;
 public class RoleRunStaet : BaseRoleState
 {
     public RoleRunStaet(string animName, string audioName = "") : base(animName, audioName)

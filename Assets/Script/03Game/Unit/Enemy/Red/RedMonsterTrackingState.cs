@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WMState;
-using WUBT;
+using WMBT;
 
-public class RedMonsterTrackingState : TackingState
+public class RedMonsterTrackingState : MonsterTackingState
 {
     public RedMonsterTrackingState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
     {

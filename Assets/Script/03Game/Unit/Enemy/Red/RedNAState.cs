@@ -3,26 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using WMEffectsSkill;
 using WMState;
-using WUBT;
+using WMBT;
 //角色的普通攻击状态
-public class RedNAState : MonsterAttackState
+public class RedNAState : MonsterComboAttack
 {
-    private int index;//攻击次数下标
-    private int combosCount;
-    public string oldAnimName;
     RedMonsterDatabase redData;
+
+    public RedNAState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "", int combosCount = 3) : base(monsterStateEnum, animName, audioName, combosCount)
+    {
+    }
 
     public override void Init(Database database)
     {
         base.Init(database);
         redData = database.GetComponent<RedMonsterDatabase>();
     }
-    public RedNAState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "", int combosCount = 3) : base(monsterStateEnum, animName, audioName)
-    {
-        oldAnimName = animName;
-        this.combosCount = combosCount;
-
-    }
+   
     protected override void AttackCheck()
     {
         switch (index)
@@ -49,7 +45,6 @@ public class RedNAState : MonsterAttackState
     protected override void Enter()
     {
         redData.attackState = RedRoleStateCheck.AttackState.NA;
-        animName = oldAnimName + index;
         if (redData.tackingRangeTarget.position.x > redData.transform.position.x)
         {
             roleController.MoveX(1, 2);
@@ -63,28 +58,13 @@ public class RedNAState : MonsterAttackState
 
     protected override BTResult Execute()
     {
-        if (isAnimatorOver && index == combosCount)
-        {
-            redData.attackState = RedRoleStateCheck.AttackState.Null;
-            index = 0;
-            return BTResult.Ended;
-        }
-        else
-        {
-            return base.Execute();
-        }
+        return base.Execute();
     }
 
-    protected override void AnimatorSkillOver()
+    protected override void ComboOver()
     {
-        index++;
-        if (index != combosCount)
-        {
-            animName = oldAnimName + index;
-            animator.Play(animName);
-
-        }
-        base.AnimatorSkillOver();
+        redData.attackState = RedRoleStateCheck.AttackState.Null;
+        base.ComboOver();
     }
 
 }

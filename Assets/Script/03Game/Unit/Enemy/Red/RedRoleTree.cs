@@ -1,16 +1,9 @@
+using WMBT;
 using WMState;
-using WUBT;
 
 public class RedRoleTree : BTTree
 {
-
-    public override void Init()
-    {
-        base.Init();
-        InitBehavior();
-    }
-
-    private void InitBehavior()
+    protected override void InitBehavior()
     {
         root = new BTPrioritySelector(null, "Root");
 
@@ -27,6 +20,7 @@ public class RedRoleTree : BTTree
         BTPrioritySelector attackNode = new BTPrioritySelector(new RedRoleStateCheck(MonsterStateEnum.Attack), "MonsterAttack");
 
         BTPrioritySelector raNode = new BTPrioritySelector(new RedRoleStateCheck(MonsterStateEnum.Attack3), "RA1");
+
         RedRoleRAState redRoleRAState = new RedRoleRAState(MonsterStateEnum.Attack3, "RA1");
         raNode.AddChild(redRoleRAState);
 

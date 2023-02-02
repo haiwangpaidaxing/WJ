@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WUBT
+namespace WMBT
 {
 
     /// <summary>

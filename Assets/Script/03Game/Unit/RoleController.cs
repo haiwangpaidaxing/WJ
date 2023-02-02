@@ -20,18 +20,20 @@ public class RoleController : MonoBehaviour, IInjured
     public bool isFall = true;
     public float roleDir;
     public Action animatorClipCb;
-    public Animator animator;
-    public BaseSkill currentSkill;
-    public RoleAttribute roleAttribute;
     [Header("受伤位置")]
     public Transform injuredPos;
-    [SerializeField]
-    PhysicsMaterial2D AirMaterial;
-    //  PhysicsMaterial2D GroundMaterial;
+    //PhysicsMaterial2D AirMaterial;
+    //PhysicsMaterial2D GroundMaterial;
     public Action<InjuredData> injuredCB;
     public MonsterInjuredState injuredState;
+    [HideInInspector]
+    public Animator animator;
+    [HideInInspector]
+    public BaseSkill currentSkill;
+    [HideInInspector]
+    public RoleAttribute roleAttribute;
+    [HideInInspector]
     public SpriteRenderer spriteRenderer;
-
     public Action DieCB;
 
     public virtual void Init()
@@ -126,15 +128,14 @@ public class RoleController : MonoBehaviour, IInjured
         //创建受伤的文本
         ResourceSvc.Single.LoadOrCreate<GameObject>(UIItemPath.DamageTextitem).GetComponent<DamageText>().Init(injuredData.harm, injuredPos);
     }
-    public void SetAirPhysicsMaterial2D()
-    {
-
-        rig.sharedMaterial = AirMaterial;
-    }
-    public void SetGroundPhysicsMaterial2D()
-    {
-        rig.sharedMaterial = AirMaterial;
-    }
+    //public void SetAirPhysicsMaterial2D()
+    //{
+    //    rig.sharedMaterial = AirMaterial;
+    //}
+    //public void SetGroundPhysicsMaterial2D()
+    //{
+    //    rig.sharedMaterial = AirMaterial;
+    //}
     bool die;
     public virtual void Die()
     {

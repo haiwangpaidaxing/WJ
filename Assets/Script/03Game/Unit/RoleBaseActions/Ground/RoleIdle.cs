@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WMState;
-using WUBT;
+using WMBT;
 public class RoleIdleState : BaseRoleState
 {
     public RoleIdleState(string animName, string audioName = "") : base(animName, audioName)
@@ -11,7 +11,7 @@ public class RoleIdleState : BaseRoleState
 
     protected override void Enter()
     {
-        database.roleController.SetGroundPhysicsMaterial2D();
+       // database.roleController.SetGroundPhysicsMaterial2D();
         database.roleController.MoveX(0,0);
         base.Enter();
     }

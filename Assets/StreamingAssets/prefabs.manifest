@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1439426473
+CRC: 3508854380
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6a27b9569339973772f5719ef3b23d1c
+    Hash: 365c4ae2102b9611866b1f83602e38a4
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 4cda9089213211a8e107a340f4d9fc60
+    Hash: 899cecb2ebc590a35f1d5b39c21f5cd4
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -159,6 +159,12 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 6c8bbf82dac337a4786b24b829b47259, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: bf9793553aaa89645bfd2c6f3eb5783c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 611b781108fbde846aaffeb273bde4f1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4d3d231c0bd3ebb46a78dec4d5e3588d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 58ed4f0aff035a743b057cc1e145a833, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -251,6 +257,7 @@ Assets:
 - Assets/AB/Prefabs/UI/Panel/Easytouch.prefab
 - Assets/AB/Prefabs/UI/Panel/SelectLevelPanel.prefab
 - Assets/AB/Prefabs/UI/Panel/SelectRoomPanel.prefab
+- Assets/AB/Prefabs/Unit/Enemy/Monk.prefab
 - Assets/AB/Prefabs/UI/Panel/LevelRoomPanel.prefab
 - Assets/AB/Prefabs/Unit/Hero/One.prefab
 - Assets/AB/Prefabs/UI/Item/SkillSetItem.prefab

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace WUBT
+namespace WMBT
 {
     ///所有节点的base class 定义了一些节点的基本功能，并提供一些可继承的函数。
     public class BTNode

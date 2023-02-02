@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using WMState;
 
-namespace WUBT
+namespace WMBT
 {
     public class MonsterDatabase : Database
     {
@@ -17,17 +17,22 @@ namespace WUBT
         #endregion
         public Transform[] patrolPoint;
         #region Attack Config
+        [Header("攻击范围")]
         public Vector2 attackRangeSize;
         public Vector2 attackRangeOffset;
         public LayerMask attackMask;
         public Color attackDrawColor;
         #endregion
+        [HideInInspector]
         public Vector2 veTr;
         public MonsterStateEnum monsterStateEnum;
+        [Header("目标")]
         public Transform tackingRangeTarget;
         [Header("护盾")]
         public int currentShieldValue;
+        [Header("初始护盾值")]
         public int shieldValue;
+        [Header("护盾恢复时间")]
         public int shieldRecover;
         [SerializeField]
         private float currentTime;
@@ -72,3 +77,4 @@ namespace WUBT
 
 
 }
+        

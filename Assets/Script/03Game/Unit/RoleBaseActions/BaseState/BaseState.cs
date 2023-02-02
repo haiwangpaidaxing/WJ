@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using WUBT;
+using WMBT;
 
 namespace WMState
 {
@@ -18,7 +18,7 @@ namespace WMState
             this.animName = animName;
             this.audioName = audioName;
         }
-        public override void Init(WUBT.Database database)
+        public override void Init(WMBT.Database database)
         {
             base.Init(database);
             roleController = database.GetComponent<RoleController>();

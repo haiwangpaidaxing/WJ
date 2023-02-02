@@ -73,7 +73,7 @@ public class GameRoot : MonoSingle<GameRoot>
         role.AddComponent<RoleAttribute>().Init(roleData.RoleAttribute, resourceSvc.CurrentArchiveData.equipSoltDatas);
 
         role.GetComponent<RoleController>().Init();
-        role.GetComponent<WUBT.HeroDatabase>().Init();
+        role.GetComponent<WMBT.HeroDatabase>().Init();
         role.GetComponent<RoleTree>().Init();
         return role;
     }

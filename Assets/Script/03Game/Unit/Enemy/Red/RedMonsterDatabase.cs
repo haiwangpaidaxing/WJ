@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WMEffectsSkill;
-using WUBT;
+using WMBT;
 
 public class RedMonsterDatabase : MonsterDatabase
 {

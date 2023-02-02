@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WUBT;
+using WMBT;
 
 public class RoleAirJumpState : RoleIdleState
 {
@@ -15,7 +15,7 @@ public class RoleAirJumpState : RoleIdleState
 
     protected override BTResult Execute()
     {
-        database.roleController.SetAirPhysicsMaterial2D();
+        //database.roleController.SetAirPhysicsMaterial2D();
         database.roleController.MoveX(database.InputDir.x, database.roleAttribute.GetMoveSpeed());
         return base.Execute();
     }
