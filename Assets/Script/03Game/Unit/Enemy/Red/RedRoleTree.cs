@@ -3,6 +3,7 @@ using WMState;
 
 public class RedRoleTree : BTTree
 {
+  
     protected override void InitBehavior()
     {
         root = new BTPrioritySelector(null, "Root");

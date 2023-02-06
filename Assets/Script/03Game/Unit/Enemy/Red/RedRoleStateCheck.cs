@@ -7,10 +7,7 @@ using WMBT;
 
 public class RedRoleStateCheck : MonsterStateCheck
 {
-    public enum AttackState
-    {
-        Null, Check, NA, TA, RA
-    }
+   
   //  public AttackState attackState;
     RedMonsterDatabase redData;
     public float targetDistance;

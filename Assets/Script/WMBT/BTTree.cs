@@ -11,9 +11,12 @@ namespace WMBT
         public Database database;
         public BTNode root;
         public bool isRuning = true;
+
+      
         public virtual void Init()
         {
             database = GetComponent<Database>();
+            InitBehavior();
         }
         private void FixedUpdate()
         {

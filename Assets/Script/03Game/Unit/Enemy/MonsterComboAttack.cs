@@ -15,8 +15,8 @@ public class MonsterComboAttack : MonsterAttackState
 
     protected override void Enter()
     {
-        base.Enter();
         animName = oldAnimName + index;
+        base.Enter();
     }
 
     protected override BTResult Execute()

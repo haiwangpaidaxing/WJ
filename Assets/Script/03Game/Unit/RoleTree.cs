@@ -3,7 +3,7 @@ using WMState;
 using WMBT;
 public class RoleTree : BTTree
 {
-    protected virtual void InitBasedBehavior()
+    protected override void InitBehavior()
     {
         root = new BTPrioritySelector(null, "root");
         //选择节点地面与空中

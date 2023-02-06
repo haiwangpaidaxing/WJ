@@ -98,6 +98,10 @@ public class RoleStateCheck : BTPrecondition
 
 public class MonsterStateCheck : BTPrecondition
 {
+    public enum AttackState
+    {
+        Null, Check, NA, TA, RA
+    }
     protected MonsterDatabase mData;
     protected MonsterStateEnum currentCheckType;
     /// <summary>

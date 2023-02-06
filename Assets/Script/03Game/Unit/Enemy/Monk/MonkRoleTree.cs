@@ -12,19 +12,23 @@ public class MonkRoleTree : BTTree
 
         BTPrioritySelector injuredNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateEnum.Injured), "Injured");
         MosterInjuredState injuredState = new MosterInjuredState(MonsterStateEnum.Injured, "Injured");
-
-
+        injuredNode.AddChild(injuredState);
 
         BTPrioritySelector patoplNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateEnum.Patrol), "Patrol");
         MonsterTackingState patrolState = new MonsterTackingState(MonsterStateEnum.Patrol, "Run");
-
-        BTPrioritySelector attackNode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack), "MonsterAttack");
-
-        root.AddChild(dieNode);
-        dieNode.AddChild(injuredState);
-        injuredNode.AddChild(injuredState);
         patoplNode.AddChild(patrolState);
 
+        BTPrioritySelector monkNANode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack1), "NA");
+        MonkNAState monkNAState = new MonkNAState(MonsterStateEnum.Attack1, "NA");
+        monkNANode.AddChild(monkNAState);
+
+        BTPrioritySelector attackNode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack), "MonsterAttack");
+        attackNode.AddChild(monkNANode);
+
+        root.AddChild(dieNode);
+        root.AddChild(injuredNode);
+        root.AddChild(attackNode);
         root.AddChild(patoplNode);
+        root.Init(database);
     }
 }

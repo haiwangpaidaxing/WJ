@@ -13,6 +13,7 @@ public class Room
     public Action quitCB;
     [Header("∑øº‰≈‰÷√")]
     public RoomConfig roomConfig;
+    [HideInInspector]
     public List<BTTree> treeList = new List<BTTree>();
     public void Enter()
     {
