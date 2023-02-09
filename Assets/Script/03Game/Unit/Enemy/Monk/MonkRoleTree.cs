@@ -22,12 +22,23 @@ public class MonkRoleTree : BTTree
         MonkNAState monkNAState = new MonkNAState(MonsterStateEnum.Attack1, "NA");
         monkNANode.AddChild(monkNAState);
 
+        BTPrioritySelector monkTANode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack1), "NA");
+        MonkTAState monkTAState = new MonkTAState(MonsterStateEnum.Attack2, "TA");
+        monkNANode.AddChild(monkTAState);
+
+        BTPrioritySelector monkSkillNode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack1), "NA");
+        MonkNAState monkSkillState = new MonkNAState(MonsterStateEnum.Attack1, "Skill");
+        monkNANode.AddChild(monkSkillNode);
+
         BTPrioritySelector attackNode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack), "MonsterAttack");
         attackNode.AddChild(monkNANode);
+        attackNode.AddChild(monkTANode);
+        attackNode.AddChild(monkSkillNode);
 
         root.AddChild(dieNode);
         root.AddChild(injuredNode);
         root.AddChild(attackNode);
+        root.Init(database);
         root.AddChild(patoplNode);
         root.Init(database);
     }

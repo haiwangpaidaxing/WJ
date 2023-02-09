@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using WMState;
 
-public class MonkTAState : MonsterStateCheck
+public class MonkTAState : MonsterAttackState
 {
-    public MonkTAState(MonsterStateEnum checkType) : base(checkType)
+    public MonkTAState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
     {
-  
     }
 }
