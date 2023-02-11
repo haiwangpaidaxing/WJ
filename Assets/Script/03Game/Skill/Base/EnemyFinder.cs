@@ -7,6 +7,7 @@ public class EnemyFinder : MonoBehaviour
 {
     public Transform boxPos;
     public Vector2 boxSize;
+    public Vector2 offset;
     public string[] enemyTag;
     Vector2 tr;
     RoleController roleController;

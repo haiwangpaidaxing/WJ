@@ -3,6 +3,10 @@ using WMState;
 
 public class MonkRoleTree : BTTree
 {
+    public BTPrioritySelector attackNode;
+    public BTPrioritySelector monkNANode;
+    public BTPrioritySelector monkTANode;
+    public BTPrioritySelector monkSkillNode;
     protected override void InitBehavior()
     {
         root = new BTPrioritySelector(null, "Root");
@@ -18,22 +22,20 @@ public class MonkRoleTree : BTTree
         MonsterTackingState patrolState = new MonsterTackingState(MonsterStateEnum.Patrol, "Run");
         patoplNode.AddChild(patrolState);
 
-        BTPrioritySelector monkNANode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack1), "NA");
+
+        monkNANode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack1), "NA");
         MonkNAState monkNAState = new MonkNAState(MonsterStateEnum.Attack1, "NA");
         monkNANode.AddChild(monkNAState);
 
-        BTPrioritySelector monkTANode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack1), "NA");
+        monkTANode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack1), "TA");
         MonkTAState monkTAState = new MonkTAState(MonsterStateEnum.Attack2, "TA");
         monkNANode.AddChild(monkTAState);
 
-        BTPrioritySelector monkSkillNode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack1), "NA");
+        monkSkillNode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack1), "Skill");
         MonkNAState monkSkillState = new MonkNAState(MonsterStateEnum.Attack1, "Skill");
-        monkNANode.AddChild(monkSkillNode);
 
-        BTPrioritySelector attackNode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack), "MonsterAttack");
-        attackNode.AddChild(monkNANode);
-        attackNode.AddChild(monkTANode);
-        attackNode.AddChild(monkSkillNode);
+        monkNANode.AddChild(monkSkillState);
+        attackNode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack), "MonsterAttack");
 
         root.AddChild(dieNode);
         root.AddChild(injuredNode);
@@ -41,5 +43,17 @@ public class MonkRoleTree : BTTree
         root.Init(database);
         root.AddChild(patoplNode);
         root.Init(database);
+    }
+    public void AddNA()
+    {
+        attackNode.AddChild(monkNANode);
+    }
+    public void AddTA()
+    {
+        attackNode.AddChild(monkTANode);
+    }
+    public void AddSkill()
+    {
+        attackNode.AddChild(monkSkillNode);
     }
 }

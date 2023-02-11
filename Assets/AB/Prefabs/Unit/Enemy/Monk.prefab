@@ -177,13 +177,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2191150384926420908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.22780813, y: -14.724038, z: 0}
+  m_LocalPosition: {x: -0.22780813, y: -14.72404, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7470162562246794919}
   - {fileID: 3302490774597496578}
   - {fileID: 234727297971379013}
+  - {fileID: 8673237132488503281}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -334,11 +335,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94e11c6bb7a1864ca04ec3b23d8c5fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxPos: {fileID: 2191150384926420905}
+  boxPos: {fileID: 8673237132488503281}
   boxSize: {x: 1, y: 1}
+  offset: {x: 0, y: 0}
   enemyTag:
   - Hero
-  debugColor: {r: 1, g: 0, b: 0, a: 1}
+  debugColor: {r: 1, g: 0.42398834, b: 0, a: 1}
 --- !u!114 &1887240582797816042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,12 +410,12 @@ MonoBehaviour:
     m_Bits: 2048
   tackingDrawColor: {r: 1, g: 0.72851, b: 0, a: 1}
   patrolPoint: []
-  attackRangeSize: {x: 0, y: 0}
-  attackRangeOffset: {x: 0, y: 0}
+  attackRangeSize: {x: 2.48, y: 2.41}
+  attackRangeOffset: {x: 0.55, y: 0}
   attackMask:
     serializedVersion: 2
     m_Bits: 2048
-  attackDrawColor: {r: 1, g: 0, b: 0.0324955, a: 1}
+  attackDrawColor: {r: 1, g: 0.8254717, b: 0.8309471, a: 1}
   veTr: {x: 0, y: 0}
   monsterStateEnum: 0
   tackingRangeTarget: {fileID: 0}
@@ -445,6 +447,20 @@ MonoBehaviour:
       skillEffectsIndex: 0
       skillID: 0
   attackState: 0
+  taData:
+    attackRangeSize: {x: 8.69, y: 2.49}
+    attackRangeOffset: {x: 0, y: 0}
+    attackMask:
+      serializedVersion: 2
+      m_Bits: 2048
+    attackDrawColor: {r: 1, g: 0, b: 0.561501, a: 1}
+  skillData:
+    attackRangeSize: {x: 7, y: 3}
+    attackRangeOffset: {x: 0, y: 0}
+    attackMask:
+      serializedVersion: 2
+      m_Bits: 2048
+    attackDrawColor: {r: 0, g: 1, b: 0.25258827, a: 1}
 --- !u!1 &4727279555894413965
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,3 +759,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6953054727624705032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8673237132488503281}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8673237132488503281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953054727624705032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2191150384926420905}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
