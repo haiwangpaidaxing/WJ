@@ -410,12 +410,12 @@ MonoBehaviour:
     m_Bits: 2048
   tackingDrawColor: {r: 1, g: 0.72851, b: 0, a: 1}
   patrolPoint: []
-  attackRangeSize: {x: 2.48, y: 2.41}
-  attackRangeOffset: {x: 0.55, y: 0}
+  attackRangeSize: {x: 1.36, y: 2.41}
+  attackRangeOffset: {x: 0, y: 0}
   attackMask:
     serializedVersion: 2
     m_Bits: 2048
-  attackDrawColor: {r: 1, g: 0.8254717, b: 0.8309471, a: 1}
+  attackDrawColor: {r: 1, g: 1, b: 1, a: 1}
   veTr: {x: 0, y: 0}
   monsterStateEnum: 0
   tackingRangeTarget: {fileID: 0}
@@ -423,6 +423,19 @@ MonoBehaviour:
   shieldValue: 0
   shieldRecover: 0
   currentTime: 0
+  monsterSkillData:
+  - id: 1001
+    name: "\u666E\u901A\u653B\u51FB"
+    cd: 1
+    ISCD: 0
+  - id: 1002
+    name: "\u91CD\u51FB"
+    cd: 5
+    ISCD: 0
+  - id: 1003
+    name: "\u6280\u80FD1"
+    cd: 10
+    ISCD: 0
   efData:
     className: 
     value: 0

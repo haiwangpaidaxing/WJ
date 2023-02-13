@@ -36,10 +36,14 @@ namespace WMBT
         public int shieldRecover;
         [SerializeField]
         private float currentTime;
+        [SerializeField]
+         List<MonsterSkillData> monsterSkillData;
+        public MonsterSkillManager skillManager;
         public override void Init()
         {
             base.Init();
             currentShieldValue = shieldValue;
+            skillManager = new MonsterSkillManager(monsterSkillData);
         }
         protected override void FixedUpdate()
         {
@@ -77,4 +81,3 @@ namespace WMBT
 
 
 }
-        

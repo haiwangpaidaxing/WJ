@@ -13,11 +13,11 @@ namespace WMState
         Injured,
         Die,
 
-        Attack=1001,
-        Attack1=1002,
-        Attack2=1003,
-        Attack3=1004,
-        Attack4=1005,
+        Attack=1000,
+        Attack1=1001,
+        Attack2=1002,
+        Attack3=1003,
+        Attack4=1004,
     }
 
 }

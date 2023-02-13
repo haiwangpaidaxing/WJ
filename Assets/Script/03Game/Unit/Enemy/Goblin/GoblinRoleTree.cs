@@ -25,9 +25,10 @@ namespace WMBT
 
             BTPrioritySelector attackNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateEnum.Attack), "MonsterAttack");
 
-            MonsterAttackState attackState = new MonsterAttackState(MonsterStateEnum.Attack, "Attack");
+            MonsterAttackState attackState = new MonsterAttackState(MonsterStateEnum.Attack, "Attack",1001);
 
             BTPrioritySelector idleNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateEnum.Idle), "Idle");
+
             MonsterIdleState idleState = new MonsterIdleState(MonsterStateEnum.Idle, "Idle");
 
             BTPrioritySelector dieNode = new BTPrioritySelector(new MonsterStateCheck(MonsterStateEnum.Die), "Die");

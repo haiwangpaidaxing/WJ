@@ -8,9 +8,11 @@ using WMState;
 public class MonkNAState : MonsterComboAttack
 {
     MonkDatabase monkDatabase;
-    public MonkNAState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "", int combosCount = 3) : base(monsterStateEnum, animName, audioName, combosCount)
+
+    public MonkNAState(MonsterStateEnum monsterStateEnum, string animName, int combosCount = 3, int skillID = 0, string audioName = "") : base(monsterStateEnum, animName, combosCount, skillID, audioName)
     {
     }
+
     public override void Init(Database database)
     {
         base.Init(database);
@@ -54,6 +56,7 @@ public class MonkNAState : MonsterComboAttack
  
     protected override void ComboOver()
     {
+        monkDatabase.skillManager.USE(skillID);
         monkDatabase.attackState = RedRoleStateCheck.AttackState.Null;
         base.ComboOver();
     }

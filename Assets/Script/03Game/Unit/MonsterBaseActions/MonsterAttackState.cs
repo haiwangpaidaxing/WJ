@@ -9,16 +9,20 @@ namespace WMState
     public class MonsterAttackState : BaseMonsterState
     {
         protected EnemyFinder enemyFinder;
+        protected int skillID;
         public override void Init(Database database)
         {
             base.Init(database);
             enemyFinder = database.GetComponent<EnemyFinder>();
         }
-        public MonsterAttackState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
+        public MonsterAttackState(MonsterStateEnum monsterStateEnum, string animName, int skillID = 0, string audioName = "") : base(monsterStateEnum, animName, audioName)
         {
-
+            this.skillID = skillID;
         }
-
+        public MonsterAttackState(MonsterStateEnum monsterStateEnum, string animName,  string audioName = "") : base(monsterStateEnum, animName, audioName)
+        {
+           
+        }
         protected override void Enter()
         {
             enemyFinder.Close();
@@ -45,9 +49,9 @@ namespace WMState
         protected virtual void AttackCheck()
         {
             InjuredData injuredData = new InjuredData();
-             injuredData.harm = database.roleAttribute.GetHarm();
-              injuredData.releaser = database.roleController;
-             enemyFinder.enemyCB = (injured) => { injured.Injured(injuredData); };
+            injuredData.harm = database.roleAttribute.GetHarm();
+            injuredData.releaser = database.roleController;
+            enemyFinder.enemyCB = (injured) => { injured.Injured(injuredData); };
             enemyFinder.OpenFindTargetAll();
         }
 

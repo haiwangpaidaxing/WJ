@@ -13,9 +13,16 @@ public class MonsterComboAttack : MonsterAttackState
         this.combosCount = combosCount;
     }
 
+    public MonsterComboAttack(MonsterStateEnum monsterStateEnum, string animName, int combosCount , int skillID , string audioName = "") : base(monsterStateEnum, animName, skillID, audioName)
+    {
+        oldAnimName = animName;
+        this.combosCount = combosCount;
+    }
+
     protected override void Enter()
     {
         animName = oldAnimName + index;
+        UnityEngine.Debug.Log(animName);
         base.Enter();
     }
 

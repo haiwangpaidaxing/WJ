@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3492719752
+CRC: 528166999
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ba034600c3d03bd3fcd9838080277e06
+    Hash: 3797a30b0ff5994bcc32fc288034e4ed
   TypeTreeHash:
     serializedVersion: 2
-    Hash: fc068ba7935cd84a12ca7d3dbe0209a8
+    Hash: 5ec8a3bec5e9a46e12ead4416c727104
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -188,6 +188,10 @@ ClassTypes:
 SerializeReferenceClassIdentifiers:
 - AssemblyName: Assembly-CSharp
   ClassName: CreateGhostData
+- AssemblyName: Assembly-CSharp
+  ClassName: MonsterSkillData
+- AssemblyName: Assembly-CSharp
+  ClassName: MonsterattackDetectionData
 - AssemblyName: Assembly-CSharp
   ClassName: WMEffectsSkill.Diaup
 - AssemblyName: Assembly-CSharp

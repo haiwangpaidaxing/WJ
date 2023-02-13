@@ -17,6 +17,7 @@ public class MonkDatabase : MonsterDatabase
     public override void Init()
     {
         base.Init();
+        injuredData = new InjuredData();
         diaup = new Diaup(efData);
         repel = new Repel(efData);
         tackingRangeTarget = GameObject.FindGameObjectWithTag("Hero").transform;
