@@ -8,7 +8,7 @@ using WMState;
 public class MonkNAState : MonsterComboAttack
 {
     MonkDatabase monkDatabase;
-
+    InjuredData injuredData;
     public MonkNAState(MonsterStateEnum monsterStateEnum, string animName, int combosCount = 3, int skillID = 0, string audioName = "") : base(monsterStateEnum, animName, combosCount, skillID, audioName)
     {
     }
@@ -17,6 +17,7 @@ public class MonkNAState : MonsterComboAttack
     {
         base.Init(database);
         monkDatabase = database.GetComponent<MonkDatabase>();
+        injuredData = new InjuredData();
     }
 
     protected override void Enter()
@@ -31,21 +32,21 @@ public class MonkNAState : MonsterComboAttack
         {
             case 0:
                 monkDatabase.diaup.skillData.value = 3;
-                monkDatabase.injuredData.baseEffectsSkillList = new BaseEffectsSkill[1] { monkDatabase.diaup };
+                injuredData.baseEffectsSkillList = new BaseEffectsSkill[1] { monkDatabase.diaup };
                 break;
             case 1:
                 monkDatabase.diaup.skillData.value = 3;
-                monkDatabase.injuredData.baseEffectsSkillList = new BaseEffectsSkill[1] { monkDatabase.diaup };
+                injuredData.baseEffectsSkillList = new BaseEffectsSkill[1] { monkDatabase.diaup };
                 break;
             case 2:
                 monkDatabase.diaup.skillData.value = 5;
                 monkDatabase.repel.skillData.value = 5;
-                monkDatabase.injuredData.baseEffectsSkillList = new BaseEffectsSkill[2] { monkDatabase.diaup, monkDatabase.repel };
+                injuredData.baseEffectsSkillList = new BaseEffectsSkill[2] { monkDatabase.diaup, monkDatabase.repel };
                 break;
         }
-        monkDatabase.injuredData.harm = database.roleAttribute.GetHarm();
-        monkDatabase.injuredData.releaser = database.roleController;
-        enemyFinder.enemyCB = (injured) => { injured.Injured(monkDatabase.injuredData); };
+        injuredData.harm = database.roleAttribute.GetHarm();
+        injuredData.releaser = database.roleController;
+        enemyFinder.enemyCB = (injured) => { injured.Injured(injuredData); };
         enemyFinder.OpenFindTargetAll();
     }
 
@@ -53,7 +54,7 @@ public class MonkNAState : MonsterComboAttack
     {
         return base.Execute();
     }
- 
+
     protected override void ComboOver()
     {
         monkDatabase.skillManager.USE(skillID);

@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using WMState;
 
-public class MonkSkillState :MonsterStateCheck
+public class MonkSkillState : MonsterAttackState
 {
-    public MonkSkillState(MonsterStateEnum checkType) : base(checkType)
+    public MonkSkillState(MonsterStateEnum monsterStateEnum, string animName, int skillID = 0, string audioName = "") : base(monsterStateEnum, animName, skillID, audioName)
     {
     }
-
-   
+    protected override void Enter()
+    {
+        base.Enter();
+    }
+    protected override void AttackCheck()
+    {
+        enemyFinder.Close();
+        base.AttackCheck();
+    }
 }
