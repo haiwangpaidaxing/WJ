@@ -100,7 +100,7 @@ public class MonsterStateCheck : BTPrecondition
 {
     public enum AttackState
     {
-        Null, Check, NA, TA, RA,Skill
+        Null, Check, NA, TA, RA, Skill
     }
     protected MonsterDatabase mData;
     protected MonsterStateEnum currentCheckType;
@@ -193,8 +193,11 @@ public class MonsterStateCheck : BTPrecondition
 
     public virtual bool Injured()
     {
-
-        if (mData.monsterStateEnum == MonsterStateEnum.Injured)
+        if (mData.currentShieldValue > 0)
+        {
+            return false;
+        }
+        else if (mData.monsterStateEnum == MonsterStateEnum.Injured)
         {
             return true;
         }

@@ -110,14 +110,9 @@ public class RedRoleStateCheck : MonsterStateCheck
 
     public override bool Injured()
     {
-        if (mData.currentShieldValue>0)
-        {
-            return false;
-        }
-        else
-        {
+        
            return base.Injured();
-        }
+      
     }
 
     public override bool Patrol()

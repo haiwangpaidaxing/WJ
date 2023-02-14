@@ -400,7 +400,7 @@ MonoBehaviour:
   GroundMask:
     serializedVersion: 2
     m_Bits: 512
-  InputDir: {x: 0, y: 0}
+  InputDir: {x: 1, y: 0}
   roleAttribute: {fileID: 0}
   GroundCheckPos: {x: 0, y: 0}
   tackingRangeSize: {x: 33, y: 6.09}
@@ -420,8 +420,8 @@ MonoBehaviour:
   monsterStateEnum: 0
   tackingRangeTarget: {fileID: 0}
   currentShieldValue: 0
-  shieldValue: 0
-  shieldRecover: 0
+  shieldValue: 5
+  shieldRecover: 3
   currentTime: 0
   monsterSkillData:
   - id: 1001
@@ -468,7 +468,7 @@ MonoBehaviour:
       m_Bits: 2048
     attackDrawColor: {r: 1, g: 0, b: 0.561501, a: 1}
   skillData:
-    attackRangeSize: {x: 7, y: 3}
+    attackRangeSize: {x: 4.36, y: 2.32}
     attackRangeOffset: {x: 0, y: 0}
     attackMask:
       serializedVersion: 2

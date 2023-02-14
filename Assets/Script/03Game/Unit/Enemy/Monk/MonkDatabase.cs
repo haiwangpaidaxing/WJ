@@ -22,7 +22,11 @@ public class MonkDatabase : MonsterDatabase
         repel = new Repel(efData);
         tackingRangeTarget = GameObject.FindGameObjectWithTag("Hero").transform;
     }
-
+    private void Update()
+    {
+        //taData.attackRangeOffset *=roleController.roleDir;
+        //skillData.attackRangeOffset *= InputDir.x;
+    }
     public override void OnDrawGizmosSelected()
     {
         base.OnDrawGizmosSelected();

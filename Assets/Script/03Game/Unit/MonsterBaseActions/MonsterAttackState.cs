@@ -23,6 +23,7 @@ namespace WMState
         {
            
         }
+
         protected override void Enter()
         {
             enemyFinder.Close();
@@ -34,15 +35,12 @@ namespace WMState
                 return;
             }
             Vector2 tr = mData.transform.position;
-            if (target.position.x > tr.x)
-            {
-                roleController.SyncImage(1);
-            }
-            else if (target.position.x < tr.x)
-            {
-
-                roleController.SyncImage(-1);
-            }//矫正需要面向玩家英雄
+          
+            
+            
+            
+            
+            //向玩家英雄
             roleController.animatorClipCb = AttackCheck;
         }
 
