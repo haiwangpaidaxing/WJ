@@ -23,7 +23,7 @@ public class MonkSkillState : MonsterAttackState
     {
         base.Enter();
         monkDatabase.attackState = RedRoleStateCheck.AttackState.Skill;
-
+        LookTarget(monkDatabase.tackingRangeTarget);
     }
     protected override void AttackCheck()
     {
@@ -33,10 +33,12 @@ public class MonkSkillState : MonsterAttackState
             case 0:
                 monkDatabase.diaup.skillData.value = 1;
                 injuredData.baseEffectsSkillList = new BaseEffectsSkill[1] { monkDatabase.diaup };
+                CameraControl.Single.StartShake();
                 break;
             case 1:
                 monkDatabase.diaup.skillData.value = 3;
                 injuredData.baseEffectsSkillList = new BaseEffectsSkill[1] { monkDatabase.diaup };
+                
                 break;
             case 2:
                 monkDatabase.diaup.skillData.value = 6;
@@ -49,12 +51,23 @@ public class MonkSkillState : MonsterAttackState
                 break;
 
         }
-        Debug.Log(index);
         injuredData.harm = database.roleAttribute.GetHarm();
         injuredData.releaser = database.roleController;
-        enemyFinder.enemyCB = (injured) => { injured.Injured(injuredData); };
+        enemyFinder.enemyCB = (injured) => 
+        {
+            CameraControl.Single.StartShake();
+            injured.Injured(injuredData);
+        };
         enemyFinder.OpenFindTargetAll();
         index++;
+    }
+    public override void Clear()
+    {
+        if (monkDatabase.skillManager.Find(skillID))
+        {
+            monkDatabase.skillManager.USE(skillID);
+        }
+        base.Clear();
     }
 
     protected override void AnimatorSkillOver()

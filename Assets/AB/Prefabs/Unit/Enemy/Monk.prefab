@@ -430,11 +430,11 @@ MonoBehaviour:
     ISCD: 0
   - id: 1002
     name: "\u91CD\u51FB"
-    cd: 5
+    cd: 10
     ISCD: 0
   - id: 1003
     name: "\u6280\u80FD1"
-    cd: 10
+    cd: 20
     ISCD: 0
   efData:
     className: 

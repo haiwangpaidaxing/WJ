@@ -13,7 +13,7 @@ public class MonsterComboAttack : MonsterAttackState
         this.combosCount = combosCount;
     }
 
-    public MonsterComboAttack(MonsterStateEnum monsterStateEnum, string animName, int combosCount , int skillID , string audioName = "") : base(monsterStateEnum, animName, skillID, audioName)
+    public MonsterComboAttack(MonsterStateEnum monsterStateEnum, string animName, int combosCount, int skillID, string audioName = "") : base(monsterStateEnum, animName, skillID, audioName)
     {
         oldAnimName = animName;
         this.combosCount = combosCount;
@@ -22,7 +22,7 @@ public class MonsterComboAttack : MonsterAttackState
     protected override void Enter()
     {
         animName = oldAnimName + index;
-        UnityEngine.Debug.Log(animName);
+        //   UnityEngine.Debug.Log(animName);
         base.Enter();
     }
 

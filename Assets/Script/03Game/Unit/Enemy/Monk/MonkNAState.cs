@@ -18,6 +18,10 @@ public class MonkNAState : MonsterComboAttack
         base.Init(database);
         monkDatabase = database.GetComponent<MonkDatabase>();
         injuredData = new InjuredData();
+        if (index ==0)
+        {
+            LookTarget(monkDatabase.tackingRangeTarget);
+        }
     }
 
     protected override void Enter()
@@ -39,6 +43,7 @@ public class MonkNAState : MonsterComboAttack
                 injuredData.baseEffectsSkillList = new BaseEffectsSkill[1] { monkDatabase.diaup };
                 break;
             case 2:
+              
                 monkDatabase.diaup.skillData.value = 5;
                 monkDatabase.repel.skillData.value = 5;
                 injuredData.baseEffectsSkillList = new BaseEffectsSkill[2] { monkDatabase.diaup, monkDatabase.repel };
@@ -46,7 +51,9 @@ public class MonkNAState : MonsterComboAttack
         }
         injuredData.harm = database.roleAttribute.GetHarm();
         injuredData.releaser = database.roleController;
-        enemyFinder.enemyCB = (injured) => { injured.Injured(injuredData); };
+        enemyFinder.enemyCB = (injured) => {
+            CameraControl.Single.StartShake();
+            injured.Injured(injuredData); };
         enemyFinder.OpenFindTargetAll();
     }
 
@@ -54,7 +61,14 @@ public class MonkNAState : MonsterComboAttack
     {
         return base.Execute();
     }
-
+    public override void Clear()
+    {
+        if (monkDatabase.skillManager.Find(skillID))
+        {
+            monkDatabase.skillManager.USE(skillID);
+        }
+        base.Clear();
+    }
     protected override void ComboOver()
     {
         monkDatabase.skillManager.USE(skillID);

@@ -27,8 +27,6 @@ public class Rocker : MonoSingle<Rocker>, IBaseSole
     public void OnDrag(PointerEventData eventData)
     {
         //圆心-拖拽位置=方向向量
-
-       
         Touch[] touchs = Input.touches;
         int tCount = Input.touchCount;
         Vector2 deltaPos = eventData.position - orginPos;
@@ -68,6 +66,15 @@ public class Rocker : MonoSingle<Rocker>, IBaseSole
         {
             dir.x = 1;
         }
+        if (orginPos.y - head.position.y < -45f)
+        {
+            dir.y = 1;
+        }
+        else
+        {
+            dir.y = 0;
+        }
+        Debug.Log(orginPos.y - head.position.y);
         dirEvent?.Invoke(dir);
     }
 
@@ -86,13 +93,13 @@ public class Rocker : MonoSingle<Rocker>, IBaseSole
 
     public void OnPointerExit(PointerEventData eventData)
     {
-      
+
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         head.localPosition = Vector3.zero;
-        dir.x = 0;
+        dir = Vector2.zero;
         dirEvent?.Invoke(Vector2.zero);
     }
 }

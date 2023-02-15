@@ -98346,7 +98346,7 @@ MonoBehaviour:
       RoomPos: {fileID: 711964586}
       broundary: []
       createConfig:
-      - ID: 11001
+      - ID: 11002
         Count: 1
         startPos: {fileID: 1685960637}
         patrolPoint: []

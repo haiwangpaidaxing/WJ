@@ -39,8 +39,8 @@ public class MonkRoleTree : BTTree
 
         attackNode = new BTPrioritySelector(new MonkRoleStateCheck(MonsterStateEnum.Attack), "MonsterAttack");
 
-         AddSkill();
-        // AddTA();
+        AddSkill();
+        AddTA();
         AddNA();
 
         root.AddChild(dieNode);

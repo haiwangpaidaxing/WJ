@@ -19,9 +19,9 @@ namespace WMState
         {
             this.skillID = skillID;
         }
-        public MonsterAttackState(MonsterStateEnum monsterStateEnum, string animName,  string audioName = "") : base(monsterStateEnum, animName, audioName)
+        public MonsterAttackState(MonsterStateEnum monsterStateEnum, string animName, string audioName = "") : base(monsterStateEnum, animName, audioName)
         {
-           
+
         }
 
         protected override void Enter()
@@ -35,15 +35,23 @@ namespace WMState
                 return;
             }
             Vector2 tr = mData.transform.position;
-          
-            
-            
-            
-            
+
             //ÏòÍæ¼ÒÓ¢ÐÛ
             roleController.animatorClipCb = AttackCheck;
         }
+        protected void LookTarget(Transform target)
+        {
+            if (roleController.transform.position.x > target.position.x)
+            {
+                roleController.SyncImage(-1);
+            }
+            else if (roleController.transform.position.x < target.position.x)
+            {
+                roleController.SyncImage(1);
+            }
 
+
+        }
         protected virtual void AttackCheck()
         {
             InjuredData injuredData = new InjuredData();

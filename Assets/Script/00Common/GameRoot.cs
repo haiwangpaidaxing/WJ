@@ -38,6 +38,11 @@ public class GameRoot : MonoSingle<GameRoot>
         GetSvc(ref audioSvc);
         GetSvc(ref messageSvc);
         GetSvc(ref netSvc);
+        int[] list = new int[10];
+        for (int i = 0; i < list.Length-1; i++)
+        {
+            int cn = i;
+        }
         // UISvc.Single.AddTips("GameRootInit...");
         //初始化系统
         //WMData.EquipData equipData = new WMData.EquipData();
