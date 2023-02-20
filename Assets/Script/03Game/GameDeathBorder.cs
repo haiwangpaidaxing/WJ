@@ -10,7 +10,7 @@ public class GameDeathBorder : MonoBehaviour
         if (injured != null)
         {
             InjuredData injuredData = new InjuredData();
-            injuredData.harm = 10000;
+            injuredData.harm = 999999;
             injured.Injured(injuredData);
         }
 

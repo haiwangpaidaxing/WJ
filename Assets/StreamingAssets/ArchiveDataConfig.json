@@ -2,10 +2,10 @@
     "dataList": [
         {
             "archiveID": 1,
-            "saveDataTime": "2023/2/15 15:06:20",
+            "saveDataTime": "2023/2/20 14:57:55",
             "playerData": {
                 "selectRoleId": 1001,
-                "gold": 4160,
+                "gold": 4190,
                 "heroLevel": 0,
                 "skillDatas": [
                     {
@@ -19,7 +19,7 @@
                         "MP": 20.0,
                         "cd": 0.10000000149011612,
                         "skillTime": 0.0,
-                        "currentCD": 0.0,
+                        "currentCD": -0.019999999552965165,
                         "attackBackswing": 0.10000000149011612,
                         "comboValidTime": 0.0,
                         "comboCurrentValidTime": 0.0,
@@ -78,7 +78,7 @@
                         "currentCD": 0.0,
                         "attackBackswing": 0.20000000298023225,
                         "comboValidTime": 0.20000000298023225,
-                        "comboCurrentValidTime": 0.0,
+                        "comboCurrentValidTime": 0.20000000298023225,
                         "skillEffectsNuumber": 1
                     },
                     {
@@ -120,7 +120,7 @@
                         "MP": 20.0,
                         "cd": 5.0,
                         "skillTime": 0.0,
-                        "currentCD": 0.0,
+                        "currentCD": -0.03999579697847366,
                         "attackBackswing": 0.0,
                         "comboValidTime": 0.0,
                         "comboCurrentValidTime": 0.0,
@@ -151,7 +151,7 @@
                         "currentCD": 0.0,
                         "attackBackswing": 0.20000000298023225,
                         "comboValidTime": 0.20000000298023225,
-                        "comboCurrentValidTime": 0.20000000298023225,
+                        "comboCurrentValidTime": 0.0,
                         "skillEffectsNuumber": 1
                     },
                     {
@@ -232,7 +232,7 @@
                         "MP": 10.0,
                         "cd": 0.10000000149011612,
                         "skillTime": 0.0,
-                        "currentCD": 0.0,
+                        "currentCD": -0.019999999552965165,
                         "attackBackswing": 0.10000000149011612,
                         "comboValidTime": 0.20000000298023225,
                         "comboCurrentValidTime": 0.0,
