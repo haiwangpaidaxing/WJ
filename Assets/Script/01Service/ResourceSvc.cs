@@ -17,7 +17,6 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     public bool isEDITOR;
     public Dictionary<string, AssetBundle> cacheAssetBundle;
     Queue<string> abDownloadQueue = new Queue<string>();
-
     StreamingAssetsPathResPathConfig streamingAssetsPathResPathConfig;
     public override void Init()
     {
@@ -762,7 +761,6 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         wmDataEquip.Attribute_HP = cfgDataEquip.EquipAttribute.AttributeHP;
         wmDataEquip.bagIndex = 0;
 
-
         return wmDataEquip;
     }
 
@@ -910,9 +908,10 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         }//再次反射 
     }
     #endregion
+    #region 单位 创建
     public GameObject CreateMonster(int id)
     {
-        MonsterData monsterData = tables.TBMonsterData.Get(id);
+        MonsterData monsterData = tables.TBMonsterData.Get(id);//根据ID获取怪物创建数据
         GameObject monster = LoadOrCreate<GameObject>(EnemyPath.Enemy + "/" + monsterData.ResName);
         monster.AddComponent<RoleAttribute>().Init(monsterData.RoleAttribute);//必须首位添加
         monster.GetComponent<Database>().Init();
@@ -925,6 +924,16 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
         return monster;
 
     }
+    public GameObject CreateRole(cfg.Data.RoleData roleData)
+    {
+        GameObject role = LoadOrCreate<GameObject>(HeroPath.Hero + "/" + roleData.ResName);
+        role.AddComponent<RoleAttribute>().Init(roleData.RoleAttribute, CurrentArchiveData.equipSoltDatas);
+        role.GetComponent<RoleController>().Init();
+        role.GetComponent<WMBT.HeroDatabase>().Init();
+        role.GetComponent<RoleTree>().Init();
+        return role;
+    }
+    #endregion
     public void Clear()
     {
         cacheList.Clear();
@@ -933,6 +942,7 @@ public class ResourceSvc : MonoSingle<ResourceSvc>
     {
         AssetBundle.UnloadAllAssetBundles(true);
     }
+
 }
 [System.Serializable]
 public class CheckMD5DataConfig

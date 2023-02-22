@@ -38,17 +38,30 @@ public class GameRoot : MonoSingle<GameRoot>
         GetSvc(ref audioSvc);
         GetSvc(ref messageSvc);
         GetSvc(ref netSvc);
-        int[] list = new int[10];
-        for (int i = 0; i < list.Length-1; i++)
-        {
-            int cn = i;
-        }
         // UISvc.Single.AddTips("GameRootInit...");
         //初始化系统
         //WMData.EquipData equipData = new WMData.EquipData();
         //equipData.EquipQualityType = cfg.Data.EquipQualityType.Rare;
         //equipData.entryKey = new System.Collections.Generic.List<WMData.EntryKey>();
         //equipData.OpenEquip();
+        int[] intlist = new int[8] { 12, 545, 1, 3, 4, 8, 45, 68 };
+        for (int i = 1; i < intlist.Length ; i++)
+        {
+            int startIndex = intlist[i];
+            for (int ssr = i - 1; ssr >= 0; ssr--)
+            {
+                if (intlist[ssr] > startIndex)
+                {
+                    intlist[ssr+1] = intlist[ssr];
+                    intlist[ssr] = startIndex;
+                }
+            }
+        }
+
+        foreach (var item in intlist)
+        {
+            Debug.Log(item);
+        }
     }
 
     public void GetSvc<T>(ref T t) where T : MonoSingle<T>
@@ -72,16 +85,6 @@ public class GameRoot : MonoSingle<GameRoot>
         globalTimerSvc.UpdateTask();
     }
 
-    public GameObject CreateRole(cfg.Data.RoleData roleData)
-    {
-        GameObject role = resourceSvc.LoadOrCreate<GameObject>(HeroPath.Hero + "/" + roleData.ResName);
-        role.AddComponent<RoleAttribute>().Init(roleData.RoleAttribute, resourceSvc.CurrentArchiveData.equipSoltDatas);
-
-        role.GetComponent<RoleController>().Init();
-        role.GetComponent<WMBT.HeroDatabase>().Init();
-        role.GetComponent<RoleTree>().Init();
-        return role;
-    }
 
     /// <summary>
     /// 设置技能效果 

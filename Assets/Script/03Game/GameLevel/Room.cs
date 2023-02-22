@@ -7,6 +7,8 @@ using WMBT;
 [System.Serializable]
 public class Room
 {
+    [SerializeField]
+    bool gameOverRoom;
     public int currentMonsterCount;
     //Fixed Camera Position
     public Transform fixedCamerPos;
@@ -32,8 +34,11 @@ public class Room
         {
             roomConfig.broundary[i].SetActive(false);
         }
-
         GameLevelManager.Single.currentRoom = null;
+        if (gameOverRoom)
+        {
+            GameLevelManager.Single.GameWinner();
+        }
     }
     public void Execute()
     {
@@ -69,7 +74,6 @@ public class Room
                     monsterObject.GetComponent<MonsterController>().DieCB = MonsterDieCB;
                     monsterObject.GetComponent<MonsterDatabase>().patrolPoint = roomConfig.createConfig[i].patrolPoint;
                     currentMonsterCount++;
-
                     treeList.Add(monsterObject.GetComponent<BTTree>());
                 }
             }
@@ -80,7 +84,6 @@ public class Room
 
     private void MonsterDieCB()
     {
-
         GameLevelManager.Single.OnUpdatekillCount?.Invoke();
         currentMonsterCount--;
     }
@@ -101,7 +104,6 @@ public struct RoomConfig
     public CreateEnemyConfigData[] createConfig;
     [Header("房间信息")]
     public string RoomInfo;
-
 }
 
 [System.Serializable]

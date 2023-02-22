@@ -15,15 +15,17 @@ public class GameLevelManager : MonoSingle<GameLevelManager>
     public HeroController heroController { get; set; }
     [SerializeField]
     PlayerLevelData playerLevelData;
-
     public Action OnUpdatekillCount;
+    [SerializeField]
+    float gameOverCountDown = 3;
+    bool isCountDown;
     private void Awake()
     {
         playerLevelData = new PlayerLevelData();
         EnemyList = new GameObject("EnemyList");
         levelRoomPanel = UISvc.Single.GetPanel<LevelRoomPanel>(UIPath.GameLevelRoomPanel, UISvc.StateType.Show);
         gameOverPanel = UISvc.Single.GetPanel<GameOverPanel>(UIPath.GameOverPanel, UISvc.StateType.Close);
-        GameObject role = GameRoot.Single.CreateRole(ResourceSvc.Single.CurrentArchiveData.playerData.roleData);
+        GameObject role = ResourceSvc.Single.CreateRole(ResourceSvc.Single.CurrentArchiveData.playerData.roleData);
         role.transform.position = roleStartPos.position;
         CameraControl.Single.SetTarget(role.transform);
         heroController = role.GetComponent<HeroController>();
@@ -53,7 +55,7 @@ public class GameLevelManager : MonoSingle<GameLevelManager>
     public void RoleDie()
     {
         InputController.Single.Close();
-        levelRoomPanel.Show("You Die");
+        levelRoomPanel.Show("ÓÎÏ·Ê§°Ü");
         TimerSvc.instance.AddTask(0.5F * 1000, () =>
           {
               if (currentRoom != null)
@@ -70,7 +72,31 @@ public class GameLevelManager : MonoSingle<GameLevelManager>
     public void GameWinner()
     {
         InputController.Single.Close();
+        isCountDown = true;
+    }
 
+    private void Update()
+    {
+        if (isCountDown)
+        {
+            gameOverCountDown -= Time.fixedTime;
+            levelRoomPanel.Show(gameOverCountDown.ToString("0"));
+            if (gameOverCountDown <= 0)
+            {
+                isCountDown = false;
+                levelRoomPanel.Show("ÓÎÏ·Ê¤Àû");
+                TimerSvc.instance.AddTask(0.5F * 1000, () =>
+                {
+                    if (currentRoom != null)
+                    {
+                        currentRoom.End();
+                    }
+                    gameOverPanel.KillMonsterCountText.text = playerLevelData.killCount.ToString();
+                    gameOverPanel.GoldCountText.text = playerLevelData.goldCount.ToString();
+                    UISvc.Single.SetPanelState(gameOverPanel, UISvc.StateType.Show);
+                });
+            }
+        }
     }
     public void Init()
     {

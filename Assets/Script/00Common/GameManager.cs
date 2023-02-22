@@ -8,7 +8,7 @@ public class GameManager : MonoSingle<GameManager>
     public ArchiveData archiveData;
     private void Awake()
     {
-        CameraControl.Single.SetTarget(GameRoot.Single.CreateRole(ResourceSvc.Single.CurrentArchiveData.playerData.roleData).transform);
+        CameraControl.Single.SetTarget(ResourceSvc.Single.CreateRole(ResourceSvc.Single.CurrentArchiveData.playerData.roleData).transform);
     }
     public void Init(ArchiveData archiveData)
     {
