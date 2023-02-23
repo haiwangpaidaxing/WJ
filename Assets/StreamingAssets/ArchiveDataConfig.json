@@ -2,10 +2,10 @@
     "dataList": [
         {
             "archiveID": 1,
-            "saveDataTime": "2023/2/21 16:29:07",
+            "saveDataTime": "2023/2/23 16:21:56",
             "playerData": {
                 "selectRoleId": 1001,
-                "gold": 4190,
+                "gold": 4210,
                 "heroLevel": 0,
                 "skillDatas": [
                     {
@@ -50,7 +50,7 @@
                         "currentCD": 0.0,
                         "attackBackswing": 0.20000000298023225,
                         "comboValidTime": 0.20000000298023225,
-                        "comboCurrentValidTime": 0.0,
+                        "comboCurrentValidTime": 0.20000000298023225,
                         "skillEffectsNuumber": 1
                     },
                     {
@@ -78,7 +78,7 @@
                         "currentCD": 0.0,
                         "attackBackswing": 0.20000000298023225,
                         "comboValidTime": 0.20000000298023225,
-                        "comboCurrentValidTime": 0.20000000298023225,
+                        "comboCurrentValidTime": 0.0,
                         "skillEffectsNuumber": 1
                     },
                     {
@@ -151,7 +151,7 @@
                         "currentCD": 0.0,
                         "attackBackswing": 0.20000000298023225,
                         "comboValidTime": 0.20000000298023225,
-                        "comboCurrentValidTime": 0.0,
+                        "comboCurrentValidTime": 0.20000000298023225,
                         "skillEffectsNuumber": 1
                     },
                     {
@@ -232,7 +232,7 @@
                         "MP": 10.0,
                         "cd": 0.10000000149011612,
                         "skillTime": 0.0,
-                        "currentCD": -0.019999999552965165,
+                        "currentCD": 0.0,
                         "attackBackswing": 0.10000000149011612,
                         "comboValidTime": 0.20000000298023225,
                         "comboCurrentValidTime": 0.0,
