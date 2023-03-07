@@ -4,6 +4,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
+using System;
+using System.Linq;
 
 public class SampleGraphEditorWindow : EditorWindow
 {
@@ -15,15 +17,16 @@ public class SampleGraphEditorWindow : EditorWindow
     }
     void OnEnable()
     {
+       
         var graphView = new SampleGraphView()
         {
             style = { flexGrow = 1 }
         };
         rootVisualElement.Add(graphView);
+
+        rootVisualElement.Add(new Button(graphView.Execute) { text = "Execute" });
     }
 }
-
-
 public class SampleGraphView : GraphView
 {
     public RootNode root;
@@ -40,9 +43,14 @@ public class SampleGraphView : GraphView
         //多个node框选功能
         this.AddManipulator(new SelectionDragger());
         // 目前，在 GraphView 的构造函数中创建了一个，因此您可以从右键单击菜单添加它。
+
+        //搜索不同节点功能
+        var searchWindowProvider = new SampleSearchWindowProvider();
+        searchWindowProvider.Initialize(this);
+
         nodeCreationRequest += context =>
         {
-            AddElement(new SampleNode());
+            SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), searchWindowProvider);
         };
     }
     public override List<Port> GetCompatiblePorts(Port startAnchor, NodeAdapter nodeAdapter)
@@ -56,40 +64,116 @@ public class SampleGraphView : GraphView
             {
                 continue;
             }
-
             compatiblePorts.Add(port);
         }
         return compatiblePorts;
     }
+    public void Execute()
+    {
+        var rootEdge = root.outputPort.connections.FirstOrDefault();//找到输出节点
+        if (rootEdge == null) return;
+
+        var currentNode = rootEdge.input.node as ProcessNode;
+
+        while (true)
+        {
+            currentNode.Execute();
+            var edge = currentNode.outputPort.connections.FirstOrDefault();
+            if (edge == null) break;
+            currentNode = edge.input.node as ProcessNode;
+        }
+    }
+
+
 }
 
-
-public class SampleNode : Node
+public class SampleSearchWindowProvider : ScriptableObject, ISearchWindowProvider
 {
-    public SampleNode()
+    private SampleGraphView graphView;
+
+    public void Initialize(SampleGraphView graphView)
     {
-        title = "Sample";
-        //节点与其他节点结合使用 首先，将 InputPort 和 OutputPort 添加到节点。
+        this.graphView = graphView;
+    }
+
+    List<SearchTreeEntry> ISearchWindowProvider.CreateSearchTree(SearchWindowContext context)
+    {
+        var entries = new List<SearchTreeEntry>();
+        entries.Add(new SearchTreeGroupEntry(new GUIContent("Create Node")));
+
+        foreach (var assembly in System.AppDomain.CurrentDomain.GetAssemblies())
+        {
+            foreach (var type in assembly.GetTypes())
+            {
+                if (type.IsClass && !type.IsAbstract && (type.IsSubclassOf(typeof(SampleNode)))
+                    && type != typeof(RootNode))
+                {
+                    entries.Add(new SearchTreeEntry(new GUIContent(type.Name)) { level = 1, userData = type });
+                }
+            }
+        }
+
+        return entries;
+    }
+
+    bool ISearchWindowProvider.OnSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
+    {
+        var type = searchTreeEntry.userData as System.Type;
+        var node = Activator.CreateInstance(type) as SampleNode;
+        graphView.AddElement(node);
+        return true;
+    }
+}
+public abstract class SampleNode : Node
+{
+
+
+}
+public abstract class ProcessNode : SampleNode
+{
+    public Port outputPort;
+    public ProcessNode()
+    {
         var inputPort = Port.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(Port));
+        inputPort.portName = "Input";
         inputContainer.Add(inputPort);
 
-        var outputPort = Port.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(Port));
+        outputPort = Port.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(Port));
+        outputPort.portName = "Out";
         outputContainer.Add(outputPort);
     }
 
+    public abstract void Execute();
 }
-
-public class LogNode : SampleNode
+public class BaseState : ProcessNode
 {
+    public BaseState():base()
+    {
+        title = "BaseState";
+    }
+    public override void Execute()
+    {
+    }
+}
+public class LogNode : ProcessNode
+{
+    private Port inputString;
     public LogNode() : base()
     {
         title = "Log";
+        inputString = Port.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(BaseState));
+        inputContainer.Add(inputString);//输入端口
+    }
 
-        var inputPort = Port.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(string));
-        inputContainer.Add(inputPort);
+    public override void Execute()
+    {
+        // Edge edge = inputString.connections.FirstOrDefault();
+        //   Debug.Log("aaa");
+        //var node = edge.output.node as StringNode;
+        //if (node == null) return;
+        //Debug.Log(node.Text);
     }
 }
-
 
 
 public class StringNode : SampleNode
@@ -109,17 +193,19 @@ public class StringNode : SampleNode
     }
 }
 
-
-
 public class RootNode : SampleNode
 {
+    public Port outputPort;
     public RootNode() : base()
     {
         title = "Root";
 
-        capabilities -= Capabilities.Deletable;
-        var outputPort = Port.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(Port));
+        capabilities -= Capabilities.Deletable;//根节点保证节点不会被删除
+
+        outputPort = Port.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(Port));
         outputPort.portName = "Out";
         outputContainer.Add(outputPort);
     }
+
+
 }

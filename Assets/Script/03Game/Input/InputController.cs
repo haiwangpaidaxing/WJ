@@ -21,6 +21,7 @@ public class InputController : MonoSingle<InputController>
     }
     private void Start()
     {
+
         Rocker.Single.dirEvent += (dir) =>
         {
             if (dir != oldInput)
