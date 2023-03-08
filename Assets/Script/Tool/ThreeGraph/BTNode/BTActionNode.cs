@@ -7,6 +7,8 @@ namespace WMTreeGraph
 {
     public abstract class BTActionNode : BaseBTNode
     {
+        [Header("播放动画名字")]
+        public string animName;
         [Input]
         public NextNode input;
         private BTActionStatus _status = BTActionStatus.Ready;
@@ -37,6 +39,7 @@ namespace WMTreeGraph
 
         protected virtual void Enter()
         {
+            database.animator.Play(animName);
         }
         protected virtual void Exit()
         {

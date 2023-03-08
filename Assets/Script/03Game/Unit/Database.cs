@@ -23,12 +23,19 @@ namespace WMBT
         public Vector2 GroundCheckPos;
         public InjuredData injuredData;
         public Action updateInjuredCB;
+        public Rigidbody2D rig;
+        public Animator animator;
+        private void Awake()
+        {
+            animator = GetComponent<Animator>();
+            rig = GetComponent<Rigidbody2D>();
+        }
         public virtual void Init()
         {
             roleController = GetComponent<RoleController>();//获取角色控制器
             roleAttribute = GetComponent<RoleAttribute>();
         }
-        public virtual  void OnDrawGizmosSelected()
+        public virtual void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.cyan;
             Vector2 GroundCheckPos = transform.position;
@@ -45,7 +52,7 @@ namespace WMBT
             GroundCheckPos = transform.position;//检测地面
             GroundCheckPos += GroundOffset;
 
-    
+
         }
     }
 }

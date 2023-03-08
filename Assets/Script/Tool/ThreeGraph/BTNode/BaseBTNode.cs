@@ -11,6 +11,7 @@ namespace WMTreeGraph
     { }
     public class BaseBTNode : Node
     {
+        [HideInInspector]
         public string nodeName;
         //子节点数组
         [SerializeField]
@@ -18,7 +19,7 @@ namespace WMTreeGraph
         public List<BaseBTNode> Children { get { return _children; } }
 
 
-        [Header("条件节点")]
+        [SerializeField, Header("条件节点")]
         protected BTPreconditionNode precond;
 
         // 黑板 
@@ -27,7 +28,6 @@ namespace WMTreeGraph
         // Cooldown function.冷却时间函数
         [HideInInspector]
         public float interval = 0;
-        [HideInInspector]
         private float _lastTimeEvaluated = 0;
 
         public BaseBTNode()

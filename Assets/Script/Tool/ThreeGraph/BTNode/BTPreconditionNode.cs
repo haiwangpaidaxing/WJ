@@ -5,6 +5,7 @@ using XNode;
 
 namespace WMTreeGraph
 {
+	[NodeTint(1,0.2f,0.3f)]
 	public abstract class BTPreconditionNode : BaseBTNode
 	{
 
