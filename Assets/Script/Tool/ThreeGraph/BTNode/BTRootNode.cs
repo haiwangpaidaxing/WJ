@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using WMBT;
 using XNode;
+using WMTree;
 
 namespace WMTreeGraph
 {
-
+    [NodeTint(0.1F,0.1F,0.1F)]
     public class BTRootNode : BaseBTNode
     {
         [Output]
@@ -38,7 +39,7 @@ namespace WMTreeGraph
             return base.Evaluate();
         }
 
-        public override void OnInit(Database database)
+        public override void OnInit(TreeDatabase database)
         {
             base.OnInit(database);
         }
@@ -55,11 +56,10 @@ namespace WMTreeGraph
                 currentBTNode.Clear();//退出当前节点
                 currentBTNode = null;
             }
-
             return bTResult;
         }
 
-        protected override bool DoEvaluate()
+        public override bool DoEvaluate()
         {
             //A>B>C   
             foreach (BaseBTNode child in Children)
@@ -95,4 +95,4 @@ namespace WMTreeGraph
 
 
     }
-}   
+}

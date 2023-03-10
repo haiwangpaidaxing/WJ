@@ -51,8 +51,6 @@ namespace WMBT
         {
             GroundCheckPos = transform.position;//检测地面
             GroundCheckPos += GroundOffset;
-
-
         }
     }
 }

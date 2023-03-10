@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 using WMBT;
+using WMTree;
 
 namespace WMTreeGraph
 {
@@ -11,6 +12,7 @@ namespace WMTreeGraph
     { }
     public class BaseBTNode : Node
     {
+
         [HideInInspector]
         public string nodeName;
         //子节点数组
@@ -19,12 +21,14 @@ namespace WMTreeGraph
         public List<BaseBTNode> Children { get { return _children; } }
 
 
+        //[SerializeField, Header("条件节点")]
+        //   protected BTPreconditionNode precond;
         [SerializeField, Header("条件节点")]
-        protected BTPreconditionNode precond;
+        protected List<BTPreconditionNode> precondList;
 
         // 黑板 
         [HideInInspector, Header("数据面板")]
-        public Database database;
+        public TreeDatabase database;
         // Cooldown function.冷却时间函数
         [HideInInspector]
         public float interval = 0;
@@ -39,12 +43,21 @@ namespace WMTreeGraph
         /// 初始化各个节点
         /// </summary>
         /// <param name="database"></param>
-        public virtual void OnInit(Database database)
+        public virtual void OnInit(TreeDatabase database)
         {
             this.database = database;
-            if (precond != null)
+            //if (precond != null)
+            //{
+            //    precond.OnInit(database);
+            //}
+
+            if (precondList != null && precondList.Count > 0)
             {
-                precond.OnInit(database);
+                //Debug.Log(precondList.Count);
+                foreach (var item in precondList)
+                {
+                    item.OnInit(database);
+                }
             }
             if (_children == null)
             {
@@ -63,13 +76,29 @@ namespace WMTreeGraph
         /// <returns></returns>
         public virtual bool Evaluate()
         {
-            if (CheckInterval() && (precond == null || precond.DoEvaluate()) && DoEvaluate())
+            if (CheckInterval() && AllPrecondition() && DoEvaluate())
             {
                 return true;
             }
             return false;
         }
-        protected virtual bool DoEvaluate() { return true; }
+
+        public virtual bool AllPrecondition()
+        {
+            foreach (var item in precondList)
+            {
+                if (!item.DoEvaluate())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public bool isRuning = false;
+        public virtual bool DoEvaluate() 
+        {
+            return true; 
+        }
 
         public bool CheckInterval()
         {
@@ -117,8 +146,11 @@ namespace WMTreeGraph
             }
         }
 
-
-        public virtual void Clear() { }
+       
+        public virtual void Clear() 
+        {
+          
+        }
         #endregion
 
 
@@ -138,24 +170,50 @@ namespace WMTreeGraph
 
             if (to.fieldName == "conditionNodeInput")
             {
+                if (precondList==null)
+                {
+                    precondList = new List<BTPreconditionNode>();
+                }
                 foreach (var item in to.GetConnections())
                 {
-                    precond = item.node as BTPreconditionNode;
+                    BTPreconditionNode precond = item.node as BTPreconditionNode;
+                    if (precond != null && !precondList.Contains(precond))
+                    {
+                        precondList.Add(precond);
+                    }
                 }
             }
         }
 
         public override void OnRemoveConnection(NodePort port)
         {
-            if (_children != null)
+      
+            if (port.fieldName== "output")
             {
-                _children.Clear();
+                if (_children != null)
+                {
+                    _children.Clear();
+                    foreach (var item in port.GetConnections())
+                    {
+                        BaseBTNode baseBTNode = item.node as BaseBTNode;
+                        AddChild(baseBTNode);
+                    }
+                }
             }
-            foreach (var item in port.GetConnections())
+            if (port.fieldName == "conditionNodeInput")
             {
-                BaseBTNode baseBTNode = item.node as BaseBTNode;
-                AddChild(baseBTNode);
+                if (precondList != null)
+                {
+                    precondList.Clear();
+                    foreach (var item in port.GetConnections())
+                    {
+                        BTPreconditionNode precond = item.node as BTPreconditionNode;
+                        precondList.Add(precond);
+                    }
+                }
             }
+           
+
         }
 
 

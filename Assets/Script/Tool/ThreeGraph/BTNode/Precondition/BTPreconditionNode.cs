@@ -9,7 +9,7 @@ namespace WMTreeGraph
 	public abstract class BTPreconditionNode : BaseBTNode
 	{
 
-		[Output]
+		[Output,Header("条件节点输出")]
 		public NextNode output;
 		// Use this for initialization
 		protected override void Init()
@@ -28,7 +28,7 @@ namespace WMTreeGraph
 
 		}
 
-		protected abstract override bool DoEvaluate();
+		public abstract override bool DoEvaluate();
 
 	}
 }

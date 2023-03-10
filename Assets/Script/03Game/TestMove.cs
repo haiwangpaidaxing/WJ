@@ -13,7 +13,7 @@ public class TestMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.right * Input.GetAxisRaw("Horizontal") *5*Time.deltaTime;
-        transform.position += Vector3.up * Input.GetAxisRaw("Vertical") * 5 *Time.deltaTime;
+        //transform.position += Vector3.right * Input.GetAxisRaw("Horizontal") *5*Time.deltaTime;
+        //transform.position += Vector3.up * Input.GetAxisRaw("Vertical") * 5 *Time.deltaTime;
     }
 }

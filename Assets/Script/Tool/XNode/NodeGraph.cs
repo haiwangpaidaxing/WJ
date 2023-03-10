@@ -7,6 +7,7 @@ namespace XNode {
     [Serializable]
     public abstract class NodeGraph : ScriptableObject {
 
+       
         /// <summary> All nodes in the graph. <para/>
         /// See: <see cref="AddNode{T}"/> </summary>
         [SerializeField] public List<Node> nodes = new List<Node>();

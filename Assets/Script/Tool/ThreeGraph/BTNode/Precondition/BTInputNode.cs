@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WMTreeGraph;
 using XNode;
 
-namespace WMTreeGraph
+namespace WMTreePrecondition
 {
     public class BTInputNode : BTPreconditionNode
     {
+        [Header("当前方向")]
         public Vector2 dir;
-        public int target;
+        public bool value;
         public InputState inputState;
         // Use this for initialization
         protected override void Init()
@@ -22,51 +24,55 @@ namespace WMTreeGraph
             return null; // Replace this
         }
 
-        protected override bool DoEvaluate()
+        public override bool DoEvaluate()
         {
-            dir.x = Input.GetAxisRaw("Horizontal");
+            dir = database.InputDir;
             switch (inputState)
             {
                 case InputState.Left:
                     if (dir.x == 1)
                     {
+                        value = true;
                         return true;
                     }
                     break;
                 case InputState.Right:
                     if (dir.x == -1)
                     {
+                        value = true;
                         return true;
                     }
                     break;
                 case InputState.Up:
                     if (dir.y == 1)
                     {
+                        value = true;
                         return true;
                     }
                     break;
                 case InputState.Down:
                     if (dir.y == -1)
                     {
+                        value = true;
                         return true;
                     }
                     break;
                 case InputState.LeftOrRight:
                     if (dir.x != 0)
                     {
+                        value = true;
                         return true;
                     }
                     break;
                 case InputState.Null:
                     if (dir.x == 0 || dir.y == 0)
                     {
+                        value = true;
                         return true;
                     }
                     break;
-                default:
-                    break;
             }
-           
+            value = false;
             return false;
         }
 

@@ -136742,7 +136742,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918406687}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: -18, z: 0}
+  m_LocalPosition: {x: 22, y: -17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -137285,7 +137285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rooms:
-  - currentMonsterCount: 0
+  - gameOverRoom: 0
+    currentMonsterCount: 0
     fixedCamerPos: {fileID: 0}
     roomConfig:
       loop: 2
@@ -137301,7 +137302,8 @@ MonoBehaviour:
         - {fileID: 1990557328}
       RoomInfo: 1-1
     treeList: []
-  - currentMonsterCount: 0
+  - gameOverRoom: 0
+    currentMonsterCount: 0
     fixedCamerPos: {fileID: 0}
     roomConfig:
       loop: 2
@@ -137317,7 +137319,8 @@ MonoBehaviour:
         - {fileID: 1098025401}
       RoomInfo: 1-2
     treeList: []
-  - currentMonsterCount: 0
+  - gameOverRoom: 0
+    currentMonsterCount: 0
     fixedCamerPos: {fileID: 0}
     roomConfig:
       loop: 1
@@ -137331,7 +137334,8 @@ MonoBehaviour:
         patrolPoint: []
       RoomInfo: 1-3
     treeList: []
-  - currentMonsterCount: 0
+  - gameOverRoom: 0
+    currentMonsterCount: 0
     fixedCamerPos: {fileID: 0}
     roomConfig:
       loop: 1
@@ -137354,7 +137358,9 @@ MonoBehaviour:
     time: 0
     killCount: 0
     goldCount: 0
+  gameOverCountDown: 3
   currentRoom:
+    gameOverRoom: 0
     currentMonsterCount: 0
     fixedCamerPos: {fileID: 0}
     roomConfig:

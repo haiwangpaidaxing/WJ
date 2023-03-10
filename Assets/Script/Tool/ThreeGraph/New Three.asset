@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BT Root
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -824, y: -616}
+  position: {x: -3560, y: -2040}
   ports:
     keys:
     - output
@@ -24,10 +24,10 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: -8398002774148204110}
+        node: {fileID: -1838357739068013848}
         reroutePoints: []
       - fieldName: input
-        node: {fileID: -5071097811128192665}
+        node: {fileID: 5731804947748960633}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -35,13 +35,14 @@ MonoBehaviour:
       _dynamic: 0
   nodeName: 
   _children:
-  - {fileID: -8398002774148204110}
-  - {fileID: -5071097811128192665}
-  precond: {fileID: 0}
+  - {fileID: -1838357739068013848}
+  - {fileID: 5731804947748960633}
+  precondList: []
   database: {fileID: 0}
   interval: 0
-  currentBTNode: {fileID: -5071097811128192665}
---- !u!114 &-8398002774148204110
+  isRuning: 0
+  currentBTNode: {fileID: -1838357739068013848}
+--- !u!114 &-8271065803999955178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,11 +51,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2821f80b878d18141b5d2013135de99d, type: 3}
-  m_Name: BT Select
+  m_Script: {fileID: 11500000, guid: 58dcc898d3dadf14686ff008c87b6738, type: 3}
+  m_Name: BT Parallel
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -280, y: -632}
+  position: {x: -1576, y: -1720}
   ports:
     keys:
     - input
@@ -62,36 +63,39 @@ MonoBehaviour:
     - conditionNodeInput
     values:
     - _fieldName: input
-      _node: {fileID: -8398002774148204110}
+      _node: {fileID: -8271065803999955178}
       _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: -8535303672454528271}
+        node: {fileID: -1838357739068013848}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: output
-      _node: {fileID: -8398002774148204110}
+      _node: {fileID: -8271065803999955178}
       _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: -7519561827855305775}
+        node: {fileID: -2886313128786678806}
+        reroutePoints: []
+      - fieldName: input
+        node: {fileID: -7061917352860882582}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: conditionNodeInput
-      _node: {fileID: -8398002774148204110}
+      _node: {fileID: -8271065803999955178}
       _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: 2566891843506076689}
+        node: {fileID: 5443479812909567678}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -99,50 +103,15 @@ MonoBehaviour:
       _dynamic: 0
   nodeName: 
   _children:
-  - {fileID: -7519561827855305775}
-  precond: {fileID: 2566891843506076689}
+  - {fileID: -7061917352860882582}
+  - {fileID: -2886313128786678806}
+  precondList:
+  - {fileID: 5443479812909567678}
   database: {fileID: 0}
   interval: 0
+  isRuning: 0
   currentBTNode: {fileID: 0}
---- !u!114 &-7519561827855305775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a73e142c2c4ed440968af1bcf6f6db0, type: 3}
-  m_Name: Move
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 24, y: -648}
-  ports:
-    keys:
-    - input
-    values:
-    - _fieldName: input
-      _node: {fileID: -7519561827855305775}
-      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: output
-        node: {fileID: -8398002774148204110}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  nodeName: 
-  _children: []
-  precond: {fileID: 0}
-  database: {fileID: 0}
-  interval: 0
-  animName: Run
-  dir: -1
-  speed: 1
---- !u!114 &-6912867401411637319
+--- !u!114 &-7732667301364126287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,18 +124,18 @@ MonoBehaviour:
   m_Name: BT Input
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -680, y: -296}
+  position: {x: -1656, y: -2744}
   ports:
     keys:
     - output
     values:
     - _fieldName: output
-      _node: {fileID: -6912867401411637319}
+      _node: {fileID: -7732667301364126287}
       _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: conditionNodeInput
-        node: {fileID: -5071097811128192665}
+        node: {fileID: 3715948767274014069}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -174,13 +143,286 @@ MonoBehaviour:
       _dynamic: 0
   nodeName: 
   _children: []
-  precond: {fileID: 0}
+  precondList: []
   database: {fileID: 0}
   interval: 0
+  isRuning: 0
   dir: {x: 0, y: 0}
-  target: 0
-  inputState: 0
---- !u!114 &-5071097811128192665
+  value: 0
+  inputState: -10
+--- !u!114 &-7061917352860882582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ecbfb65a72e27a46a72aa98c782d3ed, type: 3}
+  m_Name: Move
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1256, y: -1576}
+  ports:
+    keys:
+    - input
+    - conditionNodeInput
+    values:
+    - _fieldName: input
+      _node: {fileID: -7061917352860882582}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -8271065803999955178}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: conditionNodeInput
+      _node: {fileID: -7061917352860882582}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeName: 
+  _children: []
+  precondList: []
+  database: {fileID: 0}
+  interval: 0
+  isRuning: 0
+  animName: 
+  speed: {x: 1, y: 0}
+  moveType: 0
+--- !u!114 &-5841484032992823944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e93b5ccb49b3645aa64c7625632936, type: 3}
+  m_Name: BT If
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -2808, y: -1240}
+  ports:
+    keys:
+    - output
+    - conditionNodeInput
+    values:
+    - _fieldName: output
+      _node: {fileID: -5841484032992823944}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: conditionNodeInput
+        node: {fileID: 5731804947748960633}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: conditionNodeInput
+      _node: {fileID: -5841484032992823944}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -4491501390424434402}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeName: 
+  _children: []
+  precondList:
+  - {fileID: -4491501390424434402}
+  database: {fileID: 0}
+  interval: 0
+  isRuning: 0
+  condition: 1
+--- !u!114 &-4624453173531080236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f817dc378c702b46b4de5635fe0a542, type: 3}
+  m_Name: Ground Precondition
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -2504, y: -1976}
+  ports:
+    keys:
+    - output
+    values:
+    - _fieldName: output
+      _node: {fileID: -4624453173531080236}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: conditionNodeInput
+        node: {fileID: -1838357739068013848}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeName: 
+  _children: []
+  precondList: []
+  database: {fileID: 0}
+  interval: 0
+  isRuning: 0
+  state: 0
+--- !u!114 &-4491501390424434402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f817dc378c702b46b4de5635fe0a542, type: 3}
+  m_Name: Ground Detection
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -2808, y: -936}
+  ports:
+    keys:
+    - output
+    values:
+    - _fieldName: output
+      _node: {fileID: -4491501390424434402}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: conditionNodeInput
+        node: {fileID: -5841484032992823944}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeName: 
+  _children: []
+  precondList: []
+  database: {fileID: 0}
+  interval: 0
+  isRuning: 0
+  state: 1
+--- !u!114 &-3638924614991238150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89e0c4932eca8e4a93f791d68bb128f, type: 3}
+  m_Name: Air
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -2440, y: -1400}
+  ports:
+    keys:
+    - input
+    - conditionNodeInput
+    values:
+    - _fieldName: input
+      _node: {fileID: -3638924614991238150}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 5731804947748960633}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: conditionNodeInput
+      _node: {fileID: -3638924614991238150}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 8603214870117615021}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeName: 
+  _children: []
+  precondList:
+  - {fileID: 8603214870117615021}
+  database: {fileID: 0}
+  interval: 0
+  isRuning: 0
+  animName: Jump
+--- !u!114 &-2886313128786678806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a50c3ac2f920c624394356122b044708, type: 3}
+  m_Name: Play Animator
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1256, y: -1832}
+  ports:
+    keys:
+    - input
+    - conditionNodeInput
+    values:
+    - _fieldName: input
+      _node: {fileID: -2886313128786678806}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -8271065803999955178}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: conditionNodeInput
+      _node: {fileID: -2886313128786678806}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeName: 
+  _children: []
+  precondList: []
+  database: {fileID: 0}
+  interval: 0
+  isRuning: 0
+  animName: Croush
+--- !u!114 &-1838357739068013848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,7 +435,7 @@ MonoBehaviour:
   m_Name: BT Select
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -248, y: -312}
+  position: {x: -2504, y: -2360}
   ports:
     keys:
     - input
@@ -201,7 +443,7 @@ MonoBehaviour:
     - conditionNodeInput
     values:
     - _fieldName: input
-      _node: {fileID: -5071097811128192665}
+      _node: {fileID: -1838357739068013848}
       _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
@@ -213,24 +455,33 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: output
-      _node: {fileID: -5071097811128192665}
+      _node: {fileID: -1838357739068013848}
       _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: input
-        node: {fileID: 4249419845142660099}
+        node: {fileID: 3715948767274014069}
+        reroutePoints: []
+      - fieldName: input
+        node: {fileID: 4602868467286187194}
+        reroutePoints: []
+      - fieldName: input
+        node: {fileID: 1754734569518851474}
+        reroutePoints: []
+      - fieldName: input
+        node: {fileID: -8271065803999955178}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: conditionNodeInput
-      _node: {fileID: -5071097811128192665}
+      _node: {fileID: -1838357739068013848}
       _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: -6912867401411637319}
+        node: {fileID: -4624453173531080236}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -238,11 +489,16 @@ MonoBehaviour:
       _dynamic: 0
   nodeName: 
   _children:
-  - {fileID: 4249419845142660099}
-  precond: {fileID: -6912867401411637319}
+  - {fileID: 1754734569518851474}
+  - {fileID: -8271065803999955178}
+  - {fileID: 3715948767274014069}
+  - {fileID: 4602868467286187194}
+  precondList:
+  - {fileID: -4624453173531080236}
   database: {fileID: 0}
   interval: 0
-  currentBTNode: {fileID: 4249419845142660099}
+  isRuning: 0
+  currentBTNode: {fileID: 4602868467286187194}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,13 +513,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -8535303672454528271}
-  - {fileID: -8398002774148204110}
-  - {fileID: -7519561827855305775}
-  - {fileID: 2566891843506076689}
-  - {fileID: -5071097811128192665}
-  - {fileID: -6912867401411637319}
-  - {fileID: 4249419845142660099}
---- !u!114 &2566891843506076689
+  - {fileID: -1838357739068013848}
+  - {fileID: 3715948767274014069}
+  - {fileID: -7732667301364126287}
+  - {fileID: 4602868467286187194}
+  - {fileID: 1754734569518851474}
+  - {fileID: 1148719925486541283}
+  - {fileID: 5731804947748960633}
+  - {fileID: 1122475412874441565}
+  - {fileID: -4624453173531080236}
+  - {fileID: -5841484032992823944}
+  - {fileID: -4491501390424434402}
+  - {fileID: -3638924614991238150}
+  - {fileID: 8603214870117615021}
+  - {fileID: -2886313128786678806}
+  - {fileID: -8271065803999955178}
+  - {fileID: -7061917352860882582}
+  - {fileID: 5443479812909567678}
+--- !u!114 &1122475412874441565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89aa3701e2239d24db0198347c286af9, type: 3}
+  m_Name: Fall
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -2440, y: -1080}
+  ports:
+    keys:
+    - input
+    - conditionNodeInput
+    values:
+    - _fieldName: input
+      _node: {fileID: 1122475412874441565}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 5731804947748960633}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: conditionNodeInput
+      _node: {fileID: 1122475412874441565}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeName: 
+  _children: []
+  precondList: []
+  database: {fileID: 0}
+  interval: 0
+  isRuning: 0
+  animName: Fall
+--- !u!114 &1148719925486541283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -276,18 +590,18 @@ MonoBehaviour:
   m_Name: BT Input
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -488, y: -632}
+  position: {x: -712, y: -2456}
   ports:
     keys:
     - output
     values:
     - _fieldName: output
-      _node: {fileID: 2566891843506076689}
+      _node: {fileID: 1148719925486541283}
       _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: conditionNodeInput
-        node: {fileID: -8398002774148204110}
+        node: {fileID: 1754734569518851474}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -295,13 +609,14 @@ MonoBehaviour:
       _dynamic: 0
   nodeName: 
   _children: []
-  precond: {fileID: 0}
+  precondList: []
   database: {fileID: 0}
   interval: 0
+  isRuning: 0
   dir: {x: 0, y: 0}
-  target: 1
-  inputState: -10
---- !u!114 &4249419845142660099
+  value: 0
+  inputState: 11
+--- !u!114 &1754734569518851474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -310,22 +625,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3add33f791d79bf41bcf9dc85d2d1c73, type: 3}
-  m_Name: Debut
+  m_Script: {fileID: 11500000, guid: 3ecc45d0e2605d7488ed4eee9f91fbe1, type: 3}
+  m_Name: Jump
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 8, y: -296}
+  position: {x: -920, y: -2472}
   ports:
     keys:
     - input
+    - conditionNodeInput
     values:
     - _fieldName: input
-      _node: {fileID: 4249419845142660099}
+      _node: {fileID: 1754734569518851474}
       _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: output
-        node: {fileID: -5071097811128192665}
+        node: {fileID: -1838357739068013848}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: conditionNodeInput
+      _node: {fileID: 1754734569518851474}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: 1148719925486541283}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -333,8 +661,254 @@ MonoBehaviour:
       _dynamic: 0
   nodeName: 
   _children: []
-  precond: {fileID: 0}
+  precondList:
+  - {fileID: 1148719925486541283}
   database: {fileID: 0}
   interval: 0
+  isRuning: 0
+  animName: Jump
+  ForceJump: 6
+--- !u!114 &3715948767274014069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a73e142c2c4ed440968af1bcf6f6db0, type: 3}
+  m_Name: Move
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1928, y: -2584}
+  ports:
+    keys:
+    - input
+    - conditionNodeInput
+    values:
+    - _fieldName: input
+      _node: {fileID: 3715948767274014069}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -1838357739068013848}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: conditionNodeInput
+      _node: {fileID: 3715948767274014069}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -7732667301364126287}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeName: 
+  _children: []
+  precondList:
+  - {fileID: -7732667301364126287}
+  database: {fileID: 0}
+  interval: 0
+  isRuning: 0
+  animName: Run
+  dir: 0
+  speed: 10
+--- !u!114 &4602868467286187194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c04bd2275c927643a0c7442ec7da64b, type: 3}
+  m_Name: Idle
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -920, y: -2168}
+  ports:
+    keys:
+    - input
+    - conditionNodeInput
+    values:
+    - _fieldName: input
+      _node: {fileID: 4602868467286187194}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -1838357739068013848}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: conditionNodeInput
+      _node: {fileID: 4602868467286187194}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeName: 
+  _children: []
+  precondList: []
+  database: {fileID: 0}
+  interval: 0
+  isRuning: 1
   animName: Idle
-  debugInfo: Idle.......
+--- !u!114 &5443479812909567678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba248b3fb36f3cc40b916d2ae3400e5c, type: 3}
+  m_Name: BT Input
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1576, y: -1384}
+  ports:
+    keys:
+    - output
+    values:
+    - _fieldName: output
+      _node: {fileID: 5443479812909567678}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: conditionNodeInput
+        node: {fileID: -8271065803999955178}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeName: 
+  _children: []
+  precondList: []
+  database: {fileID: 0}
+  interval: 0
+  isRuning: 0
+  dir: {x: 0, y: 0}
+  value: 0
+  inputState: -11
+--- !u!114 &5731804947748960633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2821f80b878d18141b5d2013135de99d, type: 3}
+  m_Name: BT Select
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -2808, y: -1576}
+  ports:
+    keys:
+    - input
+    - output
+    - conditionNodeInput
+    values:
+    - _fieldName: input
+      _node: {fileID: 5731804947748960633}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -8535303672454528271}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 5731804947748960633}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: input
+        node: {fileID: 1122475412874441565}
+        reroutePoints: []
+      - fieldName: input
+        node: {fileID: -3638924614991238150}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: conditionNodeInput
+      _node: {fileID: 5731804947748960633}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: output
+        node: {fileID: -5841484032992823944}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeName: 
+  _children:
+  - {fileID: -3638924614991238150}
+  - {fileID: 1122475412874441565}
+  precondList:
+  - {fileID: -5841484032992823944}
+  database: {fileID: 0}
+  interval: 0
+  isRuning: 0
+  currentBTNode: {fileID: 0}
+--- !u!114 &8603214870117615021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93988274223fbc548bb97208fd77bfff, type: 3}
+  m_Name: Air Detection
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -2440, y: -1576}
+  ports:
+    keys:
+    - output
+    values:
+    - _fieldName: output
+      _node: {fileID: 8603214870117615021}
+      _typeQualifiedName: WMTreeGraph.NextNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: conditionNodeInput
+        node: {fileID: -3638924614991238150}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeName: 
+  _children: []
+  precondList: []
+  database: {fileID: 0}
+  interval: 0
+  isRuning: 0

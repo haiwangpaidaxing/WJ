@@ -55,9 +55,6 @@ public class SkillData
     public BaseEffectsSkill[] baseEffectsSkills;
     [UnityEngine.Header("消耗的魔法值")]
     public float MP;
-    //public EffectsSkillData[] baseEffectsSkillDatas;
-    //public EffectsEnemyData[] effectsEnemyAbilities;//技能对敌效果
-    //public SelfSkillEffectData[] selfSkillEffects;//技能对自身效果
     [UnityEngine.Header("技能CD")]
     public float cd;//技能CD
     public float skillTime;//技能CD

@@ -17,7 +17,10 @@ public class Rocker : MonoSingle<Rocker>, IBaseSole
     public Action<Vector2> dirEvent;
     private void Start()
     {
-        orginPos = head.position;
+        if (head!=null)
+        {
+            orginPos = head.position;
+        }
     }
     public void OnBeginDrag(PointerEventData eventData)
     {

@@ -44,24 +44,24 @@ public class GameRoot : MonoSingle<GameRoot>
         //equipData.EquipQualityType = cfg.Data.EquipQualityType.Rare;
         //equipData.entryKey = new System.Collections.Generic.List<WMData.EntryKey>();
         //equipData.OpenEquip();
-        int[] intlist = new int[8] { 12, 545, 1, 3, 4, 8, 45, 68 };
-        for (int i = 1; i < intlist.Length ; i++)
-        {
-            int startIndex = intlist[i];
-            for (int ssr = i - 1; ssr >= 0; ssr--)
-            {
-                if (intlist[ssr] > startIndex)
-                {
-                    intlist[ssr+1] = intlist[ssr];
-                    intlist[ssr] = startIndex;
-                }
-            }
-        }
+        //int[] intlist = new int[8] { 12, 545, 1, 3, 4, 8, 45, 68 };
+        //for (int i = 1; i < intlist.Length ; i++)
+        //{
+        //    int startIndex = intlist[i];
+        //    for (int ssr = i - 1; ssr >= 0; ssr--)
+        //    {
+        //        if (intlist[ssr] > startIndex)
+        //        {
+        //            intlist[ssr+1] = intlist[ssr];
+        //            intlist[ssr] = startIndex;
+        //        }
+        //    }
+        //}
 
-        foreach (var item in intlist)
-        {
-            Debug.Log(item);
-        }
+        //foreach (var item in intlist)
+        //{
+        //    Debug.Log(item);
+        //}
     }
 
     public void GetSvc<T>(ref T t) where T : MonoSingle<T>

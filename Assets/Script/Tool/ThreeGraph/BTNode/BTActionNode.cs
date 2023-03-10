@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WMBT;
+using WMTree;
 using XNode;
 namespace WMTreeGraph
 {
@@ -11,6 +12,10 @@ namespace WMTreeGraph
         public string animName;
         [Input]
         public NextNode input;
+
+        [Input]
+        public NextNode conditionNodeInput;
+
         private BTActionStatus _status = BTActionStatus.Ready;
         protected virtual BTResult Execute()
         {
@@ -28,21 +33,27 @@ namespace WMTreeGraph
         {
             return base.Evaluate();
         }
-        public override void OnInit(Database database)
+        public override void OnInit(TreeDatabase database)
         {
             base.OnInit(database);
         }
-        protected override bool DoEvaluate()
+        public override bool DoEvaluate()
         {
             return base.DoEvaluate();
         }
 
         protected virtual void Enter()
         {
-            database.animator.Play(animName);
+            if (animName!="")
+            {
+                database.animator.Play(animName);
+            }
+            isRuning = true;
         }
         protected virtual void Exit()
         {
+            database.unitController.MoveX(0, 0);
+            isRuning = false;
         }
         public override BTResult Update()
         {
@@ -66,8 +77,24 @@ namespace WMTreeGraph
 
         public override void OnCreateConnection(NodePort from, NodePort to)
         {
-
+            if (to.fieldName == "conditionNodeInput")
+            {
+                if (precondList==null)
+                {
+                    precondList = new List<BTPreconditionNode>();
+                }
+                foreach (var item in to.GetConnections())
+                {
+                    BTPreconditionNode precond = item.node as BTPreconditionNode;
+                    if (precond != null && !precondList.Contains(precond))
+                    {
+                        precondList.Add(precond);
+                    }
+                }
+            }
         }
+
+
         private enum BTActionStatus
         {
             Ready = 1,

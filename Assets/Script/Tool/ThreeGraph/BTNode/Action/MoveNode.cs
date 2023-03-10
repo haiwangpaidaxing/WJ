@@ -1,42 +1,46 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WMTreeGraph;
-using XNode;
 
 namespace WMTreeAction
 {
     public class MoveNode : BTActionNode
     {
-        [Header("移动的方向")]
-        public float dir;
-        [Header("移动速度")]
-        public float speed;
-        // Use this for initialization
-        protected override void Init()
+        public Vector2 speed;
+        public enum MoveType
         {
-            base.Init();
-
+            Not,UpdateX, UpdateY,EnterX,EnterY
         }
         protected override void Enter()
         {
-            Debug.Log("Init");
             base.Enter();
+            switch (moveType)
+            {
+                case MoveType.EnterX:
+                    database.unitController.MoveX(database.InputDir.x, speed.x);
+                    break;
+                case MoveType.EnterY:
+                    database.unitController.MoveY(database.InputDir.y, speed.y);
+                    break;
+            }
         }
-        // Return the correct value of an output port when requested
-        public override object GetValue(NodePort port)
-        {
-            return null; // Replace this
-        }
-
+        public MoveType moveType;
         protected override BTResult Execute()
         {
-            dir = Input.GetAxisRaw("Horizontal");
-            database.rig.velocity = Vector2.right * dir * speed;
-            Debug.Log("MoveNode");
+            switch (moveType)
+            {
+                case MoveType.UpdateX:
+                    database.unitController.MoveX(database.InputDir.x, speed.x);
+                    break;
+                case MoveType.UpdateY:
+                    database.unitController.MoveY(database.InputDir.y, speed.y);
+                    break;
+                case MoveType.Not:
+
+                    break;
+            }
             return base.Execute();
         }
-
-
     }
 }

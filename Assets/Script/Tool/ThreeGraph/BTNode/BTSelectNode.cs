@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WMBT;
+using WMTree;
+using WMTreeGraph;
 using XNode;
 
-namespace WMTreeGraph
+namespace WMTreeComposite
 {
     public class BTSelectNode : BaseBTNode
     {
@@ -45,7 +46,7 @@ namespace WMTreeGraph
             return base.Evaluate();
         }
 
-        public override void OnInit(Database database)
+        public override void OnInit(TreeDatabase database)
         {
             base.OnInit(database);
         }
@@ -66,7 +67,7 @@ namespace WMTreeGraph
             return bTResult;
         }
 
-        protected override bool DoEvaluate()
+       public override bool DoEvaluate()
         {
             //A>B>C   
             foreach (BaseBTNode child in Children)
